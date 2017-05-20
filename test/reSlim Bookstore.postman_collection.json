@@ -1,0 +1,2505 @@
+{
+	"variables": [],
+	"info": {
+		"name": "reSlim Bookstore",
+		"_postman_id": "e0adfa45-1199-9a83-48e7-15dc2f31e060",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User Register",
+			"request": {
+				"url": "http://localhost:1337/reSlim/src/api/user/register",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "Username",
+							"value": "your username (no space)",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Password",
+							"value": "your password",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Fullname",
+							"value": "your name",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Address",
+							"value": "your address here...",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Phone",
+							"value": "your phone",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Email",
+							"value": "your email",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Aboutme",
+							"value": "about you",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Avatar",
+							"value": "your url avatar",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Role",
+							"value": "2",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": "Register user"
+			},
+			"response": []
+		},
+		{
+			"name": "User Login",
+			"request": {
+				"url": "http://localhost:1337/reSlim-bookstore/src/api/user/login",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "Username",
+							"value": "{username}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Password",
+							"value": "{password}",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": "Login User"
+			},
+			"response": []
+		},
+		{
+			"name": "Logout User",
+			"request": {
+				"url": "http://localhost:1337/reSlim-bookstore/src/api/user/logout",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "Username",
+							"value": "{username}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Token",
+							"value": "{yourtoken}",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": "Logout user  "
+			},
+			"response": []
+		},
+		{
+			"name": "Show All User",
+			"request": {
+				"url": "http://localhost:1337/reSlim-bookstore/src/api/user/{yourtoken}",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "Show All User"
+			},
+			"response": []
+		},
+		{
+			"name": "Show All User",
+			"request": {
+				"url": "http://localhost:1337/reSlim-bookstore/src/api/user",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "Token",
+							"value": "{yourtoken}",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": "Show All User"
+			},
+			"response": []
+		},
+		{
+			"name": "Search Data User",
+			"request": {
+				"url": "http://localhost:1337/reSlim-bookstore/src/api/user/data/search/{page}/{itemsperpage}/{yourtoken}/?query={your query for search data}",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Show Role User",
+			"request": {
+				"url": "http://localhost:1337/reSlim-bookstore/src/api/user/role/{yourtoken}",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "Show Role User"
+			},
+			"response": []
+		},
+		{
+			"name": "Show Status User",
+			"request": {
+				"url": "http://localhost:1337/reSlim-bookstore/src/api/user/status/{yourtoken}",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "Show Status User"
+			},
+			"response": []
+		},
+		{
+			"name": "User Update",
+			"request": {
+				"url": "http://localhost:1337/reSlim-bookstore/src/api/user/update",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "Username",
+							"value": "{username}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Fullname",
+							"value": "your name",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Address",
+							"value": "your address",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Phone",
+							"value": "your phone",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Email",
+							"value": "your email",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Aboutme",
+							"value": "about your",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Avatar",
+							"value": "",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Role",
+							"value": "2",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Status",
+							"value": "1",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Token",
+							"value": "{yourtoken}",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": "User Update"
+			},
+			"response": []
+		},
+		{
+			"name": "User Delete",
+			"request": {
+				"url": "http://localhost:1337/reSlim-bookstore/src/api/user/delete",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "Username",
+							"value": "{username}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Token",
+							"value": "{yourtoken}",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": "User Delete"
+			},
+			"response": []
+		},
+		{
+			"name": "Change Password User",
+			"request": {
+				"url": "http://localhost:1337/reSlim-bookstore/src/api/user/changepassword",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "Username",
+							"value": "{username}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Password",
+							"value": "{youroldpassword}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "NewPassword",
+							"value": "{yournewpassword}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Token",
+							"value": "{yourtoken}",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Reset Password User",
+			"request": {
+				"url": "http://localhost:1337/reSlim-bookstore/src/api/user/resetpassword",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "Username",
+							"value": "{username}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "NewPassword",
+							"value": "{password}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Token",
+							"value": "{yourtoken}",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": "Change Password User"
+			},
+			"response": []
+		},
+		{
+			"name": "Show Profile User Public",
+			"request": {
+				"url": "http://localhost:1337/reSlim-bookstore/src/api/user/profile/{username}/?apikey={yourapikeys}",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "Show Profile User"
+			},
+			"response": []
+		},
+		{
+			"name": "Show Profile User Internal",
+			"request": {
+				"url": "http://localhost:1337/reSlim-bookstore/src/api/user/profile/{username}/{yourtoken}",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Show All User Pagination",
+			"request": {
+				"url": "http://localhost:1337/reSlim-bookstore/src/api/user/data/{page}/{itemsperpage}/{yourtoken}",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "Show All User Pagination"
+			},
+			"response": []
+		},
+		{
+			"name": "Verify Token",
+			"request": {
+				"url": "http://localhost:1337/reSlim-bookstore/src/api/user/verify/{yourtoken}",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "Verify Token"
+			},
+			"response": []
+		},
+		{
+			"name": "Get User Role by Token",
+			"request": {
+				"url": "http://localhost:1337/reSlim-bookstore/src/api/user/scope/{yourtoken}",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "Get User Role by Token"
+			},
+			"response": []
+		},
+		{
+			"name": "Process User Upload",
+			"request": {
+				"url": "http://localhost:1337/reSlim-bookstore/src/api/user/upload",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "Title",
+							"value": "",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Alternate",
+							"value": "",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "External",
+							"value": "",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Username",
+							"value": "{username}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Token",
+							"value": "{yourtoken}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Datafile",
+							"type": "file",
+							"enabled": true,
+							"src": "join-tkd-express.jpg"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Search Data User Upload",
+			"request": {
+				"url": "http://localhost:1337/reSlim-bookstore/src/api/user/{username}/upload/data/search/{page}/{itemsperpage}/{yourtoken}/?query={your query to search data}",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Show All Data User Upload",
+			"request": {
+				"url": "http://localhost:1337/reSlim-bookstore/src/api/user/{username}/upload/data/{page}/{itemsperpage}/{yourtoken}",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Show User Upload Item",
+			"request": {
+				"url": "http://localhost:1337/reSlim-bookstore/src/api/user/{username}/upload/data/item/{itemid}/?apikey={yourapikeys}",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Update User Upload",
+			"request": {
+				"url": "http://localhost:1337/reSlim-bookstore/src/api/user/upload/update",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "ItemID",
+							"value": "{itemid}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Title",
+							"value": "",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Alternate",
+							"value": "",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "External",
+							"value": "",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Status",
+							"value": "{49 or 50}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Username",
+							"value": "{username}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Token",
+							"value": "{yourtoken}",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Delete User Upload",
+			"request": {
+				"url": "http://localhost:1337/reSlim-bookstore/src/api/user/upload/delete",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "ItemID",
+							"value": "{itemid}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Username",
+							"value": "{username}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Token",
+							"value": "{yourtoken}",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Show Data Status Upload",
+			"request": {
+				"url": "http://localhost:1337/reSlim-bookstore/src/api/user/upload/status/{youtoken}",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Send Mail",
+			"request": {
+				"url": "http://localhost:1337/reSlim-bookstore/src/api/mail/send",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "To",
+							"value": "{destination email address}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Subject",
+							"value": "{subject email}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Message",
+							"value": "{message of email}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Html",
+							"value": "{true or false}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "From",
+							"value": "{your email address}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "FromName",
+							"value": "{your name or website name}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "CC",
+							"value": "{you can leave this blank}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "BCC",
+							"value": "{you can leave this blank}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Attachment",
+							"value": "{you can leave this blank}",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "User Forgot Password",
+			"request": {
+				"url": "http://localhost:1337/reSlim-bookstore/src/api/user/forgotpassword",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "Email",
+							"value": "{youremail}",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Verify Pass Key",
+			"request": {
+				"url": "http://localhost:1337/reSlim-bookstore/src/api/user/verifypasskey",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "PassKey",
+							"value": "{yourpasskey}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "NewPassword",
+							"value": "{yournewpassword}",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Create API Key",
+			"request": {
+				"url": "http://localhost:1337/reSlim-bookstore/src/api/user/keys/create",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "Token",
+							"value": "{yourtoken}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Username",
+							"value": "{yourusername}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Domain",
+							"value": "{yourdomain.com}",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Update API Key",
+			"request": {
+				"url": "http://localhost:1337/reSlim-bookstore/src/api/user/keys/update",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "Token",
+							"value": "{yourtoken}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Username",
+							"value": "{yourusername}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "ApiKey",
+							"value": "{yourapikey}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Status",
+							"value": "{1 or 42}",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Delete API Key",
+			"request": {
+				"url": "http://localhost:1337/reSlim-bookstore/src/api/user/keys/delete",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "Token",
+							"value": "{yourtoken}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Username",
+							"value": "{yourusername}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "ApiKey",
+							"value": "{yourapikey}",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Search Data API Keys User",
+			"request": {
+				"url": "http://localhost:1337/reSlim-bookstore/src/api/user/{username}/keys/data/search/{page}/{itemsperpage}/{yourtoken}/?query={your query to search data}",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Author Create",
+			"request": {
+				"url": "http://localhost:1337/reSlim-bookstore/src/api/book/author/new",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "Name",
+							"value": "{name or detail}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Token",
+							"value": "{yourtoken}",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Author Update",
+			"request": {
+				"url": "http://localhost:1337/reSlim-bookstore/src/api/book/author/update",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "Name",
+							"value": "{name or detail}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Token",
+							"value": "{yourtoken}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "AuthorID",
+							"value": "{authorid}",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Author Delete",
+			"request": {
+				"url": "http://localhost:1337/reSlim-bookstore/src/api/book/author/delete",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "Token",
+							"value": "{yourtoken}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "AuthorID",
+							"value": "{authorid}",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Author Data",
+			"request": {
+				"url": "http://localhost:1337/reSlim-bookstore/src/api/book/author/data/{yourtoken}",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Author Data Search Pagination",
+			"request": {
+				"url": "http://localhost:1337/reSlim-bookstore/src/api/book/author/data/search/{yourtoken}/{page}/{itemsperpage}/?query={your query to search data}",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Language Create",
+			"request": {
+				"url": "http://localhost:1337/reSlim-bookstore/src/api/book/language/new",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "Name",
+							"value": "{name or detail}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Token",
+							"value": "{yourtoken}",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Language Update",
+			"request": {
+				"url": "http://localhost:1337/reSlim-bookstore/src/api/book/language/update",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "Name",
+							"value": "{name or detail}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Token",
+							"value": "{yourtoken}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "LanguageID",
+							"value": "{languageid}",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Language Delete",
+			"request": {
+				"url": "http://localhost:1337/reSlim-bookstore/src/api/book/language/delete",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "Token",
+							"value": "{yourtoken}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "LanguageID",
+							"value": "{languageid}",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Language Data",
+			"request": {
+				"url": "http://localhost:1337/reSlim-bookstore/src/api/book/language/data/{yourtoken}",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Language Data Search Pagination",
+			"request": {
+				"url": "http://localhost:1337/reSlim-bookstore/src/api/book/language/data/search/{yourtoken}/{page}/{itemsperpage}/?query={your query to search data}",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Translator Create",
+			"request": {
+				"url": "http://localhost:1337/reSlim-bookstore/src/api/book/translator/new",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "Name",
+							"value": "{name or detail}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Token",
+							"value": "{yourtoken}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Website",
+							"value": "{url website}",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Translator Update",
+			"request": {
+				"url": "http://localhost:1337/reSlim-bookstore/src/api/book/translator/update",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "Name",
+							"value": "{name or detail}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Token",
+							"value": "{yourtoken}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "TranslatorID",
+							"value": "{translatorid}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Website",
+							"value": "{url website}",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Translator Delete",
+			"request": {
+				"url": "http://localhost:1337/reSlim-bookstore/src/api/book/translator/delete",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "Token",
+							"value": "{yourtoken}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "TranslatorID",
+							"value": "{translatorid}",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Translator Data",
+			"request": {
+				"url": "http://localhost:1337/reSlim-bookstore/src/api/book/translator/data/{yourtoken}",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Translator Data Search Pagination",
+			"request": {
+				"url": "http://localhost:1337/reSlim-bookstore/src/api/book/translator/data/search/{yourtoken}/{page}/{itemsperpage}/?query={your query to search}",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Book Type Create",
+			"request": {
+				"url": "http://localhost:1337/reSlim-bookstore/src/api/book/type/new",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "Name",
+							"value": "{name or detail}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Token",
+							"value": "{yourtoken}",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Book Type Update",
+			"request": {
+				"url": "http://localhost:1337/reSlim-bookstore/src/api/book/type/update",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "Name",
+							"value": "{name or detail}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Token",
+							"value": "{yourtoken}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "TypeID",
+							"value": "{typeid}",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Book Type Delete",
+			"request": {
+				"url": "http://localhost:1337/reSlim-bookstore/src/api/book/type/delete",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "Token",
+							"value": "{yourtoken}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "TypeID",
+							"value": "{typeid}",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Book Type Data",
+			"request": {
+				"url": "http://localhost:1337/reSlim-bookstore/src/api/book/type/data/{yourtoken}",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Book Type Data Search Pagination",
+			"request": {
+				"url": "http://localhost:1337/reSlim-bookstore/src/api/book/type/data/search/{yourtoken}/{page}/{itemsperpage}/?query={your query to search data}",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Book Publisher Create",
+			"request": {
+				"url": "http://localhost:1337/reSlim-bookstore/src/api/book/publisher/new",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "Name",
+							"value": "{name or detail}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Token",
+							"value": "{yourtoken}",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Book Publisher Update",
+			"request": {
+				"url": "http://localhost:1337/reSlim-bookstore/src/api/book/publisher/update",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "Name",
+							"value": "{name or detail}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Token",
+							"value": "{yourtoken}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "PublisherID",
+							"value": "{publisherid}",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Book Publisher Delete",
+			"request": {
+				"url": "http://localhost:1337/reSlim-bookstore/src/api/book/publisher/delete",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "Token",
+							"value": "{yourtoken}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "PublisherID",
+							"value": "{publisherid}",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Book Publisher Data",
+			"request": {
+				"url": "http://localhost:1337/reSlim-bookstore/src/api/book/publisher/data/{yourtoken}",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Book Publisher Data Search Pagination",
+			"request": {
+				"url": "http://localhost:1337/reSlim-bookstore/src/api/book/publisher/data/search/{yourtoken}/{page}/{itemsperpage}/?query={your query to search data}",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Submit Book Create",
+			"request": {
+				"url": "http://localhost:1337/reSlim-bookstore/src/api/book/submitbook/new",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "Token",
+							"value": "{yourtoken}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Username",
+							"value": "{yourusername}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "SampleLink",
+							"value": "{link download sample version of book}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "FullLink",
+							"value": "{link download full version of book}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "ImageLink",
+							"value": "{Image link of book}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Title",
+							"value": "{title of book}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Description",
+							"value": "{description of book}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Author",
+							"value": "{name of book author}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Language",
+							"value": "{book language}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Translator",
+							"value": "{the translator name}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Publisher",
+							"value": "{publisher of book}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Tags",
+							"value": "{tags must separated with commas or semicolons}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Pages",
+							"value": "{number of pages}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Purpose",
+							"value": "{free or paid}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "ISBN",
+							"value": "{ISBN of book}",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Submit Book Update",
+			"request": {
+				"url": "http://localhost:1337/reSlim-bookstore/src/api/book/submitbook/update",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "Token",
+							"value": "{yourtoken}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Username",
+							"value": "{yourusername}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "SampleLink",
+							"value": "{link download sample version of book}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "FullLink",
+							"value": "{link download full version of book}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "ImageLink",
+							"value": "{Image link of book}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Title",
+							"value": "{title of book}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Description",
+							"value": "{description of book}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Author",
+							"value": "{name of book author}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Language",
+							"value": "{book language}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Translator",
+							"value": "{the translator name}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Publisher",
+							"value": "{name of publisher book}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Tags",
+							"value": "{tags must separated with commas or semicolons}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Pages",
+							"value": "{number of pages}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Purpose",
+							"value": "{free or paid}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "StatusID",
+							"value": "{3=approved or 35=pending}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "SubmitBookID",
+							"value": "{ID of submitted book}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "BookID",
+							"value": "{ID of released book}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "ISBN",
+							"value": "{ISBN of book}",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Submit Book Delete",
+			"request": {
+				"url": "http://localhost:1337/reSlim-bookstore/src/api/book/submitbook/delete",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "Token",
+							"value": "{yourtoken}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "SubmitBookID",
+							"value": "{ID of submitted book}",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Submit Book Show Pending",
+			"request": {
+				"url": "http://localhost:1337/reSlim-bookstore/src/api/book/submitbook/data/pending/{username}/{token}/{page}/{itemsperpage}",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Submit Book Show Approved",
+			"request": {
+				"url": "http://localhost:1337/reSlim-bookstore/src/api/book/submitbook/data/approved/{username}/{token}/{page}/{itemsperpage}",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Submit Book Search All",
+			"request": {
+				"url": "http://localhost:1337/reSlim-bookstore/src/api/book/submitbook/data/all/search/{username}/{page}/{itemsperpage}/{token}/?query={your query to search data}",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Release Book Create",
+			"request": {
+				"url": "http://localhost:1337/reSlim-bookstore/src/api/book/release/new",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "Token",
+							"value": "{yourtoken}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Username",
+							"value": "{yourusername}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "SampleLink",
+							"value": "{link download sample version of book}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "FullLink",
+							"value": "{link download full version of book}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "ImageLink",
+							"value": "{Image link of book}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Title",
+							"value": "{title of book}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Description",
+							"value": "{description of book}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "AuthorID",
+							"value": "{ID of book author}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "LanguageID",
+							"value": "{ID of language}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "TranslatorID",
+							"value": "{ID of the translator}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "PublisherID",
+							"value": "{ID of publisher book}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "TypeID",
+							"value": "{ID of book type}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Tags",
+							"value": "{tags must separated with commas or semicolons}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Pages",
+							"value": "{number of pages}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "ISBN",
+							"value": "{ISBN of book}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Price",
+							"value": "{price of book}",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Release Book Update",
+			"request": {
+				"url": "http://localhost:1337/reSlim-bookstore/src/api/book/release/update",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "Token",
+							"value": "{yourtoken}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Username",
+							"value": "{yourusername}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "SampleLink",
+							"value": "{link download sample version of book}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "FullLink",
+							"value": "{link download full version of book}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "ImageLink",
+							"value": "{Image link of book}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Title",
+							"value": "{title of book}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Description",
+							"value": "{description of book}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "AuthorID",
+							"value": "{ID of book author}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "LanguageID",
+							"value": "{ID of language}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "TranslatorID",
+							"value": "{ID of  the translator }",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "TypeID",
+							"value": "{ID of book type}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "PublisherID",
+							"value": "{ID of publisher book}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Tags",
+							"value": "{tags must separated with commas or semicolons}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Pages",
+							"value": "{number of pages}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Price",
+							"value": "{price of book}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "StatusID",
+							"value": "{51=publish or 52=draft}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "BookID",
+							"value": "{ID of released book}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "ISBN",
+							"value": "{ISBN of book}",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Release Book Delete",
+			"request": {
+				"url": "http://localhost:1337/reSlim-bookstore/src/api/book/release/delete",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "Token",
+							"value": "{yourtoken}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "BookID",
+							"value": "{ID of released book}",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Release Book Show Publish",
+			"request": {
+				"url": "http://localhost:1337/reSlim-bookstore/src/api/book/release/data/publish/search/{page}/{itemsperpage}/?apikey={yourapikey}",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Release Book Show All",
+			"request": {
+				"url": "http://localhost:1337/reSlim-bookstore/src/api/book/release/data/all/{token}/{page}/{itemsperpage}",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Release Book Search Showroom",
+			"request": {
+				"url": "http://localhost:1337/reSlim-bookstore/src/api/book/release/data/showroom/{username}/search/{page}/{itemsperpage}/{yourtoken}/?query={your query to search data}",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Release Book Show Single Read",
+			"request": {
+				"url": "http://localhost:1337/reSlim-bookstore/src/api/book/release/data/read/{bookid}/?apikey={yourapikey}",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Book Library Add",
+			"request": {
+				"url": "http://localhost:1337/reSlim-bookstore/src/api/book/library/new",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "Token",
+							"value": "{your token}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Username",
+							"value": "{your username}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "BookID",
+							"value": "{ID of released book}",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Book Library Update",
+			"request": {
+				"url": "http://localhost:1337/reSlim-bookstore/src/api/book/library/update",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "Token",
+							"value": "{your token}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Username",
+							"value": "{the username of the owner of book library}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "BookID",
+							"value": "{ID of released book}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Adminname",
+							"value": "{username of admin}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Status",
+							"value": "{34=paid or 35=pending}",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Book Library Delete",
+			"request": {
+				"url": "http://localhost:1337/reSlim-bookstore/src/api/book/library/delete",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "Token",
+							"value": "{your token}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Username",
+							"value": "{the username of the owner of book library}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "BookID",
+							"value": "{ID of released book}",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Book Library Search Pending",
+			"request": {
+				"url": "http://localhost:1337/reSlim-bookstore/src/api/book/library/data/pending/search/{page}/{itemsperpage}/{token}/?query={query of search}",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Book Library Search All",
+			"request": {
+				"url": "http://localhost:1337/reSlim-bookstore/src/api/book/library/data/{username}/search/{page}/{itemsperpage}/{token}/?query={query of search}",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Show Option Payment",
+			"request": {
+				"url": "http://localhost:1337/reSlim-bookstore/src/api/book/payment/status/{yourtoken}",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Show Option Release",
+			"request": {
+				"url": "http://localhost:1337/reSlim-bookstore/src/api/book/release/status/{yourtoken}",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Show Option Submit Book",
+			"request": {
+				"url": "http://localhost:1337/reSlim-bookstore/src/api/book/submitbook/status/{yourtoken}",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Show Report Sales All",
+			"request": {
+				"url": "http://localhost:1337/reSlim-bookstore/src/api/book/report/sales/{username}/all/{page}/{itemsperpage}/{token}/?firstdate={first of date}&lastdate={last of date}&query={your query to search data}",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Save User Settings",
+			"request": {
+				"url": "http://localhost:1337/reSlim-bookstore/src/api/book/user/settings/save",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "Token",
+							"value": "{yourtoken}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Username",
+							"value": "{username}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Fullname",
+							"value": "{yourfullname}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Account",
+							"value": "{yourbankaccount}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "BankName",
+							"value": "{yourbankname}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "BankAddress",
+							"value": "{yourbankaddress}",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Read User Settings",
+			"request": {
+				"url": "http://localhost:1337/reSlim-bookstore/src/api/book/user/settings/read/{username}/{token}",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "Token",
+							"value": "{yourtoken}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Username",
+							"value": "{username}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Fullname",
+							"value": "{yourfullname}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Account",
+							"value": "{yourbankaccount}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "BankName",
+							"value": "{yourbankname}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "BankAddress",
+							"value": "{yourbankaddress}",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Withdrawal Create",
+			"request": {
+				"url": "http://localhost:1337/reSlim-bookstore/src/api/book/user/withdraw/new",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "Token",
+							"value": "{yourtoken}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Username",
+							"value": "{username}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Adminname",
+							"value": "{adminname}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Fullname",
+							"value": "{userfullname}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Account",
+							"value": "{userbankaccount}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "BankName",
+							"value": "{userbankname}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "BankAddress",
+							"value": "{userbankaddress}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "NoReference",
+							"value": "{number reference}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Amount",
+							"value": "{amount}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "FromBank",
+							"value": "{from bank}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "FromName",
+							"value": "{name of from bank}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Evidence",
+							"value": "{url link image proof of transaction}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Detail",
+							"value": "{detail transaction}",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Withdrawal Update",
+			"request": {
+				"url": "http://localhost:1337/reSlim-bookstore/src/api/book/user/withdraw/update",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "Token",
+							"value": "{yourtoken}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "WithdrawID",
+							"value": "{withdraw ID}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Adminname",
+							"value": "{adminname}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Fullname",
+							"value": "{userfullname}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Account",
+							"value": "{userbankaccount}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "BankName",
+							"value": "{userbankname}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "BankAddress",
+							"value": "{userbankaddress}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "NoReference",
+							"value": "{number reference}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Amount",
+							"value": "{amount}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "FromBank",
+							"value": "{from bank}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "FromName",
+							"value": "{name of from bank}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Evidence",
+							"value": "{url link image proof of transaction}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Detail",
+							"value": "{detail transaction}",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Withdrawal Delete",
+			"request": {
+				"url": "http://localhost:1337/reSlim-bookstore/src/api/book/user/withdraw/delete",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "Token",
+							"value": "{yourtoken}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "WithdrawID",
+							"value": "{withdraw ID}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Username",
+							"value": "{username of admin}",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Show User Withdrawal All",
+			"request": {
+				"url": "http://localhost:1337/reSlim-bookstore/src/api/book/user/withdrawal/{username}/all/{page}/{itemsperpage}/{token}/?firstdate={first of date}&lastdate={last of date}&query={your query to search data}",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
