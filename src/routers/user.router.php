@@ -32,9 +32,9 @@ use \Psr\Http\Message\ResponseInterface as Response;
     });
 
     // GET example api to search data user with pagination
-    $app->get('/user/data/search/{query}/{page}/{itemsperpage}/{token}', function (Request $request, Response $response) {
+    $app->get('/user/data/search/{page}/{itemsperpage}/{token}/', function (Request $request, Response $response) {
         $users = new classes\User($this->db);
-        $users->search = $request->getAttribute('query');
+        $users->search = filter_var((empty($_GET['query'])?'':$_GET['query']),FILTER_SANITIZE_STRING);
         $users->page = $request->getAttribute('page');
         $users->itemsPerPage = $request->getAttribute('itemsperpage');
         $users->token = $request->getAttribute('token');
@@ -270,7 +270,7 @@ use \Psr\Http\Message\ResponseInterface as Response;
         $upload->itemsPerPage = $request->getAttribute('itemsperpage');
         $upload->token = $request->getAttribute('token');
         $upload->username = $request->getAttribute('username');
-        $upload->search = filter_var($_GET['query'],FILTER_SANITIZE_STRING);
+        $upload->search = filter_var((empty($_GET['query'])?'':$_GET['query']),FILTER_SANITIZE_STRING);
         $upload->baseurl = $request->getUri()->getBaseUrl();
         $body = $response->getBody();
         $body->write($upload->searchAllAsPagination());
@@ -352,7 +352,7 @@ use \Psr\Http\Message\ResponseInterface as Response;
         $users->itemsPerPage = $request->getAttribute('itemsperpage');
         $users->token = $request->getAttribute('token');
         $users->username = $request->getAttribute('username');
-        $users->search = filter_var($_GET['query'],FILTER_SANITIZE_STRING);
+        $users->search = filter_var((empty($_GET['query'])?'':$_GET['query']),FILTER_SANITIZE_STRING);
         $body = $response->getBody();
         $body->write($users->searchAllApiKeysAsPagination());
         return classes\Cors::modify($response,$body,200);

@@ -7,7 +7,7 @@
                                 <input name="search" type="text" placeholder="Search here..." class="form-control border-input" value="<?php echo $_GET['search']?>">
                             </div>
                             <div class="form-group hidden">
-                                <input name="m" type="text" class="form-control border-input" value="7" hidden>
+                                <input name="m" type="text" class="form-control border-input" value="8" hidden>
                                 <input name="page" type="text" class="form-control border-input" value="1" hidden>
                                 <input name="itemsperpage" type="text" class="form-control border-input" value="10" hidden>
                             </div>
@@ -23,14 +23,13 @@
             <div class="container-fluid">
                 <div class="row">
                     <?php 
-                        if (isset($_POST['submitnewapi']))
+                        if (isset($_POST['submitnewauthor']))
                         {
                             $post_array = array(
-                                'Username' => $datalogin['username'],
                                 'Token' => $datalogin['token'],
-                                'Domain' => filter_var($_POST['domain'],FILTER_SANITIZE_STRING)
+                                'Name' => filter_var($_POST['name'],FILTER_SANITIZE_STRING)
                             );
-                            Core::createNewAPI(Core::getInstance()->api.'/user/keys/create',$post_array);
+                            Core::createProcess(Core::getInstance()->api.'/book/author/new',$post_array,'New Author');
                         }
                     ?>
                     <!-- Start Modal -->
@@ -39,22 +38,22 @@
                             <div class="modal-content">
                               <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="myModalLabel">Add new API Keys</h4>
+                                <h4 class="modal-title" id="myModalLabel">Add new Author</h4>
                               </div>
                               <form method="post" action="<?php $_SERVER['PHP_SELF']?>">
                               <div class="modal-body">
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            <label>Domain</label>
-                                            <input name="domain" type="text" placeholder="Input your domain here..." class="form-control border-input" required>
+                                            <label>Author Name</label>
+                                            <input name="name" type="text" placeholder="Input new author here..." class="form-control border-input" required>
                                         </div>
                                     </div>
                                 </div>
                               </div>
                               <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                                <button type="submit" name="submitnewapi" class="btn btn-primary">Submit</button>
+                                <button type="submit" name="submitnewauthor" class="btn btn-primary">Submit</button>
                               </div>
                               </form>
                             </div>
@@ -64,45 +63,39 @@
                     <div class="col-md-12">
                         <div class="card card-plain">
                             <div class="header">
-                                <button type="submit" class="btn btn-wd" data-toggle="modal" data-target="#myModal">Add new API Keys</button>
+                                <button type="submit" class="btn btn-wd" data-toggle="modal" data-target="#myModal">Add new Author</button>
                             </div>
                         </div>
                     </div>
 <?php 
-    $url = Core::getInstance()->api.'/user/'.$datalogin['username'].'/keys/data/search/'.$_GET['page'].'/'.$_GET['itemsperpage'].'/'.$datalogin['token'].'/?query='.$_GET['search'];
+    $url = Core::getInstance()->api.'/book/author/data/search/'.$datalogin['token'].'/'.$_GET['page'].'/'.$_GET['itemsperpage'].'/?query='.$_GET['search'];
     $data = json_decode(Core::execGetRequest($url));
-
-    // Data Status
-    $urlstatus = Core::getInstance()->api.'/user/status/'.$datalogin['token'];
-    $datastatus = json_decode(Core::execGetRequest($urlstatus));
 
     if (!empty($data))
         {
             if ($data->{'status'} == "success")
             {
                 foreach ($data->results as $row => $value) {
-                    if (isset($_POST['submitupdateapi'.$value->{'ApiKey'}]))
+                    if (isset($_POST['submitupdateauthor'.$value->{'AuthorID'}]))
                     {
                         $post_array = array(
-                            'Username' => $datalogin['username'],
+                            'Name' => $_POST['name'],
                             'Token' => $datalogin['token'],
-                            'ApiKey' => $_POST['apikey'],
-                            'Status' => $_POST['status']
+                            'AuthorID' => $_POST['authorid']
                         );
-                        Core::updateAPI(Core::getInstance()->api.'/user/keys/update',$post_array);
+                        Core::updateProcess(Core::getInstance()->api.'/book/author/update',$post_array,'Author');
                         echo Core::reloadPage();
                     }
                 }
 
                 foreach ($data->results as $row => $value) {
-                    if (isset($_POST['submitdeleteapi'.$value->{'ApiKey'}]))
+                    if (isset($_POST['submitdeleteauthor'.$value->{'AuthorID'}]))
                     {
                         $post_array = array(
-                            'Username' => $datalogin['username'],
                             'Token' => $datalogin['token'],
-                            'ApiKey' => $_POST['apikey']
+                            'AuthorID' => $_POST['authorid']
                         );
-                        Core::deleteAPI(Core::getInstance()->api.'/user/keys/delete',$post_array);
+                        Core::deleteProcess(Core::getInstance()->api.'/book/author/delete',$post_array,'from Author');
                         echo Core::reloadPage();
                     }
                 }
@@ -110,7 +103,7 @@
                 echo '<div class="col-md-12">
                         <div class="card card-plain">
                             <div class="header">
-                                <h4 class="title text-uppercase">Data API Keys</h4>
+                                <h4 class="title text-uppercase">Data Author</h4>
                                 <p class="category">Message: '.$data->{'message'}.'<br>
                                 Shows no: '.$data->metadata->{'number_item_first'}.' - '.$data->metadata->{'number_item_last'}.' from total data: '.$data->metadata->{'records_total'}.'</p>
                                     <div class="dropdown">
@@ -133,14 +126,9 @@
                                 <table id="export" class="table table-striped">
                                     <thead>
                                         <th>No</th>
-                                    	<th>Domain</th>
-                                    	<th>API Key</th>
-                                    	<th>Status</th>
-                                        <th>Username</th>
-                                        <th>Created</th>
-                                        <th>Updated at</th>
-                                        <th>Updated by</th>
-                                        <th>Manage</th>
+                                    	<th>AuthorID</th>
+                                    	<th>Author</th>
+                                    	<th>Manage</th>
                                     </thead>
                                     <tbody>';
                 $n=$data->metadata->{'number_item_first'};
@@ -148,14 +136,9 @@
 	            {
                     echo '<tr>';
                     echo '<td>' . $n++ .'</td>';
-                    echo '<td>' . $value->{'Domain'} .'</td>';
-			        echo '<td>' . $value->{'ApiKey'} .'</td>';
-        			echo '<td>' . $value->{'Status'} .'</td>';
-                	echo '<td>' . $value->{'Username'} .'</td>';
-                	echo '<td>' . $value->{'Created_at'} .'</td>';
-            	    echo '<td>' . $value->{'Updated_at'} .'</td>';
-                    echo '<td>' . $value->{'Updated_by'} .'</td>';
-                    echo '<td><a href="#" data-toggle="modal" data-target="#'.$value->{'ApiKey'}.'"><i class="ti-pencil"></i> Edit</a></td>';
+                    echo '<td>' . $value->{'AuthorID'} .'</td>';
+			        echo '<td>' . $value->{'Name'} .'</td>';
+        			echo '<td><a href="#" data-toggle="modal" data-target="#'.$value->{'AuthorID'}.'"><i class="ti-pencil"></i> Edit</a></td>';
 	    	    	echo '</tr>';              
                 }
                 echo '</tbody>
@@ -165,57 +148,39 @@
                 </div>';
 
                 $pagination = new Pagination;
-                echo $pagination->makePagination($data,$_SERVER['PHP_SELF'].'?m=7&search='.$_GET['search']);
+                echo $pagination->makePagination($data,$_SERVER['PHP_SELF'].'?m=8&search='.$_GET['search']);
                 
                 echo '</div>';
                 foreach ($data->results as $name=>$value){
                     echo '<!-- Start Modal -->
-                        <div class="modal fade" id="'.$value->{'ApiKey'}.'" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                        <div class="modal fade" id="'.$value->{'AuthorID'}.'" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                           <div class="modal-dialog" role="document">
                             <div class="modal-content">
                               <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="myModalLabel">Update API Keys</h4>
+                                <h4 class="modal-title" id="myModalLabel">Update Author</h4>
                               </div>
-                              <form method="post" action="'.$_SERVER['PHP_SELF'].'?m=7&page='.$_GET['page'].'&itemsperpage='.$_GET['itemsperpage'].'&search='.$_GET['search'].'">
+                              <form method="post" action="'.$_SERVER['PHP_SELF'].'?m=8&page='.$_GET['page'].'&itemsperpage='.$_GET['itemsperpage'].'&search='.$_GET['search'].'">
                               <div class="modal-body">
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            <label>Created</label>
-                                            <input name="created" type="text" placeholder="Input your domain here..." class="form-control border-input" value="'.$value->{'Created_at'}.'" readonly>
+                                            <label>Author ID</label>
+                                            <input name="authorid" type="text" placeholder="Input your author id here..." class="form-control border-input" value="'.$value->{'AuthorID'}.'" readonly>
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            <label>Domain</label>
-                                            <input name="domain" type="text" placeholder="Input your domain here..." class="form-control border-input" value="'.$value->{'Domain'}.'" readonly>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <div class="form-group">
-                                            <label>API Key</label>
-                                            <textarea name="apikey" rows="3" type="text" placeholder="Input your domain here..." class="form-control border-input" readonly>'.$value->{'ApiKey'}.'</textarea>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <div class="form-group">
-                                            <label>Status</label>
-                                            <select name="status" type="text" style=\'max-height:200px; overflow-y:scroll; overflow-x:hidden;\' class="form-control border-input">';
-                                                if (!empty($datastatus)) {
-                                                            foreach ($datastatus->result as $name => $valuestatus) {
-                                                                echo '<option value="'.$valuestatus->{'StatusID'}.'" '.(($valuestatus->{'StatusID'} == $value->{'StatusID'})?'selected':'').'>'.$valuestatus->{'Status'}.'</option>';
-                                                            }
-                                                        }
-                                                    echo '</select>
+                                            <label>Author Name</label>
+                                            <input name="name" type="text" placeholder="Input your author name here..." class="form-control border-input" value="'.$value->{'Name'}.'" required>
                                         </div>
                                     </div>
                                 </div>
                               </div>
                               <div class="modal-footer">
-                                <button type="submit" name="submitdeleteapi'.$value->{'ApiKey'}.'" class="btn btn-danger pull-left">Delete</button>
+                                <button type="submit" name="submitdeleteauthor'.$value->{'AuthorID'}.'" class="btn btn-danger pull-left">Delete</button>
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                                <button type="submit" name="submitupdateapi'.$value->{'ApiKey'}.'" class="btn btn-primary">Update</button>
+                                <button type="submit" name="submitupdateauthor'.$value->{'AuthorID'}.'" class="btn btn-primary">Update</button>
                               </div>
                               </form>
                             </div>

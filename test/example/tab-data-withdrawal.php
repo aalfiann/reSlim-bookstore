@@ -20,7 +20,7 @@
                                 <input name="search" type="text" placeholder="Search here..." class="form-control border-input" value="<?php echo $_GET['search']?>">
                             </div>
                             <div class="form-group hidden">
-                                <input name="m" type="text" class="form-control border-input" value="3" hidden>
+                                <input name="m" type="text" class="form-control border-input" value="18" hidden>
                                 <input name="page" type="text" class="form-control border-input" value="1" hidden>
                                 <input name="itemsperpage" type="text" class="form-control border-input" value="10" hidden>
                             </div>
@@ -38,7 +38,7 @@
                 <div class="row">
                
 <?php 
-    $url = Core::getInstance()->api.'/book/report/sales/'.$datalogin['username'].'/all/'.$_GET['page'].'/'.$_GET['itemsperpage'].'/'.$datalogin['token'].'/?firstdate='.((!empty($_GET['firstdate']))?$_GET['firstdate']:date('Y-m-d',strtotime("-30 days"))).'&lastdate='.((!empty($_GET['lastdate']))?$_GET['lastdate']:date('Y-m-d')).'&query='.$_GET['search'];
+    $url = Core::getInstance()->api.'/book/user/withdrawal/'.$datalogin['username'].'/all/'.$_GET['page'].'/'.$_GET['itemsperpage'].'/'.$datalogin['token'].'/?firstdate='.((!empty($_GET['firstdate']))?$_GET['firstdate']:date('Y-m-d',strtotime("-30 days"))).'&lastdate='.((!empty($_GET['lastdate']))?$_GET['lastdate']:date('Y-m-d')).'&query='.$_GET['search'];
     $data = json_decode(Core::execGetRequest($url));
 
     if (!empty($data))
@@ -48,7 +48,7 @@
                 echo '<div class="col-md-12">
                         <div class="card card-plain">
                             <div class="header">
-                                <h4 class="title text-uppercase">Data Report Sales</h4>
+                                <h4 class="title text-uppercase">Data Report Withdrawal</h4>
                                 <p class="category">Message: '.$data->{'message'}.'<br>
                                 Shows no: '.$data->metadata->{'number_item_first'}.' - '.$data->metadata->{'number_item_last'}.' from total data: '.$data->metadata->{'records_total'}.'</p>
                                     <div class="dropdown">
@@ -71,16 +71,17 @@
                                 <table id="export" class="table table-striped">
                                     <thead>
                                         <th>No</th>
-                                    	<th>Date Range</th>
-                                    	<th>Book ID</th>
-                                    	<th>Title</th>
-                                    	<th>Pages</th>
-                                        <th>Price</th>
-                                        <th>Total Income</th>
-                                    	<th>Total Sales</th>
-                                        <th>Total Royalti User</th>
-                                        <th>Total Royalti Company</th>
-                                        <th>Royalti Username</th>
+                                    	<th>Date Transaction</th>
+                                    	<th>Withdraw ID</th>
+                                    	<th>Detail</th>
+                                    	<th>Username</th>
+                                        <th>Fullname</th>
+                                        <th>Bank Name</th>
+                                    	<th>No Reference</th>
+                                        <th>Amount</th>
+                                        <th>Via Bank</th>
+                                        <th>From</th>
+                                        <th>Proof Of Transaction</th>
                                     </thead>
                                     <tbody>';
                 $n=$data->metadata->{'number_item_first'};
@@ -88,16 +89,17 @@
 	            {
                     echo '<tr>';
                     echo '<td>' . $n++ .'</td>';
-                    echo '<td>' . $value->{'DateRange'} .'</td>';
-			        echo '<td>' . $value->{'BookID'} .'</td>';
-        			echo '<td>' . $value->{'Title'} .'</td>';
-                	echo '<td>' . $value->{'Pages'} .'</td>';
-                	echo '<td>' . $value->{'Price'} .'</td>';
-            	    echo '<td>' . $value->{'Total_Income'} .'</td>';
-    	    		echo '<td>' . $value->{'Total_Sales'} .'</td>';
-                    echo '<td>' . $value->{'Total_Royalti_User'} .'</td>';
-                    echo '<td>' . $value->{'Total_Royalti_Company'} .'</td>';
-                    echo '<td>' . $value->{'Royalti_Username'} .'</td>';
+                    echo '<td>' . $value->{'Date_Transaction'} .'</td>';
+			        echo '<td>' . $value->{'WithdrawID'} .'</td>';
+        			echo '<td>' . $value->{'Detail'} .'</td>';
+                	echo '<td>' . $value->{'Username'} .'</td>';
+                	echo '<td>' . $value->{'Fullname'} .'</td>';
+            	    echo '<td>' . $value->{'Bank_Name'} .'</td>';
+    	    		echo '<td>' . $value->{'No_Reference'} .'</td>';
+                    echo '<td>' . $value->{'Amount'} .'</td>';
+                    echo '<td>' . $value->{'From_Bank'} .'</td>';
+                    echo '<td>' . $value->{'From_Name'} .'</td>';
+                    echo '<td><a href="' . $value->{'Image_Evidence'} .'">' . $value->{'Image_Evidence'} .'</a></td>';
 	    	    	echo '</tr>';              
                 }
                 echo '</tbody>
@@ -107,7 +109,7 @@
                 </div>';
 
                 $pagination = new Pagination;
-                echo $pagination->makePagination($data,$_SERVER['PHP_SELF'].'?m=3&firstdate='.((!empty($_GET['firstdate']))?$_GET['firstdate']:date('Y-m-d',strtotime("-30 days"))).'&lastdate='.((!empty($_GET['lastdate']))?$_GET['lastdate']:date('Y-m-d')).'&search='.$_GET['search']);
+                echo $pagination->makePagination($data,$_SERVER['PHP_SELF'].'?m=18&firstdate='.((!empty($_GET['firstdate']))?$_GET['firstdate']:date('Y-m-d',strtotime("-30 days"))).'&lastdate='.((!empty($_GET['lastdate']))?$_GET['lastdate']:date('Y-m-d')).'&search='.$_GET['search']);
                 
                 echo '</div>';
             }

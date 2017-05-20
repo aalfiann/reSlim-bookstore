@@ -8,6 +8,7 @@
                                 $post_array = array(
                                     'Title' => $_POST['title'],
                                     'Email' => $_POST['email'],
+                                    'Hotline' => $_POST['hotline'],
                                     'Basepath' => $_POST['basepath'],
                                     'Api' => $_POST['api'],
                                     'ApiKey' => $_POST['apikey']
@@ -29,6 +30,10 @@
                                         <div class="form-group">
                                             <label>Email</label>
                                             <input name="email" type="text" placeholder="Please input Your Email" class="form-control border-input" maxlength="50" value="<?php echo Core::getInstance()->email?>" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Hotline</label>
+                                            <input name="hotline" type="text" placeholder="Please input Your hotline call" class="form-control border-input" maxlength="15" value="<?php echo Core::getInstance()->hotline?>" required>
                                         </div>
                                         <div class="form-group">
                                             <label>Base Path</label>

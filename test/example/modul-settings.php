@@ -1,4 +1,8 @@
-<?php spl_autoload_register(function ($classname) {require ( $classname . ".php");});$datalogin = Core::checkSessions();?>
+<?php spl_autoload_register(function ($classname) {require ( $classname . ".php");});$datalogin = Core::checkSessions();
+// Redirect to dashboard page
+if (Core::getRole($datalogin['token']) == '3') {
+    Core::goToPage('modul-book-showroom.php?m=12&page=1&itemsperpage=12&search=');
+};?>
 <!doctype html>
 <html lang="id">
 <head>
@@ -24,8 +28,7 @@
                     </button>
                     <a class="navbar-brand" href="#">Settings</a>
                 </div>
-                <div class="collapse navbar-collapse">
-                </div>
+                <?php include 'global-nav.php';?>
             </div>
         </nav>
 

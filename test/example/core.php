@@ -24,6 +24,9 @@
         // Set api keys
         var $apikey;
 
+        // Set hotline call
+        var $hotline;
+
         var $version = '1.2.0';
 
         private static $instance;
@@ -35,6 +38,7 @@
             $this->basepath = $config['basepath'];
             $this->api = $config['api'];
             $this->apikey = $config['apikey'];
+            $this->hotline = $config['hotline'];
 		}
 
         public static function getInstance()
@@ -539,6 +543,114 @@
 	    }
 
         /**
+		 * Global Process Create 
+         *
+         * @param $url = The url api to post the request
+         * @param $post_array = Data array to post
+         * @param $nameprocess = The name of process
+		 * @return result json encoded data
+		 */
+	    public static function createProcess($url,$post_array,$nameprocess,$largeDiv=true){
+            $data = json_decode(self::execPostRequest($url,$post_array));
+            if (!empty($data)){
+                if ($data->{'status'} == "success"){
+                    if ($largeDiv) echo '<div class="col-lg-12">';
+                    echo self::getMessage('success','Process Add '.$nameprocess.' Successfully!');
+                    if ($largeDiv) echo '</div>';
+                } else {
+                    if ($largeDiv) echo '<div class="col-lg-12">';
+                    echo self::getMessage('danger','Process Add '.$nameprocess.' Failed!',$data->{'message'});    
+                    if ($largeDiv) echo '</div>';
+                }
+            } else {
+                if ($largeDiv) echo '<div class="col-lg-12">';
+                echo self::getMessage('danger','Process Add '.$nameprocess.' Failed!','Can not connected to the server!');
+                if ($largeDiv) echo '</div>';
+            }
+	    }
+
+        /**
+		 * Global Process Update
+         *
+         * @param $url = The url api to post the request
+         * @param $post_array = Data array to post
+         * @param $nameprocess = The name of process
+		 * @return result json encoded data
+		 */
+	    public static function updateProcess($url,$post_array,$nameprocess,$largeDiv=true){
+            $data = json_decode(self::execPostRequest($url,$post_array));
+            if (!empty($data)){
+                if ($data->{'status'} == "success"){
+                    if ($largeDiv) echo '<div class="col-lg-12">';
+                    echo self::getMessage('success','Process Update '.$nameprocess.' Successfuly!','This page will automatically refresh at 2 seconds...');
+                    if ($largeDiv) echo '</div>';
+                } else {
+                    if ($largeDiv) echo '<div class="col-lg-12">';
+                    echo self::getMessage('danger','Process Update '.$nameprocess.' Failed!',$data->{'message'}.' This page will automatically refresh at 2 seconds...');
+                    if ($largeDiv) echo '</div>';
+                }
+            } else {
+                if ($largeDiv) echo '<div class="col-lg-12">';
+                echo self::getMessage('danger','Process Update '.$nameprocess.' Failed!','Can not connected to the server! This page will automatically refresh at 2 seconds...');
+                if ($largeDiv) echo '</div>';
+            }
+	    }
+
+        /**
+		 * Global Process Delete
+         *
+         * @param $url = The url api to post the request
+         * @param $post_array = Data array to post
+         * @param $nameprocess = The name of process
+		 * @return result json encoded data
+		 */
+	    public static function deleteProcess($url,$post_array,$nameprocess,$largeDiv=true){
+            $data = json_decode(self::execPostRequest($url,$post_array));
+            if (!empty($data)){
+                if ($data->{'status'} == "success"){
+                    if ($largeDiv) echo '<div class="col-lg-12">';
+                    echo self::getMessage('success','Process Delete '.$nameprocess.' Successfuly!','This page will automatically refresh at 2 seconds...');
+                    if ($largeDiv) echo '</div>';
+                } else {
+                    if ($largeDiv) echo '<div class="col-lg-12">';
+                    echo self::getMessage('danger','Process Delete '.$nameprocess.' Failed!',$data->{'message'}.' This page will automatically refresh at 2 seconds...');
+                    if ($largeDiv) echo '</div>';
+                }
+            } else {
+               if ($largeDiv) echo '<div class="col-lg-12">';
+                echo self::getMessage('danger','Process Delete '.$nameprocess.' Failed!','Can not connected to the server! This page will automatically refresh at 2 seconds...');
+                if ($largeDiv) echo '</div>';
+            }
+	    }
+
+        /**
+		 * Global Process Save
+         *
+         * @param $url = The url api to post the request
+         * @param $post_array = Data array to post
+         * @param $nameprocess = The name of process
+		 * @return result json encoded data
+		 */
+	    public static function saveProcess($url,$post_array,$nameprocess,$largeDiv=true){
+            $data = json_decode(self::execPostRequest($url,$post_array));
+            if (!empty($data)){
+                if ($data->{'status'} == "success"){
+                    if ($largeDiv) echo '<div class="col-lg-12">';
+                    echo self::getMessage('success','Process Saving '.$nameprocess.' Successfuly!');
+                    if ($largeDiv) echo '</div>';
+                } else {
+                    if ($largeDiv) echo '<div class="col-lg-12">';
+                    echo self::getMessage('danger','Process Saving '.$nameprocess.' Failed!',$data->{'message'});
+                    if ($largeDiv) echo '</div>';
+                }
+            } else {
+                if ($largeDiv) echo '<div class="col-lg-12">';
+                echo self::getMessage('danger','Process Saving '.$nameprocess.' Failed!','Can not connected to the server!');
+                if ($largeDiv) echo '</div>';
+            }
+	    }
+
+        /**
 		 * Check SESSION, COOKIE and Verify Token
          *
          * @return data array, but if null will be redirect to login page
@@ -631,7 +743,8 @@
             $config[\'email\'] = \''.$post_array['Email'].'\'; //Your default email
             $config[\'basepath\'] = \''.$post_array['Basepath'].'\'; //Your folder website
             $config[\'api\'] = \''.$post_array['Api'].'\'; //Your folder rest api
-            $config[\'apikey\'] = \''.$post_array['ApiKey'].'\'; //Your api key, you can leave this blank and fill this later';
+            $config[\'apikey\'] = \''.$post_array['ApiKey'].'\'; //Your api key, you can leave this blank and fill this later
+            $config[\'hotline\'] = \''.$post_array['Hotline'].'\'; //Your hotline call, you can leave this blank';
             $handle = fopen('config.php','w+'); 
 				fwrite($handle,$newcontent); 
 				fclose($handle); 

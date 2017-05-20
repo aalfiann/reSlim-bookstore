@@ -1,14 +1,10 @@
 <?php 
 spl_autoload_register(function ($classname) {require ( $classname . ".php");});
-$datalogin = Core::checkSessions();
-// Redirect to dashboard page
-if (Core::getRole($datalogin['token']) == '3') {
-    Core::goToPage('modul-book-showroom.php?m=12&page=1&itemsperpage=12&search=');
-};?>
+$datalogin = Core::checkSessions();?>
 <!doctype html>
 <html lang="id">
 <head>
-    <title>API Keys - <?php echo Core::getInstance()->title?></title>
+    <title>Book Showroom - <?php echo Core::getInstance()->title?></title>
 	<?php include 'global-meta.php';?>
 </head>
 <body>
@@ -28,13 +24,13 @@ if (Core::getRole($datalogin['token']) == '3') {
                         <span class="icon-bar bar2"></span>
                         <span class="icon-bar bar3"></span>
                     </button>
-                    <a class="navbar-brand" href="#">API Keys</a>
+                    <a class="navbar-brand" href="#">Book Showroom</a>
                 </div>
                 <?php include 'global-nav.php';?>
             </div>
         </nav>
 
-            <?php include 'tab-data-api.php';?>
+            <?php include 'tab-book-showroom.php';?>
 
             <?php include 'global-footer.php';?>
 

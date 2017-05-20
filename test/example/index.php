@@ -5,7 +5,7 @@ spl_autoload_register(function ($classname) {require ( $classname . ".php");});
 $datalogin = Core::checkSessions();
 // Redirect to dashboard page
 if (Core::getRole($datalogin['token']) != '3') {
-    Core::goToPage('modul-dashboard.php?m=3');
+    Core::goToPage('modul-dashboard.php?m=3&page=1&itemsperpage=10&search=');
 } else {
     Core::goToPage('modul-user-profile.php?m=4');
 }

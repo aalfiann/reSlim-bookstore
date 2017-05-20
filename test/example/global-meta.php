@@ -1,3 +1,4 @@
+<?php //error_reporting(0);?>
 <meta charset="utf-8" />
 	<link rel="apple-touch-icon" sizes="76x76" href="assets/img/reslim.ico">
 	<link rel="icon" type="image/png" sizes="96x96" href="assets/img/reslim.ico">
@@ -10,3 +11,17 @@
     <!-- Bootstrap core CSS     -->
     <link href="assets/css/main.min.css" rel="stylesheet" />
     <link href="assets/css/main.css" rel="stylesheet" />
+    <style>@media (min-width: 992px){
+    .typo-line{
+        padding-left: 140px;
+        margin-bottom: 40px;
+        position: relative;
+    }
+
+    .typo-line .category{
+        transform: translateY(-50%);
+        top: 50%;
+        left: 0px;
+        position: absolute;
+    }
+}</style>

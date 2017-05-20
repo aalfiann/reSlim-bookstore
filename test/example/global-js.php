@@ -10,3 +10,15 @@
 
 	<!-- Export -->
 	<script type="text/javascript" src="assets/js/package.export.js"></script>
+	<script type="text/javascript" src="https://code.jquery.com/ui/1.10.2/jquery-ui.min.js"></script>
+	<script>$("head").append("<link rel='stylesheet' type='text/css' href='https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/themes/base/minified/jquery-ui.min.css' /><style>.ui-autocomplete{max-height:200px;overflow-y:auto;overflow-x:hidden}* html .ui-autocomplete{height:200px} .ui-autocomplete-loading { background:url('assets/img/ajax-loader.gif') no-repeat right center }</style>");</script>
+	<script type="text/javascript">
+    $(function(){
+        $("#firstdate").datepicker({
+            dateFormat:"yy-mm-dd"
+        }),
+        $("#lastdate").datepicker({
+            dateFormat:"yy-mm-dd"
+        })
+    });
+</script>

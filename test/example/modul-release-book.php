@@ -8,7 +8,7 @@ if (Core::getRole($datalogin['token']) == '3') {
 <!doctype html>
 <html lang="id">
 <head>
-    <title>API Keys - <?php echo Core::getInstance()->title?></title>
+    <title>Release Book - <?php echo Core::getInstance()->title?></title>
 	<?php include 'global-meta.php';?>
 </head>
 <body>
@@ -28,13 +28,13 @@ if (Core::getRole($datalogin['token']) == '3') {
                         <span class="icon-bar bar2"></span>
                         <span class="icon-bar bar3"></span>
                     </button>
-                    <a class="navbar-brand" href="#">API Keys</a>
+                    <a class="navbar-brand" href="#">Release Book</a>
                 </div>
                 <?php include 'global-nav.php';?>
             </div>
         </nav>
 
-            <?php include 'tab-data-api.php';?>
+            <?php include 'tab-release-book.php';?>
 
             <?php include 'global-footer.php';?>
 
