@@ -27,8 +27,7 @@ use \classes\Validation as Validation;
 		 */
         public static function integerOnly($string)
 	    {
-		    $nn = preg_replace("/[^0-9]/", "", $string );
-    		return $nn;
+		    return preg_replace("/[^0-9]/", "", $string );
 	    }
 
     }
