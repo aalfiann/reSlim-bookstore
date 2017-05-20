@@ -24,7 +24,7 @@ $config['enableApiKeys'] = true;
 $config['db']['host']   = 'localhost';
 $config['db']['user']   = 'root';
 $config['db']['pass']   = 'root';
-$config['db']['dbname'] = 'reSlim';
+$config['db']['dbname'] = 'reSlim-bookstore';
 
 /**
  * Configuration SMTP for Mailer
