@@ -5,4 +5,5 @@
             $config['basepath'] = 'http://localhost:1337/reSlim-bookstore/test/example'; //Your folder website
             $config['api'] = 'http://localhost:1337/reSlim-bookstore/src/api'; //Your folder rest api
             $config['apikey'] = '1vvyhfz3RtubHk4qWstEzMjhUP83T6xT7bwUQHhr3'; //Your api key, you can leave this blank and fill this later
-            $config['hotline'] = '083806075400'; //Your hotline call, you can leave this blank
+            $config['hotline'] = '+62838xxx'; //Your hotline call, you can leave this blank
+            $config['sharethis'] = ''; //Your sharethis code, you can leave this blank
