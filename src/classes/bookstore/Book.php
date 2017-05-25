@@ -23,8 +23,8 @@ use PDO;
 	class Book {
         protected $db;
 
-        var $username,$token,$authorid,$languageid,$typeid,$translatorid,$detail,$website,$statusid,$apikey,$bookid,$adminname,
-		$submitbookid,$imagelink,$title,$description,$author,$language,$translator,$tags,$pages,$samplelink,$fulllink,$price,$search,$firstdate,$lastdate,$purpose,$publisherid,$publisher,$isbn,
+        var $username,$token,$authorid,$languageid,$typeid,$translatorid,$detail,$website,$statusid,$apikey,$bookid,$adminname,$reviewid,
+		$submitbookid,$imagelink,$title,$description,$author,$language,$translator,$tags,$pages,$samplelink,$fulllink,$price,$search,$firstdate,$lastdate,$purpose,$publisherid,$publisher,$isbn,$released,
 		$fullname,$account,$bankname,$bankaddress,$withdrawid,$frombank,$fromname,$amount,$evidence,$noreference;
 
 		// for pagination
@@ -38,6 +38,10 @@ use PDO;
 
         //AUTHOR=====================================
 
+		/** 
+		 * Add new author
+		 * @return result process in json encoded data
+		 */
         public function addAuthor(){
             if (Auth::validToken($this->db,$this->token)){
                 if (Auth::getRoleID($this->db,$this->token) == '1'){
@@ -91,6 +95,10 @@ use PDO;
 
         }
 
+		/** 
+		 * Update data author
+		 * @return result process in json encoded data
+		 */
         public function updateAuthor(){
             if (Auth::validToken($this->db,$this->token)){
                 if (Auth::getRoleID($this->db,$this->token) == '1'){
@@ -146,6 +154,10 @@ use PDO;
 
         }
 
+		/** 
+		 * Delete data author
+		 * @return result process in json encoded data
+		 */
         public function deleteAuthor(){
             if (Auth::validToken($this->db,$this->token)){
                 if (Auth::getRoleID($this->db,$this->token) == '1'){
@@ -199,6 +211,10 @@ use PDO;
 
         }
 
+		/** 
+		 * Show all data author paginated
+		 * @return result process in json encoded data
+		 */
         public function showAuthor(){
             if (Auth::validToken($this->db,$this->token)){
 				$sql = "SELECT a.AuthorID,a.Name
@@ -327,6 +343,10 @@ use PDO;
 
         //LANGUAGE=====================================
 
+		/** 
+		 * Search add new language
+		 * @return result process in json encoded data
+		 */
         public function addLanguage(){
             if (Auth::validToken($this->db,$this->token)){
                 if (Auth::getRoleID($this->db,$this->token) == '1'){
@@ -379,6 +399,10 @@ use PDO;
 			$this->db = null;
         }
 
+		/** 
+		 * Update data language
+		 * @return result process in json encoded data
+		 */
         public function updateLanguage(){
             if (Auth::validToken($this->db,$this->token)){
                 if (Auth::getRoleID($this->db,$this->token) == '1'){
@@ -433,6 +457,10 @@ use PDO;
 			$this->db = null;
         }
 
+		/** 
+		 * Delete data language
+		 * @return result process in json encoded data
+		 */
         public function deleteLanguage(){
             if (Auth::validToken($this->db,$this->token)){
                 if (Auth::getRoleID($this->db,$this->token) == '1'){
@@ -485,6 +513,10 @@ use PDO;
 			$this->db = null;
         }
 
+		/** 
+		 * Show all data author paginated
+		 * @return result process in json encoded data
+		 */
         public function showLanguage(){
             if (Auth::validToken($this->db,$this->token)){
 				$sql = "SELECT a.LanguageID,a.Name
@@ -613,6 +645,10 @@ use PDO;
 
         //TRANSLATOR=====================================
 
+		/** 
+		 * Add new translator
+		 * @return result process in json encoded data
+		 */
         public function addTranslator(){
             if (Auth::validToken($this->db,$this->token)){
                 if (Auth::getRoleID($this->db,$this->token) == '1'){
@@ -666,6 +702,10 @@ use PDO;
 			$this->db = null;
         }
 
+		/** 
+		 * Update data translator
+		 * @return result process in json encoded data
+		 */
         public function updateTranslator(){
             if (Auth::validToken($this->db,$this->token)){
                 if (Auth::getRoleID($this->db,$this->token) == '1'){
@@ -722,6 +762,10 @@ use PDO;
 			$this->db = null;
         }
 
+		/** 
+		 * Delete data translator
+		 * @return result process in json encoded data
+		 */
         public function deleteTranslator(){
             if (Auth::validToken($this->db,$this->token)){
                 if (Auth::getRoleID($this->db,$this->token) == '1'){
@@ -774,6 +818,10 @@ use PDO;
 			$this->db = null;
         }
 
+		/** 
+		 * Show all data translator paginated
+		 * @return result process in json encoded data
+		 */
         public function showTranslator(){
             if (Auth::validToken($this->db,$this->token)){
 				$sql = "SELECT a.TranslatorID,a.Name,a.Website
@@ -902,6 +950,10 @@ use PDO;
 
 		//BOOK TYPE=====================================
 
+		/** 
+		 * Add new type
+		 * @return result process in json encoded data
+		 */
         public function addType(){
             if (Auth::validToken($this->db,$this->token)){
                 if (Auth::getRoleID($this->db,$this->token) == '1'){
@@ -954,6 +1006,10 @@ use PDO;
 			$this->db = null;
         }
 
+		/** 
+		 * Update data type
+		 * @return result process in json encoded data
+		 */
         public function updateType(){
             if (Auth::validToken($this->db,$this->token)){
                 if (Auth::getRoleID($this->db,$this->token) == '1'){
@@ -1008,6 +1064,10 @@ use PDO;
 			$this->db = null;
         }
 
+		/** 
+		 * Delete data type
+		 * @return result process in json encoded data
+		 */
         public function deleteType(){
             if (Auth::validToken($this->db,$this->token)){
                 if (Auth::getRoleID($this->db,$this->token) == '1'){
@@ -1060,6 +1120,10 @@ use PDO;
 			$this->db = null;
         }
 
+		/** 
+		 * Show all data type paginated
+		 * @return result process in json encoded data
+		 */
         public function showType(){
             if (Auth::validToken($this->db,$this->token)){
 				$sql = "SELECT a.TypeID,a.Name
@@ -1188,6 +1252,10 @@ use PDO;
 
 		//BOOK PUBLISHER=====================================
 
+		/** 
+		 * Add new publisher
+		 * @return result process in json encoded data
+		 */
         public function addPublisher(){
             if (Auth::validToken($this->db,$this->token)){
                 if (Auth::getRoleID($this->db,$this->token) == '1'){
@@ -1240,6 +1308,10 @@ use PDO;
 			$this->db = null;
         }
 
+		/** 
+		 * Update data publisher
+		 * @return result process in json encoded data
+		 */
         public function updatePublisher(){
             if (Auth::validToken($this->db,$this->token)){
                 if (Auth::getRoleID($this->db,$this->token) == '1'){
@@ -1294,6 +1366,10 @@ use PDO;
 			$this->db = null;
         }
 
+		/** 
+		 * Delete data publisher
+		 * @return result process in json encoded data
+		 */
         public function deletePublisher(){
             if (Auth::validToken($this->db,$this->token)){
                 if (Auth::getRoleID($this->db,$this->token) == '1'){
@@ -1346,6 +1422,10 @@ use PDO;
 			$this->db = null;
         }
 
+		/** 
+		 * Show all data publisher paginated
+		 * @return result process in json encoded data
+		 */
         public function showPublisher(){
             if (Auth::validToken($this->db,$this->token)){
 				$sql = "SELECT a.PublisherID,a.Name
@@ -1474,6 +1554,10 @@ use PDO;
 
 		//SUBMIT BOOK=====================================
 
+		/** 
+		 * Add new submit book
+		 * @return result process in json encoded data
+		 */
         public function addSubmitBook(){
             if (Auth::validToken($this->db,$this->token,$this->username)){
 				$newusername = strtolower(filter_var($this->username,FILTER_SANITIZE_STRING));
@@ -1481,8 +1565,8 @@ use PDO;
                 $newfulllink = filter_var($this->fulllink,FILTER_SANITIZE_STRING);
 	    	    try {
     				$this->db->beginTransaction();
-		    		$sql = "INSERT INTO book_submit (Image_link,Title,Description,Author,`Language`,Translator,Tags,Pages,Sample_link,Full_link,Purpose,StatusID,Created_at,Username,Publisher,ISBN) 
-						VALUES (:imagelink,:title,:description,:author,:language,:translator,:tags,:pages,:samplelink,:fulllink,:purpose,'35',current_timestamp,:username,:publisher,:isbn);";
+		    		$sql = "INSERT INTO book_submit (Image_link,Title,Description,Author,`Language`,Translator,Tags,Pages,Sample_link,Full_link,Purpose,StatusID,Created_at,Username,Publisher,ISBN,Original_released) 
+						VALUES (:imagelink,:title,:description,:author,:language,:translator,:tags,:pages,:samplelink,:fulllink,:purpose,'35',current_timestamp,:username,:publisher,:isbn,:released);";
 					$stmt = $this->db->prepare($sql);
     				$stmt->bindParam(':username', $newusername, PDO::PARAM_STR);
                     $stmt->bindParam(':samplelink', $newsamplelink, PDO::PARAM_STR);
@@ -1498,6 +1582,7 @@ use PDO;
 					$stmt->bindParam(':purpose', $this->purpose, PDO::PARAM_STR);
 					$stmt->bindParam(':publisher', $this->publisher, PDO::PARAM_STR);
 					$stmt->bindParam(':isbn', $this->isbn, PDO::PARAM_STR);
+					$stmt->bindParam(':released', $this->released, PDO::PARAM_STR);
 					if ($stmt->execute()) {
 			    		$data = [
 				    		'status' => 'success',
@@ -1532,6 +1617,10 @@ use PDO;
 			$this->db = null;
         }
 
+		/** 
+		 * Update data submit book
+		 * @return result process in json encoded data
+		 */
         public function updateSubmitBook(){
             if (Auth::validToken($this->db,$this->token,$this->username)){
 				$newusername = strtolower(filter_var($this->username,FILTER_SANITIZE_STRING));
@@ -1542,7 +1631,7 @@ use PDO;
 	    	    try {
     				$this->db->beginTransaction();
 		    		$sql = "UPDATE book_submit SET Image_link=:imagelink,Title=:title,Description=:description,Author=:author,`Language`=:language,Translator=:translator,Tags=:tags,
-						Pages=:pages,Sample_link=:samplelink,Full_link=:fulllink,Purpose=:purpose,StatusID=:statusid,Updated_by=:username,BookID=:bookid,Publisher=:publisher,ISBN=:isbn
+						Pages=:pages,Sample_link=:samplelink,Full_link=:fulllink,Purpose=:purpose,StatusID=:statusid,Updated_by=:username,BookID=:bookid,Publisher=:publisher,ISBN=:isbn,Original_released=:released
 						WHERE SubmitBookID=:submitbookid;";
 					$stmt = $this->db->prepare($sql);
     				$stmt->bindParam(':username', $newusername, PDO::PARAM_STR);
@@ -1562,6 +1651,7 @@ use PDO;
 					$stmt->bindParam(':bookid', $newbookid, PDO::PARAM_STR);
 					$stmt->bindParam(':publisher', $this->publisher, PDO::PARAM_STR);
 					$stmt->bindParam(':isbn', $this->isbn, PDO::PARAM_STR);
+					$stmt->bindParam(':released', $this->released, PDO::PARAM_STR);
 					if ($stmt->execute()) {
 			    		$data = [
 				    		'status' => 'success',
@@ -1596,6 +1686,10 @@ use PDO;
 			$this->db = null;
         }
 
+		/** 
+		 * Delete data submit book
+		 * @return result process in json encoded data
+		 */
         public function deleteSubmitBook(){
             if (Auth::validToken($this->db,$this->token)){
                 $newsubmitbookid = Validation::integerOnly($this->submitbookid);
@@ -1640,289 +1734,10 @@ use PDO;
 			$this->db = null;
         }
 
-        public function showPendingSubmitBook(){
-           if (Auth::validToken($this->db,$this->token)){
-				$newusername = strtolower($this->username);
-				if (Auth::getRoleID($this->db,$this->token) == '3') {
-					//count total row
-					$sqlcountrow = "SELECT count(a.SubmitBookID) as TotalRow
-						from book_submit a 
-						inner join core_status b on a.StatusID=b.StatusID
-						where a.StatusID='35' and a.Username=:username
-						order by a.Created_at desc;";
-					$stmt = $this->db->prepare($sqlcountrow);		
-					$stmt->bindParam(':username', $newusername, PDO::PARAM_STR);
-				} else {
-					//count total row
-					$sqlcountrow = "SELECT count(a.SubmitBookID) as TotalRow
-						from book_submit a 
-						inner join core_status b on a.StatusID=b.StatusID
-						where a.StatusID='35'
-						order by a.Created_at desc;";
-					$stmt = $this->db->prepare($sqlcountrow);		
-				}
-				
-				
-				if ($stmt->execute()) {	
-    	    		if ($stmt->rowCount() > 0){
-						$single = $stmt->fetch();
-						
-						// Paginate won't work if page and items per page is negative.
-						// So make sure that page and items per page is always return minimum zero number.
-						$newpage = Validation::integerOnly($this->page);
-						$newitemsperpage = Validation::integerOnly($this->itemsPerPage);
-						$limits = (((($newpage-1)*$newitemsperpage) <= 0)?0:(($newpage-1)*$newitemsperpage));
-						$offsets = (($newitemsperpage <= 0)?0:$newitemsperpage);
-
-						if (Auth::getRoleID($this->db,$this->token) == '3') {
-							// Query Data
-							$sql = "SELECT a.SubmitBookID,a.Image_link as 'Image', a.Title,a.Description,a.Author,a.`Language`,a.Translator,a.Tags,a.Pages,a.Sample_link,a.Full_link,a.Purpose,a.BookID,a.StatusID,b.`Status`,
-								a.Created_at,a.Username,a.Updated_at,a.Updated_by
-								from book_submit a 
-								inner join core_status b on a.StatusID=b.StatusID
-								where a.StatusID='35' and a.Username=:username
-								order by a.Created_at asc LIMIT :limpage , :offpage;";
-							$stmt2 = $this->db->prepare($sql);
-							$stmt2->bindParam(':username', $newusername, PDO::PARAM_STR);
-							$stmt2->bindValue(':limpage', (INT) $limits, PDO::PARAM_INT);
-							$stmt2->bindValue(':offpage', (INT) $offsets, PDO::PARAM_INT);
-						} else {
-							// Query Data
-							$sql = "SELECT a.SubmitBookID,a.Image_link as 'Image', a.Title,a.Description,a.Author,a.`Language`,a.Translator,a.Tags,a.Pages,a.Sample_link,a.Full_link,a.Purpose,a.BookID,a.StatusID,b.`Status`,
-								a.Created_at,a.Username,a.Updated_at,a.Updated_by
-								from book_submit a 
-								inner join core_status b on a.StatusID=b.StatusID
-								where a.StatusID='35'
-								order by a.Created_at asc LIMIT :limpage , :offpage;";
-							$stmt2 = $this->db->prepare($sql);
-							$stmt2->bindValue(':limpage', (INT) $limits, PDO::PARAM_INT);
-							$stmt2->bindValue(':offpage', (INT) $offsets, PDO::PARAM_INT);
-						}
-						
-							if ($stmt2->execute()){
-								if ($stmt2->rowCount() > 0){
-									$datares = "[";
-									while($redata = $stmt2->fetch()) 
-									{
-										$return_arr = null;
-										$names = $redata['Tags'];	
-										$named = preg_split( "/[;,@#]/", $names );
-										foreach($named as $name){
-											if ($name != null){$return_arr[] = trim($name);}
-										}
-
-									$datares .= '{"SubmitBookID":"'.$redata['SubmitBookID'].'",
-										"Title":'.json_encode($redata['Title']).',
-										"Description":'.json_encode($redata['Description']).',
-										"Image":'.json_encode($redata['Image']).',
-										"Author":'.json_encode($redata['Author']).',
-										"Language":'.json_encode($redata['Language']).',
-										"Translator":'.json_encode($redata['Translator']).',
-										"Tags":'.json_encode($return_arr).',
-										"Pages":'.json_encode($redata['Pages']).',
-										"Sample_link":'.json_encode($redata['Sample_link']).',
-										"Full_link":'.json_encode($redata['Full_link']).',
-										"Purpose":'.json_encode($redata['Purpose']).',
-										"BookID":'.json_encode($redata['BookID']).',
-										"StatusID":'.json_encode($redata['StatusID']).',
-										"Status":"'.$redata['Status'].'",
-										"Created_at":"'.$redata['Created_at'].'",
-										"Username":"'.$redata['Username'].'",
-										"Updated_at":"'.$redata['Updated_at'].'",
-										"Updated_by":"'.$redata['Updated_by'].'"},';
-									}
-									$datares = substr($datares, 0, -1);
-									$datares .= "]";
-
-									$pagination = new \classes\Pagination();
-									$pagination->totalRow = $single['TotalRow'];
-									$pagination->page = $this->page;
-									$pagination->itemsPerPage = $this->itemsPerPage;
-									$pagination->fetchAllAssoc = json_decode($datares);
-									$data = $pagination->toDataArray();
-								} else {
-									$data = [
-        	    		    			'status' => 'error',
-		    	    		    		'code' => 'RS601',
-		        			    	    'message' => CustomHandlers::getreSlimMessage('RS601')
-									];
-								}
-							} else {
-								$data = [
-        	    		    		'status' => 'error',
-		    	    		    	'code' => 'RS202',
-	        			    	    'message' => CustomHandlers::getreSlimMessage('RS202')
-								];	
-							}			
-				    } else {
-    	    			$data = [
-        	    			'status' => 'error',
-		    	    		'code' => 'RS601',
-        			    	'message' => CustomHandlers::getreSlimMessage('RS601')
-						];
-		    	    }          	   	
-				} else {
-					$data = [
-    	    			'status' => 'error',
-						'code' => 'RS202',
-	        		    'message' => CustomHandlers::getreSlimMessage('RS202')
-					];
-				}
-				
-			} else {
-				$data = [
-	    			'status' => 'error',
-					'code' => 'RS401',
-        	    	'message' => CustomHandlers::getreSlimMessage('RS401')
-				];
-			}		
-        
-			return json_encode($data, JSON_PRETTY_PRINT);
-	        $this->db= null;
-        }
-
-		public function showApprovedSubmitBook(){
-           if (Auth::validToken($this->db,$this->token)){
-				$newusername = strtolower($this->username);
-				if (Auth::getRoleID($this->db,$this->token) == '3') {
-					//count total row
-					$sqlcountrow = "SELECT count(a.SubmitBookID) as TotalRow
-						from book_submit a 
-						inner join core_status b on a.StatusID=b.StatusID
-						where a.StatusID='3' and a.Username=:username
-						order by a.Created_at desc;";
-					$stmt = $this->db->prepare($sqlcountrow);		
-					$stmt->bindParam(':username', $newusername, PDO::PARAM_STR);
-				} else {
-					//count total row
-					$sqlcountrow = "SELECT count(a.SubmitBookID) as TotalRow
-						from book_submit a 
-						inner join core_status b on a.StatusID=b.StatusID
-						where a.StatusID='3'
-						order by a.Created_at desc;";
-					$stmt = $this->db->prepare($sqlcountrow);		
-				}
-				
-				
-				if ($stmt->execute()) {	
-    	    		if ($stmt->rowCount() > 0){
-						$single = $stmt->fetch();
-						
-						// Paginate won't work if page and items per page is negative.
-						// So make sure that page and items per page is always return minimum zero number.
-						$newpage = Validation::integerOnly($this->page);
-						$newitemsperpage = Validation::integerOnly($this->itemsPerPage);
-						$limits = (((($newpage-1)*$newitemsperpage) <= 0)?0:(($newpage-1)*$newitemsperpage));
-						$offsets = (($newitemsperpage <= 0)?0:$newitemsperpage);
-
-						if (Auth::getRoleID($this->db,$this->token) == '3') {
-							// Query Data
-							$sql = "SELECT a.SubmitBookID,a.Image_link as 'Image', a.Title,a.Description,a.Author,a.`Language`,a.Translator,a.Tags,a.Pages,a.Sample_link,a.Full_link,a.Purpose,a.BookID,a.StatusID,b.`Status`,
-								a.Created_at,a.Username,a.Updated_at,a.Updated_by
-								from book_submit a 
-								inner join core_status b on a.StatusID=b.StatusID
-								where a.StatusID='3' and a.Username=:username
-								order by a.Created_at asc LIMIT :limpage , :offpage;";
-							$stmt2 = $this->db->prepare($sql);
-							$stmt2->bindParam(':username', $newusername, PDO::PARAM_STR);
-							$stmt2->bindValue(':limpage', (INT) $limits, PDO::PARAM_INT);
-							$stmt2->bindValue(':offpage', (INT) $offsets, PDO::PARAM_INT);
-						} else {
-							// Query Data
-							$sql = "SELECT a.SubmitBookID,a.Image_link as 'Image', a.Title,a.Description,a.Author,a.`Language`,a.Translator,a.Tags,a.Pages,a.Sample_link,a.Full_link,a.Purpose,a.BookID,a.StatusID,b.`Status`,
-								a.Created_at,a.Username,a.Updated_at,a.Updated_by
-								from book_submit a 
-								inner join core_status b on a.StatusID=b.StatusID
-								where a.StatusID='3'
-								order by a.Created_at asc LIMIT :limpage , :offpage;";
-							$stmt2 = $this->db->prepare($sql);
-							$stmt2->bindValue(':limpage', (INT) $limits, PDO::PARAM_INT);
-							$stmt2->bindValue(':offpage', (INT) $offsets, PDO::PARAM_INT);
-						}
-						
-							if ($stmt2->execute()){
-								if ($stmt2->rowCount() > 0){
-									$datares = "[";
-									while($redata = $stmt2->fetch()) 
-									{
-										$return_arr = null;
-										$names = $redata['Tags'];	
-										$named = preg_split( "/[;,@#]/", $names );
-										foreach($named as $name){
-											if ($name != null){$return_arr[] = trim($name);}
-										}
-
-									$datares .= '{"SubmitBookID":"'.$redata['SubmitBookID'].'",
-										"Title":'.json_encode($redata['Title']).',
-										"Description":'.json_encode($redata['Description']).',
-										"Image":'.json_encode($redata['Image']).',
-										"Author":'.json_encode($redata['Author']).',
-										"Language":'.json_encode($redata['Language']).',
-										"Translator":'.json_encode($redata['Translator']).',
-										"Tags":'.json_encode($return_arr).',
-										"Pages":'.json_encode($redata['Pages']).',
-										"Sample_link":'.json_encode($redata['Sample_link']).',
-										"Full_link":'.json_encode($redata['Full_link']).',
-										"Purpose":'.json_encode($redata['Purpose']).',
-										"BookID":'.json_encode($redata['BookID']).',
-										"StatusID":'.json_encode($redata['StatusID']).',
-										"Status":"'.$redata['Status'].'",
-										"Created_at":"'.$redata['Created_at'].'",
-										"Username":"'.$redata['Username'].'",
-										"Updated_at":"'.$redata['Updated_at'].'",
-										"Updated_by":"'.$redata['Updated_by'].'"},';
-									}
-									$datares = substr($datares, 0, -1);
-									$datares .= "]";
-
-									$pagination = new \classes\Pagination();
-									$pagination->totalRow = $single['TotalRow'];
-									$pagination->page = $this->page;
-									$pagination->itemsPerPage = $this->itemsPerPage;
-									$pagination->fetchAllAssoc = json_decode($datares);
-									$data = $pagination->toDataArray();
-								} else {
-									$data = [
-        	    		    			'status' => 'error',
-		    	    		    		'code' => 'RS601',
-		        			    	    'message' => CustomHandlers::getreSlimMessage('RS601')
-									];
-								}
-							} else {
-								$data = [
-        	    		    		'status' => 'error',
-		    	    		    	'code' => 'RS202',
-	        			    	    'message' => CustomHandlers::getreSlimMessage('RS202')
-								];	
-							}			
-				    } else {
-    	    			$data = [
-        	    			'status' => 'error',
-		    	    		'code' => 'RS601',
-        			    	'message' => CustomHandlers::getreSlimMessage('RS601')
-						];
-		    	    }          	   	
-				} else {
-					$data = [
-    	    			'status' => 'error',
-						'code' => 'RS202',
-	        		    'message' => CustomHandlers::getreSlimMessage('RS202')
-					];
-				}
-				
-			} else {
-				$data = [
-	    			'status' => 'error',
-					'code' => 'RS401',
-        	    	'message' => CustomHandlers::getreSlimMessage('RS401')
-				];
-			}		
-        
-			return json_encode($data, JSON_PRETTY_PRINT);
-	        $this->db= null;
-        }
-
-		//For member only
+		/** 
+		 * Search all data submit book paginated
+		 * @return result process in json encoded data
+		 */
 		public function searchAllSubmitBook(){
            if (Auth::validToken($this->db,$this->token)){
 			   $search = "%$this->search%";
@@ -1939,6 +1754,7 @@ use PDO;
 						or a.Username=:username and a.Publisher like :search
 						or a.Username=:username and a.ISBN like :search
 						or a.Username=:username and a.Tags like :search
+						or a.Username=:username and a.Original_released like :search
 						order by a.StatusID desc,a.Created_at desc;";
 					$stmt = $this->db->prepare($sqlcountrow);		
 					$stmt->bindValue(':search', $search, PDO::PARAM_STR);
@@ -1955,6 +1771,7 @@ use PDO;
 						or a.Publisher like :search
 						or a.ISBN like :search
 						or a.Tags like :search
+						or a.Original_released like :search
 						order by a.StatusID desc,a.Created_at desc;";
 					$stmt = $this->db->prepare($sqlcountrow);
 					$stmt->bindValue(':search', $search, PDO::PARAM_STR);		
@@ -1974,7 +1791,7 @@ use PDO;
 
 						if (Auth::getRoleID($this->db,$this->token) == '3') {
 							// Query Data
-							$sql = "SELECT a.SubmitBookID,a.Image_link as 'Image', a.Title,a.Description,a.Author,a.`Language`,a.Translator,a.Publisher,a.ISBN,a.Tags,a.Pages,a.Sample_link,a.Full_link,a.Purpose,a.BookID,a.StatusID,b.`Status`,
+							$sql = "SELECT a.SubmitBookID,a.Image_link as 'Image', a.Title,a.Description,a.Author,a.`Language`,a.Translator,a.Publisher,a.ISBN,a.Original_released,a.Tags,a.Pages,a.Sample_link,a.Full_link,a.Purpose,a.BookID,a.StatusID,b.`Status`,
 								a.Created_at,a.Username,a.Updated_at,a.Updated_by
 								from book_submit a 
 								inner join core_status b on a.StatusID=b.StatusID
@@ -1984,6 +1801,7 @@ use PDO;
 								or a.Username=:username and a.Translator like :search
 								or a.Username=:username and a.Publisher like :search
 								or a.Username=:username and a.ISBN like :search
+								or a.Username=:username and a.Original_released like :search
 								or a.Username=:username and a.Tags like :search
 								order by a.StatusID desc,a.Created_at desc LIMIT :limpage , :offpage;";
 							$stmt2 = $this->db->prepare($sql);
@@ -1993,7 +1811,7 @@ use PDO;
 							$stmt2->bindValue(':offpage', (INT) $offsets, PDO::PARAM_INT);
 						} else {
 							// Query Data
-							$sql = "SELECT a.SubmitBookID,a.Image_link as 'Image', a.Title,a.Description,a.Author,a.`Language`,a.Translator,a.Publisher,a.ISBN,a.Tags,a.Pages,a.Sample_link,a.Full_link,a.Purpose,a.BookID,a.StatusID,b.`Status`,
+							$sql = "SELECT a.SubmitBookID,a.Image_link as 'Image', a.Title,a.Description,a.Author,a.`Language`,a.Translator,a.Publisher,a.ISBN,a.Original_released,a.Tags,a.Pages,a.Sample_link,a.Full_link,a.Purpose,a.BookID,a.StatusID,b.`Status`,
 								a.Created_at,a.Username,a.Updated_at,a.Updated_by
 								from book_submit a 
 								inner join core_status b on a.StatusID=b.StatusID
@@ -2003,6 +1821,7 @@ use PDO;
 								or a.Translator like :search
 								or a.Publisher like :search
 								or a.ISBN like :search
+								or a.Original_released like :search
 								or a.Tags like :search
 								order by a.StatusID desc,a.Created_at desc LIMIT :limpage , :offpage;";
 							$stmt2 = $this->db->prepare($sql);
@@ -2037,6 +1856,7 @@ use PDO;
 										"Purpose":'.json_encode($redata['Purpose']).',
 										"Publisher":'.json_encode($redata['Publisher']).',
 										"ISBN":'.json_encode($redata['ISBN']).',
+										"Original_released":'.json_encode($redata['Original_released']).',
 										"BookID":'.json_encode($redata['BookID']).',
 										"StatusID":'.json_encode($redata['StatusID']).',
 										"Status":"'.$redata['Status'].'",
@@ -2146,6 +1966,10 @@ use PDO;
 
 		//Release BOOK=====================================
 
+		/** 
+		 * Add new release book
+		 * @return result process in json encoded data
+		 */
         public function addReleaseBook(){
             if (Auth::validToken($this->db,$this->token,$this->username)){
 				if (Auth::getRoleID($this->db,$this->token) != '3'){
@@ -2160,8 +1984,8 @@ use PDO;
 					$newprice = Validation::integerOnly($this->price);
 		    	    try {
     					$this->db->beginTransaction();
-		    			$sql = "INSERT INTO book_release (Image_link,Title,Description,AuthorID,`LanguageID`,TranslatorID,TypeID,PublisherID,ISBN,Tags,Pages,Sample_link,Full_link,Price,StatusID,Created_at,Username) 
-							VALUES (:imagelink,:title,:description,:author,:language,:translator,:type,:publisher,:isbn,:tags,:pages,:samplelink,:fulllink,:price,'51',current_timestamp,:username);";
+		    			$sql = "INSERT INTO book_release (Image_link,Title,Description,AuthorID,`LanguageID`,TranslatorID,TypeID,PublisherID,ISBN,Original_released,Tags,Pages,Sample_link,Full_link,Price,StatusID,Created_at,Username) 
+							VALUES (:imagelink,:title,:description,:author,:language,:translator,:type,:publisher,:isbn,:released,:tags,:pages,:samplelink,:fulllink,:price,'51',current_timestamp,:username);";
 						$stmt = $this->db->prepare($sql);
 	    				$stmt->bindParam(':username', $newusername, PDO::PARAM_STR);
     	                $stmt->bindParam(':samplelink', $newsamplelink, PDO::PARAM_STR);
@@ -2175,6 +1999,7 @@ use PDO;
 						$stmt->bindParam(':type', $newtypeid, PDO::PARAM_STR);
 						$stmt->bindParam(':publisher', $newpublisherid, PDO::PARAM_STR);
 						$stmt->bindParam(':isbn', $this->isbn, PDO::PARAM_STR);
+						$stmt->bindParam(':released', $this->released, PDO::PARAM_STR);
 						$stmt->bindParam(':tags', $this->tags, PDO::PARAM_STR);
 						$stmt->bindParam(':pages', $this->pages, PDO::PARAM_STR);
 						$stmt->bindParam(':price', $newprice, PDO::PARAM_STR);
@@ -2219,6 +2044,10 @@ use PDO;
 			$this->db = null;
         }
 
+		/** 
+		 * Update data release book
+		 * @return result process in json encoded data
+		 */
         public function updateReleaseBook(){
             if (Auth::validToken($this->db,$this->token)){
 				if (Auth::getRoleID($this->db,$this->token) != '3'){
@@ -2236,7 +2065,7 @@ use PDO;
 		    	    try {
     					$this->db->beginTransaction();
 			    		$sql = "UPDATE book_release SET Image_link=:imagelink,Title=:title,Description=:description,AuthorID=:author,`LanguageID`=:language,TranslatorID=:translator,TypeID=:type,
-								Tags=:tags,Pages=:pages,Sample_link=:samplelink,Full_link=:fulllink,Price=:price,StatusID=:statusid,Updated_by=:username,PublisherID=:publisher,ISBN=:isbn
+								Tags=:tags,Pages=:pages,Sample_link=:samplelink,Full_link=:fulllink,Price=:price,StatusID=:statusid,Updated_by=:username,PublisherID=:publisher,ISBN=:isbn,Original_released=:released
 							WHERE BookID=:bookid;";
 						$stmt = $this->db->prepare($sql);
     					$stmt->bindParam(':username', $newusername, PDO::PARAM_STR);
@@ -2251,6 +2080,7 @@ use PDO;
 						$stmt->bindParam(':type', $newtypeid, PDO::PARAM_STR);
 						$stmt->bindParam(':publisher', $newpublisherid, PDO::PARAM_STR);
 						$stmt->bindParam(':isbn', $this->isbn, PDO::PARAM_STR);
+						$stmt->bindParam(':released', $this->released, PDO::PARAM_STR);
 						$stmt->bindParam(':tags', $this->tags, PDO::PARAM_STR);
 						$stmt->bindParam(':pages', $this->pages, PDO::PARAM_STR);
 						$stmt->bindParam(':statusid', $this->statusid, PDO::PARAM_STR);
@@ -2297,6 +2127,10 @@ use PDO;
 			$this->db = null;
         }
 
+		/** 
+		 * Delete data release book
+		 * @return result process in json encoded data
+		 */
         public function deleteReleaseBook(){
             if (Auth::validToken($this->db,$this->token)){
 				if (Auth::getRoleID($this->db,$this->token) != '3'){
@@ -2349,12 +2183,15 @@ use PDO;
 			$this->db = null;
         }
 
-		//For guest
+		/** 
+		 * Show data release book only single detail for guest without login
+		 * @return result process in json encoded data
+		 */
 		public function showSingleReleaseBook(){
             $newbookid = Validation::integerOnly($this->bookid);
 				
 				$sql = "SELECT a.BookID,a.Image_link as 'Image', a.Title,a.Description,a.AuthorID,c.Name as 'Author',a.`LanguageID`,d.Name as 'Language',a.TranslatorID,e.Name as 'Translator',
-							e.Website as 'Translator_web',a.`TypeID`,f.Name as 'Type',a.PublisherID,g.Name as 'Publisher',a.ISBN,a.Tags,a.Pages,a.Sample_link,a.Price,a.StatusID,b.`Status`,
+							e.Website as 'Translator_web',a.`TypeID`,f.Name as 'Type',a.PublisherID,g.Name as 'Publisher',a.ISBN,a.Original_released,a.Tags,a.Pages,a.Sample_link,a.Price,a.StatusID,b.`Status`,
 							a.Created_at,a.Username,a.Updated_at,a.Updated_by
 						from book_release a 
 						inner join core_status b on a.StatusID=b.StatusID
@@ -2397,7 +2234,10 @@ use PDO;
 	        $this->db= null;
         }
 
-		//For guest
+		/** 
+		 * Show all data published release book paginated for guest without login paginated
+		 * @return result process in json encoded data
+		 */
 		public function showPublishReleaseBook(){
 			$search = "%$this->search%";
 			//count total row
@@ -2417,6 +2257,7 @@ use PDO;
 				or a.StatusID='51' and f.Name like :search
 				or a.StatusID='51' and g.Name like :search
 				or a.StatusID='51' and a.ISBN like :search
+				or a.StatusID='51' and a.Original_released like :search
 				or a.StatusID='51' and a.Tags like :search
 				order by a.Created_at desc;";
 			$stmt = $this->db->prepare($sqlcountrow);
@@ -2435,7 +2276,7 @@ use PDO;
 
 					// Query Data
 					$sql = "SELECT a.BookID,a.Image_link as 'Image', a.Title,a.Description,a.AuthorID,c.Name as 'Author',a.`LanguageID`,d.Name as 'Language',a.TranslatorID,e.Name as 'Translator',
-							e.Website as 'Translator_web',a.`TypeID`,f.Name as 'Type',a.PublisherID,g.Name as 'Publisher',a.ISBN,a.Tags,a.Pages,a.Sample_link,a.Price,a.StatusID,b.`Status`,
+							e.Website as 'Translator_web',a.`TypeID`,f.Name as 'Type',a.PublisherID,g.Name as 'Publisher',a.ISBN,a.Original_released,a.Tags,a.Pages,a.Sample_link,a.Price,a.StatusID,b.`Status`,
 							a.Created_at,a.Username,a.Updated_at,a.Updated_by
 						from book_release a 
 						inner join core_status b on a.StatusID=b.StatusID
@@ -2452,6 +2293,7 @@ use PDO;
 						or a.StatusID='51' and f.Name like :search
 						or a.StatusID='51' and g.Name like :search
 						or a.StatusID='51' and a.ISBN like :search
+						or a.StatusID='51' and a.Original_released like :search
 						or a.StatusID='51' and a.Tags like :search
 						order by a.Created_at asc LIMIT :limpage , :offpage;";
 					$stmt2 = $this->db->prepare($sql);
@@ -2470,6 +2312,7 @@ use PDO;
 								foreach($named as $name){
 									if ($name != null){$return_arr[] = trim($name);}
 							}
+								$sample = explode("/", $redata['Sample_link']);
 							$datares .= '{"BookID":"'.$redata['BookID'].'",
 								"Title":'.json_encode($redata['Title']).',
 								"Description":'.json_encode($redata['Description']).',
@@ -2486,9 +2329,11 @@ use PDO;
 								"PublisherID":'.json_encode($redata['PublisherID']).',
 								"Publisher":'.json_encode($redata['Publisher']).',
 								"ISBN":'.json_encode($redata['ISBN']).',
+								"Original_released":'.json_encode($redata['Original_released']).',
 								"Tags":'.json_encode($return_arr).',
 								"Pages":'.json_encode($redata['Pages']).',
 								"Sample_link":'.json_encode($redata['Sample_link']).',
+								"Sample_file":'.json_encode(end($sample)).',
 								"Price":'.json_encode($redata['Price']).',
 								"StatusID":'.json_encode($redata['StatusID']).',
 								"Status":"'.$redata['Status'].'",
@@ -2538,7 +2383,10 @@ use PDO;
 	        $this->db= null;
         }
 
-		//For registered user only
+		/** 
+		 * Search all data publish release book in Showroom
+		 * @return result process in json encoded data
+		 */
 		public function searchPublishReleaseBookShowroom(){
 			if (Auth::validToken($this->db,$this->token,$this->username)){
 				$newusername = strtolower(filter_var($this->username,FILTER_SANITIZE_STRING));
@@ -2559,6 +2407,7 @@ use PDO;
 					or a.StatusID='51' and g.BookID is null and f.Name like :search
 					or a.StatusID='51' and g.BookID is null and h.Name like :search
 					or a.StatusID='51' and g.BookID is null and a.ISBN like :search
+					or a.StatusID='51' and g.BookID is null and a.Original_released like :search
 					or a.StatusID='51' and g.BookID is null and a.Tags like :search
 					or a.StatusID='51' and g.BookID is null and a.Title like :search
 					order by a.Created_at desc;";
@@ -2579,7 +2428,7 @@ use PDO;
 						
 						// Query Data
 						$sql = "SELECT a.BookID,a.Image_link as 'Image', a.Title,a.Description,a.AuthorID,c.Name as 'Author',a.`LanguageID`,d.Name as 'Language',a.TranslatorID,e.Name as 'Translator',
-								e.Website as 'Translator_web',a.`TypeID`,f.Name as 'Type',a.PublisherID,h.Name as 'Publisher',a.ISBN,a.Tags,a.Pages,a.Sample_link,a.Price,a.StatusID,b.`Status`,
+								e.Website as 'Translator_web',a.`TypeID`,f.Name as 'Type',a.PublisherID,h.Name as 'Publisher',a.ISBN,a.Original_released,a.Tags,a.Pages,a.Sample_link,a.Price,a.StatusID,b.`Status`,
 								a.Created_at,a.Username,a.Updated_at,a.Updated_by
 							from book_release a 
 							inner join core_status b on a.StatusID=b.StatusID
@@ -2595,6 +2444,7 @@ use PDO;
 							or a.StatusID='51' and g.BookID is null and f.Name like :search
 							or a.StatusID='51' and g.BookID is null and h.Name like :search
 							or a.StatusID='51' and g.BookID is null and a.ISBN like :search
+							or a.StatusID='51' and g.BookID is null and a.Original_released like :search
 							or a.StatusID='51' and g.BookID is null and a.Tags like :search
 							or a.StatusID='51' and g.BookID is null and a.Title like :search
 							order by a.Created_at asc LIMIT :limpage , :offpage;";
@@ -2615,6 +2465,8 @@ use PDO;
 									foreach($named as $name){
 										if ($name != null){$return_arr[] = trim($name);}
 								}
+								
+									$sample = explode("/", $redata['Sample_link']);
 								$datares .= '{"BookID":"'.$redata['BookID'].'",
 									"Title":'.json_encode($redata['Title']).',
 									"Description":'.json_encode($redata['Description']).',
@@ -2631,9 +2483,11 @@ use PDO;
 									"PublisherID":'.json_encode($redata['PublisherID']).',
 									"Publisher":'.json_encode($redata['Publisher']).',
 									"ISBN":'.json_encode($redata['ISBN']).',
+									"Original_released":'.json_encode($redata['Original_released']).',
 									"Tags":'.json_encode($return_arr).',
 									"Pages":'.json_encode($redata['Pages']).',
 									"Sample_link":'.json_encode($redata['Sample_link']).',
+									"Sample_file":'.json_encode(end($sample)).',
 									"Price":'.json_encode($redata['Price']).',
 									"StatusID":'.json_encode($redata['StatusID']).',
 									"Status":"'.$redata['Status'].'",
@@ -2690,7 +2544,10 @@ use PDO;
 	        $this->db= null;
         }
 
-		//For Superuser and Admin
+		/** 
+		 * Search all data release book for superuser and admin paginated
+		 * @return result process in json encoded data
+		 */
 		public function searchAllReleaseBook(){
            if (Auth::validToken($this->db,$this->token)){
 			   if (Auth::getRoleID($this->db,$this->token) != '3'){
@@ -2710,6 +2567,7 @@ use PDO;
 						or f.Name like :search
 						or g.Name like :search
 						or a.ISBN like :search
+						or a.Original_released like :search
 						or a.Title like :search
 						or a.Tags like :search 
 						order by a.Created_at desc;";
@@ -2729,7 +2587,7 @@ use PDO;
 							
 							// Query Data
 							$sql = "SELECT a.BookID,a.Image_link as 'Image', a.Title,a.Description,a.AuthorID,c.Name as 'Author',a.`LanguageID`,d.Name as 'Language',a.TranslatorID,e.Name as 'Translator',
-									e.Website as 'Translator_web',a.`TypeID`,f.Name as 'Type',a.PublisherID,g.Name as 'Publisher',a.ISBN,a.Tags,a.Pages,a.Sample_link,a.Full_link,a.Price,a.StatusID,b.`Status`,
+									e.Website as 'Translator_web',a.`TypeID`,f.Name as 'Type',a.PublisherID,g.Name as 'Publisher',a.ISBN,a.Original_released,a.Tags,a.Pages,a.Sample_link,a.Full_link,a.Price,a.StatusID,b.`Status`,
 									a.Created_at,a.Username,a.Updated_at,a.Updated_by
 								from book_release a 
 								inner join core_status b on a.StatusID=b.StatusID
@@ -2744,6 +2602,7 @@ use PDO;
 								or f.Name like :search
 								or g.Name like :search
 								or a.ISBN like :search
+								or a.Original_released like :search
 								or a.Title like :search
 								or a.Tags like :search
 								order by a.Created_at asc LIMIT :limpage , :offpage;";
@@ -2763,6 +2622,8 @@ use PDO;
 										foreach($named as $name){
 											if ($name != null){$return_arr[] = trim($name);}
 										}
+										$full = explode("/", $redata['Full_link']);
+										$sample = explode("/", $redata['Sample_link']);
 									$datares .= '{"BookID":"'.$redata['BookID'].'",
 										"Title":'.json_encode($redata['Title']).',
 										"Description":'.json_encode($redata['Description']).',
@@ -2779,10 +2640,13 @@ use PDO;
 										"PublisherID":'.json_encode($redata['PublisherID']).',
 										"Publisher":'.json_encode($redata['Publisher']).',
 										"ISBN":'.json_encode($redata['ISBN']).',
+										"Original_released":'.json_encode($redata['Original_released']).',
 										"Tags":'.json_encode($return_arr).',
 										"Pages":'.json_encode($redata['Pages']).',
 										"Sample_link":'.json_encode($redata['Sample_link']).',
 										"Full_link":'.json_encode($redata['Full_link']).',
+										"Full_file":'.json_encode(end($full)).',
+										"Sample_file":'.json_encode(end($sample)).',
 										"Price":'.json_encode($redata['Price']).',
 										"StatusID":'.json_encode($redata['StatusID']).',
 										"Status":"'.$redata['Status'].'",
@@ -2946,6 +2810,10 @@ use PDO;
 	        $this->db= null;
 		}
 
+		/** 
+		 * Determine is book free or not
+		 * @return boolean true|false
+		 */
 		public function isBookFree(){
 			$newbookid = Validation::integerOnly($this->bookid);
 			$r = false;
@@ -2966,6 +2834,10 @@ use PDO;
 			$this->db = null;
 		}
 
+		/** 
+		 * Determine is book already exis on library or not
+		 * @return boolean true|false
+		 */
 		public function isBookExistOnLibrary(){
 			$newusername = strtolower(filter_var($this->username,FILTER_SANITIZE_STRING));
 			$newbookid = Validation::integerOnly($this->bookid);
@@ -2985,6 +2857,10 @@ use PDO;
 			$this->db = null;
 		}
 
+		/** 
+		 * Add new library book
+		 * @return result process in json encoded data
+		 */
 		public function addLibraryBook(){
 			if (Auth::validToken($this->db,$this->token,$this->username)){
 				$newusername = strtolower(filter_var($this->username,FILTER_SANITIZE_STRING));
@@ -3048,6 +2924,10 @@ use PDO;
 			$this->db = null;
 		}
 
+		/** 
+		 * Update data library book
+		 * @return result process in json encoded data
+		 */
 		public function updateLibraryBook(){
             if (Auth::validToken($this->db,$this->token,$this->adminname)){
 				if (Auth::getRoleID($this->db,$this->token) != '3'){
@@ -3105,6 +2985,10 @@ use PDO;
 			$this->db = null;
         }
 
+		/** 
+		 * Delete library book
+		 * @return result process in json encoded data
+		 */
         public function deleteLibraryBook(){
             if (Auth::validToken($this->db,$this->token)){
 				$newbookid = Validation::integerOnly($this->bookid);
@@ -3150,7 +3034,10 @@ use PDO;
 			$this->db = null;
         }
 
-		//For superuser and admin only
+		/** 
+		 * Show all data pending library book paginated for superuser and admin
+		 * @return result process in json encoded data
+		 */
 		public function showPendingLibraryBook(){
            if (Auth::validToken($this->db,$this->token)){
 				if (Auth::getRoleID($this->db,$this->token) != '3'){
@@ -3260,7 +3147,10 @@ use PDO;
 	        $this->db= null;
         }
 
-		//For member only
+		/** 
+		 * Show all data library book paginated for member only
+		 * @return result process in json encoded data
+		 */
 		public function showAllLibraryBook(){
            if (Auth::validToken($this->db,$this->token)){
 				$newusername = strtolower(filter_var($this->username,FILTER_SANITIZE_STRING));
@@ -3300,7 +3190,7 @@ use PDO;
 						$offsets = (($newitemsperpage <= 0)?0:$newitemsperpage);
 
 						// Query Data
-						$sql = "SELECT a.Created_at,a.Guid,a.BookID,b.Image_link,b.Title,b.Description,b.Pages,d.Name as 'Language',e.Name as 'Author',f.Name as 'Translator',g.Name as 'Type',h.Name as 'Publisher',b.ISBN,b.Tags,b.Price,a.Username,a.StatusID,c.Status,
+						$sql = "SELECT a.Created_at,a.Guid,a.BookID,b.Image_link,b.Title,b.Description,b.Pages,d.Name as 'Language',e.Name as 'Author',f.Name as 'Translator',g.Name as 'Type',h.Name as 'Publisher',b.ISBN,b.Original_released,b.Tags,b.Price,a.Username,a.StatusID,c.Status,
 							b.Sample_link,if(a.StatusID='34',b.Full_link,'You have to make payment first!') as Full_link,a.Updated_at,a.Updated_by
 							FROM book_library a
 							INNER JOIN book_release b ON a.BookID = b.BookID
@@ -3337,6 +3227,8 @@ use PDO;
 										foreach($named as $name){
 											if ($name != null){$return_arr[] = trim($name);}
 										}
+										$full = explode("/", $redata['Full_link']);
+										$sample = explode("/", $redata['Sample_link']);
 									$datares .= '{"BookID":"'.$redata['BookID'].'",
 										"Title":'.json_encode($redata['Title']).',
 										"Description":'.json_encode($redata['Description']).',
@@ -3347,11 +3239,14 @@ use PDO;
 										"Type":'.json_encode($redata['Type']).',
 										"Publisher":'.json_encode($redata['Publisher']).',
 										"ISBN":'.json_encode($redata['ISBN']).',
+										"Original_released":'.json_encode($redata['Original_released']).',
 										"Guid":'.json_encode($redata['Guid']).',
 										"Tags":'.json_encode($return_arr).',
 										"Pages":'.json_encode($redata['Pages']).',
 										"Sample_link":'.json_encode($redata['Sample_link']).',
 										"Full_link":'.json_encode($redata['Full_link']).',
+										"Full_file":'.json_encode(end($full)).',
+										"Sample_file":'.json_encode(end($sample)).',
 										"Price":'.json_encode($redata['Price']).',
 										"StatusID":'.json_encode($redata['StatusID']).',
 										"Status":"'.$redata['Status'].'",
@@ -3408,8 +3303,142 @@ use PDO;
 	        $this->db= null;
         }
 
+		/** 
+		 * Show single data library book paginated for member only
+		 * @return result process in json encoded data
+		 */
+		public function showSingleLibraryBook(){
+           if (Auth::validToken($this->db,$this->token)){
+			   $newbookid = Validation::integerOnly($this->bookid);
+				$newusername = strtolower(filter_var($this->username,FILTER_SANITIZE_STRING));
+				$sqlcountrow = "SELECT count(a.BookID) as TotalRow
+					FROM book_library a
+					INNER JOIN book_release b ON a.BookID = b.BookID
+					INNER JOIN core_status c ON a.StatusID = c.StatusID
+					INNER JOIN book_language d ON b.LanguageID = d.LanguageID
+					INNER JOIN book_author e ON b.AuthorID = e.AuthorID
+					INNER JOIN book_translator f ON b.TranslatorID = f.TranslatorID
+					INNER JOIN book_type g ON b.TypeID = g.TypeID
+					INNER JOIN book_publisher h ON b.PublisherID = h.PublisherID
+					WHERE a.Username=:username and a.BookID = :bookid
+					ORDER BY a.Created_at ASC;";
+				$stmt = $this->db->prepare($sqlcountrow);
+				$stmt->bindParam(':bookid', $newbookid, PDO::PARAM_STR);
+				$stmt->bindParam(':username', $newusername, PDO::PARAM_STR);
+
+				if ($stmt->execute()) {	
+    	        	if ($stmt->rowCount() > 0){
+						$single = $stmt->fetch();
+						
+						// Query Data
+						$sql = "SELECT a.Created_at,a.Guid,a.BookID,b.Image_link,b.Title,b.Description,b.Pages,d.Name as 'Language',e.Name as 'Author',f.Name as 'Translator',g.Name as 'Type',h.Name as 'Publisher',b.ISBN,b.Original_released,b.Tags,b.Price,a.Username,a.StatusID,c.Status,
+							b.Sample_link,if(a.StatusID='34',b.Full_link,'You have to make payment first!') as Full_link,a.Updated_at,a.Updated_by
+							FROM book_library a
+							INNER JOIN book_release b ON a.BookID = b.BookID
+							INNER JOIN core_status c ON a.StatusID = c.StatusID
+							INNER JOIN book_language d ON b.LanguageID = d.LanguageID
+							INNER JOIN book_author e ON b.AuthorID = e.AuthorID
+							INNER JOIN book_translator f ON b.TranslatorID = f.TranslatorID
+							INNER JOIN book_type g ON b.TypeID = g.TypeID
+							INNER JOIN book_publisher h ON b.PublisherID = h.PublisherID
+							WHERE a.Username=:username and a.BookID = :bookid
+							ORDER BY a.Created_at ASC;";
+						$stmt2 = $this->db->prepare($sql);
+						$stmt2->bindParam(':username', $newusername, PDO::PARAM_STR);
+						$stmt2->bindParam(':bookid', $newbookid, PDO::PARAM_STR);
+						
+						if ($stmt2->execute()){
+							if ($stmt2->rowCount() > 0){
+								$datares = "[";
+									while($redata = $stmt2->fetch()) 
+									{
+										$return_arr = null;
+										$names = $redata['Tags'];	
+										$named = preg_split( "/[;,@#]/", $names );
+										foreach($named as $name){
+											if ($name != null){$return_arr[] = trim($name);}
+										}
+										$full = explode("/", $redata['Full_link']);
+										$sample = explode("/", $redata['Sample_link']);
+									$datares .= '{"BookID":"'.$redata['BookID'].'",
+										"Title":'.json_encode($redata['Title']).',
+										"Description":'.json_encode($redata['Description']).',
+										"Image_link":'.json_encode($redata['Image_link']).',
+										"Language":'.json_encode($redata['Language']).',
+										"Author":'.json_encode($redata['Author']).',
+										"Translator":'.json_encode($redata['Translator']).',
+										"Type":'.json_encode($redata['Type']).',
+										"Publisher":'.json_encode($redata['Publisher']).',
+										"ISBN":'.json_encode($redata['ISBN']).',
+										"Original_released":'.json_encode($redata['Original_released']).',
+										"Guid":'.json_encode($redata['Guid']).',
+										"Tags_inline":'.json_encode($redata['Tags']).',
+										"Tags":'.json_encode($return_arr).',
+										"Pages":'.json_encode($redata['Pages']).',
+										"Sample_link":'.json_encode($redata['Sample_link']).',
+										"Full_link":'.json_encode($redata['Full_link']).',
+										"Full_file":'.json_encode(end($full)).',
+										"Sample_file":'.json_encode(end($sample)).',
+										"Price":'.json_encode($redata['Price']).',
+										"StatusID":'.json_encode($redata['StatusID']).',
+										"Status":"'.$redata['Status'].'",
+										"Created_at":"'.$redata['Created_at'].'",
+										"Username":"'.$redata['Username'].'",
+										"Updated_at":"'.$redata['Updated_at'].'",
+										"Updated_by":"'.$redata['Updated_by'].'"},';
+									}
+									$datares = substr($datares, 0, -1);
+									$datares .= "]";
+									$data = ['result' => json_decode($datares),
+                                'status' => 'success',
+                                'code' => 'RS501',
+			    				'message' =>  CustomHandlers::getreSlimMessage('RS501')];
+							} else {
+								$data = [
+   	    		    				'status' => 'error',
+	    	    			    	'code' => 'RS601',
+		        				    'message' => CustomHandlers::getreSlimMessage('RS601')
+								];
+							}
+						} else {
+							$data = [
+        	    				'status' => 'error',
+		    	    	    	'code' => 'RS202',
+	        		    	    'message' => CustomHandlers::getreSlimMessage('RS202')
+							];	
+						}			
+			        } else {
+	    			    $data = [
+        	    		    'status' => 'error',
+		    	    	    'code' => 'RS601',
+        				    'message' => CustomHandlers::getreSlimMessage('RS601')
+						];
+		            }          	   	
+				} else {
+					$data = [
+    	    			'status' => 'error',
+						'code' => 'RS202',
+	    			    'message' => CustomHandlers::getreSlimMessage('RS202')
+					];
+				}
+			} else {
+				$data = [
+	    			'status' => 'error',
+					'code' => 'RS401',
+        	    	'message' => CustomHandlers::getreSlimMessage('RS401')
+				];
+			}		
+        
+			return json_encode($data, JSON_PRETTY_PRINT);
+	        $this->db= null;
+        }
+
 		//Sales Report=====================================
 
+		/** 
+		 * Show all data report sales premium book paginated
+		 * @return result process in json encoded data
+		 */
 		public function showAllReportSales(){
 			if (Auth::validToken($this->db,$this->token)){
 				$newusername = strtolower(filter_var($this->username,FILTER_SANITIZE_STRING));
@@ -3567,6 +3596,10 @@ use PDO;
 
 		//User Settings=====================================
 
+		/** 
+		 * Determine is first user settings or not 
+		 * @return boolean true|false
+		 */
 		private function isFirstUserSettings(){
 			$newusername = strtolower(filter_var($this->username,FILTER_SANITIZE_STRING));
 			$r = false;
@@ -3584,6 +3617,10 @@ use PDO;
 			$this->db = null;
 		}
 
+		/** 
+		 * Create new user settings
+		 * @return result process in json encoded data
+		 */
 		private function createUserSettings(){
 			if (Auth::validToken($this->db,$this->token,$this->username)){
 				$newusername = strtolower(filter_var($this->username,FILTER_SANITIZE_STRING));
@@ -3635,6 +3672,10 @@ use PDO;
 			$this->db = null;
 		}
 
+		/** 
+		 * Update data user settings
+		 * @return result process in json encoded data
+		 */
 		private function updateUserSettings(){
             if (Auth::validToken($this->db,$this->token,$this->username)){
 				$newusername = strtolower(filter_var($this->username,FILTER_SANITIZE_STRING));
@@ -3686,6 +3727,10 @@ use PDO;
 			$this->db = null;
         }
 
+		/** 
+		 * Save configuration user settings
+		 * @return result process in json encoded data
+		 */
 		public function saveUserSettings(){
 			if ($this->isFirstUserSettings()){
 				echo $this->createUserSettings();
@@ -3694,6 +3739,10 @@ use PDO;
 			}
 		}
 
+		/** 
+		 * Show data user settings as single detail
+		 * @return result process in json encoded data
+		 */
 		public function showSingleUserSettings(){
 			if (Auth::validToken($this->db,$this->token)){
 				$newusername = strtolower(filter_var($this->username,FILTER_SANITIZE_STRING));
@@ -3741,6 +3790,10 @@ use PDO;
 
 		//User Withdrawal=====================================
 
+		/** 
+		 * Add new withdrawal
+		 * @return result process in json encoded data
+		 */
 		public function addWithdrawal(){
             if (Auth::validToken($this->db,$this->token,$this->adminname)){
 				$newusername = strtolower(filter_var($this->username,FILTER_SANITIZE_STRING));
@@ -3806,6 +3859,10 @@ use PDO;
 			$this->db = null;
         }
 		
+		/** 
+		 * Update data withdrawal
+		 * @return result process in json encoded data
+		 */
         public function updateWithdrawal(){
             if (Auth::validToken($this->db,$this->token,$this->adminname)){
 				$newadminname = strtolower(filter_var($this->adminname,FILTER_SANITIZE_STRING));
@@ -3872,6 +3929,10 @@ use PDO;
 			$this->db = null;
         }
 
+		/** 
+		 * Delete data withdrawal
+		 * @return result process in json encoded data
+		 */
         public function deleteWithdrawal(){
             if (Auth::validToken($this->db,$this->token,$this->username)){
 				if (Auth::getRoleID($this->db,$this->token) == '1'){
@@ -3924,6 +3985,10 @@ use PDO;
 			$this->db = null;
         }
 
+		/** 
+		 * Show all data withdrawal paginated
+		 * @return result process in json encoded data
+		 */
 		public function showAllWithdrawal(){
 			if (Auth::validToken($this->db,$this->token)){
 				$newusername = strtolower(filter_var($this->username,FILTER_SANITIZE_STRING));
@@ -4029,6 +4094,388 @@ use PDO;
     	    			'status' => 'error',
 						'code' => 'RS202',
 	    			    'message' => CustomHandlers::getreSlimMessage('RS202')
+					];
+				}
+			} else {
+				$data = [
+	    			'status' => 'error',
+					'code' => 'RS401',
+        	    	'message' => CustomHandlers::getreSlimMessage('RS401')
+				];
+			}		
+        
+			return json_encode($data, JSON_PRETTY_PRINT);
+	        $this->db= null;
+		}
+
+		//REVIEW=====================================
+
+		/** 
+		 * Determine is user are never review 
+		 * @return boolean true|false
+		 */
+		private function isUserNeverReview(){
+			$newbookid = Validation::integerOnly($this->bookid);
+			$newusername = strtolower(filter_var($this->username,FILTER_SANITIZE_STRING));
+			$r = false;
+			$sql = "SELECT a.Username
+				FROM book_review a 
+				WHERE a.Username=:username and a.BookID=:bookid;";
+			$stmt = $this->db->prepare($sql);
+			$stmt->bindParam(':username', $newusername, PDO::PARAM_STR);
+			$stmt->bindParam(':bookid', $newbookid, PDO::PARAM_STR);
+			if ($stmt->execute()) {	
+            	if ($stmt->rowCount() == 0){
+					$r = true;
+    	        }          	   	
+			} 		
+			return $r;
+			$this->db = null;
+		}
+
+		/** 
+		 * Add new review
+		 * @return result process in json encoded data
+		 */
+        public function addReview(){
+            if (Auth::validToken($this->db,$this->token)){
+				if ($this->isUserNeverReview()){
+					$newusername = strtolower(filter_var($this->username,FILTER_SANITIZE_STRING));
+                    $newdetail = htmlspecialchars($this->detail);
+					$newbookid = Validation::integerOnly($this->bookid);
+	    		    try {
+    	    			$this->db->beginTransaction();
+	    	    		$sql = "INSERT INTO book_review (BookID,Detail,Username,StatusID,Created_at) 
+		    	    		VALUES (:bookid,:detail,:username,'3',current_timestamp);";
+					    $stmt = $this->db->prepare($sql);
+    					$stmt->bindParam(':detail', $newdetail, PDO::PARAM_STR);
+                        $stmt->bindParam(':bookid', $newbookid, PDO::PARAM_STR);
+						$stmt->bindParam(':username', $newusername, PDO::PARAM_STR);
+		    			if ($stmt->execute()) {
+			    			$data = [
+				    			'status' => 'success',
+					    		'code' => 'RS101',
+						    	'message' => CustomHandlers::getreSlimMessage('RS101')
+    						];	
+	    				} else {
+		    				$data = [
+			    				'status' => 'error',
+				    			'code' => 'RS201',
+					    		'message' => CustomHandlers::getreSlimMessage('RS201')
+    						];
+	    				}
+		    		    $this->db->commit();
+			        } catch (PDOException $e) {
+				        $data = [
+    				    	'status' => 'error',
+    	    				'code' => $e->getCode(),
+	    	    			'message' => $e->getMessage()
+		    	    	];
+	    	    		$this->db->rollBack();
+        			}
+				} else {
+					$data = [
+    				    'status' => 'error',
+    	    			'code' => 'RS917',
+	    	    		'message' => CustomHandlers::getreSlimMessage('RS917')
+		    	    ];
+				}
+            } else {
+                $data = [
+	    			'status' => 'error',
+					'code' => 'RS401',
+        	    	'message' => CustomHandlers::getreSlimMessage('RS401')
+				];
+            }
+
+			return json_encode($data, JSON_PRETTY_PRINT);
+			$this->db = null;
+        }
+
+		/** 
+		 * Update data review
+		 * @return result process in json encoded data
+		 */
+        public function updateReview(){
+            if (Auth::validToken($this->db,$this->token)){
+                if (Auth::getRoleID($this->db,$this->token) == '1'){
+                    $newusername = strtolower(filter_var($this->username,FILTER_SANITIZE_STRING));
+                    $newdetail = htmlspecialchars($this->detail);
+					$newstatusid = Validation::integerOnly($this->statusid);
+					$newreviewid = Validation::integerOnly($this->reviewid);
+                    
+        			try {
+	        			$this->db->beginTransaction();
+		        		$sql = "UPDATE book_review SET Detail=:detail,StatusID=:status,Updated_by=:username  
+			        		WHERE ReviewID=:reviewid;";
+    					$stmt = $this->db->prepare($sql);
+	    				$stmt->bindParam(':detail', $newdetail, PDO::PARAM_STR);
+                        $stmt->bindParam(':username', $newusername, PDO::PARAM_STR);
+                        $stmt->bindParam(':reviewid', $newreviewid, PDO::PARAM_STR);
+						$stmt->bindParam(':status', $newstatusid, PDO::PARAM_STR);
+				    	if ($stmt->execute()) {
+					    	$data = [
+						    	'status' => 'success',
+    							'code' => 'RS103',
+	    						'message' => CustomHandlers::getreSlimMessage('RS103')
+		    				];	
+			    		} else {
+				    		$data = [
+					    		'status' => 'error',
+						    	'code' => 'RS203',
+							    'message' => CustomHandlers::getreSlimMessage('RS203')
+    						];
+	    				}
+		    		    $this->db->commit();
+    			    } catch (PDOException $e) {
+	    			    $data = [
+    	    				'status' => 'error',
+	    	    			'code' => $e->getCode(),
+		    	    		'message' => $e->getMessage()
+			    	    ];
+    				    $this->db->rollBack();
+        			}
+                } else {
+                    $data = [
+    	    			'status' => 'error',
+	    				'code' => 'RS404',
+            	    	'message' => CustomHandlers::getreSlimMessage('RS404')
+			    	];
+                }
+            } else {
+                $data = [
+	    			'status' => 'error',
+					'code' => 'RS401',
+        	    	'message' => CustomHandlers::getreSlimMessage('RS401')
+				];
+            }
+
+			return json_encode($data, JSON_PRETTY_PRINT);
+			$this->db = null;
+        }
+
+		/** 
+		 * Delete data review
+		 * @return result process in json encoded data
+		 */
+        public function deleteReview(){
+            if (Auth::validToken($this->db,$this->token,$this->username)){
+                if (Auth::getRoleID($this->db,$this->token) == '1'){
+                    $newreviewid = Validation::integerOnly($this->reviewid);
+			
+        			try {
+	        			$this->db->beginTransaction();
+		        		$sql = "DELETE FROM book_review 
+			        		WHERE ReviewID=:reviewid;";
+				    	$stmt = $this->db->prepare($sql);
+                        $stmt->bindParam(':reviewid', $newreviewid, PDO::PARAM_STR);
+    					if ($stmt->execute()) {
+	    					$data = [
+		    					'status' => 'success',
+			    				'code' => 'RS104',
+				    			'message' => CustomHandlers::getreSlimMessage('RS104')
+					    	];	
+    					} else {
+	    					$data = [
+		    					'status' => 'error',
+			    				'code' => 'RS204',
+				    			'message' => CustomHandlers::getreSlimMessage('RS204')
+					    	];
+    					}
+	    			    $this->db->commit();
+    	    		} catch (PDOException $e) {
+	    	    		$data = [
+		    	    		'status' => 'error',
+			    	    	'code' => $e->getCode(),
+				    	    'message' => $e->getMessage()
+        				];
+	        			$this->db->rollBack();
+    	    		}
+                } else {
+                    $data = [
+    	    			'status' => 'error',
+	    				'code' => 'RS404',
+            	    	'message' => CustomHandlers::getreSlimMessage('RS404')
+			    	];
+                }
+            } else {
+                $data = [
+	    			'status' => 'error',
+					'code' => 'RS401',
+        	    	'message' => CustomHandlers::getreSlimMessage('RS401')
+				];
+            }
+            
+			return json_encode($data, JSON_PRETTY_PRINT);
+			$this->db = null;
+        }
+
+		/** 
+		 * Show all data review
+		 * @return result process in json encoded datas
+		 */
+        public function showReview(){
+				$newbookid = Validation::integerOnly($this->bookid);
+				$sql = "SELECT a.ReviewID,a.BookID,case 
+					when a.StatusID = '20' then 'Your review has been hidden by admin because indicated as spam.'
+					when a.StatusID = '38' then 'Your review has been removed by admin because inappropriate.' else a.Detail end as 'Detail',a.StatusID,a.Created_at,a.Username,b.Avatar,a.Updated_at,a.Updated_by
+					FROM book_review a
+					inner join user_data b on a.Username = b.Username
+					WHERE a.BookID = :bookid
+					ORDER BY a.Created_at DESC";
+				
+				$stmt = $this->db->prepare($sql);	
+				$stmt->bindValue(':bookid', $newbookid, PDO::PARAM_STR);	
+
+				if ($stmt->execute()) {	
+    	    	    if ($stmt->rowCount() > 0){
+        	   		   	$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+						$data = [
+			   	            'result' => $results, 
+    	    		        'status' => 'success', 
+			           	    'code' => 'RS501',
+        		        	'message' => CustomHandlers::getreSlimMessage('RS501')
+						];
+			        } else {
+        			    $data = [
+            		    	'status' => 'error',
+		        		    'code' => 'RS601',
+        		    	    'message' => CustomHandlers::getreSlimMessage('RS601')
+						];
+	    	        }          	   	
+				} else {
+					$data = [
+    	    			'status' => 'error',
+						'code' => 'RS202',
+	        		    'message' => CustomHandlers::getreSlimMessage('RS202')
+					];
+				}		
+        
+			return json_encode($data, JSON_PRETTY_PRINT);
+	        $this->db= null;
+        }
+
+		/** 
+		 * Search all data review paginated
+		 * @return result process in json encoded data
+		 */
+		public function searchReviewAsPagination() {
+			if (Auth::validToken($this->db,$this->token)){
+				if (Auth::getRoleID($this->db,$this->token) == '1'){
+					$search = "%$this->search%";
+					$sqlcountrow = "SELECT count(a.ReviewID) as TotalRow
+					FROM book_review a
+					inner join user_data b on a.Username = b.Username
+					WHERE a.BookID like :search
+					ORDER BY a.Created_at DESC;";
+					$stmt = $this->db->prepare($sqlcountrow);
+					$stmt->bindValue(':search', $search, PDO::PARAM_STR);
+				
+					if ($stmt->execute()) {	
+    	    	    	if ($stmt->rowCount() > 0){
+							$single = $stmt->fetch();
+						
+							// Paginate won't work if page and items per page is negative.
+							// So make sure that page and items per page is always return minimum zero number.
+							$newpage = Validation::integerOnly($this->page);
+							$newitemsperpage = Validation::integerOnly($this->itemsPerPage);
+							$limits = (((($newpage-1)*$newitemsperpage) <= 0)?0:(($newpage-1)*$newitemsperpage));
+							$offsets = (($newitemsperpage <= 0)?0:$newitemsperpage);
+
+							// Query Data
+							$sql = "SELECT a.ReviewID,a.BookID,a.Detail,a.StatusID,c.Status,a.Created_at,a.Username,b.Avatar,a.Updated_at,a.Updated_by
+								FROM book_review a
+								inner join user_data b on a.Username = b.Username
+								inner join core_status c on a.StatusID=c.StatusID
+								WHERE a.BookID like :search
+								ORDER BY a.Created_at DESC LIMIT :limpage , :offpage;";
+							$stmt2 = $this->db->prepare($sql);
+							$stmt2->bindValue(':search', $search, PDO::PARAM_STR);
+							$stmt2->bindValue(':limpage', (INT) $limits, PDO::PARAM_INT);
+							$stmt2->bindValue(':offpage', (INT) $offsets, PDO::PARAM_INT);
+						
+							if ($stmt2->execute()){
+								$pagination = new \classes\Pagination();
+								$pagination->totalRow = $single['TotalRow'];
+								$pagination->page = $this->page;
+								$pagination->itemsPerPage = $this->itemsPerPage;
+								$pagination->fetchAllAssoc = $stmt2->fetchAll(PDO::FETCH_ASSOC);
+								$data = $pagination->toDataArray();
+							} else {
+								$data = [
+        	    		    		'status' => 'error',
+		    	    		    	'code' => 'RS202',
+	        			    	    'message' => CustomHandlers::getreSlimMessage('RS202')
+								];	
+							}			
+				        } else {
+    	    			    $data = [
+        	    		    	'status' => 'error',
+		    	    		    'code' => 'RS601',
+        			    	    'message' => CustomHandlers::getreSlimMessage('RS601')
+							];
+		    	        }          	   	
+					} else {
+						$data = [
+    	    				'status' => 'error',
+							'code' => 'RS202',
+	        			    'message' => CustomHandlers::getreSlimMessage('RS202')
+						];
+					}
+				} else {
+					$data = [
+		    			'status' => 'error',
+						'code' => 'RS404',
+        		    	'message' => CustomHandlers::getreSlimMessage('RS404')
+					];
+				}
+			} else {
+				$data = [
+	    			'status' => 'error',
+					'code' => 'RS401',
+        	    	'message' => CustomHandlers::getreSlimMessage('RS401')
+				];
+			}		
+        
+			return json_encode($data, JSON_PRETTY_PRINT);
+	        $this->db= null;
+		}
+
+		/** 
+		 * Get all data Status for Data Review
+		 * @return result process in json encoded data
+		 */
+		public function showOptionReview() {
+			if (Auth::validToken($this->db,$this->token)){
+				$sql = "SELECT a.StatusID,a.Status
+					FROM core_status a
+					WHERE a.StatusID = '3' OR a.StatusID = '20' OR a.StatusID = '38'
+					ORDER BY a.Status ASC";
+				
+				$stmt = $this->db->prepare($sql);		
+				$stmt->bindParam(':token', $this->token, PDO::PARAM_STR);
+
+				if ($stmt->execute()) {	
+    	    	    if ($stmt->rowCount() > 0){
+        	   		   	$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+						$data = [
+			   	            'result' => $results, 
+    	    		        'status' => 'success', 
+			           	    'code' => 'RS501',
+        		        	'message' => CustomHandlers::getreSlimMessage('RS501')
+						];
+			        } else {
+        			    $data = [
+            		    	'status' => 'error',
+		        		    'code' => 'RS601',
+        		    	    'message' => CustomHandlers::getreSlimMessage('RS601')
+						];
+	    	        }          	   	
+				} else {
+					$data = [
+    	    			'status' => 'error',
+						'code' => 'RS202',
+	        		    'message' => CustomHandlers::getreSlimMessage('RS202')
 					];
 				}
 			} else {
