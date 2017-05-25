@@ -325,7 +325,7 @@ hr {
 }
 .sidebar .nav li > a,
 .off-canvas-sidebar .nav li > a {
-  margin: 10px 0px;
+  margin: 0px 0px;
   padding-left: 25px;
   padding-right: 25px;
   opacity: .7;
