@@ -154,7 +154,8 @@
             'RS913' => 'Request process is successfully deleted only in database server but failed to delete the data file on server.',
             'RS914' => 'Email is not available.',
             'RS915' => 'Failed to verify pass key maybe it was expired.',
-            'RS916' => 'Domain hasbeen registered.'
+            'RS916' => 'Domain hasbeen registered.',
+            'RS917' => 'Users can not review more than one.'
         ];
 
         /**
