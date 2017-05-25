@@ -64,6 +64,12 @@
                             <p>Data Publisher</p>
                         </a>
                     </li>
+                    <li <?php if (!empty($_GET['m'])) if($_GET['m']==24) echo 'class="active"';?> >
+                        <a href="modul-data-review.php?m=24&page=1&itemsperpage=10&search=">
+                            <i class="ti-comment"></i>
+                            <p>Data Review</p>
+                        </a>
+                    </li>
                     <li <?php if (!empty($_GET['m'])) if($_GET['m']==21) echo 'class="active"';?> >
                         <a href="modul-manage-withdrawal.php?m=21&page=1&itemsperpage=10&search=">
                             <i class="ti-money"></i>
@@ -98,6 +104,12 @@
                         <a href="modul-submit-book-manage.php?m=16&page=1&itemsperpage=10&search=">
                             <i class="ti-pencil-alt"></i>
                             <p>Submit Book</p>
+                        </a>
+                    </li>
+                    <li <?php if (!empty($_GET['m'])) if($_GET['m']==19) echo 'class="active"';?> >
+                        <a href="modul-user-settings.php?m=19">
+                            <i class="ti-settings"></i>
+                            <p>User Settings</p>
                         </a>
                     </li>
                 <?php } else {  // Member Menu ?>
@@ -149,6 +161,32 @@
                         <a href="<?php basename($_SERVER['REQUEST_URI'])?>">
                             <i class="ti-search"></i>
                             <p>View Profile</p>
+                        </a>
+                    </li>
+        <?php } else if (pathinfo(basename($_SERVER['REQUEST_URI']), PATHINFO_FILENAME) == "modul-about-us") { // Guest ?>
+                    <li class="active">
+                        <a href="<?php basename($_SERVER['REQUEST_URI'])?>">
+                            <i class="ti-info-alt"></i>
+                            <p>About Us</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="modul-privacy-policy.php">
+                            <i class="ti-info-alt"></i>
+                            <p>Privacy Policy</p>
+                        </a>
+                    </li>
+        <?php } else if (pathinfo(basename($_SERVER['REQUEST_URI']), PATHINFO_FILENAME) == "modul-privacy-policy") { // Guest ?>
+                    <li>
+                        <a href="modul-about-us.php">
+                            <i class="ti-info-alt"></i>
+                            <p>About Us</p>
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a href="<?php basename($_SERVER['REQUEST_URI'])?>">
+                            <i class="ti-info-alt"></i>
+                            <p>Privacy Policy</p>
                         </a>
                     </li>
         <?php } else { ?>
