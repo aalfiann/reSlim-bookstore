@@ -295,6 +295,7 @@ use \Psr\Http\Message\ResponseInterface as Response;
         $book->translator = $datapost['Translator'];
         $book->publisher = $datapost['Publisher'];
         $book->isbn = $datapost['ISBN'];
+        $book->released = $datapost['Released'];
         $book->tags = $datapost['Tags'];
         $book->pages = $datapost['Pages'];
         $book->purpose = $datapost['Purpose'];
@@ -319,6 +320,7 @@ use \Psr\Http\Message\ResponseInterface as Response;
         $book->translator = $datapost['Translator'];
         $book->publisher = $datapost['Publisher'];
         $book->isbn = $datapost['ISBN'];
+        $book->released = $datapost['Released'];
         $book->tags = $datapost['Tags'];
         $book->pages = $datapost['Pages'];
         $book->purpose = $datapost['Purpose'];
@@ -394,6 +396,7 @@ use \Psr\Http\Message\ResponseInterface as Response;
         $book->translatorid = $datapost['TranslatorID'];
         $book->publisherid = $datapost['PublisherID'];
         $book->isbn = $datapost['ISBN'];
+        $book->released = $datapost['Released'];
         $book->typeid = $datapost['TypeID'];
         $book->tags = $datapost['Tags'];
         $book->pages = $datapost['Pages'];
@@ -419,6 +422,7 @@ use \Psr\Http\Message\ResponseInterface as Response;
         $book->translatorid = $datapost['TranslatorID'];
         $book->publisherid = $datapost['PublisherID'];
         $book->isbn = $datapost['ISBN'];
+        $book->released = $datapost['Released'];
         $book->typeid = $datapost['TypeID'];
         $book->tags = $datapost['Tags'];
         $book->pages = $datapost['Pages'];
@@ -547,6 +551,17 @@ use \Psr\Http\Message\ResponseInterface as Response;
         $book->search = filter_var((empty($_GET['query'])?'':$_GET['query']),FILTER_SANITIZE_STRING);
         $body = $response->getBody();
         $body->write($book->showAllLibraryBook());
+        return classes\Cors::modify($response,$body,200);
+    });
+
+    // GET api to search data book library with pagination (member only)
+    $app->get('/book/library/data/{username}/read/{bookid}/{token}', function (Request $request, Response $response) {
+        $book = new classes\bookstore\Book($this->db);
+        $book->username = $request->getAttribute('username');
+        $book->token = $request->getAttribute('token');
+        $book->bookid = $request->getAttribute('bookid');
+        $body = $response->getBody();
+        $body->write($book->showSingleLibraryBook());
         return classes\Cors::modify($response,$body,200);
     });
 
@@ -685,5 +700,73 @@ use \Psr\Http\Message\ResponseInterface as Response;
         $book->search = filter_var((empty($_GET['query'])?'':$_GET['query']),FILTER_SANITIZE_STRING);
         $body = $response->getBody();
         $body->write($book->showAllWithdrawal());
+        return classes\Cors::modify($response,$body,200);
+    });
+
+    // POST api to create Review
+    $app->post('/book/review/new', function (Request $request, Response $response) {
+        $book = new classes\bookstore\Book($this->db);
+        $datapost = $request->getParsedBody();    
+        $book->username = $datapost['Username'];
+        $book->detail = $datapost['Detail'];
+        $book->token = $datapost['Token'];
+        $book->bookid = $datapost['BookID'];
+        $body = $response->getBody();
+        $body->write($book->addReview());
+        return classes\Cors::modify($response,$body,200);
+    });
+
+    // POST api to update Review
+    $app->post('/book/review/update', function (Request $request, Response $response) {
+        $book = new classes\bookstore\Book($this->db);
+        $datapost = $request->getParsedBody();    
+        $book->reviewid = $datapost['ReviewID'];
+        $book->username = $datapost['Username'];
+        $book->detail = $datapost['Detail'];
+        $book->token = $datapost['Token'];
+        $book->statusid = $datapost['Status'];
+        $body = $response->getBody();
+        $body->write($book->updateReview());
+        return classes\Cors::modify($response,$body,200);
+    });
+
+    // POST api to delete Review
+    $app->post('/book/review/delete', function (Request $request, Response $response) {
+        $book = new classes\bookstore\Book($this->db);
+        $datapost = $request->getParsedBody();    
+        $book->reviewid = $datapost['ReviewID'];
+        $book->token = $datapost['Token'];
+        $body = $response->getBody();
+        $body->write($book->deleteReview());
+        return classes\Cors::modify($response,$body,200);
+    });
+
+    // GET api to show all data Review
+    $app->get('/book/review/data/{bookid}/', function (Request $request, Response $response) {
+        $book = new classes\bookstore\Book($this->db);
+        $book->bookid = $request->getAttribute('bookid');
+        $body = $response->getBody();
+        $body->write($book->showReview());
+        return classes\Cors::modify($response,$body,200);
+    })->add(new \classes\middleware\ApiKey(filter_var((empty($_GET['apikey'])?'':$_GET['apikey']),FILTER_SANITIZE_STRING)));
+
+    // GET api to show all data Review pagination
+    $app->get('/book/review/data/search/{page}/{itemsperpage}/{token}/', function (Request $request, Response $response) {
+        $book = new classes\bookstore\Book($this->db);
+        $book->search = filter_var((empty($_GET['query'])?'':$_GET['query']),FILTER_SANITIZE_STRING);
+        $book->token = $request->getAttribute('token');
+        $book->page = $request->getAttribute('page');
+        $book->itemsPerPage = $request->getAttribute('itemsperpage');
+        $body = $response->getBody();
+        $body->write($book->searchReviewAsPagination());
+        return classes\Cors::modify($response,$body,200);
+    });
+
+    // GET api to show all data status review
+    $app->get('/book/review/status/{token}', function (Request $request, Response $response) {
+        $book = new classes\bookstore\Book($this->db);
+        $book->token = $request->getAttribute('token');
+        $body = $response->getBody();
+        $body->write($book->showOptionReview());
         return classes\Cors::modify($response,$body,200);
     });
