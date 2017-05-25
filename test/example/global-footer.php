@@ -7,6 +7,16 @@
                                 Home
                             </a>
                         </li>
+                        <li>
+                            <a href="<?php echo Core::getInstance()->basepath.'/modul-about-us.php';?>">
+                                About
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?php echo Core::getInstance()->basepath.'/modul-privacy-policy.php';?>">
+                                Privacy
+                            </a>
+                        </li>
                     </ul>
                 </nav>
 				<div class="copyright pull-right">
