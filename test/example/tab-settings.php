@@ -9,6 +9,7 @@
                                     'Title' => $_POST['title'],
                                     'Email' => $_POST['email'],
                                     'Hotline' => $_POST['hotline'],
+                                    'Sharethis' => $_POST['sharethis'],
                                     'Basepath' => $_POST['basepath'],
                                     'Api' => $_POST['api'],
                                     'ApiKey' => $_POST['apikey']
@@ -33,7 +34,11 @@
                                         </div>
                                         <div class="form-group">
                                             <label>Hotline</label>
-                                            <input name="hotline" type="text" placeholder="Please input Your hotline call" class="form-control border-input" maxlength="15" value="<?php echo Core::getInstance()->hotline?>" required>
+                                            <input name="hotline" type="text" placeholder="Please input Your hotline call" class="form-control border-input" maxlength="15" value="<?php echo Core::getInstance()->hotline?>" >
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Sharethis</label>
+                                            <input name="sharethis" type="text" placeholder="Please input Your sharethis code" class="form-control border-input" maxlength="50" value="<?php echo Core::getInstance()->sharethis?>" >
                                         </div>
                                         <div class="form-group">
                                             <label>Base Path</label>
