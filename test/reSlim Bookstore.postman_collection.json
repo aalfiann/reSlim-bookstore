@@ -610,6 +610,17 @@
 			"response": []
 		},
 		{
+			"name": "Force Download Link",
+			"request": {
+				"url": "http://localhost:1337/reSlim-bookstore/src/api/user/upload/steam/{yourtoken}/{filename with extension}",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
 			"name": "Send Mail",
 			"request": {
 				"url": "http://localhost:1337/reSlim-bookstore/src/api/mail/send",
@@ -1497,6 +1508,12 @@
 							"value": "{ISBN of book}",
 							"type": "text",
 							"enabled": true
+						},
+						{
+							"key": "Released",
+							"value": "{date of release the original book}",
+							"type": "text",
+							"enabled": true
 						}
 					]
 				},
@@ -1618,6 +1635,12 @@
 						{
 							"key": "ISBN",
 							"value": "{ISBN of book}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Released",
+							"value": "{date of release the original book}",
 							"type": "text",
 							"enabled": true
 						}
@@ -1791,6 +1814,12 @@
 							"value": "{price of book}",
 							"type": "text",
 							"enabled": true
+						},
+						{
+							"key": "Released",
+							"value": "{date of release the original book}",
+							"type": "text",
+							"enabled": true
 						}
 					]
 				},
@@ -1912,6 +1941,12 @@
 						{
 							"key": "ISBN",
 							"value": "{ISBN of book}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Released",
+							"value": "{date of release the original book}",
 							"type": "text",
 							"enabled": true
 						}
@@ -2118,6 +2153,17 @@
 			"name": "Book Library Search All",
 			"request": {
 				"url": "http://localhost:1337/reSlim-bookstore/src/api/book/library/data/{username}/search/{page}/{itemsperpage}/{token}/?query={query of search}",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Book Library Single Read",
+			"request": {
+				"url": "http://localhost:1337/reSlim-bookstore/src/api/book/library/data/azizalfian/read/{bookid}/{token}",
 				"method": "GET",
 				"header": [],
 				"body": {},
@@ -2494,6 +2540,156 @@
 			"name": "Show User Withdrawal All",
 			"request": {
 				"url": "http://localhost:1337/reSlim-bookstore/src/api/book/user/withdrawal/{username}/all/{page}/{itemsperpage}/{token}/?firstdate={first of date}&lastdate={last of date}&query={your query to search data}",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Book Review Create",
+			"request": {
+				"url": "http://localhost:1337/reSlim-bookstore/src/api/book/review/new",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "Username",
+							"value": "{your username}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Detail",
+							"value": "{detail review}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Token",
+							"value": "{yourtoken}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "BookID",
+							"value": "{ID of book}",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Book Review Update",
+			"request": {
+				"url": "http://localhost:1337/reSlim-bookstore/src/api/book/review/update",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "Username",
+							"value": "{your username}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Detail",
+							"value": "{detail review}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Token",
+							"value": "{yourtoken}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "ReviewID",
+							"value": "{ID of review}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Status",
+							"value": "{3=approved or 20=hidden or 38=removed}",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Book Review Delete",
+			"request": {
+				"url": "http://localhost:1337/reSlim-bookstore/src/api/book/review/delete",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "Token",
+							"value": "{yourtoken}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "ReviewID",
+							"value": "{ID of review}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Username",
+							"value": "{your username}",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Show Data Review",
+			"request": {
+				"url": "http://localhost:1337/reSlim-bookstore/src/api/book/review/data/{bookid}/?apikey={your api key}",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Search Data Review",
+			"request": {
+				"url": "http://localhost:1337/reSlim-bookstore/src/api/book/review/data/search/{page}/{itemsperpage}/{token}/?query={your query to search data}",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Show Option Review",
+			"request": {
+				"url": "http://localhost:1337/reSlim-bookstore/src/api/book/review/status/{yourtoken}",
 				"method": "GET",
 				"header": [],
 				"body": {},

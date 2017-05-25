@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 20, 2017 at 07:39 PM
+-- Generation Time: May 25, 2017 at 11:01 AM
 -- Server version: 5.6.21
 -- PHP Version: 5.6.3
 
@@ -111,11 +111,29 @@ CREATE TABLE IF NOT EXISTS `book_release` (
   `Price` decimal(10,0) NOT NULL,
   `TypeID` int(11) NOT NULL,
   `ISBN` varchar(255) DEFAULT NULL,
+  `Original_released` date DEFAULT NULL,
   `StatusID` int(11) NOT NULL,
   `Created_at` datetime NOT NULL,
   `Username` varchar(50) NOT NULL,
   `Updated_at` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   `Updated_by` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `book_review`
+--
+
+CREATE TABLE IF NOT EXISTS `book_review` (
+`ReviewID` bigint(20) NOT NULL,
+  `Username` varchar(50) NOT NULL,
+  `BookID` int(11) NOT NULL,
+  `Detail` text NOT NULL,
+  `StatusID` int(11) NOT NULL,
+  `Created_at` datetime NOT NULL,
+  `Updated_by` varchar(50) DEFAULT NULL,
+  `Updated_at` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -139,6 +157,7 @@ CREATE TABLE IF NOT EXISTS `book_submit` (
   `Purpose` varchar(255) DEFAULT NULL,
   `Publisher` varchar(255) DEFAULT NULL,
   `ISBN` varchar(255) DEFAULT NULL,
+  `Original_released` date DEFAULT NULL,
   `BookID` int(11) DEFAULT NULL,
   `StatusID` int(11) NOT NULL,
   `Created_at` datetime NOT NULL,
@@ -446,13 +465,19 @@ ALTER TABLE `book_publisher`
 -- Indexes for table `book_release`
 --
 ALTER TABLE `book_release`
- ADD PRIMARY KEY (`BookID`), ADD KEY `BookID` (`BookID`), ADD KEY `Title` (`Title`), ADD KEY `AuthorID` (`AuthorID`), ADD KEY `LanguageID` (`LanguageID`), ADD KEY `TranslatorID` (`TranslatorID`), ADD KEY `Tags` (`Tags`), ADD KEY `StatusID` (`StatusID`), ADD KEY `Created_at` (`Created_at`), ADD KEY `Username` (`Username`), ADD KEY `TypeID` (`TypeID`) USING BTREE, ADD KEY `PublisherID` (`PublisherID`), ADD KEY `ISBN` (`ISBN`);
+ ADD PRIMARY KEY (`BookID`), ADD KEY `BookID` (`BookID`), ADD KEY `Title` (`Title`), ADD KEY `AuthorID` (`AuthorID`), ADD KEY `LanguageID` (`LanguageID`), ADD KEY `TranslatorID` (`TranslatorID`), ADD KEY `Tags` (`Tags`), ADD KEY `StatusID` (`StatusID`), ADD KEY `Created_at` (`Created_at`), ADD KEY `Username` (`Username`), ADD KEY `TypeID` (`TypeID`) USING BTREE, ADD KEY `PublisherID` (`PublisherID`), ADD KEY `ISBN` (`ISBN`), ADD KEY `Original_released` (`Original_released`);
+
+--
+-- Indexes for table `book_review`
+--
+ALTER TABLE `book_review`
+ ADD PRIMARY KEY (`ReviewID`,`Username`,`BookID`), ADD KEY `ReviewID` (`ReviewID`), ADD KEY `Username` (`Username`), ADD KEY `BookID` (`BookID`), ADD KEY `Created_at` (`Created_at`), ADD KEY `StatusID` (`StatusID`);
 
 --
 -- Indexes for table `book_submit`
 --
 ALTER TABLE `book_submit`
- ADD PRIMARY KEY (`SubmitBookID`), ADD KEY `Title` (`Title`), ADD KEY `Tags` (`Tags`), ADD KEY `StatusID` (`StatusID`), ADD KEY `Created_at` (`Created_at`), ADD KEY `Username` (`Username`), ADD KEY `SubmitBookID` (`SubmitBookID`) USING BTREE, ADD KEY `Author` (`Author`) USING BTREE, ADD KEY `Language` (`Language`) USING BTREE, ADD KEY `Translator` (`Translator`) USING BTREE, ADD KEY `BookID` (`BookID`), ADD KEY `Publisher` (`Publisher`), ADD KEY `ISBN` (`ISBN`);
+ ADD PRIMARY KEY (`SubmitBookID`), ADD KEY `Title` (`Title`), ADD KEY `Tags` (`Tags`), ADD KEY `StatusID` (`StatusID`), ADD KEY `Created_at` (`Created_at`), ADD KEY `Username` (`Username`), ADD KEY `SubmitBookID` (`SubmitBookID`) USING BTREE, ADD KEY `Author` (`Author`) USING BTREE, ADD KEY `Language` (`Language`) USING BTREE, ADD KEY `Translator` (`Translator`) USING BTREE, ADD KEY `BookID` (`BookID`), ADD KEY `Publisher` (`Publisher`), ADD KEY `ISBN` (`ISBN`), ADD KEY `Original_released` (`Original_released`);
 
 --
 -- Indexes for table `book_translator`
@@ -545,6 +570,11 @@ MODIFY `PublisherID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 ALTER TABLE `book_release`
 MODIFY `BookID` int(11) NOT NULL AUTO_INCREMENT;
 --
+-- AUTO_INCREMENT for table `book_review`
+--
+ALTER TABLE `book_review`
+MODIFY `ReviewID` bigint(20) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT for table `book_submit`
 --
 ALTER TABLE `book_submit`
@@ -607,6 +637,14 @@ ADD CONSTRAINT `book_release_ibfk_4` FOREIGN KEY (`StatusID`) REFERENCES `core_s
 ADD CONSTRAINT `book_release_ibfk_5` FOREIGN KEY (`Username`) REFERENCES `user_data` (`Username`) ON DELETE CASCADE ON UPDATE CASCADE,
 ADD CONSTRAINT `book_release_ibfk_6` FOREIGN KEY (`TypeID`) REFERENCES `book_type` (`TypeID`) ON DELETE CASCADE ON UPDATE CASCADE,
 ADD CONSTRAINT `book_release_ibfk_7` FOREIGN KEY (`PublisherID`) REFERENCES `book_publisher` (`PublisherID`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `book_review`
+--
+ALTER TABLE `book_review`
+ADD CONSTRAINT `book_review_ibfk_1` FOREIGN KEY (`Username`) REFERENCES `user_data` (`Username`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `book_review_ibfk_2` FOREIGN KEY (`BookID`) REFERENCES `book_release` (`BookID`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `book_review_ibfk_3` FOREIGN KEY (`StatusID`) REFERENCES `core_status` (`StatusID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `book_submit`
