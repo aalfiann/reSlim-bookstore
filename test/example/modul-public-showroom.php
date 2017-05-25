@@ -9,7 +9,7 @@ spl_autoload_register(function ($classname) {require ( $classname . ".php");});?
 <body>
 
 <div class="wrapper">
-	<div class="sidebar" data-background-color="white" data-active-color="danger">
+	<div class="sidebar" data-background-color="black" data-active-color="danger">
         <?php include 'global-menu.php';?>
     </div>
 
@@ -25,7 +25,8 @@ spl_autoload_register(function ($classname) {require ( $classname . ".php");});?
                     </button>
                     <a class="navbar-brand" href="#">Book Showroom</a>
                 </div>
-                
+                <div class="collapse navbar-collapse">
+                </div>
             </div>
         </nav>
 
