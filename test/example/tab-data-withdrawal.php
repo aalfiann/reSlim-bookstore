@@ -1,23 +1,31 @@
+<?php 
+//Validation url param
+$search = filter_var((empty($_GET['search'])?'':$_GET['search']),FILTER_SANITIZE_STRING);
+$page = filter_var((empty($_GET['page'])?'1':$_GET['page']),FILTER_SANITIZE_STRING);
+$itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpage']),FILTER_SANITIZE_STRING);
+$firstdate = ((!empty($_GET['firstdate']))?$_GET['firstdate']:date('Y-m-d',strtotime("-30 days")));
+$lastdate = ((!empty($_GET['lastdate']))?$_GET['lastdate']:date('Y-m-d'));
+?>
 <div class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <form method="get" action="<?php $_SERVER['PHP_SELF'].'?search='.filter_var($_GET['search'],FILTER_SANITIZE_STRING)?>">
+                    <form method="get" action="<?php $_SERVER['PHP_SELF'].'?search='.$search?>">
                         <div class="col-md-2">
                             <div class="form-group">
                                 <label>First Date</label>
-                                <input id="firstdate" name="firstdate" type="text" class="form-control border-input" placeholder="First Date" value="<?=((!empty($_GET['firstdate']))?$_GET['firstdate']:date('Y-m-d',strtotime("-30 days")));?>" required>
+                                <input id="firstdate" name="firstdate" type="text" class="form-control border-input" placeholder="First Date" value="<?php echo $firstdate?>" required>
                             </div>
                         </div>
                         <div class="col-md-2">
                             <div class="form-group">
                                 <label>Last Date</label>
-                                <input id="lastdate" name="lastdate" type="text" class="form-control border-input" placeholder="Last Date" value="<?=((!empty($_GET['lastdate']))?$_GET['lastdate']:date('Y-m-d'));?>" required>
+                                <input id="lastdate" name="lastdate" type="text" class="form-control border-input" placeholder="Last Date" value="<?php echo $lastdate?>" required>
                             </div>
                         </div>
                         <div class="col-lg-8 col-md-9 col-sm-9 col-xs-12">
                             <div class="form-group">
                                 <label>Search</label>
-                                <input name="search" type="text" placeholder="Search here..." class="form-control border-input" value="<?php echo $_GET['search']?>">
+                                <input name="search" type="text" placeholder="Search here..." class="form-control border-input" value="<?php echo $search?>">
                             </div>
                             <div class="form-group hidden">
                                 <input name="m" type="text" class="form-control border-input" value="18" hidden>
@@ -38,7 +46,7 @@
                 <div class="row">
                
 <?php 
-    $url = Core::getInstance()->api.'/book/user/withdrawal/'.$datalogin['username'].'/all/'.$_GET['page'].'/'.$_GET['itemsperpage'].'/'.$datalogin['token'].'/?firstdate='.((!empty($_GET['firstdate']))?$_GET['firstdate']:date('Y-m-d',strtotime("-30 days"))).'&lastdate='.((!empty($_GET['lastdate']))?$_GET['lastdate']:date('Y-m-d')).'&query='.$_GET['search'];
+    $url = Core::getInstance()->api.'/book/user/withdrawal/'.$datalogin['username'].'/all/'.$page.'/'.$itemsperpage.'/'.$datalogin['token'].'/?firstdate='.$firstdate.'&lastdate='.$lastdate.'&query='.$search;
     $data = json_decode(Core::execGetRequest($url));
 
     if (!empty($data))
@@ -109,7 +117,7 @@
                 </div>';
 
                 $pagination = new Pagination;
-                echo $pagination->makePagination($data,$_SERVER['PHP_SELF'].'?m=18&firstdate='.((!empty($_GET['firstdate']))?$_GET['firstdate']:date('Y-m-d',strtotime("-30 days"))).'&lastdate='.((!empty($_GET['lastdate']))?$_GET['lastdate']:date('Y-m-d')).'&search='.$_GET['search']);
+                echo $pagination->makePagination($data,$_SERVER['PHP_SELF'].'?m=18&firstdate='.$firstdate.'&lastdate='.$lastdate.'&search='.$search);
                 
                 echo '</div>';
             }

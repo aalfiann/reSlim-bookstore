@@ -1,15 +1,45 @@
 <?php 
-spl_autoload_register(function ($classname) {require ( $classname . ".php");});?>
+spl_autoload_register(function ($classname) {require ( $classname . ".php");}); 
+//Validation url param
+$search = filter_var((empty($_GET['search'])?'':$_GET['search']),FILTER_SANITIZE_STRING);
+$bookid = filter_var((empty($_GET['bookid'])?'':$_GET['bookid']),FILTER_SANITIZE_STRING);
+$itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpage']),FILTER_SANITIZE_STRING);
+
+$url = Core::getInstance()->api.'/book/release/data/read/'.$bookid.'/?apikey='.Core::getInstance()->apikey;
+$data = json_decode(Core::execGetRequest($url));
+//Data Review
+$urlreview = Core::getInstance()->api.'/book/review/data/'.$bookid.'/?apikey='.Core::getInstance()->apikey;
+$datareview = json_decode(Core::execGetRequest($urlreview));
+?>
 <!doctype html>
 <html lang="id">
 <head>
-    <title>Book Detail - <?php echo Core::getInstance()->title?></title>
+    <?php 
+        if (!empty($data))
+        {
+            if ($data->{'status'} == "success")
+            {
+                foreach ($data->result as $name => $value) 
+	            {
+                    echo '<title>'.$value->{'Title'}.' - '.Core::getInstance()->title.'</title>';
+                    echo '<meta name="description" content="'.$value->{'Description'}.'">';
+                    echo '<meta name="keywords" content="'.$value->{'Tags'}.'">';
+                }
+            } else {
+                echo '<title>Book Detail - '.Core::getInstance()->title.'</title>';
+            }
+        } else {
+          echo '<title>Book Detail - '.Core::getInstance()->title.'</title>';  
+        }?>
 	<?php include 'global-meta.php';?>
+    <?php if (!empty(Core::getInstance()->sharethis)){
+        echo '<script type="text/javascript" src="//platform-api.sharethis.com/js/sharethis.js#property='.Core::getInstance()->sharethis.'&product=inline-share-buttons"></script>';
+    }?>
 </head>
 <body>
 
 <div class="wrapper">
-	<div class="sidebar" data-background-color="white" data-active-color="danger">
+	<div class="sidebar" data-background-color="black" data-active-color="danger">
         <?php include 'global-menu.php';?>
     </div>
 
@@ -25,7 +55,8 @@ spl_autoload_register(function ($classname) {require ( $classname . ".php");});?
                     </button>
                     <a class="navbar-brand" href="#">Book Detail</a>
                 </div>
-                
+                <div class="collapse navbar-collapse">
+                </div>
             </div>
         </nav>
 

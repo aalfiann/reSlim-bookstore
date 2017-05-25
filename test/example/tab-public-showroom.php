@@ -1,10 +1,16 @@
+<?php 
+//Validation url param
+$search = filter_var((empty($_GET['search'])?'':$_GET['search']),FILTER_SANITIZE_STRING);
+$page = filter_var((empty($_GET['page'])?'1':$_GET['page']),FILTER_SANITIZE_STRING);
+$itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpage']),FILTER_SANITIZE_STRING);
+?>
 <div class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <form method="get" action="<?php $_SERVER['PHP_SELF'].'?search='.filter_var($_GET['search'],FILTER_SANITIZE_STRING)?>">
+                    <form method="get" action="<?php $_SERVER['PHP_SELF'].'?search='.$search?>">
                         <div class="col-lg-10 col-md-9 col-sm-9 col-xs-12">
                             <div class="form-group">
-                                <input name="search" type="text" placeholder="Search here..." class="form-control border-input" value="<?php echo $_GET['search']?>">
+                                <input name="search" type="text" placeholder="Search here..." class="form-control border-input" value="<?php echo $search?>">
                             </div>
                             <div class="form-group hidden">
                                 <input name="m" type="text" class="form-control border-input" value="22" hidden>
@@ -24,7 +30,7 @@
                 <div class="row">
                     
 <?php 
-    $url = Core::getInstance()->api.'/book/release/data/publish/search/'.$_GET['page'].'/'.$_GET['itemsperpage'].'/?apikey='.Core::getInstance()->apikey.'&query='.$_GET['search'];
+    $url = Core::getInstance()->api.'/book/release/data/publish/search/'.$page.'/'.$itemsperpage.'/?apikey='.Core::getInstance()->apikey.'&query='.$search;
     $data = json_decode(Core::execGetRequest($url));
 
     if (!empty($data))
@@ -40,19 +46,19 @@
                     echo '<div class="col-lg-3 col-md-4">
                         <div class="card card-user">
                         <div class="row">
-                            <div class="text-center"><a href="modul-public-detail.php?m=22&bookid='.$value->{'BookID'}.'&itemsperpage='.$_GET['itemsperpage'].'"><img src="' . $value->{'Image'} .'" width="80%"></a></div>
+                            <div class="text-center"><a href="modul-public-detail.php?m=22&bookid='.$value->{'BookID'}.'&itemsperpage='.$itemsperpage.'"><img src="' . $value->{'Image'} .'" width="80%"></a></div>
                         </div>
-                            <div class="text-center"><h3><a href="modul-public-detail.php?m=22&bookid='.$value->{'BookID'}.'&itemsperpage='.$_GET['itemsperpage'].'">' . $value->{'Title'} .'</a></h3></div>
+                            <div class="text-center"><h3><a href="modul-public-detail.php?m=22&bookid='.$value->{'BookID'}.'&itemsperpage='.$itemsperpage.'">' . $value->{'Title'} .'</a></h3></div>
                             <p class="description text-center">';
                             $datatags = '';
                             foreach ($value->{'Tags'} as $name => $valuetags) {
-                                $datatags .= '<a href="modul-public-showroom.php?m=22&page='.$_GET['page'].'&itemsperpage='.$_GET['itemsperpage'].'&search='.$valuetags.'">'.$valuetags.'</a>, ';
+                                $datatags .= '<a href="modul-public-showroom.php?m=22&page='.$page.'&itemsperpage='.$itemsperpage.'&search='.$valuetags.'">'.$valuetags.'</a>, ';
                             }
                             $datatags = substr($datatags, 0, -2);
                             echo $datatags.'</p>
                             <hr>
                             <div class="text-center">
-                            <form method="post" action="'.$_SERVER['PHP_SELF'].'?m=22&page='.$_GET['page'].'&itemsperpage='.$_GET['itemsperpage'].'&search='.$_GET['search'].'">
+                            <form method="post" action="'.$_SERVER['PHP_SELF'].'?m=22&page='.$page.'&itemsperpage='.$itemsperpage.'&search='.$search.'">
                                 <div class="row">
                                     <div class="col-md-3 col-md-offset-1">
                                         <h5>' . $value->{'BookID'} .'<br /><small>Book ID</small></h5>
@@ -61,7 +67,7 @@
                                         <h5>' . $value->{'Pages'} .'<br /><small>Pages</small></h5>
                                     </div>
                                     <div class="col-md-3">
-                                        <h5><a href="modul-public-showroom.php?m=22&page='.$_GET['page'].'&itemsperpage='.$_GET['itemsperpage'].'&search='.$value->{'Language'}.'">' . $value->{'Language'} .'</a><br /><small>Language</small></h5>
+                                        <h5><a href="modul-public-showroom.php?m=22&page='.$page.'&itemsperpage='.$itemsperpage.'&search='.$value->{'Language'}.'">' . $value->{'Language'} .'</a><br /><small>Language</small></h5>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -83,7 +89,7 @@
                 </div>';
 
                 $pagination = new Pagination;
-                echo $pagination->makePagination($data,$_SERVER['PHP_SELF'].'?m=22&search='.$_GET['search']);
+                echo $pagination->makePagination($data,$_SERVER['PHP_SELF'].'?m=22&search='.$search);
                     
                     echo '<!-- Start Modal -->
                         <div class="modal fade" id="DoLogin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">

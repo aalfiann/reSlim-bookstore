@@ -1,4 +1,9 @@
-<?php spl_autoload_register(function ($classname) {require ( $classname . ".php");});?>
+<?php spl_autoload_register(function ($classname) {require ( $classname . ".php");});
+$datalogin = Core::checkSessions();
+// Redirect to dashboard page
+if (Core::getRole($datalogin['token']) == '3') {
+    Core::goToPage('modul-book-showroom.php?m=12&page=1&itemsperpage=12&search=');
+};?>
 <!doctype html>
 <html lang="id">
 <head>
@@ -8,7 +13,7 @@
 <body>
 
 <div class="wrapper">
-	<div class="sidebar" data-background-color="white" data-active-color="danger">
+	<div class="sidebar" data-background-color="black" data-active-color="danger">
         <?php include 'global-menu.php';?>
     </div>
 

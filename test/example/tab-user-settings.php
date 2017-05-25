@@ -1,7 +1,51 @@
             <div class="content">
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-7 col-sm-3 col-md-offset-1 col-sm-offset-2">
+                        <div class="col-md-4 col-sm-3 col-md-offset-1 col-sm-offset-1">
+                        <?php
+                            if (isset($_POST['submitnewpassword']))
+                            {
+                                if ($_POST['newpassword'] == $_POST['newpassword1']){
+                                    $post_array = array(
+                                        'Username' => $datalogin['username'],
+                                        'Token' => $datalogin['token'],
+                                        'Password' => $_POST['password'],
+                                        'NewPassword' => $_POST['newpassword']
+                                    );
+                                    Core::saveProcess(Core::getInstance()->api.'/user/changepassword',$post_array,'New Password',false);
+                                } else {
+                                    echo Core::getMessage('danger','Process Saving New Password Failed,','Your confirmation password is not match!');
+                                }
+                            } 
+                        ?>
+                            <form action="<?php $_SERVER['PHP_SELF']?>" method="post">
+                                <div class="card" data-background="color" data-color="blue">
+                                    <div class="header">
+                                        <h3 class="title">Change Password</h3>
+                                        <hr>
+                                    </div>
+                                    <div class="content">
+                                        <div class="form-group">
+                                            <label>Old Password</label>
+                                            <input name="password" type="password" placeholder="Please input the old password" class="form-control border-input" maxlength="50" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>New Password</label>
+                                            <input name="newpassword" type="password" placeholder="Please input the new password" class="form-control border-input" maxlength="50" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Confirm Password</label>
+                                            <input name="newpassword1" type="password" placeholder="Please input the new password again." class="form-control border-input" maxlength="50" required>
+                                        </div>
+                                        <hr>
+                                        <div class="form-group text-center">
+                                            <button name="submitnewpassword" type="submit" class="btn btn-fill btn-wd ">Submit</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-md-6 col-sm-3 col-md-offset-1 col-sm-offset-2">
                         <?php
                             if (isset($_POST['submitsettings']))
                             {

@@ -1,3 +1,7 @@
+<?php 
+//Validation url param
+$username = filter_var((empty($_GET['username'])?'':$_GET['username']),FILTER_SANITIZE_STRING);
+?>
 <div class="content">
             <div class="container-fluid">
                 <div class="row">
@@ -21,7 +25,7 @@
                     ?>
 <?php 
     // Data User
-    $url = Core::getInstance()->api.'/user/profile/'.$_GET['username'].'/'.$datalogin['token'];
+    $url = Core::getInstance()->api.'/user/profile/'.$username.'/'.$datalogin['token'];
     $data = json_decode(Core::execGetRequest($url));
 
     // Data Role
@@ -78,7 +82,7 @@
                                 <h4 class="title">Edit Profile</h4>
                             </div>
                             <div class="content">
-                                <form action="'.$_SERVER['PHP_SELF'].'?m=5&username='.$_GET['username'].'" method="post">
+                                <form action="'.$_SERVER['PHP_SELF'].'?m=5&username='.$username.'" method="post">
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="form-group">

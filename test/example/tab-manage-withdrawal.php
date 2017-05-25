@@ -1,23 +1,31 @@
+<?php 
+//Validation url param
+$search = filter_var((empty($_GET['search'])?'':$_GET['search']),FILTER_SANITIZE_STRING);
+$page = filter_var((empty($_GET['page'])?'1':$_GET['page']),FILTER_SANITIZE_STRING);
+$itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpage']),FILTER_SANITIZE_STRING);
+$firstdate = ((!empty($_GET['firstdate']))?$_GET['firstdate']:date('Y-m-d',strtotime("-30 days")));
+$lastdate = ((!empty($_GET['lastdate']))?$_GET['lastdate']:date('Y-m-d'));
+?>
 <div class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <form method="get" action="<?php $_SERVER['PHP_SELF'].'?search='.filter_var($_GET['search'],FILTER_SANITIZE_STRING)?>">
+                    <form method="get" action="<?php $_SERVER['PHP_SELF'].'?search='.$search?>">
                         <div class="col-md-2">
                             <div class="form-group">
                                 <label>First Date</label>
-                                <input id="firstdate" name="firstdate" type="text" class="form-control border-input" placeholder="First Date" value="<?=((!empty($_GET['firstdate']))?$_GET['firstdate']:date('Y-m-d',strtotime("-30 days")));?>" required>
+                                <input id="firstdate" name="firstdate" type="text" class="form-control border-input" placeholder="First Date" value="<?php echo $firstdate?>" required>
                             </div>
                         </div>
                         <div class="col-md-2">
                             <div class="form-group">
                                 <label>Last Date</label>
-                                <input id="lastdate" name="lastdate" type="text" class="form-control border-input" placeholder="Last Date" value="<?=((!empty($_GET['lastdate']))?$_GET['lastdate']:date('Y-m-d'));?>" required>
+                                <input id="lastdate" name="lastdate" type="text" class="form-control border-input" placeholder="Last Date" value="<?php echo $lastdate?>" required>
                             </div>
                         </div>
                         <div class="col-lg-8 col-md-9 col-sm-9 col-xs-12">
                             <div class="form-group">
                                 <label>Search</label>
-                                <input name="search" type="text" placeholder="Search here..." class="form-control border-input" value="<?php echo $_GET['search']?>">
+                                <input name="search" type="text" placeholder="Search here..." class="form-control border-input" value="<?php echo $search?>">
                             </div>
                             <div class="form-group hidden">
                                 <input name="m" type="text" class="form-control border-input" value="18" hidden>
@@ -71,7 +79,7 @@
                                     <div class="col-lg-12">
                                         <div class="form-group">
                                             <label>Username</label>
-                                            <input name="username" type="text" placeholder="Input your username here..." maxlength="50" class="form-control border-input" required>
+                                            <input name="username" type="text" placeholder="Input the username here..." maxlength="50" class="form-control border-input" required>
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
@@ -83,25 +91,25 @@
                                     <div class="col-lg-12">
                                         <div class="form-group">
                                             <label>Fullname</label>
-                                            <input name="fullname" type="text" placeholder="Input your fullname here..." maxlength="50" class="form-control border-input" required>
+                                            <input name="fullname" type="text" placeholder="Input the user fullname here..." maxlength="50" class="form-control border-input" required>
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-group">
                                             <label>No Account</label>
-                                            <input name="account" type="text" placeholder="Input your no account here..." maxlength="50" class="form-control border-input" required>
+                                            <input name="account" type="text" placeholder="Input the no account of user here..." maxlength="50" class="form-control border-input" required>
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-group">
                                             <label>Bank Name</label>
-                                            <input name="bankname" type="text" placeholder="Input your no account here..." maxlength="50" class="form-control border-input" required>
+                                            <input name="bankname" type="text" placeholder="Input the bank name of user here..." maxlength="50" class="form-control border-input" required>
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-group">
                                             <label>Bank Address</label>
-                                            <textarea name="bankaddress" rows="2" type="text" placeholder="Input your bank address here..." maxlength="50" class="form-control border-input" required></textarea>
+                                            <textarea name="bankaddress" rows="2" type="text" placeholder="Input the bank address of user here..." maxlength="50" class="form-control border-input" required></textarea>
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
@@ -154,7 +162,7 @@
                     </div>
                
 <?php 
-    $url = Core::getInstance()->api.'/book/user/withdrawal/'.$datalogin['username'].'/all/'.$_GET['page'].'/'.$_GET['itemsperpage'].'/'.$datalogin['token'].'/?firstdate='.((!empty($_GET['firstdate']))?$_GET['firstdate']:date('Y-m-d',strtotime("-30 days"))).'&lastdate='.((!empty($_GET['lastdate']))?$_GET['lastdate']:date('Y-m-d')).'&query='.$_GET['search'];
+    $url = Core::getInstance()->api.'/book/user/withdrawal/'.$datalogin['username'].'/all/'.$page.'/'.$itemsperpage.'/'.$datalogin['token'].'/?firstdate='.$firstdate.'&lastdate='.$lastdate.'&query='.$search;
     $data = json_decode(Core::execGetRequest($url));
 
     if (!empty($data))
@@ -270,7 +278,7 @@
                 </div>';
 
                 $pagination = new Pagination;
-                echo $pagination->makePagination($data,$_SERVER['PHP_SELF'].'?m=18&firstdate='.((!empty($_GET['firstdate']))?$_GET['firstdate']:date('Y-m-d',strtotime("-30 days"))).'&lastdate='.((!empty($_GET['lastdate']))?$_GET['lastdate']:date('Y-m-d')).'&search='.$_GET['search']);
+                echo $pagination->makePagination($data,$_SERVER['PHP_SELF'].'?m=18&firstdate='.$firstdate.'&lastdate='.$lastdate.'&search='.$search);
                 
                 echo '</div>';
                 foreach ($data->results as $name=>$value){
@@ -282,13 +290,13 @@
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                 <h4 class="modal-title" id="myModalLabel">Update Withdrawal</h4>
                               </div>
-                              <form method="post" action="'.$_SERVER['PHP_SELF'].'?m=18&firstdate='.((!empty($_GET['firstdate']))?$_GET['firstdate']:date('Y-m-d',strtotime("-30 days"))).'&lastdate='.((!empty($_GET['lastdate']))?$_GET['lastdate']:date('Y-m-d')).'&page='.$_GET['page'].'&itemsperpage='.$_GET['itemsperpage'].'&search='.$_GET['search'].'">
+                              <form method="post" action="'.$_SERVER['PHP_SELF'].'?m=18&firstdate='.$firstdate.'&lastdate='.$lastdate.'&page='.$page.'&itemsperpage='.$itemsperpage.'&search='.$search.'">
                               <div class="modal-body">
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="form-group">
                                             <label>Withdraw ID</label>
-                                            <input name="withdrawid" type="text" placeholder="Input your withdraw id here..." maxlength="50" class="form-control border-input" value="'.$value->{'WithdrawID'}.'" readonly>
+                                            <input name="withdrawid" type="text" placeholder="Input the withdraw id here..." maxlength="50" class="form-control border-input" value="'.$value->{'WithdrawID'}.'" readonly>
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
@@ -300,25 +308,25 @@
                                     <div class="col-lg-12">
                                         <div class="form-group">
                                             <label>Fullname</label>
-                                            <input name="fullname" type="text" placeholder="Input your fullname here..." maxlength="50" class="form-control border-input" value="'.$value->{'Fullname'}.'" required>
+                                            <input name="fullname" type="text" placeholder="Input the fullname of user here..." maxlength="50" class="form-control border-input" value="'.$value->{'Fullname'}.'" required>
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-group">
                                             <label>No Account</label>
-                                            <input name="account" type="text" placeholder="Input your no account here..." maxlength="50" class="form-control border-input" value="'.$value->{'No_Account'}.'" required>
+                                            <input name="account" type="text" placeholder="Input the no account of user here..." maxlength="50" class="form-control border-input" value="'.$value->{'No_Account'}.'" required>
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-group">
                                             <label>Bank Name</label>
-                                            <input name="bankname" type="text" placeholder="Input your no account here..." maxlength="50" class="form-control border-input" value="'.$value->{'Bank_Name'}.'" required>
+                                            <input name="bankname" type="text" placeholder="Input the bank name of user here..." maxlength="50" class="form-control border-input" value="'.$value->{'Bank_Name'}.'" required>
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-group">
                                             <label>Bank Address</label>
-                                            <textarea name="bankaddress" rows="2" type="text" placeholder="Input your bank address here..." maxlength="50" class="form-control border-input" required>'.$value->{'Bank_Address'}.'</textarea>
+                                            <textarea name="bankaddress" rows="2" type="text" placeholder="Input the bank address of user here..." maxlength="50" class="form-control border-input" required>'.$value->{'Bank_Address'}.'</textarea>
                                         </div>
                                     </div>
                                     <div class="col-lg-12">

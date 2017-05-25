@@ -1,10 +1,16 @@
+<?php 
+//Validation url param
+$search = filter_var((empty($_GET['search'])?'':$_GET['search']),FILTER_SANITIZE_STRING);
+$page = filter_var((empty($_GET['page'])?'1':$_GET['page']),FILTER_SANITIZE_STRING);
+$itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpage']),FILTER_SANITIZE_STRING);
+?>
 <div class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <form method="get" action="<?php $_SERVER['PHP_SELF'].'?search='.filter_var($_GET['search'],FILTER_SANITIZE_STRING)?>">
+                    <form method="get" action="<?php $_SERVER['PHP_SELF'].'?search='.$search?>">
                         <div class="col-lg-10 col-md-9 col-sm-9 col-xs-12">
                             <div class="form-group">
-                                <input name="search" type="text" placeholder="Search here..." class="form-control border-input" value="<?php echo $_GET['search']?>">
+                                <input name="search" type="text" placeholder="Search here..." class="form-control border-input" value="<?php echo $search?>">
                             </div>
                             <div class="form-group hidden">
                                 <input name="m" type="text" class="form-control border-input" value="11" hidden>
@@ -68,7 +74,7 @@
                         </div>
                     </div>
 <?php 
-    $url = Core::getInstance()->api.'/book/type/data/search/'.$datalogin['token'].'/'.$_GET['page'].'/'.$_GET['itemsperpage'].'/?query='.$_GET['search'];
+    $url = Core::getInstance()->api.'/book/type/data/search/'.$datalogin['token'].'/'.$page.'/'.$itemsperpage.'/?query='.$search;
     $data = json_decode(Core::execGetRequest($url));
 
     if (!empty($data))
@@ -148,7 +154,7 @@
                 </div>';
 
                 $pagination = new Pagination;
-                echo $pagination->makePagination($data,$_SERVER['PHP_SELF'].'?m=11&search='.$_GET['search']);
+                echo $pagination->makePagination($data,$_SERVER['PHP_SELF'].'?m=11&search='.$search);
                 
                 echo '</div>';
                 foreach ($data->results as $name=>$value){
@@ -160,19 +166,19 @@
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                 <h4 class="modal-title" id="myModalLabel">Update Type</h4>
                               </div>
-                              <form method="post" action="'.$_SERVER['PHP_SELF'].'?m=11&page='.$_GET['page'].'&itemsperpage='.$_GET['itemsperpage'].'&search='.$_GET['search'].'">
+                              <form method="post" action="'.$_SERVER['PHP_SELF'].'?m=11&page='.$page.'&itemsperpage='.$itemsperpage.'&search='.$search.'">
                               <div class="modal-body">
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="form-group">
                                             <label>Type ID</label>
-                                            <input name="typeid" type="text" placeholder="Input your type id here..." class="form-control border-input" value="'.$value->{'TypeID'}.'" readonly>
+                                            <input name="typeid" type="text" placeholder="Input the type id here..." class="form-control border-input" value="'.$value->{'TypeID'}.'" readonly>
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-group">
                                             <label>Type Name</label>
-                                            <input name="name" type="text" placeholder="Input your type name here..." class="form-control border-input" value="'.$value->{'Name'}.'" required>
+                                            <input name="name" type="text" placeholder="Input the type name here..." class="form-control border-input" value="'.$value->{'Name'}.'" required>
                                         </div>
                                     </div>
                                 </div>
