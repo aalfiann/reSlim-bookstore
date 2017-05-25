@@ -27,6 +27,9 @@
         // Set hotline call
         var $hotline;
 
+        // Set sharethis code
+        var $sharethis;
+
         var $version = '1.2.0';
 
         private static $instance;
@@ -39,6 +42,7 @@
             $this->api = $config['api'];
             $this->apikey = $config['apikey'];
             $this->hotline = $config['hotline'];
+            $this->sharethis = $config['sharethis'];
 		}
 
         public static function getInstance()
@@ -744,7 +748,8 @@
             $config[\'basepath\'] = \''.$post_array['Basepath'].'\'; //Your folder website
             $config[\'api\'] = \''.$post_array['Api'].'\'; //Your folder rest api
             $config[\'apikey\'] = \''.$post_array['ApiKey'].'\'; //Your api key, you can leave this blank and fill this later
-            $config[\'hotline\'] = \''.$post_array['Hotline'].'\'; //Your hotline call, you can leave this blank';
+            $config[\'hotline\'] = \''.$post_array['Hotline'].'\'; //Your hotline call, you can leave this blank
+            $config[\'sharethis\'] = \''.$post_array['Sharethis'].'\'; //Your sharethis code, you can leave this blank';
             $handle = fopen('config.php','w+'); 
 				fwrite($handle,$newcontent); 
 				fclose($handle); 
