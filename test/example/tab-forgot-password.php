@@ -14,17 +14,17 @@
                             <form action="<?php $_SERVER['PHP_SELF']?>" method="post">
                                 <div class="card" data-background="color" data-color="blue">
                                     <div class="header">
-                                        <h3 class="title">Form Request Reset Password</h3>
+                                        <h3 class="title"><?php echo Core::lang('request_reset_password')?></h3>
                                         <hr>
                                     </div>
                                     <div class="content">
                                         <div class="form-group">
-                                            <label>Email</label>
-                                            <input name="email" type="email" placeholder="Please input Your Email" class="form-control border-input" maxlength="50" required>
+                                            <label><?php echo Core::lang('email')?></label>
+                                            <input name="email" type="email" placeholder="<?php echo Core::lang('input_email')?>" class="form-control border-input" maxlength="50" required>
                                         </div>
                                         <hr>
                                         <div class="form-group text-center">
-                                            <button name="submitforgot" type="submit" class="btn btn-fill btn-wd ">Reset Password</button>
+                                            <button name="submitforgot" type="submit" class="btn btn-fill btn-wd "><?php echo Core::lang('reset_password')?></button>
                                         </div>
                                     </div>
                                 </div>

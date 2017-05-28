@@ -60,16 +60,16 @@ $username = filter_var((empty($_GET['username'])?'':$_GET['username']),FILTER_SA
                             <div class="text-center">
                                 <div class="row">
                                     <div class="col-md-3">
-                                        <h5>Role<br /><small>'.$data->result[0]->{'Role'}.'</small></h5>
+                                        <h5>'.Core::lang('role').'<br /><small>'.$data->result[0]->{'Role'}.'</small></h5>
                                     </div>
                                     <div class="col-md-3">
-                                        <h5>Status<br /><small>'.$data->result[0]->{'Status'}.'</small></h5>
+                                        <h5>'.Core::lang('status').'<br /><small>'.$data->result[0]->{'Status'}.'</small></h5>
                                     </div>
                                     <div class="col-md-3">
-                                        <h5>Registered<br /><small>'.$data->result[0]->{'Created_at'}.'</small></h5>
+                                        <h5>'.Core::lang('registered').'<br /><small>'.$data->result[0]->{'Created_at'}.'</small></h5>
                                     </div>
                                     <div class="col-md-3">
-                                        <h5>Last Updated<br /><small>'.$data->result[0]->{'Updated_at'}.'</small></h5>
+                                        <h5>'.Core::lang('last_updated').'<br /><small>'.$data->result[0]->{'Updated_at'}.'</small></h5>
                                     </div>
                                 </div>
                             </div>
@@ -79,21 +79,21 @@ $username = filter_var((empty($_GET['username'])?'':$_GET['username']),FILTER_SA
                     <div class="col-lg-12 col-md-12">
                         <div class="card">
                             <div class="header">
-                                <h4 class="title">Edit Profile</h4>
+                                <h4 class="title">'.Core::lang('edit_profile').'</h4>
                             </div>
                             <div class="content">
                                 <form action="'.$_SERVER['PHP_SELF'].'?m=5&username='.$username.'" method="post">
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <label>Username</label>
+                                                <label>'.Core::lang('username').'</label>
                                                 <input type="text" name="username" class="form-control border-input" value="'.$data->result[0]->{'Username'}.'" maxlength="50" readonly>
                                             </div>
                                         </div>
 
                                         <div class="col-md-8">
                                             <div class="form-group">
-                                                <label>Full Name</label>
+                                                <label>'.Core::lang('fullname').'</label>
                                                 <input type="text" name="fullname" class="form-control border-input" placeholder="Input your fullname" value="'.$data->result[0]->{'Fullname'}.'" maxlength="50" required>
                                             </div>
                                         </div>
@@ -102,7 +102,7 @@ $username = filter_var((empty($_GET['username'])?'':$_GET['username']),FILTER_SA
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label>Address</label>
+                                                <label>'.Core::lang('address').'</label>
                                                 <textarea name="address" rows="3" class="form-control border-input" placeholder="Here can be your address ..." maxlength="255">'.$data->result[0]->{'Address'}.'</textarea>
                                             </div>
                                         </div>
@@ -111,13 +111,13 @@ $username = filter_var((empty($_GET['username'])?'':$_GET['username']),FILTER_SA
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label>Phone</label>
+                                                <label>'.Core::lang('phone').'</label>
                                                 <input type="text" name="phone" class="form-control border-input" placeholder="Input your phone number" maxlength="15" value="'.$data->result[0]->{'Phone'}.'" required>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label>Email</label>
+                                                <label>'.Core::lang('email').'</label>
                                                 <input type="email" name="email" class="form-control border-input" placeholder="Input your email address" maxlength="50" value="'.$data->result[0]->{'Email'}.'" required>
                                             </div>
                                         </div>
@@ -126,7 +126,7 @@ $username = filter_var((empty($_GET['username'])?'':$_GET['username']),FILTER_SA
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label>About Me</label>
+                                                <label>'.Core::lang('about_me').'</label>
                                                 <textarea name="aboutme" rows="5" class="form-control border-input" placeholder="Here can be your description">'.$data->result[0]->{'Aboutme'}.'</textarea>
                                             </div>
                                         </div>
@@ -135,7 +135,7 @@ $username = filter_var((empty($_GET['username'])?'':$_GET['username']),FILTER_SA
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label>Avatar</label>
+                                                <label>'.Core::lang('avatar').'</label>
                                                 <input type="text" name="avatar" class="form-control border-input" placeholder="Please input url image for Your Avatar." value="'.$data->result[0]->{'Avatar'}.'">
                                             </div>
                                         </div>
@@ -144,7 +144,7 @@ $username = filter_var((empty($_GET['username'])?'':$_GET['username']),FILTER_SA
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label>Role</label>
+                                                <label>'.Core::lang('role').'</label>
                                                     <select name="role" style="max-height:200px; overflow-y:scroll; overflow-x:hidden;" class="form-control border-input" required>';
                                                         if (!empty($datarole)) {
                                                             foreach ($datarole->result as $name => $value) {
@@ -157,7 +157,7 @@ $username = filter_var((empty($_GET['username'])?'':$_GET['username']),FILTER_SA
 
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label>Status</label>
+                                                <label>'.Core::lang('status').'</label>
                                                     <select name="status" style="max-height:200px; overflow-y:scroll; overflow-x:hidden;" class="form-control border-input" required>';
                                                         if (!empty($datastatus)) {
                                                             foreach ($datastatus->result as $name => $value) {
@@ -170,7 +170,7 @@ $username = filter_var((empty($_GET['username'])?'':$_GET['username']),FILTER_SA
                                     </div>
 
                                     <div class="text-center">
-                                        <button name="submitupdate" type="submit" class="btn btn-info btn-fill btn-wd">Update Profile</button>
+                                        <button name="submitupdate" type="submit" class="btn btn-info btn-fill btn-wd">'.Core::lang('update_profile').'</button>
                                     </div>
                                     <div class="clearfix"></div>
                                 </form>
@@ -183,7 +183,7 @@ $username = filter_var((empty($_GET['username'])?'':$_GET['username']),FILTER_SA
                 echo '<div class="col-md-12">
                         <div class="card card-plain">
                             <div class="header">
-                                <h4 class="title">Message: '.$data->{'message'}.'</h4>
+                                <h4 class="title" style="border-left: 6px solid pink;padding: 15px">'.$data->{'message'}.'</h4>
                             </div>
                         </div>
                     </div>';

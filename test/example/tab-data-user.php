@@ -10,7 +10,7 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                     <form method="get" action="<?php $_SERVER['PHP_SELF'].'?search='.$search?>">
                         <div class="col-lg-10 col-md-9 col-sm-9 col-xs-12">
                             <div class="form-group">
-                                <input name="search" type="text" placeholder="Search here..." class="form-control border-input" value="<?php echo $search?>">
+                                <input name="search" type="text" placeholder="<?php echo Core::lang('search_here')?>" class="form-control border-input" value="<?php echo $search?>">
                             </div>
                             <div class="form-group hidden">
                                 <input name="m" type="text" class="form-control border-input" value="5" hidden>
@@ -20,7 +20,7 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                         </div>
                         <div class="col-lg-2 col-md-2 col-sm-1 col-xs-2">
                             <div class="form-group">
-                                <button name="submitsearch" type="submit" class="btn btn-fill btn-wd ">Search</button>
+                                <button name="submitsearch" type="submit" class="btn btn-fill btn-wd "><?php echo Core::lang('search')?></button>
                             </div>
                         </div>
                     </form>
@@ -40,9 +40,9 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                 echo '<div class="col-md-12">
                         <div class="card card-plain">
                             <div class="header">
-                                <h4 class="title text-uppercase">Data User</h4>
-                                <p class="category">Message: '.$data->{'message'}.'<br>
-                                Shows no: '.$data->metadata->{'number_item_first'}.' - '.$data->metadata->{'number_item_last'}.' from total data: '.$data->metadata->{'records_total'}.'</p>
+                                <h4 class="title text-uppercase">'.Core::lang('data_user').'</h4>
+                                <p class="category">'.Core::lang('message').': '.$data->{'message'}.'<br>
+                                '.Core::lang('shows_no').': '.$data->metadata->{'number_item_first'}.' - '.$data->metadata->{'number_item_last'}.' '.Core::lang('from_total_data').': '.$data->metadata->{'records_total'}.'</p>
                                     <div class="dropdown">
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
 		    				    			<p><i class="ti-zip"></i> Export Data <b class="caret"></b></p>
@@ -63,18 +63,18 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                                 <table id="export" class="table table-striped">
                                     <thead>
                                         <th>No</th>
-                                    	<th>Username</th>
-                                    	<th>Fullname</th>
-                                    	<th>Address</th>
-                                    	<th>Phone</th>
-                                        <th>Email</th>
-                                        <th>Aboutme</th>
-                                    	<th>Avatar</th>
-                                        <th>Role</th>
-                                        <th>Status</th>
-                                        <th>Created</th>
-                                        <th>Updated</th>
-                                        <th>Manage</th>
+                                    	<th>'.Core::lang('username').'</th>
+                                    	<th>'.Core::lang('fullname').'</th>
+                                    	<th>'.Core::lang('address').'</th>
+                                    	<th>'.Core::lang('phone').'</th>
+                                        <th>'.Core::lang('email').'</th>
+                                        <th>'.Core::lang('about_me').'</th>
+                                    	<th>'.Core::lang('avatar').'</th>
+                                        <th>'.Core::lang('role').'</th>
+                                        <th>'.Core::lang('status').'</th>
+                                        <th>'.Core::lang('created').'</th>
+                                        <th>'.Core::lang('updated_at').'</th>
+                                        <th>'.Core::lang('manage').'</th>
                                     </thead>
                                     <tbody>';
                 $n=$data->metadata->{'number_item_first'};
@@ -93,7 +93,7 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                     echo '<td>' . $value->{'Status'} .'</td>';
                     echo '<td>' . $value->{'Created_at'} .'</td>';
                     echo '<td>' . $value->{'Updated_at'} .'</td>';
-                    echo '<td><a href="modul-user-profile-edit.php?m=5&username=' . $value->{'Username'} .'"><i class="ti-pencil"></i> Edit</a></td>';
+                    echo '<td><a href="modul-user-profile-edit.php?m=5&username=' . $value->{'Username'} .'"><i class="ti-pencil"></i> '.Core::lang('edit').'</a></td>';
 	    	    	echo '</tr>';              
                 }
                 echo '</tbody>
@@ -112,7 +112,7 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                 echo '<div class="col-md-12">
                         <div class="card card-plain">
                             <div class="header">
-                                <h4 class="title">Message: '.$data->{'message'}.'</h4>
+                                <h4 class="title" style="border-left: 6px solid pink;padding: 15px">'.$data->{'message'}.'</h4>
                             </div>
                         </div>
                     </div>';

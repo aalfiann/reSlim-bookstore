@@ -2,9 +2,9 @@
 spl_autoload_register(function ($classname) {require ( $classname . ".php");});
 $datalogin = Core::checkSessions();?>
 <!doctype html>
-<html lang="id">
+<html lang="<?php echo Core::getInstance()->setlang?>">
 <head>
-    <title>F.A.Q - <?php echo Core::getInstance()->title?></title>
+    <title><?php echo Core::lang('faq')?>- <?php echo Core::getInstance()->title?></title>
 	<?php include 'global-meta.php';?>
 </head>
 <body>
@@ -24,7 +24,7 @@ $datalogin = Core::checkSessions();?>
                         <span class="icon-bar bar2"></span>
                         <span class="icon-bar bar3"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Frequently Answer Question</a>
+                    <a class="navbar-brand" href="#"><?php echo Core::lang('faq_detail')?></a>
                 </div>
                 <?php include 'global-nav.php';?>
             </div>

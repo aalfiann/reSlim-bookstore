@@ -4,17 +4,17 @@
                     <ul>
                         <li>
                             <a href="<?php echo Core::getInstance()->basepath;?>">
-                                Home
+                                <?php echo Core::lang('home')?>
                             </a>
                         </li>
                         <li>
                             <a href="<?php echo Core::getInstance()->basepath.'/modul-about-us.php';?>">
-                                About
+                                <?php echo Core::lang('about')?>
                             </a>
                         </li>
                         <li>
                             <a href="<?php echo Core::getInstance()->basepath.'/modul-privacy-policy.php';?>">
-                                Privacy
+                                <?php echo Core::lang('privacy')?>
                             </a>
                         </li>
                     </ul>

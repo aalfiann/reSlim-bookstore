@@ -32,10 +32,19 @@
 
         var $version = '1.0.0';
 
-        private static $instance;
+        // Set language
+        var $setlang = 'id';
+        var $datalang;
+
+        private static $instance,$getlang;
         
         function __construct() {
             require 'config.php';
+            if ($this->setlang == 'en') {
+                require 'language/en.php';
+            } else if ($this->setlang == 'id') {
+                require 'language/id.php';
+            }
             $this->title = $config['title'];
             $this->email = $config['email'];
             $this->basepath = $config['basepath'];
@@ -43,15 +52,18 @@
             $this->apikey = $config['apikey'];
             $this->hotline = $config['hotline'];
             $this->sharethis = $config['sharethis'];
+            $this->datalang = $lang;
 		}
 
-        public static function getInstance()
-        {
-            if ( is_null( self::$instance ) )
-            {
+        public static function getInstance(){
+            if ( is_null( self::$instance ) ){
                 self::$instance = new self();
             }
             return self::$instance;
+        }
+
+        public static function lang($key){
+            return self::getInstance()->datalang[$key];
         }
         
         // LIBRARY USER MANAGEMENT AND AUTHENTICATION======================================================================
@@ -232,12 +244,12 @@
             $data = json_decode(self::execPostRequest($url,$post_array));
             if (!empty($data)){
                 if ($data->{'status'} == "success"){
-                    echo self::getMessage('success','Process Register Successfully!');
+                    echo self::getMessage('success',self::lang('register_success'));
                 } else {
-                    echo self::getMessage('danger','Process Register Failed!',$data->{'message'});    
+                    echo self::getMessage('danger',self::lang('register_failed'),$data->{'message'});    
                 }
             } else {
-                echo self::getMessage('danger','Process Register Failed!','Can not connected to the server!');
+                echo self::getMessage('danger',self::lang('register_failed'),self::lang('not_connect_server'));
             }
 	    }
 
@@ -252,12 +264,12 @@
             $data = json_decode(self::execPostRequest($url,$post_array));
             if (!empty($data)){
                 if ($data->{'status'} == "success"){
-                    echo self::getMessage('success','Process Update Successfuly!');
+                    echo self::getMessage('success',self::lang('update_success'));
                 } else {
-                    echo self::getMessage('danger','Process Update Failed!',$data->{'message'});
+                    echo self::getMessage('danger',self::lang('update_failed'),$data->{'message'});
                 }
             } else {
-                echo self::getMessage('danger','Process Update Failed!','Can not connected to the server!');
+                echo self::getMessage('danger',self::lang('update_failed'),self::lang('not_connect_server'));
             }
 	    }
 
@@ -282,10 +294,10 @@
 					}
 					header("Location: ".self::getInstance()->basepath."/index.php");
                 } else {
-                    echo self::getMessage('danger','Process Login Failed!',$data->{'message'});
+                    echo self::getMessage('danger',self::lang('login_failed'),$data->{'message'});
                 }
             } else {
-                echo self::getMessage('danger','Process Login Failed!','Can not connected to the server!');
+                echo self::getMessage('danger',self::lang('login_failed'),self::lang('not_connect_server'));
             }
 	    }
 
@@ -332,13 +344,8 @@
                     $linkverify = self::getInstance()->basepath.'/modul-verify.php?passkey='.$data->{'passkey'};
                     $email_array = array(
                         'To' => $post_array['Email'],
-                        'Subject' => 'Request reset password',
-                        'Message' => '<html><body><p>You have already requested to reset password.<br /><br />
-                        Here is the link to reset: <a href="'.$linkverify.'" target="_blank"><b>'.$linkverify.'</b></a>.<br /><br />
-                        
-                        Just ignore this email if You don\'t want to reset password. Link will be expired 3days from now.<br /><br /><br />
-                        Thank You<br />
-                        '.self::getInstance()->title.'</p></body></html>',
+                        'Subject' => self::lang('email_reset_title'),
+                        'Message' => self::lang('email_reset_1').$linkverify.self::lang('email_reset_2').$linkverify.self::lang('email_reset_3').self::getInstance()->title.'</p></body></html>',
                         'Html' => 'true',
                         'From' => '',
                         'FromName' => '',
@@ -348,15 +355,15 @@
                     );
                     try {
                         $sendemail = json_decode(self::execPostRequest(self::getInstance()->api.'/mail/send',$email_array));
-                        echo self::getMessage('success','Request reset password hasbeen sent to your email!','If not, try to resend again later.');
+                        echo self::getMessage('success',self::lang('forgot_password_success'),self::lang('forgot_password_check'));
                     } catch (Exception $e) {
-                        echo self::getMessage('danger','Process Forgot Password Failed!',$e->getMessage());
+                        echo self::getMessage('danger',self::lang('forgot_password_failed'),$e->getMessage());
                     }
                 } else {
-                    echo self::getMessage('danger','Process Forgot Password Failed!',$data->{'message'});
+                    echo self::getMessage('danger',self::lang('forgot_password_failed'),$data->{'message'});
                 }
             } else {
-                echo self::getMessage('danger','Process Forgot Password Failed!','Can not connected to the server!');
+                echo self::getMessage('danger',self::lang('forgot_password_failed'),self::lang('not_connect_server'));
             }
 	    }
 
@@ -371,12 +378,12 @@
             $data = json_decode(self::execPostRequest($url,$post_array));
             if (!empty($data)){
                 if ($data->{'status'} == "success"){
-                    echo self::getMessage('success','Process Change Password Successfully!');
+                    echo self::getMessage('success',self::lang('change_password_success'));
                 } else {
-                    echo self::getMessage('danger','Process Change Password Failed!',$data->{'message'});
+                    echo self::getMessage('danger',self::lang('change_password_failed'),$data->{'message'});
                 }
             } else {
-                echo self::getMessage('danger','Process Change Password Failed!','Can not connected to the server!');
+                echo self::getMessage('danger',self::lang('change_password_failed'),self::lang('not_connect_server'));
             }
 	    }
 
@@ -391,12 +398,12 @@
             $data = json_decode(self::execPostUploadRequest($url,$post_array));
             if (!empty($data)){
                 if ($data->{'status'} == "success"){
-                    echo self::getMessage('success','Process Upload Successfuly!');
+                    echo self::getMessage('success',self::lang('upload_success'));
                 } else {
-                    echo self::getMessage('danger','Process Upload Failed!',$data->{'message'});
+                    echo self::getMessage('danger',self::lang('upload_failed'),$data->{'message'});
                 }
             } else {
-                echo self::getMessage('danger','Process Upload Failed!','Can not connected to the server!');
+                echo self::getMessage('danger',self::lang('upload_failed'),self::lang('not_connect_server'));
             }
 	    }
 
@@ -412,16 +419,16 @@
             if (!empty($data)){
                 if ($data->{'status'} == "success"){
                     echo '<div class="col-lg-12">';
-                    echo self::getMessage('success','Process Update Successfuly!','This page will automatically refresh at 2 seconds...');
+                    echo self::getMessage('success',self::lang('update_success'),self::lang('auto_refresh'));
                     echo '</div>';
                 } else {
                     echo '<div class="col-lg-12">';
-                    echo self::getMessage('danger','Process Update Failed!',$data->{'message'}.' This page will automatically refresh at 2 seconds...');
+                    echo self::getMessage('danger',self::lang('update_failed'),$data->{'message'}.'.'.self::lang('auto_refresh'));
                     echo '</div>';
                 }
             } else {
                 echo '<div class="col-lg-12">';
-                echo self::getMessage('danger','Process Update Failed!','Can not connected to the server! This page will automatically refresh at 2 seconds...');
+                echo self::getMessage('danger',self::lang('update_failed'),self::lang('not_connect_server').self::lang('auto_refresh'));
                 echo '</div>';
             }
 	    }
@@ -438,16 +445,16 @@
             if (!empty($data)){
                 if ($data->{'status'} == "success"){
                     echo '<div class="col-lg-12">';
-                    echo self::getMessage('success','Process Delete Successfuly!','This page will automatically refresh at 2 seconds...');
+                    echo self::getMessage('success',self::lang('delete_success'),self::lang('auto_refresh'));
                     echo '</div>';
                 } else {
                     echo '<div class="col-lg-12">';
-                    echo self::getMessage('danger','Process Delete Failed!',$data->{'message'}.'. This page will automatically refresh at 2 seconds...');
+                    echo self::getMessage('danger',self::lang('delete_failed'),$data->{'message'}.'.'.self::lang('auto_refresh'));
                     echo '</div>';
                 }
             } else {
                 echo '<div class="col-lg-12">';
-                echo self::getMessage('danger','Process Delete Failed!','Can not connected to the server! This page will automatically refresh at 2 seconds...');
+                echo self::getMessage('danger',self::lang('delete_failed'),self::lang('not_connect_server').self::lang('auto_refresh'));
                 echo '</div>';
             }
 	    }
@@ -462,9 +469,9 @@
 	    public static function sendMail($url,$post_array){
             try{
                 $data = json_decode(self::execPostRequest($url,$post_array));
-                echo self::getMessage('success','The message is successfully sent!');
+                echo self::getMessage('success',self::lang('message_sent'));
             } catch (Exception $e) {
-                echo self::getMessage('danger','The message is failed to sent!','Please try again later!');
+                echo self::getMessage('danger',self::lang('message_not_sent'),self::lang('try_again'));
             }
 	    }
 
@@ -480,16 +487,16 @@
             if (!empty($data)){
                 if ($data->{'status'} == "success"){
                     echo '<div class="col-lg-12">';
-                    echo self::getMessage('success','Process Add new API Keys Successfully!');
+                    echo self::getMessage('success',self::lang('process_add').self::lang('new_api').self::lang('success'));
                     echo '</div>';
                 } else {
                     echo '<div class="col-lg-12">';
-                    echo self::getMessage('danger','Process Add new API Keys Failed!',$data->{'message'});    
+                    echo self::getMessage('danger',self::lang('process_add').self::lang('new_api').self::lang('failed'),$data->{'message'});    
                     echo '</div>';
                 }
             } else {
                 echo '<div class="col-lg-12">';
-                echo self::getMessage('danger','Process Add new API Keys Failed!','Can not connected to the server!');
+                echo self::getMessage('danger',self::lang('process_add').self::lang('new_api').self::lang('failed'),self::lang('not_connect_server'));
                 echo '</div>';
             }
 	    }
@@ -506,16 +513,16 @@
             if (!empty($data)){
                 if ($data->{'status'} == "success"){
                     echo '<div class="col-lg-12">';
-                    echo self::getMessage('success','Process Update Successfuly!','This page will automatically refresh at 2 seconds...');
+                    echo self::getMessage('success',self::lang('update_success'),self::lang('auto_refresh'));
                     echo '</div>';
                 } else {
                     echo '<div class="col-lg-12">';
-                    echo self::getMessage('danger','Process Update Failed!',$data->{'message'}.' This page will automatically refresh at 2 seconds...');
+                    echo self::getMessage('danger',self::lang('update_failed'),$data->{'message'}.'.'.self::lang('auto_refresh'));
                     echo '</div>';
                 }
             } else {
                 echo '<div class="col-lg-12">';
-                echo self::getMessage('danger','Process Update Failed!','Can not connected to the server! This page will automatically refresh at 2 seconds...');
+                echo self::getMessage('danger',self::lang('update_failed'),self::lang('not_connect_server').self::lang('auto_refresh'));
                 echo '</div>';
             }
 	    }
@@ -532,16 +539,16 @@
             if (!empty($data)){
                 if ($data->{'status'} == "success"){
                     echo '<div class="col-lg-12">';
-                    echo self::getMessage('success','Process Delete Successfuly!','This page will automatically refresh at 2 seconds...');
+                    echo self::getMessage('success',self::lang('delete_success'),self::lang('auto_refresh'));
                     echo '</div>';
                 } else {
                     echo '<div class="col-lg-12">';
-                    echo self::getMessage('danger','Process Delete Failed!',$data->{'message'}.' This page will automatically refresh at 2 seconds...');
+                    echo self::getMessage('danger',self::lang('delete_failed'),$data->{'message'}.'.'.self::lang('auto_refresh'));
                     echo '</div>';
                 }
             } else {
                 echo '<div class="col-lg-12">';
-                echo self::getMessage('danger','Process Delete Failed!','Can not connected to the server! This page will automatically refresh at 2 seconds...');
+                echo self::getMessage('danger',self::lang('delete_failed'),self::lang('not_connect_server').self::lang('auto_refresh'));
                 echo '</div>';
             }
 	    }
@@ -559,16 +566,16 @@
             if (!empty($data)){
                 if ($data->{'status'} == "success"){
                     if ($largeDiv) echo '<div class="col-lg-12">';
-                    echo self::getMessage('success','Process Add '.$nameprocess.' Successfully!');
+                    echo self::getMessage('success',self::lang('process_add').$nameprocess.self::lang('success'));
                     if ($largeDiv) echo '</div>';
                 } else {
                     if ($largeDiv) echo '<div class="col-lg-12">';
-                    echo self::getMessage('danger','Process Add '.$nameprocess.' Failed!',$data->{'message'});    
+                    echo self::getMessage('danger',self::lang('process_add').$nameprocess.self::lang('failed'),$data->{'message'});    
                     if ($largeDiv) echo '</div>';
                 }
             } else {
                 if ($largeDiv) echo '<div class="col-lg-12">';
-                echo self::getMessage('danger','Process Add '.$nameprocess.' Failed!','Can not connected to the server!');
+                echo self::getMessage('danger',self::lang('process_add').$nameprocess.self::lang('failed'),self::lang('not_connect_server'));
                 if ($largeDiv) echo '</div>';
             }
 	    }
@@ -586,16 +593,16 @@
             if (!empty($data)){
                 if ($data->{'status'} == "success"){
                     if ($largeDiv) echo '<div class="col-lg-12">';
-                    echo self::getMessage('success','Process Update '.$nameprocess.' Successfuly!','This page will automatically refresh at 2 seconds...');
+                    echo self::getMessage('success',self::lang('process_update').$nameprocess.self::lang('success'),self::lang('auto_refresh'));
                     if ($largeDiv) echo '</div>';
                 } else {
                     if ($largeDiv) echo '<div class="col-lg-12">';
-                    echo self::getMessage('danger','Process Update '.$nameprocess.' Failed!',$data->{'message'}.' This page will automatically refresh at 2 seconds...');
+                    echo self::getMessage('danger',self::lang('process_update').$nameprocess.self::lang('failed'),$data->{'message'}.'.'.self::lang('auto_refresh'));
                     if ($largeDiv) echo '</div>';
                 }
             } else {
                 if ($largeDiv) echo '<div class="col-lg-12">';
-                echo self::getMessage('danger','Process Update '.$nameprocess.' Failed!','Can not connected to the server! This page will automatically refresh at 2 seconds...');
+                echo self::getMessage('danger',self::lang('process_update').$nameprocess.self::lang('failed'),self::lang('not_connect_server').self::lang('auto_refresh'));
                 if ($largeDiv) echo '</div>';
             }
 	    }
@@ -613,16 +620,16 @@
             if (!empty($data)){
                 if ($data->{'status'} == "success"){
                     if ($largeDiv) echo '<div class="col-lg-12">';
-                    echo self::getMessage('success','Process Delete '.$nameprocess.' Successfuly!','This page will automatically refresh at 2 seconds...');
+                    echo self::getMessage('success',self::lang('process_delete').$nameprocess.self::lang('success'),self::lang('auto_refresh'));
                     if ($largeDiv) echo '</div>';
                 } else {
                     if ($largeDiv) echo '<div class="col-lg-12">';
-                    echo self::getMessage('danger','Process Delete '.$nameprocess.' Failed!',$data->{'message'}.' This page will automatically refresh at 2 seconds...');
+                    echo self::getMessage('danger',self::lang('process_delete').$nameprocess.self::lang('failed'),$data->{'message'}.'.'.self::lang('auto_refresh'));
                     if ($largeDiv) echo '</div>';
                 }
             } else {
                if ($largeDiv) echo '<div class="col-lg-12">';
-                echo self::getMessage('danger','Process Delete '.$nameprocess.' Failed!','Can not connected to the server! This page will automatically refresh at 2 seconds...');
+                echo self::getMessage('danger',self::lang('process_delete').$nameprocess.self::lang('failed'),self::lang('not_connect_server').self::lang('auto_refresh'));
                 if ($largeDiv) echo '</div>';
             }
 	    }
@@ -640,16 +647,16 @@
             if (!empty($data)){
                 if ($data->{'status'} == "success"){
                     if ($largeDiv) echo '<div class="col-lg-12">';
-                    echo self::getMessage('success','Process Saving '.$nameprocess.' Successfuly!');
+                    echo self::getMessage('success',self::lang('process_saving').$nameprocess.self::lang('success'));
                     if ($largeDiv) echo '</div>';
                 } else {
                     if ($largeDiv) echo '<div class="col-lg-12">';
-                    echo self::getMessage('danger','Process Saving '.$nameprocess.' Failed!',$data->{'message'});
+                    echo self::getMessage('danger',self::lang('process_saving').$nameprocess.self::lang('failed'),$data->{'message'});
                     if ($largeDiv) echo '</div>';
                 }
             } else {
                 if ($largeDiv) echo '<div class="col-lg-12">';
-                echo self::getMessage('danger','Process Saving '.$nameprocess.' Failed!','Can not connected to the server!');
+                echo self::getMessage('danger',self::lang('process_saving').$nameprocess.self::lang('failed'),self::lang('not_connect_server'));
                 if ($largeDiv) echo '</div>';
             }
 	    }
@@ -753,7 +760,7 @@
             $handle = fopen('config.php','w+'); 
 				fwrite($handle,$newcontent); 
 				fclose($handle); 
-            echo self::getMessage('success','Settings hasbeen changed!','This page will automatically refresh at 2 seconds...');
+            echo self::getMessage('success',self::lang('settings_changed'),self::lang('auto_refresh'));
             echo self::reloadPage();
         }
 

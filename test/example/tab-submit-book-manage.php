@@ -10,7 +10,7 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                     <form method="get" action="<?php $_SERVER['PHP_SELF'].'?search='.$search?>">
                         <div class="col-lg-10 col-md-9 col-sm-9 col-xs-12">
                             <div class="form-group">
-                                <input name="search" type="text" placeholder="Search here..." class="form-control border-input" value="<?php echo $search?>">
+                                <input name="search" type="text" placeholder="<?php echo Core::lang('search_here')?>" class="form-control border-input" value="<?php echo $search?>">
                             </div>
                             <div class="form-group hidden">
                                 <input name="m" type="text" class="form-control border-input" value="16" hidden>
@@ -20,7 +20,7 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                         </div>
                         <div class="col-lg-2 col-md-2 col-sm-1 col-xs-2">
                             <div class="form-group">
-                                <button name="submitsearch" type="submit" class="btn btn-fill btn-wd ">Search</button>
+                                <button name="submitsearch" type="submit" class="btn btn-fill btn-wd "><?php echo Core::lang('search')?></button>
                             </div>
                         </div>
                     </form>
@@ -49,7 +49,7 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                                 'ISBN' => filter_var($_POST['isbn'],FILTER_SANITIZE_STRING),
                                 'Released' => filter_var($_POST['released'],FILTER_SANITIZE_STRING)                                    
                             );
-                            Core::createProcess(Core::getInstance()->api.'/book/submitbook/new',$post_array,'New Submit Book');
+                            Core::createProcess(Core::getInstance()->api.'/book/submitbook/new',$post_array,Core::lang('new_submit'));
                         }
                     ?>
                     <!-- Start Modal -->
@@ -58,14 +58,14 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                             <div class="modal-content">
                               <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="myModalLabel">Add new Submit Book</h4>
+                                <h4 class="modal-title" id="myModalLabel"><?php echo Core::lang('add_new_submit')?></h4>
                               </div>
                               <form method="post" action="<?php $_SERVER['PHP_SELF']?>">
                               <div class="modal-body">
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            <label>Purpose</label>
+                                            <label><?php echo Core::lang('purpose')?></label>
                                             <select name="purpose" type="text" style='max-height:200px; overflow-y:scroll; overflow-x:hidden;' class="form-control border-input">
                                                 <option value="paid">paid</option>
                                                 <option value="free">free</option>
@@ -74,87 +74,87 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            <label>Image</label>
-                                            <input name="imagelink" type="text" placeholder="Input the image link here..." class="form-control border-input" required>
+                                            <label><?php echo Core::lang('image')?></label>
+                                            <input name="imagelink" type="text" placeholder="<?php echo Core::lang('input_image')?>" class="form-control border-input" required>
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            <label>Title</label>
-                                            <input name="title" type="text" placeholder="Input the title here..." class="form-control border-input" required>
+                                            <label><?php echo Core::lang('title')?></label>
+                                            <input name="title" type="text" placeholder="<?php echo Core::lang('input_title')?>" class="form-control border-input" required>
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            <label>Description</label>
-                                            <textarea name="description" type="text" rows="3" maxlength="250" placeholder="Input the description here..." class="form-control border-input" required></textarea>
+                                            <label><?php echo Core::lang('description')?></label>
+                                            <textarea name="description" type="text" rows="3" maxlength="250" placeholder="<?php echo Core::lang('input_description')?>" class="form-control border-input" required></textarea>
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            <label>Author</label>
-                                            <input name="author" type="text" placeholder="Input the author here..." class="form-control border-input" required>
+                                            <label><?php echo Core::lang('author')?></label>
+                                            <input name="author" type="text" placeholder="<?php echo Core::lang('input_author')?>" class="form-control border-input" required>
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            <label>Language</label>
-                                            <input name="language" type="text" placeholder="Input the language here..." class="form-control border-input" required>
+                                            <label><?php echo Core::lang('language')?></label>
+                                            <input name="language" type="text" placeholder="<?php echo Core::lang('input_language')?>" class="form-control border-input" required>
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            <label>Translator</label>
-                                            <input name="translator" type="text" placeholder="Input the translator here..." class="form-control border-input" required>
+                                            <label><?php echo Core::lang('translator')?></label>
+                                            <input name="translator" type="text" placeholder="<?php echo Core::lang('input_translator')?>" class="form-control border-input" required>
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            <label>Publisher</label>
-                                            <input name="publisher" type="text" placeholder="Input the publisher here..." class="form-control border-input">
+                                            <label><?php echo Core::lang('publisher')?></label>
+                                            <input name="publisher" type="text" placeholder="<?php echo Core::lang('input_publisher')?>" class="form-control border-input">
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-group">
                                             <label>ISBN</label>
-                                            <input name="isbn" type="text" placeholder="Input the isbn here..." class="form-control border-input">
+                                            <input name="isbn" type="text" placeholder="<?php echo Core::lang('input_isbn')?>" class="form-control border-input">
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            <label>Original Released</label>
-                                            <input name="released" id="firstdate" type="text" placeholder="Input the date released here..." class="form-control border-input">
+                                            <label><?php echo Core::lang('original_released')?></label>
+                                            <input name="released" id="firstdate" type="text" placeholder="<?php echo Core::lang('input_original')?>" class="form-control border-input">
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            <label>Tags</label>
-                                            <input name="tags" type="text" placeholder="Input the tags here..." class="form-control border-input" required>
+                                            <label><?php echo Core::lang('tags')?></label>
+                                            <input name="tags" type="text" placeholder="<?php echo Core::lang('input_tags')?>" class="form-control border-input" required>
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            <label>Pages</label>
-                                            <input name="pages" type="text" placeholder="Input the pages here..." class="form-control border-input" required>
+                                            <label><?php echo Core::lang('pages')?></label>
+                                            <input name="pages" type="text" placeholder="<?php echo Core::lang('input_pages')?>" class="form-control border-input" required>
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            <label>Sample Link</label>
-                                            <textarea name="samplelink" rows="2" type="text" placeholder="Input the sample link here..." class="form-control border-input" required></textarea>
+                                            <label><?php echo Core::lang('sample_link')?></label>
+                                            <textarea name="samplelink" rows="2" type="text" placeholder="<?php echo Core::lang('input_sample')?>" class="form-control border-input" required></textarea>
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            <label>Full Link</label>
-                                            <textarea name="fulllink" rows="2" type="text" placeholder="Input the full link here..." class="form-control border-input" required></textarea>
+                                            <label><?php echo Core::lang('full_link')?></label>
+                                            <textarea name="fulllink" rows="2" type="text" placeholder="<?php echo Core::lang('input_full')?>" class="form-control border-input" required></textarea>
                                         </div>
                                     </div>
                                 </div>
                               </div>
                               <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                                <button type="submit" name="submitnewbook" class="btn btn-primary">Submit</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal"><?php echo Core::lang('cancel')?></button>
+                                <button type="submit" name="submitnewbook" class="btn btn-primary"><?php echo Core::lang('submit')?></button>
                               </div>
                               </form>
                             </div>
@@ -164,7 +164,7 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                     <div class="col-md-12">
                         <div class="card card-plain">
                             <div class="header">
-                                <button type="submit" class="btn btn-wd" data-toggle="modal" data-target="#myModal">Add new Submit Book</button>
+                                <button type="submit" class="btn btn-wd" data-toggle="modal" data-target="#myModal"><?php echo Core::lang('add_new_submit')?></button>
                             </div>
                         </div>
                     </div>
@@ -204,7 +204,7 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                             'ISBN' => filter_var($_POST['isbn'],FILTER_SANITIZE_STRING),
                             'Released' => filter_var($_POST['released'],FILTER_SANITIZE_STRING)
                         );
-                        Core::updateProcess(Core::getInstance()->api.'/book/submitbook/update',$post_array,'Submit Book');
+                        Core::updateProcess(Core::getInstance()->api.'/book/submitbook/update',$post_array,Core::lang('submit_book'));
                         echo Core::reloadPage();
                     }
                 }
@@ -216,7 +216,7 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                             'Token' => $datalogin['token'],
                             'SubmitBookID' => $_POST['submitbookid']
                         );
-                        Core::deleteProcess(Core::getInstance()->api.'/book/submitbook/delete',$post_array,'from Submit Book');
+                        Core::deleteProcess(Core::getInstance()->api.'/book/submitbook/delete',$post_array,Core::lang('from_submit'));
                         echo Core::reloadPage();
                     }
                 }
@@ -224,9 +224,9 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                 echo '<div class="col-md-12">
                         <div class="card card-plain">
                             <div class="header">
-                                <h4 class="title text-uppercase">Data Submit Book</h4>
-                                <p class="category">Message: '.$data->{'message'}.'<br>
-                                Shows no: '.$data->metadata->{'number_item_first'}.' - '.$data->metadata->{'number_item_last'}.' from total data: '.$data->metadata->{'records_total'}.'</p>
+                                <h4 class="title text-uppercase">'.Core::lang('data_submit_book').'</h4>
+                                <p class="category">'.Core::lang('message').': '.$data->{'message'}.'<br>
+                                '.Core::lang('shows_no').': '.$data->metadata->{'number_item_first'}.' - '.$data->metadata->{'number_item_last'}.' '.Core::lang('from_total_data').': '.$data->metadata->{'records_total'}.'</p>
                                     <div class="dropdown">
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
 		    				    			<p><i class="ti-zip"></i> Export Data <b class="caret"></b></p>
@@ -247,17 +247,17 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                                 <table id="export" class="table table-striped">
                                     <thead>
                                         <th>No</th>
-                                    	<th>Purpose</th>
-                                        <th>Created</th>
-                                    	<th>Submit ID</th>
-                                    	<th>Title</th>
-                                        <th>Author</th>
-                                        <th>Translator</th>
-                                        <th>Language</th>
-                                        <th>Publisher</th>
-                                        <th>Pages</th>
-                                        <th>Status</th>
-                                        <th>Manage</th>
+                                    	<th>'.Core::lang('purpose').'</th>
+                                        <th>'.Core::lang('created').'</th>
+                                    	<th>'.Core::lang('submitid').'</th>
+                                    	<th>'.Core::lang('title').'</th>
+                                        <th>'.Core::lang('author').'</th>
+                                        <th>'.Core::lang('translator').'</th>
+                                        <th>'.Core::lang('language').'</th>
+                                        <th>'.Core::lang('publisher').'</th>
+                                        <th>'.Core::lang('pages').'</th>
+                                        <th>'.Core::lang('status').'</th>
+                                        <th>'.Core::lang('manage').'</th>
                                     </thead>
                                     <tbody>';
                 $n=$data->metadata->{'number_item_first'};
@@ -275,7 +275,7 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                     echo '<td>' . $value->{'Publisher'} .'</td>';
             	    echo '<td>' . $value->{'Pages'} .'</td>';
                     echo '<td>' . $value->{'Status'} .'</td>';
-                    echo '<td><a href="#" data-toggle="modal" data-target="#'.$value->{'SubmitBookID'}.'"><i class="ti-pencil"></i> Edit</a></td>';
+                    echo '<td><a href="#" data-toggle="modal" data-target="#'.$value->{'SubmitBookID'}.'"><i class="ti-pencil"></i> '.Core::lang('edit').'</a></td>';
 	    	    	echo '</tr>';              
                 }
                 echo '</tbody>
@@ -295,20 +295,20 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                             <div class="modal-content">
                               <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="myModalLabel">Update Submit Book</h4>
+                                <h4 class="modal-title" id="myModalLabel">'.Core::lang('update_submit').'</h4>
                               </div>
                               <form method="post" action="'.$_SERVER['PHP_SELF'].'?m=16&page='.$page.'&itemsperpage='.$itemsperpage.'&search='.$search.'">
                               <div class="modal-body">
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            <label>Submit ID</label>
-                                            <input name="submitbookid" type="text" placeholder="Input the submit book id here..." class="form-control border-input" value="'.$value->{'SubmitBookID'}.'" readonly>
+                                            <label>'.Core::lang('submitid').'</label>
+                                            <input name="submitbookid" type="text" placeholder="'.Core::lang('input_submitid').'" class="form-control border-input" value="'.$value->{'SubmitBookID'}.'" readonly>
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            <label>Purpose</label>
+                                            <label>'.Core::lang('purpose').'</label>
                                             <select name="purpose" type="text" style=\'max-height:200px; overflow-y:scroll; overflow-x:hidden;\' class="form-control border-input">
                                                 <option value="paid">paid</option>
                                                 <option value="free">free</option>
@@ -317,96 +317,96 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            <label>Image</label>
-                                            <input name="imagelink" type="text" placeholder="Input the image link here..." class="form-control border-input" value="'.$value->{'Image'}.'" required>
+                                            <label>'.Core::lang('image').'</label>
+                                            <input name="imagelink" type="text" placeholder="'.Core::lang('input_image').'" class="form-control border-input" value="'.$value->{'Image'}.'" required>
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            <label>Title</label>
-                                            <input name="title" type="text" placeholder="Input the title here..." class="form-control border-input" value="'.$value->{'Title'}.'" required>
+                                            <label>'.Core::lang('title').'</label>
+                                            <input name="title" type="text" placeholder="'.Core::lang('input_title').'" class="form-control border-input" value="'.$value->{'Title'}.'" required>
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            <label>Decription</label>
-                                            <textarea name="description" rows="3" type="text" placeholder="Input the description here..." class="form-control border-input" required>'.$value->{'Description'}.'</textarea>
+                                            <label>'.Core::lang('description').'</label>
+                                            <textarea name="description" rows="3" type="text" placeholder="'.Core::lang('input_description').'" class="form-control border-input" required>'.$value->{'Description'}.'</textarea>
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            <label>Author</label>
-                                            <input name="author" type="text" placeholder="Input the author here..." class="form-control border-input" value="'.$value->{'Author'}.'" required>
+                                            <label>'.Core::lang('author').'</label>
+                                            <input name="author" type="text" placeholder="'.Core::lang('input_author').'" class="form-control border-input" value="'.$value->{'Author'}.'" required>
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            <label>Language</label>
-                                            <input name="language" type="text" placeholder="Input the language here..." class="form-control border-input" value="'.$value->{'Language'}.'" required>
+                                            <label>'.Core::lang('language').'</label>
+                                            <input name="language" type="text" placeholder="'.Core::lang('input_language').'" class="form-control border-input" value="'.$value->{'Language'}.'" required>
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            <label>Translator</label>
-                                            <input name="translator" type="text" placeholder="Input the translator here..." class="form-control border-input" value="'.$value->{'Translator'}.'" required>
+                                            <label>'.Core::lang('translator').'</label>
+                                            <input name="translator" type="text" placeholder="'.Core::lang('input_translator').'" class="form-control border-input" value="'.$value->{'Translator'}.'" required>
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            <label>Publisher</label>
-                                            <input name="publisher" type="text" placeholder="Input the publisher here..." class="form-control border-input" value="'.$value->{'Publisher'}.'" >
+                                            <label>'.Core::lang('publisher').'</label>
+                                            <input name="publisher" type="text" placeholder="'.Core::lang('input_publisher').'" class="form-control border-input" value="'.$value->{'Publisher'}.'" >
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-group">
                                             <label>ISBN</label>
-                                            <input name="isbn" type="text" placeholder="Input the isbn here..." class="form-control border-input" value="'.$value->{'ISBN'}.'" >
+                                            <input name="isbn" type="text" placeholder="'.Core::lang('input_isbn').'" class="form-control border-input" value="'.$value->{'ISBN'}.'" >
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            <label>Original Released</label>
-                                            <input name="released" id="firstdate" type="text" placeholder="Input the date released here..." class="form-control border-input" value="'.$value->{'Original_released'}.'" >
+                                            <label>'.Core::lang('original_release').'</label>
+                                            <input name="released" id="firstdate" type="text" placeholder="'.Core::lang('input_original').'" class="form-control border-input" value="'.$value->{'Original_released'}.'" >
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            <label>Tags</label>';
+                                            <label>'.Core::lang('tags').'</label>';
                                             $datatags = '';
                                             foreach ($value->{'Tags'} as $name => $valuetags) {
                                                 $datatags .= $valuetags.', ';
                                             }
                                             $datatags = substr($datatags, 0, -2);
-                                            echo '<input name="tags" type="text" placeholder="Input the tags here..." class="form-control border-input" value="'.$datatags.'" required>
+                                            echo '<input name="tags" type="text" placeholder="'.Core::lang('input_tags').'" class="form-control border-input" value="'.$datatags.'" required>
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            <label>Pages</label>
-                                            <input name="pages" type="text" placeholder="Input the pages here..." class="form-control border-input" value="'.$value->{'Pages'}.'" required>
+                                            <label>'.Core::lang('pages').'</label>
+                                            <input name="pages" type="text" placeholder="'.Core::lang('input_pages').'" class="form-control border-input" value="'.$value->{'Pages'}.'" required>
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            <label>Sample Link</label>
-                                            <textarea name="samplelink" rows="2" type="text" placeholder="Input the sample link here..." class="form-control border-input" required>'.$value->{'Sample_link'}.'</textarea>
+                                            <label>'.Core::lang('sample_link').'</label>
+                                            <textarea name="samplelink" rows="2" type="text" placeholder="'.Core::lang('input_sample').'" class="form-control border-input" required>'.$value->{'Sample_link'}.'</textarea>
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            <label>Full Link</label>
-                                            <textarea name="fulllink" rows="2" type="text" placeholder="Input the full link here..." class="form-control border-input" required>'.$value->{'Full_link'}.'</textarea>
+                                            <label>'.Core::lang('full_link').'</label>
+                                            <textarea name="fulllink" rows="2" type="text" placeholder="'.Core::lang('input_full').'" class="form-control border-input" required>'.$value->{'Full_link'}.'</textarea>
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            <label>Book ID</label>
-                                            <input name="bookid" type="text" placeholder="Input the pages here..." class="form-control border-input" value="'.$value->{'BookID'}.'" >
+                                            <label>'.Core::lang('bookid').'</label>
+                                            <input name="bookid" type="text" placeholder="'.Core::lang('input_bookid').'" class="form-control border-input" value="'.$value->{'BookID'}.'" >
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            <label>Status</label>
+                                            <label>'.Core::lang('status').'</label>
                                             <select name="statusid" type="text" style=\'max-height:200px; overflow-y:scroll; overflow-x:hidden;\' class="form-control border-input">';
                                                 if (!empty($datastatus)) {
                                                             foreach ($datastatus->result as $name => $valuestatus) {
@@ -419,9 +419,9 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                                 </div>
                               </div>
                               <div class="modal-footer">
-                                <button type="submit" name="submitdeletebook'.$value->{'SubmitBookID'}.'" class="btn btn-danger pull-left">Delete</button>
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                                <button type="submit" name="submitupdatebook'.$value->{'SubmitBookID'}.'" class="btn btn-primary">Update</button>
+                                <button type="submit" name="submitdeletebook'.$value->{'SubmitBookID'}.'" class="btn btn-danger pull-left">'.Core::lang('delete').'</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">'.Core::lang('cancel').'</button>
+                                <button type="submit" name="submitupdatebook'.$value->{'SubmitBookID'}.'" class="btn btn-primary">'.Core::lang('update').'</button>
                               </div>
                               </form>
                             </div>
@@ -435,7 +435,7 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                 echo '<div class="col-md-12">
                         <div class="card card-plain">
                             <div class="header">
-                                <h4 class="title">Message: '.$data->{'message'}.'</h4>
+                                <h4 class="title" style="border-left: 6px solid pink;padding: 15px">'.$data->{'message'}.'</h4>
                             </div>
                         </div>
                     </div>';

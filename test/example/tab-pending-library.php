@@ -10,7 +10,7 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                     <form method="get" action="<?php $_SERVER['PHP_SELF'].'?search='.$search?>">
                         <div class="col-lg-10 col-md-9 col-sm-9 col-xs-12">
                             <div class="form-group">
-                                <input name="search" type="text" placeholder="Search here..." class="form-control border-input" value="<?php echo $search?>">
+                                <input name="search" type="text" placeholder="<?php echo Core::lang('search_here')?>" class="form-control border-input" value="<?php echo $search?>">
                             </div>
                             <div class="form-group hidden">
                                 <input name="m" type="text" class="form-control border-input" value="14" hidden>
@@ -20,7 +20,7 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                         </div>
                         <div class="col-lg-2 col-md-2 col-sm-1 col-xs-2">
                             <div class="form-group">
-                                <button name="submitsearch" type="submit" class="btn btn-fill btn-wd ">Search</button>
+                                <button name="submitsearch" type="submit" class="btn btn-fill btn-wd "><?php echo Core::lang('search_here')?></button>
                             </div>
                         </div>
                     </form>
@@ -51,7 +51,7 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                             'Username' => $_POST['username'],
                             'Status' => $_POST['status']
                         );
-                        Core::updateProcess(Core::getInstance()->api.'/book/library/update',$post_array,'Library');
+                        Core::updateProcess(Core::getInstance()->api.'/book/library/update',$post_array,Core::lang('library'));
                         echo Core::reloadPage();
                     }
                 }
@@ -64,7 +64,7 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                             'BookID' => $_POST['bookid'],
                             'Username' => $_POST['username'] //Username of the owner of book
                         );
-                        Core::deleteProcess(Core::getInstance()->api.'/book/library/delete',$post_array,'from Library');
+                        Core::deleteProcess(Core::getInstance()->api.'/book/library/delete',$post_array,Core::lang('from_library'));
                         echo Core::reloadPage();
                     }
                 }
@@ -72,22 +72,22 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                 echo '<div class="col-md-12">
                         <div class="card card-plain">
                             <div class="header">
-                                <h4 class="title text-uppercase">Pending Book Library</h4>
-                                <p class="category">Message: '.$data->{'message'}.'<br>
-                                Shows no: '.$data->metadata->{'number_item_first'}.' - '.$data->metadata->{'number_item_last'}.' from total data: '.$data->metadata->{'records_total'}.'</p>
+                                <h4 class="title text-uppercase">'.Core::lang('pending_library').'</h4>
+                                <p class="category">'.Core::lang('message').': '.$data->{'message'}.'<br>
+                                '.Core::lang('shows_no').': '.$data->metadata->{'number_item_first'}.' - '.$data->metadata->{'number_item_last'}.' '.Core::lang('from_total_data').': '.$data->metadata->{'records_total'}.'</p>
                             </div>
                             <div class="content table-responsive table-full-width">
                                 <table id="export" class="table table-striped">
                                     <thead>
                                         <th>No</th>
-                                    	<th>Date</th>
-                                    	<th>Unique ID</th>
-                                    	<th>Book ID</th>
-                                        <th>Title</th>
-                                        <th>Price</th>
-                                        <th>Status</th>
-                                        <th>Username</th>
-                                        <th>Manage</th>
+                                    	<th>'.Core::lang('date').'</th>
+                                    	<th>'.Core::lang('uniqueid').'</th>
+                                    	<th>'.Core::lang('bookid').'</th>
+                                        <th>'.Core::lang('title').'</th>
+                                        <th>'.Core::lang('price').'</th>
+                                        <th>'.Core::lang('status').'</th>
+                                        <th>'.Core::lang('username').'</th>
+                                        <th>'.Core::lang('manage').'</th>
                                     </thead>
                                     <tbody>';
                 $n=$data->metadata->{'number_item_first'};
@@ -102,7 +102,7 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                     echo '<td>' . $value->{'Price'} .'</td>';
                     echo '<td>' . $value->{'Status'} .'</td>';
                     echo '<td>' . $value->{'Username'} .'</td>';
-                    echo '<td><a href="#" data-toggle="modal" data-target="#'.$value->{'Guid'}.'"><i class="ti-pencil"></i> Edit</a></td>';
+                    echo '<td><a href="#" data-toggle="modal" data-target="#'.$value->{'Guid'}.'"><i class="ti-pencil"></i> '.Core::lang('edit').'</a></td>';
                     echo '</tr>';              
                 }
                 echo '</tbody>
@@ -129,25 +129,25 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            <label>Username</label>
-                                            <input name="username" type="text" placeholder="Input username of owner book library here..." class="form-control border-input" value="'.$value->{'Username'}.'" readonly>
+                                            <label>'.Core::lang('username').'</label>
+                                            <input name="username" type="text" placeholder="'.Core::lang('input_username_library').'" class="form-control border-input" value="'.$value->{'Username'}.'" readonly>
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            <label>Book ID</label>
-                                            <input name="bookid" type="text" placeholder="Input the book id here..." class="form-control border-input" value="'.$value->{'BookID'}.'" readonly>
+                                            <label>'.Core::lang('bookid').'</label>
+                                            <input name="bookid" type="text" placeholder="'.Core::lang('input_bookid').'" class="form-control border-input" value="'.$value->{'BookID'}.'" readonly>
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            <label>Unique ID</label>
-                                            <input name="uniqueid" type="text" placeholder="Input the unique id here..." class="form-control border-input" value="'.$value->{'Guid'}.'" readonly>
+                                            <label>'.Core::lang('uniqueid').'</label>
+                                            <input name="uniqueid" type="text" placeholder="'.Core::lang('input_uniqueid').'" class="form-control border-input" value="'.$value->{'Guid'}.'" readonly>
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            <label>Status</label>
+                                            <label>'.Core::lang('status').'</label>
                                             <select name="status" type="text" style=\'max-height:200px; overflow-y:scroll; overflow-x:hidden;\' class="form-control border-input">';
                                                 if (!empty($datastatus)) {
                                                             foreach ($datastatus->result as $name => $valuestatus) {
@@ -160,9 +160,9 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                                 </div>
                               </div>
                               <div class="modal-footer">
-                                <button type="submit" name="submitdeletelibrary'.$value->{'Guid'}.'" class="btn btn-danger pull-left">Delete</button>
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                                <button type="submit" name="submitupdatelibrary'.$value->{'Guid'}.'" class="btn btn-primary">Update</button>
+                                <button type="submit" name="submitdeletelibrary'.$value->{'Guid'}.'" class="btn btn-danger pull-left">'.Core::lang('delete').'</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">'.Core::lang('cancel').'</button>
+                                <button type="submit" name="submitupdatelibrary'.$value->{'Guid'}.'" class="btn btn-primary">'.Core::lang('update').'</button>
                               </div>
                               </form>
                             </div>
@@ -177,7 +177,7 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                 echo '<div class="col-md-12">
                         <div class="card card-plain">
                             <div class="header">
-                                <h4 class="title">Message: '.$data->{'message'}.'</h4>
+                                <h4 class="title" style="border-left: 6px solid pink;padding: 15px">'.$data->{'message'}.'</h4>
                             </div>
                         </div>
                     </div>';

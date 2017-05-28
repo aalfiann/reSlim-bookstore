@@ -29,7 +29,7 @@ $datareview = json_decode(Core::execGetRequest($urlreview));
                             'BookID' => $_POST['bookid'],
                             'Username' => $datalogin['username'] //Username of the owner of book
                         );
-                        Core::deleteProcess(Core::getInstance()->api.'/book/library/delete',$post_array,'from Library');
+                        Core::deleteProcess(Core::getInstance()->api.'/book/library/delete',$post_array,Core::lang('from_library'));
                         echo Core::reloadPage();
                     }
 
@@ -41,7 +41,7 @@ $datareview = json_decode(Core::execGetRequest($urlreview));
                             'Username' => $datalogin['username'], //Username of the owner of book
                             'Detail' => $_POST['review']
                         );
-                        Core::createProcess(Core::getInstance()->api.'/book/review/new',$post_array,'Review');
+                        Core::createProcess(Core::getInstance()->api.'/book/review/new',$post_array,Core::lang('review'));
                         echo Core::reloadPage();
                     }
                 }
@@ -68,21 +68,21 @@ $datareview = json_decode(Core::execGetRequest($urlreview));
                             <form method="post" action="'.$_SERVER['PHP_SELF'].'?m=22&bookid='.$bookid.'">
                                 <div class="row">
                                     <div class="col-md-3 col-md-offset-1">
-                                        <h5>' . $value->{'Guid'} .'<br /><small>Unique ID</small></h5>
+                                        <h5>' . $value->{'Guid'} .'<br /><small>'.Core::lang('uniqueid').'</small></h5>
                                     </div>
                                     <div class="col-md-3">
-                                        <h5>' . (($value->{'Price'} != 0)?$value->{'Price'}:'Free') .'<br /><small>Price</small></h5>
+                                        <h5>' . (($value->{'Price'} != 0)?$value->{'Price'}:Core::lang('free')) .'<br /><small>'.Core::lang('price').'</small></h5>
                                     </div>
                                     <div class="col-md-4">
-                                        <h5><a href="modul-book-library.php?m=13&page=1&itemsperpage='.$itemsperpage.'&search='.$value->{'Language'}.'">' . $value->{'Language'} .'</a><br /><small>Language</small></h5>
+                                        <h5><a href="modul-book-library.php?m=13&page=1&itemsperpage='.$itemsperpage.'&search='.$value->{'Language'}.'">' . $value->{'Language'} .'</a><br /><small>'.Core::lang('language').'</small></h5>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-8">
-                                        <h5>' . $value->{'Status'} .'<br /><small>Status Payment</small></h5>
+                                        <h5>' . $value->{'Status'} .'<br /><small>'.Core::lang('status_payment').'</small></h5>
                                     </div>
                                     <div class="col-md-3">
-                                        <h5>'.(($value->{'StatusID'} == '34')?'<a href="#" data-toggle="modal" data-target="#thankYou">On Library</a>':'<a href="#" data-toggle="modal" data-target="#infoPayment'.$value->{'Guid'}.'">Buy this book</a>').'</h5>
+                                        <h5>'.(($value->{'StatusID'} == '34')?'<a href="#" data-toggle="modal" data-target="#thankYou">'.Core::lang('on_library').'</a>':'<a href="#" data-toggle="modal" data-target="#infoPayment'.$value->{'Guid'}.'">'.Core::lang('buy_this_book').'</a>').'</h5>
                                     </div>
                                 </div>';
                                 if (!empty(Core::getInstance()->sharethis)) {
@@ -101,11 +101,11 @@ $datareview = json_decode(Core::execGetRequest($urlreview));
                     echo '<div class="col-md-9">
                             <div class="card">
                                 <div class="header">
-                                    <h4 class="title">Information Detail</h4>
+                                    <h4 class="title">'.Core::lang('information_detail').'</h4>
                                 </div><hr>
                                 <div class="content">
                                     <div class="typo-line">
-                                        <h2><p class="category">Title</p>'.$value->{'Title'}.'<br><small>';$datatags = '';
+                                        <h2><p class="category">'.Core::lang('title').'</p>'.$value->{'Title'}.'<br><small>';$datatags = '';
                             foreach ($value->{'Tags'} as $name => $valuetags) {
                                 $datatags .= '<a href="modul-book-library.php?m=13&page=1&itemsperpage='.$itemsperpage.'&search='.$valuetags.'">'.$valuetags.'</a>, ';
                             }
@@ -113,41 +113,41 @@ $datareview = json_decode(Core::execGetRequest($urlreview));
                             echo $datatags.'</small> </h2>
                                     </div>
                                     <div class="typo-line">
-                                        <p><span class="category">Description</span>'.$value->{'Description'}.'</p>
+                                        <p><span class="category">'.Core::lang('description').'</span>'.$value->{'Description'}.'</p>
                                     </div>
                                     <div class="typo-line">
-                                        <h5><p class="category">Author</p><a href="modul-book-library.php?m=13&page=1&itemsperpage='.$itemsperpage.'&search='.$value->{'Author'}.'">'.$value->{'Author'}.'</a></h5>
+                                        <h5><p class="category">'.Core::lang('author').'</p><a href="modul-book-library.php?m=13&page=1&itemsperpage='.$itemsperpage.'&search='.$value->{'Author'}.'">'.$value->{'Author'}.'</a></h5>
                                     </div>
                                     <div class="typo-line">
-                                        <h5><p class="category">Translator</p><a href="modul-book-library.php?m=13&page=1&itemsperpage='.$itemsperpage.'&search='.$value->{'Translator'}.'">'.$value->{'Translator'}.'</a></h5>
+                                        <h5><p class="category">'.Core::lang('translator').'</p><a href="modul-book-library.php?m=13&page=1&itemsperpage='.$itemsperpage.'&search='.$value->{'Translator'}.'">'.$value->{'Translator'}.'</a></h5>
                                     </div>
                                     <div class="typo-line">
-                                        <h5><p class="category">Language</p><a href="modul-book-library.php?m=13&page=1&itemsperpage='.$itemsperpage.'&search='.$value->{'Language'}.'">'.$value->{'Language'}.'</a></h5>
+                                        <h5><p class="category">'.Core::lang('language').'</p><a href="modul-book-library.php?m=13&page=1&itemsperpage='.$itemsperpage.'&search='.$value->{'Language'}.'">'.$value->{'Language'}.'</a></h5>
                                     </div>
                                     <div class="typo-line">
-                                        <h5><p class="category">Type</p><a href="modul-book-library.php?m=13&page=1&itemsperpage='.$itemsperpage.'&search='.$value->{'Type'}.'">'.$value->{'Type'}.'</a></h5>
+                                        <h5><p class="category">'.Core::lang('type').'</p><a href="modul-book-library.php?m=13&page=1&itemsperpage='.$itemsperpage.'&search='.$value->{'Type'}.'">'.$value->{'Type'}.'</a></h5>
                                     </div>
                                     <div class="typo-line">
-                                        <h5><p class="category">Publisher</p><a href="modul-book-library.php?m=13&page=1&itemsperpage='.$itemsperpage.'&search='.$value->{'Publisher'}.'">'.$value->{'Publisher'}.'</a></h5>
+                                        <h5><p class="category">'.Core::lang('publisher').'</p><a href="modul-book-library.php?m=13&page=1&itemsperpage='.$itemsperpage.'&search='.$value->{'Publisher'}.'">'.$value->{'Publisher'}.'</a></h5>
                                     </div>
                                     <div class="typo-line">
-                                        <h5><p class="category">Pages</p>'.$value->{'Pages'}.'</h5>
+                                        <h5><p class="category">'.Core::lang('pages').'</p>'.$value->{'Pages'}.'</h5>
                                     </div>
                                     <div class="typo-line">
-                                        <h5><p class="category">Price</p>' . (($value->{'Price'} != 0)?$value->{'Price'}:'Free') .'</h5>
+                                        <h5><p class="category">'.Core::lang('price').'</p>' . (($value->{'Price'} != 0)?$value->{'Price'}:Core::lang('free')) .'</h5>
                                     </div>
                                     <div class="typo-line">
-                                        <h5><p class="category">Book ID</p>'.$value->{'BookID'}.'</h5>
+                                        <h5><p class="category">'.Core::lang('bookid').'</p>'.$value->{'BookID'}.'</h5>
                                     </div>
                                     <div class="typo-line '.(empty($value->{'ISBN'})?'hidden':'').'">
                                         <h5><p class="category">ISBN</p>'.$value->{'ISBN'}.'</h5>
                                     </div>
                                     <div class="typo-line '.(empty($value->{'Original_released'})?'hidden':'').'">
-                                        <h5><p class="category">Original Released</p>'.$value->{'Original_released'}.'</h5>
+                                        <h5><p class="category">'.Core::lang('original_released').'</p>'.$value->{'Original_released'}.'</h5>
                                     </div>
                                     <div class="text-center">';
-                                        if ($value->{'Full_link'} == 'You have to make payment first!') {$links = '<a href="'.Core::getInstance()->api.'/user/upload/stream/'.$datalogin['token'].'/'.$value->{'Sample_file'}.'" class="btn btn-success btn-fill">Read Sample</a>';
-                                    } else {$links = '<a href="'.Core::getInstance()->api.'/user/upload/stream/'.$datalogin['token'].'/'.$value->{'Full_file'}.'" class="btn btn-success btn-fill">Read Complete</a>';}
+                                        if ($value->{'Full_link'} == 'You have to make payment first!') {$links = '<a href="'.Core::getInstance()->api.'/user/upload/stream/'.$datalogin['token'].'/'.$value->{'Sample_file'}.'" class="btn btn-success btn-fill">'.Core::lang('read_sample').'</a>';
+                                    } else {$links = '<a href="'.Core::getInstance()->api.'/user/upload/stream/'.$datalogin['token'].'/'.$value->{'Full_file'}.'" class="btn btn-success btn-fill">'.Core::lang('read_complete').'</a>';}
                             echo $links;
                                     echo '</div>
                                     <div class="clearfix"></div>
@@ -160,17 +160,17 @@ $datareview = json_decode(Core::execGetRequest($urlreview));
 
                 echo '<div class="card">
                             <div class="header">
-                                <h4 class="title">Review</h4>
+                                <h4 class="title">'.Core::lang('review').'</h4>
                             </div><hr>
                             <!-- Start Submit Review -->
                             <div class="content '.(($value->{'StatusID'} == '34')?'':'hidden').'">
                             <form method="post" action="'.$_SERVER['PHP_SELF'].'?m=13&bookid='.$bookid.'&page='.$page.'&itemsperpage='.$itemsperpage.'">
                                 <div class="form-group">
-                                    <textarea name="review" rows="2" class="form-control border-input" placeholder="Here can be your review ..." maxlength="250"></textarea>
+                                    <textarea name="review" rows="2" class="form-control border-input" placeholder="'.Core::lang('input_review').'" maxlength="250"></textarea>
                                 </div>
-                                 <p class="category"><i class="ti-minus"></i> Users can submit only one review in every book<br><i class="ti-minus"></i> Html code is not allowed</p>
+                                 <p class="category"><i class="ti-minus"></i> '.Core::lang('note_review_1').'<br><i class="ti-minus"></i> '.Core::lang('note_review_2').'</p>
                                 <div class="text-center">
-                                    <button type="submit" name="submitreview'.$value->{'Guid'}.'" class="btn btn-primary" data-dismiss="modal">Submit Review</button>    
+                                    <button type="submit" name="submitreview'.$value->{'Guid'}.'" class="btn btn-primary" data-dismiss="modal">'.Core::lang('submit_review').'</button>    
                                 </div>
                                 <hr>
                             </form>
@@ -222,19 +222,19 @@ $datareview = json_decode(Core::execGetRequest($urlreview));
                             <div class="modal-content">
                               <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="myModalLabel">Payment Information</h4>
+                                <h4 class="modal-title" id="myModalLabel">'.Core::lang('payment_information').'</h4>
                               </div>
                               <form method="post" action="'.$_SERVER['PHP_SELF'].'?m=13&bookid='.$bookid.'&itemsperpage='.$itemsperpage.'">
                               <div class="modal-body">
                                 <div class="row">
                                     <div class="col-lg-12">
-                                        <p>For payment information you can contact the admin via Whatsapp: '.Core::getInstance()->hotline.'.<br><br>And do not forget to include a Unique ID code.</p>
+                                        <p>'.Core::lang('payment_info_1').' '.Core::getInstance()->hotline.'.<br><br>'.Core::lang('payment_info_2').'</p>
                                     </div>
                                 </div>
                               </div>
                               <div class="modal-footer">
                                 <input name="bookid" type="text" class="form-control border-input hidden" value="'.$value->{'BookID'}.'">
-                                <button type="submit" name="submitdeletelibrary'.$value->{'Guid'}.'" class="btn btn-danger pull-left">Delete</button>
+                                <button type="submit" name="submitdeletelibrary'.$value->{'Guid'}.'" class="btn btn-danger pull-left">'.Core::lang('delete').'</button>
                                 <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
                               </div>
                             </div>
@@ -250,17 +250,17 @@ $datareview = json_decode(Core::execGetRequest($urlreview));
                             <div class="modal-content">
                               <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="myModalLabel">Thank You</h4>
+                                <h4 class="modal-title" id="myModalLabel">'.Core::lang('thanks').'</h4>
                               </div>
                               <div class="modal-body">
                                 <div class="row">
                                     <div class="col-lg-12">
-                                        <p>Your book will be permanently saved in your library as long as ever.<br><br> Thank You.</p>
+                                        <p>'.Core::lang('thanks_detail').'<br><br> '.Core::lang('thanks').'.</p>
                                     </div>
                                 </div>
                               </div>
                               <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">'.Core::lang('close').'</button>
                               </div>
                             </div>
                           </div>
@@ -274,7 +274,7 @@ $datareview = json_decode(Core::execGetRequest($urlreview));
                 echo '<div class="col-md-12">
                         <div class="card card-plain">
                             <div class="header">
-                                <h4 class="title">Message: '.$data->{'message'}.'</h4>
+                                <h4 class="title" style="border-left: 6px solid pink;padding: 15px">'.$data->{'message'}.'</h4>
                             </div>
                         </div>
                     </div>';

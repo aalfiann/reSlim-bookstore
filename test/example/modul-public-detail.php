@@ -12,7 +12,7 @@ $urlreview = Core::getInstance()->api.'/book/review/data/'.$bookid.'/?apikey='.C
 $datareview = json_decode(Core::execGetRequest($urlreview));
 ?>
 <!doctype html>
-<html lang="id">
+<html lang="<?php echo Core::getInstance()->setlang?>">
 <head>
     <?php 
         if (!empty($data))
@@ -26,10 +26,10 @@ $datareview = json_decode(Core::execGetRequest($urlreview));
                     echo '<meta name="keywords" content="'.$value->{'Tags'}.'">';
                 }
             } else {
-                echo '<title>Book Detail - '.Core::getInstance()->title.'</title>';
+                echo '<title>'.Core::lang('book_detail').' - '.Core::getInstance()->title.'</title>';
             }
         } else {
-          echo '<title>Book Detail - '.Core::getInstance()->title.'</title>';  
+          echo '<title>'.Core::lang('book_detail').' - '.Core::getInstance()->title.'</title>';  
         }?>
 	<?php include 'global-meta.php';?>
     <?php if (!empty(Core::getInstance()->sharethis)){
@@ -53,7 +53,7 @@ $datareview = json_decode(Core::execGetRequest($urlreview));
                         <span class="icon-bar bar2"></span>
                         <span class="icon-bar bar3"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Book Detail</a>
+                    <a class="navbar-brand" href="#"><?php echo Core::lang('book_detail')?></a>
                 </div>
                 <div class="collapse navbar-collapse">
                 </div>

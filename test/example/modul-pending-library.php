@@ -6,9 +6,9 @@ if (Core::getRole($datalogin['token']) == '3') {
     Core::goToPage('modul-book-showroom.php?m=12&page=1&itemsperpage=12&search=');
 };?>
 <!doctype html>
-<html lang="id">
+<html lang="<?php echo Core::getInstance()->setlang?>">
 <head>
-    <title>Pending Book Library - <?php echo Core::getInstance()->title?></title>
+    <title><?php echo Core::lang('pending_library')?> - <?php echo Core::getInstance()->title?></title>
 	<?php include 'global-meta.php';?>
 </head>
 <body>
@@ -28,7 +28,7 @@ if (Core::getRole($datalogin['token']) == '3') {
                         <span class="icon-bar bar2"></span>
                         <span class="icon-bar bar3"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Pending Library</a>
+                    <a class="navbar-brand" href="#"><?php echo Core::lang('pending_library')?></a>
                 </div>
                 <?php include 'global-nav.php';?>
             </div>

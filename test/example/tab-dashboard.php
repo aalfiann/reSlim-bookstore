@@ -12,20 +12,20 @@ $lastdate = ((!empty($_GET['lastdate']))?$_GET['lastdate']:date('Y-m-d'));
                     <form method="get" action="<?php $_SERVER['PHP_SELF'].'?search='.$search?>">
                         <div class="col-md-2">
                             <div class="form-group">
-                                <label>First Date</label>
+                                <label><?php echo Core::lang('first_date')?></label>
                                 <input id="firstdate" name="firstdate" type="text" class="form-control border-input" placeholder="First Date" value="<?php echo $firstdate?>" required>
                             </div>
                         </div>
                         <div class="col-md-2">
                             <div class="form-group">
-                                <label>Last Date</label>
+                                <label><?php echo Core::lang('last_date')?></label>
                                 <input id="lastdate" name="lastdate" type="text" class="form-control border-input" placeholder="Last Date" value="<?php echo $lastdate?>" required>
                             </div>
                         </div>
                         <div class="col-lg-8 col-md-9 col-sm-9 col-xs-12">
                             <div class="form-group">
-                                <label>Search</label>
-                                <input name="search" type="text" placeholder="Search here..." class="form-control border-input" value="<?php echo $search?>">
+                                <label><?php echo Core::lang('search')?></label>
+                                <input name="search" type="text" placeholder="<?php echo Core::lang('search_here')?>" class="form-control border-input" value="<?php echo $search?>">
                             </div>
                             <div class="form-group hidden">
                                 <input name="m" type="text" class="form-control border-input" value="3" hidden>
@@ -36,7 +36,7 @@ $lastdate = ((!empty($_GET['lastdate']))?$_GET['lastdate']:date('Y-m-d'));
                         <div class="col-lg-2 col-md-2 col-sm-1 col-xs-2">
                             <div class="form-group">
                                 <label></label>
-                                <button name="submitsearch" type="submit" class="btn btn-fill btn-wd ">Search</button>
+                                <button name="submitsearch" type="submit" class="btn btn-fill btn-wd "><?php echo Core::lang('search')?></button>
                             </div>
                         </div>
                     </form>
@@ -56,9 +56,9 @@ $lastdate = ((!empty($_GET['lastdate']))?$_GET['lastdate']:date('Y-m-d'));
                 echo '<div class="col-md-12">
                         <div class="card card-plain">
                             <div class="header">
-                                <h4 class="title text-uppercase">Data Report Sales</h4>
-                                <p class="category">Message: '.$data->{'message'}.'<br>
-                                Shows no: '.$data->metadata->{'number_item_first'}.' - '.$data->metadata->{'number_item_last'}.' from total data: '.$data->metadata->{'records_total'}.'</p>
+                                <h4 class="title text-uppercase">'.Core::lang('data_report_sales').'</h4>
+                                <p class="category">'.Core::lang('message').': '.$data->{'message'}.'<br>
+                                '.Core::lang('shows_no').': '.$data->metadata->{'number_item_first'}.' - '.$data->metadata->{'number_item_last'}.' '.Core::lang('from_total_data').': '.$data->metadata->{'records_total'}.'</p>
                                     <div class="dropdown">
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
 		    				    			<p><i class="ti-zip"></i> Export Data <b class="caret"></b></p>
@@ -79,16 +79,16 @@ $lastdate = ((!empty($_GET['lastdate']))?$_GET['lastdate']:date('Y-m-d'));
                                 <table id="export" class="table table-striped">
                                     <thead>
                                         <th>No</th>
-                                    	<th>Date Range</th>
-                                    	<th>Book ID</th>
-                                    	<th>Title</th>
-                                    	<th>Pages</th>
-                                        <th>Price</th>
-                                        <th>Total Income</th>
-                                    	<th>Total Sales</th>
-                                        <th>Total Royalti User</th>
-                                        <th>Total Royalti Company</th>
-                                        <th>Royalti Username</th>
+                                    	<th>'.Core::lang('date_range').'</th>
+                                    	<th>'.Core::lang('bookid').'</th>
+                                    	<th>'.Core::lang('title').'</th>
+                                    	<th>'.Core::lang('pages').'</th>
+                                        <th>'.Core::lang('price').'</th>
+                                        <th>'.Core::lang('total_income').'</th>
+                                    	<th>'.Core::lang('total_sales').'</th>
+                                        <th>'.Core::lang('total_royalti_user').'</th>
+                                        <th>'.Core::lang('total_royalti_company').'</th>
+                                        <th>'.Core::lang('royalti_username').'</th>
                                     </thead>
                                     <tbody>';
                 $n=$data->metadata->{'number_item_first'};
@@ -124,7 +124,7 @@ $lastdate = ((!empty($_GET['lastdate']))?$_GET['lastdate']:date('Y-m-d'));
                 echo '<div class="col-md-12">
                         <div class="card card-plain">
                             <div class="header">
-                                <h4 class="title">Message: '.$data->{'message'}.'</h4>
+                                <h4 class="title" style="border-left: 6px solid pink;padding: 15px">'.$data->{'message'}.'</h4>
                             </div>
                         </div>
                     </div>';

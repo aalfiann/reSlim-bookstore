@@ -18,7 +18,7 @@
                             'Price' => $value->{'Price'},
                             'Username' => $datalogin['username'] //Username of user login
                         );
-                        Core::createProcess(Core::getInstance()->api.'/book/library/new',$post_array,'to Library');
+                        Core::createProcess(Core::getInstance()->api.'/book/library/new',$post_array,Core::lang('to_library'));
                         echo Core::reloadPage();
                     }
                 }
@@ -50,13 +50,13 @@
                             <form method="post" action="'.$_SERVER['PHP_SELF'].'?m=22&bookid='.$bookid.'">
                                 <div class="row">
                                     <div class="col-md-3 col-md-offset-1">
-                                        <h5>' . $value->{'Pages'} .'<br /><small>Pages</small></h5>
+                                        <h5>' . $value->{'Pages'} .'<br /><small>'.Core::lang('pages').'</small></h5>
                                     </div>
                                     <div class="col-md-4">
-                                        <h5><a href="modul-book-showroom.php?m=12&page=1&itemsperpage='.$itemsperpage.'&search='.$value->{'Language'}.'">' . $value->{'Language'} .'</a><br /><small>Language</small></h5>
+                                        <h5><a href="modul-book-showroom.php?m=12&page=1&itemsperpage='.$itemsperpage.'&search='.$value->{'Language'}.'">' . $value->{'Language'} .'</a><br /><small>'.Core::lang('language').'</small></h5>
                                     </div>
                                     <div class="col-md-3">
-                                        <h5>' . (($value->{'Price'} != 0)?$value->{'Price'}:'Free') .'<br /><small>Price</small></h5>
+                                        <h5>' . (($value->{'Price'} != 0)?$value->{'Price'}:Core::lang('free')) .'<br /><small>'.Core::lang('price').'</small></h5>
                                     </div>
                                 </div>';
                                 if (!empty(Core::getInstance()->sharethis)) {
@@ -75,11 +75,11 @@
                     echo '<div class="col-md-9">
                             <div class="card">
                                 <div class="header">
-                                    <h4 class="title">Information Detail</h4>
+                                    <h4 class="title">'.Core::lang('information_detail').'</h4>
                                 </div><hr>
                                 <div class="content">
                                     <div class="typo-line">
-                                        <h2><p class="category">Title</p>'.$value->{'Title'}.'<br><small>';$datatags = '';
+                                        <h2><p class="category">'.Core::lang('title').'</p>'.$value->{'Title'}.'<br><small>';$datatags = '';
                             foreach ($return_arr as $name => $valuetags) {
                                 $datatags .= '<a href="modul-book-showroom.php?m=12&page=1&itemsperpage='.$itemsperpage.'&search='.$valuetags.'">'.$valuetags.'</a>, ';
                             }
@@ -87,41 +87,41 @@
                             echo $datatags.'</small> </h2>
                                     </div>
                                     <div class="typo-line">
-                                        <p><span class="category">Description</span>'.$value->{'Description'}.'</p>
+                                        <p><span class="category">'.Core::lang('description').'</span>'.$value->{'Description'}.'</p>
                                     </div>
                                     <div class="typo-line">
-                                        <h5><p class="category">Author</p><a href="modul-book-showroom.php?m=12&page=1&itemsperpage='.$itemsperpage.'&search='.$value->{'Author'}.'">'.$value->{'Author'}.'</a></h5>
+                                        <h5><p class="category">'.Core::lang('author').'</p><a href="modul-book-showroom.php?m=12&page=1&itemsperpage='.$itemsperpage.'&search='.$value->{'Author'}.'">'.$value->{'Author'}.'</a></h5>
                                     </div>
                                     <div class="typo-line">
-                                        <h5><p class="category">Translator</p><a href="modul-book-showroom.php?m=12&page=1&itemsperpage='.$itemsperpage.'&search='.$value->{'Translator'}.'">'.$value->{'Translator'}.'</a></h5>
+                                        <h5><p class="category">'.Core::lang('translator').'</p><a href="modul-book-showroom.php?m=12&page=1&itemsperpage='.$itemsperpage.'&search='.$value->{'Translator'}.'">'.$value->{'Translator'}.'</a></h5>
                                     </div>
                                     <div class="typo-line">
-                                        <h5><p class="category">Language</p><a href="modul-book-showroom.php?m=12&page=1&itemsperpage='.$itemsperpage.'&search='.$value->{'Language'}.'">'.$value->{'Language'}.'</a></h5>
+                                        <h5><p class="category">'.Core::lang('language').'</p><a href="modul-book-showroom.php?m=12&page=1&itemsperpage='.$itemsperpage.'&search='.$value->{'Language'}.'">'.$value->{'Language'}.'</a></h5>
                                     </div>
                                     <div class="typo-line">
-                                        <h5><p class="category">Type</p><a href="modul-book-showroom.php?m=12&page=1&itemsperpage='.$itemsperpage.'&search='.$value->{'Type'}.'">'.$value->{'Type'}.'</a></h5>
+                                        <h5><p class="category">'.Core::lang('type').'</p><a href="modul-book-showroom.php?m=12&page=1&itemsperpage='.$itemsperpage.'&search='.$value->{'Type'}.'">'.$value->{'Type'}.'</a></h5>
                                     </div>
                                     <div class="typo-line">
-                                        <h5><p class="category">Publisher</p><a href="modul-book-showroom.php?m=12&page=1&itemsperpage='.$itemsperpage.'&search='.$value->{'Publisher'}.'">'.$value->{'Publisher'}.'</a></h5>
+                                        <h5><p class="category">'.Core::lang('publisher').'</p><a href="modul-book-showroom.php?m=12&page=1&itemsperpage='.$itemsperpage.'&search='.$value->{'Publisher'}.'">'.$value->{'Publisher'}.'</a></h5>
                                     </div>
                                     <div class="typo-line">
-                                        <h5><p class="category">Pages</p>'.$value->{'Pages'}.'</h5>
+                                        <h5><p class="category">'.Core::lang('pages').'</p>'.$value->{'Pages'}.'</h5>
                                     </div>
                                     <div class="typo-line">
-                                        <h5><p class="category">Price</p>' . (($value->{'Price'} != 0)?$value->{'Price'}:'Free') .'</h5>
+                                        <h5><p class="category">'.Core::lang('price').'</p>' . (($value->{'Price'} != 0)?$value->{'Price'}:Core::lang('free')) .'</h5>
                                     </div>
                                     <div class="typo-line">
-                                        <h5><p class="category">Book ID</p>'.$value->{'BookID'}.'</h5>
+                                        <h5><p class="category">'.Core::lang('bookid').'</p>'.$value->{'BookID'}.'</h5>
                                     </div>
                                     <div class="typo-line '.(empty($value->{'ISBN'})?'hidden':'').'">
                                         <h5><p class="category">ISBN</p>'.$value->{'ISBN'}.'</h5>
                                     </div>
                                     <div class="typo-line '.(empty($value->{'Original_released'})?'hidden':'').'">
-                                        <h5><p class="category">Original Released</p>'.$value->{'Original_released'}.'</h5>
+                                        <h5><p class="category">'.Core::lang('original_released').'</p>'.$value->{'Original_released'}.'</h5>
                                     </div>
                                     <div class="text-center">
                                         <form method="post" action="'.$_SERVER['PHP_SELF'].'?m=12&bookid='.$bookid.'&page='.$page.'&itemsperpage='.$itemsperpage.'&search='.$search.'">
-                                            <button type="submit" name="submitaddlibrary'.$value->{'BookID'}.'" class="btn btn-success btn-fill">Add to Library</button>
+                                            <button type="submit" name="submitaddlibrary'.$value->{'BookID'}.'" class="btn btn-success btn-fill">'.Core::lang('add_to_library').'</button>
                                         </form>
                                     </div>
                                     <div class="clearfix"></div>
@@ -132,7 +132,7 @@
 
                 echo '<div class="card">
                             <div class="header">
-                                <h4 class="title">Review</h4>
+                                <h4 class="title">'.Core::lang('review').'</h4>
                             </div><hr>
                             <div class="content" style="overflow-y: auto; height:600px;">
                                 <ul class="list-unstyled team-members">';
@@ -177,7 +177,7 @@
                 echo '<div class="col-md-12">
                         <div class="card card-plain">
                             <div class="header">
-                                <h4 class="title">Message: '.$data->{'message'}.'</h4>
+                                <h4 class="title" style="border-left: 6px solid pink;padding: 15px">'.$data->{'message'}.'</h4>
                             </div>
                         </div>
                     </div>';

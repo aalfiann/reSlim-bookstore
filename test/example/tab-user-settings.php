@@ -12,34 +12,34 @@
                                         'Password' => $_POST['password'],
                                         'NewPassword' => $_POST['newpassword']
                                     );
-                                    Core::saveProcess(Core::getInstance()->api.'/user/changepassword',$post_array,'New Password',false);
+                                    Core::saveProcess(Core::getInstance()->api.'/user/changepassword',$post_array,Core::lang('new_password'),false);
                                 } else {
-                                    echo Core::getMessage('danger','Process Saving New Password Failed,','Your confirmation password is not match!');
+                                    echo Core::getMessage('danger',Core::lang('change_password_failed').',',Core::lang('your_password_is_not_match'));
                                 }
                             } 
                         ?>
                             <form action="<?php $_SERVER['PHP_SELF']?>" method="post">
                                 <div class="card" data-background="color" data-color="blue">
                                     <div class="header">
-                                        <h3 class="title">Change Password</h3>
+                                        <h3 class="title"><?php echo Core::lang('change_password')?></h3>
                                         <hr>
                                     </div>
                                     <div class="content">
                                         <div class="form-group">
-                                            <label>Old Password</label>
-                                            <input name="password" type="password" placeholder="Please input the old password" class="form-control border-input" maxlength="50" required>
+                                            <label><?php echo Core::lang('old_password')?></label>
+                                            <input name="password" type="password" placeholder="<?php echo Core::lang('input_old_password')?>" class="form-control border-input" maxlength="50" required>
                                         </div>
                                         <div class="form-group">
-                                            <label>New Password</label>
-                                            <input name="newpassword" type="password" placeholder="Please input the new password" class="form-control border-input" maxlength="50" required>
+                                            <label><?php echo Core::lang('new_password')?></label>
+                                            <input name="newpassword" type="password" placeholder="<?php echo Core::lang('input_new_password')?>" class="form-control border-input" maxlength="50" required>
                                         </div>
                                         <div class="form-group">
-                                            <label>Confirm Password</label>
-                                            <input name="newpassword1" type="password" placeholder="Please input the new password again." class="form-control border-input" maxlength="50" required>
+                                            <label><?php echo Core::lang('confirm_password')?></label>
+                                            <input name="newpassword1" type="password" placeholder="<?php echo Core::lang('reinput_new_password')?>" class="form-control border-input" maxlength="50" required>
                                         </div>
                                         <hr>
                                         <div class="form-group text-center">
-                                            <button name="submitnewpassword" type="submit" class="btn btn-fill btn-wd ">Submit</button>
+                                            <button name="submitnewpassword" type="submit" class="btn btn-fill btn-wd "><?php echo Core::lang('submit')?></button>
                                         </div>
                                     </div>
                                 </div>
@@ -57,7 +57,7 @@
                                     'BankName' => $_POST['bankname'],
                                     'BankAddress' => $_POST['bankaddress']
                                 );
-                                Core::saveProcess(Core::getInstance()->api.'/book/user/settings/save',$post_array,'User Settings',false);
+                                Core::saveProcess(Core::getInstance()->api.'/book/user/settings/save',$post_array,Core::lang('user_settings'),false);
                             } 
              
                             $url = Core::getInstance()->api.'/book/user/settings/read/'.$datalogin['username'].'/'.$datalogin['token'];
@@ -81,30 +81,30 @@
                             <form action="<?php $_SERVER['PHP_SELF']?>" method="post">
                                 <div class="card" data-background="color" data-color="blue">
                                     <div class="header">
-                                        <h3 class="title">Bank Account</h3>
+                                        <h3 class="title"><?php echo Core::lang('bank_account')?></h3>
                                         <hr>
                                     </div>
                                     <div class="content">
                                         <div class="form-group">
-                                            <label>Fullname</label>
-                                            <input name="fullname" type="text" placeholder="Please input the full name of your" class="form-control border-input" maxlength="50" value="<?php echo $fullname?>" required>
+                                            <label><?php echo Core::lang('fullname')?></label>
+                                            <input name="fullname" type="text" placeholder="<?php echo Core::lang('input_fullname')?>" class="form-control border-input" maxlength="50" value="<?php echo $fullname?>" required>
                                         </div>
                                         <div class="form-group">
-                                            <label>No Account</label>
-                                            <input name="account" type="text" placeholder="Please input your number of bank account" class="form-control border-input" maxlength="50" value="<?php echo $account?>" required>
+                                            <label><?php echo Core::lang('bank_no_account')?></label>
+                                            <input name="account" type="text" placeholder="<?php echo Core::lang('input_bank_no_account')?>" class="form-control border-input" maxlength="50" value="<?php echo $account?>" required>
                                         </div>
                                         <div class="form-group">
-                                            <label>Bank Name</label>
-                                            <input name="bankname" type="text" placeholder="Please input your bank name." class="form-control border-input" maxlength="50" value="<?php echo $bankname?>" required>
+                                            <label><?php echo Core::lang('bank_name')?></label>
+                                            <input name="bankname" type="text" placeholder="<?php echo Core::lang('input_bank_name')?>" class="form-control border-input" maxlength="50" value="<?php echo $bankname?>" required>
                                         </div>
                                         <div class="form-group">
-                                            <label>Bank Address</label>
-                                            <textarea name="bankaddress" rows="3" type="text" placeholder="Please input your bank address." class="form-control border-input" maxlength="250" required><?php echo $bankaddress?></textarea>
+                                            <label><?php echo Core::lang('bank_address')?></label>
+                                            <textarea name="bankaddress" rows="3" type="text" placeholder="<?php echo Core::lang('input_bank_address')?>" class="form-control border-input" maxlength="250" required><?php echo $bankaddress?></textarea>
                                         </div>
-                                        <p class="category"><i class="ti-info-alt"></i> You should fill your bank account for process withdrawal.</p>
+                                        <p class="category"><i class="ti-info-alt"></i> <?php echo Core::lang('info_bank_account')?></p>
                                         <hr>
                                         <div class="form-group text-center">
-                                            <button name="submitsettings" type="submit" class="btn btn-fill btn-wd ">Save Settings</button>
+                                            <button name="submitsettings" type="submit" class="btn btn-fill btn-wd "><?php echo Core::lang('save_settings')?></button>
                                         </div>
                                     </div>
                                 </div>

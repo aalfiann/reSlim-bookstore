@@ -10,7 +10,7 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                     <form method="get" action="<?php $_SERVER['PHP_SELF'].'?search='.$search?>">
                         <div class="col-lg-10 col-md-9 col-sm-9 col-xs-12">
                             <div class="form-group">
-                                <input name="search" type="text" placeholder="Search here..." class="form-control border-input" value="<?php echo $search?>">
+                                <input name="search" type="text" placeholder="<?php echo Core::lang('search_here')?>" class="form-control border-input" value="<?php echo $search?>">
                             </div>
                             <div class="form-group hidden">
                                 <input name="m" type="text" class="form-control border-input" value="23" hidden>
@@ -20,7 +20,7 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                         </div>
                         <div class="col-lg-2 col-md-2 col-sm-1 col-xs-2">
                             <div class="form-group">
-                                <button name="submitsearch" type="submit" class="btn btn-fill btn-wd ">Search</button>
+                                <button name="submitsearch" type="submit" class="btn btn-fill btn-wd "><?php echo Core::lang('search')?></button>
                             </div>
                         </div>
                     </form>
@@ -35,7 +35,7 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                                 'Token' => $datalogin['token'],
                                 'Name' => filter_var($_POST['name'],FILTER_SANITIZE_STRING)
                             );
-                            Core::createProcess(Core::getInstance()->api.'/book/publisher/new',$post_array,'New Publisher');
+                            Core::createProcess(Core::getInstance()->api.'/book/publisher/new',$post_array,Core::lang('new_publisher'));
                         }
                     ?>
                     <!-- Start Modal -->
@@ -44,22 +44,22 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                             <div class="modal-content">
                               <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="myModalLabel">Add new Publisher</h4>
+                                <h4 class="modal-title" id="myModalLabel"><?php echo Core::lang('add_new_publisher')?></h4>
                               </div>
                               <form method="post" action="<?php $_SERVER['PHP_SELF']?>">
                               <div class="modal-body">
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            <label>Publisher Name</label>
+                                            <label><?php echo Core::lang('publisher_name')?></label>
                                             <input name="name" type="text" placeholder="Input new publisher here..." class="form-control border-input" required>
                                         </div>
                                     </div>
                                 </div>
                               </div>
                               <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                                <button type="submit" name="submitnewpublisher" class="btn btn-primary">Submit</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal"><?php echo Core::lang('cancel')?></button>
+                                <button type="submit" name="submitnewpublisher" class="btn btn-primary"><?php echo Core::lang('submit')?></button>
                               </div>
                               </form>
                             </div>
@@ -69,7 +69,7 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                     <div class="col-md-12">
                         <div class="card card-plain">
                             <div class="header">
-                                <button type="submit" class="btn btn-wd" data-toggle="modal" data-target="#myModal">Add new Publisher</button>
+                                <button type="submit" class="btn btn-wd" data-toggle="modal" data-target="#myModal"><?php echo Core::lang('add_new_publisher')?></button>
                             </div>
                         </div>
                     </div>
@@ -89,7 +89,7 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                             'Token' => $datalogin['token'],
                             'PublisherID' => $_POST['publisherid']
                         );
-                        Core::updateProcess(Core::getInstance()->api.'/book/publisher/update',$post_array,'Publisher');
+                        Core::updateProcess(Core::getInstance()->api.'/book/publisher/update',$post_array,Core::lang('publisher'));
                         echo Core::reloadPage();
                     }
                 }
@@ -101,7 +101,7 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                             'Token' => $datalogin['token'],
                             'PublisherID' => $_POST['publisherid']
                         );
-                        Core::deleteProcess(Core::getInstance()->api.'/book/publisher/delete',$post_array,'from Publisher');
+                        Core::deleteProcess(Core::getInstance()->api.'/book/publisher/delete',$post_array,Core::lang('from_publisher'));
                         echo Core::reloadPage();
                     }
                 }
@@ -109,9 +109,9 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                 echo '<div class="col-md-12">
                         <div class="card card-plain">
                             <div class="header">
-                                <h4 class="title text-uppercase">Data Publisher</h4>
-                                <p class="category">Message: '.$data->{'message'}.'<br>
-                                Shows no: '.$data->metadata->{'number_item_first'}.' - '.$data->metadata->{'number_item_last'}.' from total data: '.$data->metadata->{'records_total'}.'</p>
+                                <h4 class="title text-uppercase">'.Core::lang('data_publisher').'</h4>
+                                <p class="category">'.Core::lang('message').': '.$data->{'message'}.'<br>
+                                '.Core::lang('shows_no').': '.$data->metadata->{'number_item_first'}.' - '.$data->metadata->{'number_item_last'}.' '.Core::lang('from_total_data').': '.$data->metadata->{'records_total'}.'</p>
                                     <div class="dropdown">
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
 		    				    			<p><i class="ti-zip"></i> Export Data <b class="caret"></b></p>
@@ -132,9 +132,9 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                                 <table id="export" class="table table-striped">
                                     <thead>
                                         <th>No</th>
-                                    	<th>PublisherID</th>
-                                    	<th>Publisher</th>
-                                    	<th>Manage</th>
+                                    	<th>'.Core::lang('publisherid').'</th>
+                                    	<th>'.Core::lang('publisher').'</th>
+                                    	<th>'.Core::lang('manage').'</th>
                                     </thead>
                                     <tbody>';
                 $n=$data->metadata->{'number_item_first'};
@@ -144,7 +144,7 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                     echo '<td>' . $n++ .'</td>';
                     echo '<td>' . $value->{'PublisherID'} .'</td>';
 			        echo '<td>' . $value->{'Name'} .'</td>';
-        			echo '<td><a href="#" data-toggle="modal" data-target="#'.$value->{'PublisherID'}.'"><i class="ti-pencil"></i> Edit</a></td>';
+        			echo '<td><a href="#" data-toggle="modal" data-target="#'.$value->{'PublisherID'}.'"><i class="ti-pencil"></i> '.Core::lang('edit').'</a></td>';
 	    	    	echo '</tr>';              
                 }
                 echo '</tbody>
@@ -164,29 +164,29 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                             <div class="modal-content">
                               <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="myModalLabel">Update Publisher</h4>
+                                <h4 class="modal-title" id="myModalLabel">'.Core::lang('update_publisher').'</h4>
                               </div>
                               <form method="post" action="'.$_SERVER['PHP_SELF'].'?m=23&page='.$page.'&itemsperpage='.$itemsperpage.'&search='.$search.'">
                               <div class="modal-body">
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            <label>Publisher ID</label>
-                                            <input name="publisherid" type="text" placeholder="Input the publisher id here..." class="form-control border-input" value="'.$value->{'PublisherID'}.'" readonly>
+                                            <label>'.Core::lang('publisherid').'</label>
+                                            <input name="publisherid" type="text" placeholder="'.Core::lang('input_publisherid').'" class="form-control border-input" value="'.$value->{'PublisherID'}.'" readonly>
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            <label>Publisher Name</label>
-                                            <input name="name" type="text" placeholder="Input the publisher name here..." class="form-control border-input" value="'.$value->{'Name'}.'" required>
+                                            <label>'.Core::lang('publisher_name').'</label>
+                                            <input name="name" type="text" placeholder="'.Core::lang('input_publisher').'" class="form-control border-input" value="'.$value->{'Name'}.'" required>
                                         </div>
                                     </div>
                                 </div>
                               </div>
                               <div class="modal-footer">
-                                <button type="submit" name="submitdeletepublisher'.$value->{'PublisherID'}.'" class="btn btn-danger pull-left">Delete</button>
+                                <button type="submit" name="submitdeletepublisher'.$value->{'PublisherID'}.'" class="btn btn-danger pull-left">'.Core::lang('delete').'</button>
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                                <button type="submit" name="submitupdatepublisher'.$value->{'PublisherID'}.'" class="btn btn-primary">Update</button>
+                                <button type="submit" name="submitupdatepublisher'.$value->{'PublisherID'}.'" class="btn btn-primary">'.Core::lang('update').'</button>
                               </div>
                               </form>
                             </div>
@@ -200,7 +200,7 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                 echo '<div class="col-md-12">
                         <div class="card card-plain">
                             <div class="header">
-                                <h4 class="title">Message: '.$data->{'message'}.'</h4>
+                                <h4 class="title" style="border-left: 6px solid pink;padding: 15px">'.$data->{'message'}.'</h4>
                             </div>
                         </div>
                     </div>';

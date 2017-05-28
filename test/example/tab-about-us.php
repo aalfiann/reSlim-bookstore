@@ -4,45 +4,34 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="header">
-                                <h4 class="title">BOOKSTORE</h4>
-                                <p class="category">Very simple and secure to create a Book Store (eBook) like a marketplace.</p>
+                                <h4 class="title"><?php echo Core::getInstance()->title?></h4>
+                                <p class="category"><?php echo Core::lang('about_bookstore')?></p>
                             </div>
                             <div class="content">
                                 <div class="typo-line">
-                                    <h3><p class="category">Feature<br><?php echo Core::getInstance()->title?> v.<?php echo Core::getInstance()->version?></p>What is the feature?</h3>
+                                    <h3><p class="category"><?php echo Core::lang('feature')?><br><?php echo Core::getInstance()->title?> v.<?php echo Core::getInstance()->version?></p><?php echo Core::lang('whats_feature')?></h3>
                                 </div>
                                 <div class="typo-line">
                                     <p class="category"></p>
                                     
                                      <p>
-                                     <ol>
-                                     <li>No limit for every platform because Bookstore is designed using Rest API system</li>
-                                     <li>Every user have their own library of ebooks</li>
-                                     <li>Every user can submit book to get some extra cash</li>
-                                     <li>PDF files is protected with encryption</li>
-                                     <li>Simple and easy to fork</li>
-                                     </ol>
+                                     <?php echo Core::lang('feature_bookstore')?>
                                      </p>
                                      
                                 </div><hr>
 
                                 <div class="typo-line">
-                                    <h3><p class="category">Requirement</p>What is the requirement? </h3>
+                                    <h3><p class="category"><?php echo Core::lang('requirement')?></p><?php echo Core::lang('whats_requirement')?></h3>
                                 </div>
                                 <div class="typo-line">
                                     <p class="category"></p>
                                      <p>
-                                     <ul>
-                                     <li>Run using PHP 5.5 or higher version</li>
-                                     <li>Apache Webserver with URL rewriting</li>
-                                     <li>Need a mcrypt extension</li>
-                                     <li>MySQL 5.6</li>
-                                     </ul>
+                                     <?php echo Core::lang('list_requirement')?>
                                      </p>
                                 </div><hr>
 
                                 <div class="typo-line">
-                                    <h3><p class="category">License</p>Bookstore using MIT License</h3>
+                                    <h3><p class="category"><?php echo Core::lang('license')?></p><?php echo Core::getInstance()->title?> <?php echo Core::lang('whats_license')?></h3>
                                 </div>
                                 <div class="typo-line">
                                     <p class="category"></p>
@@ -61,16 +50,12 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
                                 </div><hr>
 
                                 <div class="typo-line">
-                                    <h3><p class="category">Contribute</p>Bookstore is available on Github</h3>
+                                    <h3><p class="category"><?php echo Core::lang('contribute')?></p><?php echo Core::getInstance()->title?> <?php echo Core::lang('whats_contribute')?></h3>
                                 </div>
                                 <div class="typo-line">
                                     <p class="category"></p>
-                                     <p>Pull Request
-                                     <ul>
-                                     <li>Fork the reSlim-bookstore repository</li>
-                                     <li>Create a new branch for each feature or improvement</li>
-                                     <li>Send a pull request from each feature branch to the develop branch</li>
-                                     </ul>
+                                     <p><?php echo Core::lang('pull_request')?>
+                                     <?php echo Core::lang('list_request')?>
                                      </p>
                                 </div><hr>
                                 

@@ -10,7 +10,7 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                     <form method="get" action="<?php $_SERVER['PHP_SELF'].'?search='.$search?>">
                         <div class="col-lg-10 col-md-9 col-sm-9 col-xs-12">
                             <div class="form-group">
-                                <input name="search" type="text" placeholder="Search here..." class="form-control border-input" value="<?php echo $search?>">
+                                <input name="search" type="text" placeholder="<?php echo Core::lang('search_here')?>" class="form-control border-input" value="<?php echo $search?>">
                             </div>
                             <div class="form-group hidden">
                                 <input name="m" type="text" class="form-control border-input" value="10" hidden>
@@ -20,7 +20,7 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                         </div>
                         <div class="col-lg-2 col-md-2 col-sm-1 col-xs-2">
                             <div class="form-group">
-                                <button name="submitsearch" type="submit" class="btn btn-fill btn-wd ">Search</button>
+                                <button name="submitsearch" type="submit" class="btn btn-fill btn-wd "><?php echo Core::lang('search')?></button>
                             </div>
                         </div>
                     </form>
@@ -36,7 +36,7 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                                 'Name' => filter_var($_POST['name'],FILTER_SANITIZE_STRING),
                                 'Website' => filter_var($_POST['website'],FILTER_SANITIZE_STRING)
                             );
-                            Core::createProcess(Core::getInstance()->api.'/book/translator/new',$post_array,'New Translator');
+                            Core::createProcess(Core::getInstance()->api.'/book/translator/new',$post_array,Core::lang('new_translator'));
                         }
                     ?>
                     <!-- Start Modal -->
@@ -45,28 +45,28 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                             <div class="modal-content">
                               <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="myModalLabel">Add new Translator</h4>
+                                <h4 class="modal-title" id="myModalLabel"><?php echo Core::lang('add_new_translator')?></h4>
                               </div>
                               <form method="post" action="<?php $_SERVER['PHP_SELF']?>">
                               <div class="modal-body">
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            <label>Translator Name</label>
-                                            <input name="name" type="text" placeholder="Input new language here..." class="form-control border-input" required>
+                                            <label><?php echo Core::lang('translator_name')?></label>
+                                            <input name="name" type="text" placeholder="<?php echo Core::lang('input_translator')?>" class="form-control border-input" required>
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            <label>Website</label>
-                                            <input name="website" type="text" placeholder="Input new website here..." class="form-control border-input" >
+                                            <label><?php echo Core::lang('website')?></label>
+                                            <input name="website" type="text" placeholder="<?php echo Core::lang('input_website')?>" class="form-control border-input" >
                                         </div>
                                     </div>
                                 </div>
                               </div>
                               <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                                <button type="submit" name="submitnewtranslator" class="btn btn-primary">Submit</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal"><?php echo Core::lang('cancel')?></button>
+                                <button type="submit" name="submitnewtranslator" class="btn btn-primary"><?php echo Core::lang('submit')?></button>
                               </div>
                               </form>
                             </div>
@@ -76,7 +76,7 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                     <div class="col-md-12">
                         <div class="card card-plain">
                             <div class="header">
-                                <button type="submit" class="btn btn-wd" data-toggle="modal" data-target="#myModal">Add new Translator</button>
+                                <button type="submit" class="btn btn-wd" data-toggle="modal" data-target="#myModal"><?php echo Core::lang('add_new_translator')?></button>
                             </div>
                         </div>
                     </div>
@@ -97,7 +97,7 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                             'Token' => $datalogin['token'],
                             'TranslatorID' => $_POST['translatorid']
                         );
-                        Core::updateProcess(Core::getInstance()->api.'/book/translator/update',$post_array,'Translator');
+                        Core::updateProcess(Core::getInstance()->api.'/book/translator/update',$post_array,Core::lang('translator'));
                         echo Core::reloadPage();
                     }
                 }
@@ -109,7 +109,7 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                             'Token' => $datalogin['token'],
                             'TranslatorID' => $_POST['translatorid']
                         );
-                        Core::deleteProcess(Core::getInstance()->api.'/book/translator/delete',$post_array,'from Translator');
+                        Core::deleteProcess(Core::getInstance()->api.'/book/translator/delete',$post_array,Core::lang('from_translator'));
                         echo Core::reloadPage();
                     }
                 }
@@ -117,9 +117,9 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                 echo '<div class="col-md-12">
                         <div class="card card-plain">
                             <div class="header">
-                                <h4 class="title text-uppercase">Data Translator</h4>
-                                <p class="category">Message: '.$data->{'message'}.'<br>
-                                Shows no: '.$data->metadata->{'number_item_first'}.' - '.$data->metadata->{'number_item_last'}.' from total data: '.$data->metadata->{'records_total'}.'</p>
+                                <h4 class="title text-uppercase">'.Core::lang('data_translator').'</h4>
+                                <p class="category">'.Core::lang('message').': '.$data->{'message'}.'<br>
+                                '.Core::lang('shows_no').': '.$data->metadata->{'number_item_first'}.' - '.$data->metadata->{'number_item_last'}.' '.Core::lang('from_total_data').': '.$data->metadata->{'records_total'}.'</p>
                                     <div class="dropdown">
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
 		    				    			<p><i class="ti-zip"></i> Export Data <b class="caret"></b></p>
@@ -140,10 +140,10 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                                 <table id="export" class="table table-striped">
                                     <thead>
                                         <th>No</th>
-                                    	<th>TranslatorID</th>
-                                    	<th>Translator</th>
-                                        <th>Website</th>
-                                    	<th>Manage</th>
+                                    	<th>'.Core::lang('translatorid').'</th>
+                                    	<th>'.Core::lang('translator').'</th>
+                                        <th>'.Core::lang('website').'</th>
+                                    	<th>'.Core::lang('manage').'</th>
                                     </thead>
                                     <tbody>';
                 $n=$data->metadata->{'number_item_first'};
@@ -154,7 +154,7 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                     echo '<td>' . $value->{'TranslatorID'} .'</td>';
 			        echo '<td>' . $value->{'Name'} .'</td>';
                     echo '<td>' . $value->{'Website'} .'</td>';
-        			echo '<td><a href="#" data-toggle="modal" data-target="#'.$value->{'TranslatorID'}.'"><i class="ti-pencil"></i> Edit</a></td>';
+        			echo '<td><a href="#" data-toggle="modal" data-target="#'.$value->{'TranslatorID'}.'"><i class="ti-pencil"></i> '.Core::lang('edit').'</a></td>';
 	    	    	echo '</tr>';              
                 }
                 echo '</tbody>
@@ -174,35 +174,35 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                             <div class="modal-content">
                               <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="myModalLabel">Update Translator</h4>
+                                <h4 class="modal-title" id="myModalLabel">'.Core::lang('update_translator').'</h4>
                               </div>
                               <form method="post" action="'.$_SERVER['PHP_SELF'].'?m=10&page='.$page.'&itemsperpage='.$itemsperpage.'&search='.$search.'">
                               <div class="modal-body">
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            <label>Translator ID</label>
-                                            <input name="translatorid" type="text" placeholder="Input the translator id here..." class="form-control border-input" value="'.$value->{'TranslatorID'}.'" readonly>
+                                            <label>'.Core::lang('translatorid').'</label>
+                                            <input name="translatorid" type="text" placeholder="'.Core::lang('input_translatorid').'" class="form-control border-input" value="'.$value->{'TranslatorID'}.'" readonly>
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            <label>Translator Name</label>
-                                            <input name="name" type="text" placeholder="Input the translator name here..." class="form-control border-input" value="'.$value->{'Name'}.'" required>
+                                            <label>'.Core::lang('translator_name').'</label>
+                                            <input name="name" type="text" placeholder="'.Core::lang('input_translator').'" class="form-control border-input" value="'.$value->{'Name'}.'" required>
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            <label>Website</label>
-                                            <input name="website" type="text" placeholder="Input the translator website here..." class="form-control border-input" value="'.$value->{'Website'}.'" >
+                                            <label>'.Core::lang('website').'</label>
+                                            <input name="website" type="text" placeholder="'.Core::lang('input_website').'" class="form-control border-input" value="'.$value->{'Website'}.'" >
                                         </div>
                                     </div>
                                 </div>
                               </div>
                               <div class="modal-footer">
-                                <button type="submit" name="submitdeletetranslator'.$value->{'TranslatorID'}.'" class="btn btn-danger pull-left">Delete</button>
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                                <button type="submit" name="submitupdatetranslator'.$value->{'TranslatorID'}.'" class="btn btn-primary">Update</button>
+                                <button type="submit" name="submitdeletetranslator'.$value->{'TranslatorID'}.'" class="btn btn-danger pull-left">'.Core::lang('delete').'</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">'.Core::lang('cancel').'</button>
+                                <button type="submit" name="submitupdatetranslator'.$value->{'TranslatorID'}.'" class="btn btn-primary">'.Core::lang('update').'</button>
                               </div>
                               </form>
                             </div>
@@ -216,7 +216,7 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                 echo '<div class="col-md-12">
                         <div class="card card-plain">
                             <div class="header">
-                                <h4 class="title">Message: '.$data->{'message'}.'</h4>
+                                <h4 class="title" style="border-left: 6px solid pink;padding: 15px">'.$data->{'message'}.'</h4>
                             </div>
                         </div>
                     </div>';

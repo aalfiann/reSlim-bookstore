@@ -12,20 +12,20 @@ $lastdate = ((!empty($_GET['lastdate']))?$_GET['lastdate']:date('Y-m-d'));
                     <form method="get" action="<?php $_SERVER['PHP_SELF'].'?search='.$search?>">
                         <div class="col-md-2">
                             <div class="form-group">
-                                <label>First Date</label>
-                                <input id="firstdate" name="firstdate" type="text" class="form-control border-input" placeholder="First Date" value="<?php echo $firstdate?>" required>
+                                <label><?php echo Core::lang('first_date')?></label>
+                                <input id="firstdate" name="firstdate" type="text" class="form-control border-input" placeholder="<?php echo Core::lang('first_date')?>" value="<?php echo $firstdate?>" required>
                             </div>
                         </div>
                         <div class="col-md-2">
                             <div class="form-group">
-                                <label>Last Date</label>
-                                <input id="lastdate" name="lastdate" type="text" class="form-control border-input" placeholder="Last Date" value="<?php echo $lastdate?>" required>
+                                <label><?php echo Core::lang('last_date')?></label>
+                                <input id="lastdate" name="lastdate" type="text" class="form-control border-input" placeholder="<?php echo Core::lang('last_date')?>" value="<?php echo $lastdate?>" required>
                             </div>
                         </div>
                         <div class="col-lg-8 col-md-9 col-sm-9 col-xs-12">
                             <div class="form-group">
-                                <label>Search</label>
-                                <input name="search" type="text" placeholder="Search here..." class="form-control border-input" value="<?php echo $search?>">
+                                <label><?php echo Core::lang('search')?></label>
+                                <input name="search" type="text" placeholder="<?php echo Core::lang('search_here')?>" class="form-control border-input" value="<?php echo $search?>">
                             </div>
                             <div class="form-group hidden">
                                 <input name="m" type="text" class="form-control border-input" value="18" hidden>
@@ -36,7 +36,7 @@ $lastdate = ((!empty($_GET['lastdate']))?$_GET['lastdate']:date('Y-m-d'));
                         <div class="col-lg-2 col-md-2 col-sm-1 col-xs-2">
                             <div class="form-group">
                                 <label></label>
-                                <button name="submitsearch" type="submit" class="btn btn-fill btn-wd ">Search</button>
+                                <button name="submitsearch" type="submit" class="btn btn-fill btn-wd "><?php echo Core::lang('search')?></button>
                             </div>
                         </div>
                     </form>
@@ -62,7 +62,7 @@ $lastdate = ((!empty($_GET['lastdate']))?$_GET['lastdate']:date('Y-m-d'));
                                 'FromName' => filter_var($_POST['fromname'],FILTER_SANITIZE_STRING),
                                 'Evidence' => filter_var($_POST['evidence'],FILTER_SANITIZE_STRING)
                             );
-                            Core::createProcess(Core::getInstance()->api.'/book/user/withdraw/new',$post_array,'Withdrawal');
+                            Core::createProcess(Core::getInstance()->api.'/book/user/withdraw/new',$post_array,Core::lang('withdrawal'));
                         }
                     ?>
                     <!-- Start Modal -->
@@ -71,82 +71,82 @@ $lastdate = ((!empty($_GET['lastdate']))?$_GET['lastdate']:date('Y-m-d'));
                             <div class="modal-content">
                               <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="myModalLabel">Add new Withdrawal</h4>
+                                <h4 class="modal-title" id="myModalLabel"><?php echo Core::lang('add_new_withdrawal')?></h4>
                               </div>
                               <form method="post" action="<?php $_SERVER['PHP_SELF']?>">
                               <div class="modal-body">
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            <label>Username</label>
-                                            <input name="username" type="text" placeholder="Input the username here..." maxlength="50" class="form-control border-input" required>
+                                            <label><?php echo Core::lang('username')?></label>
+                                            <input name="username" type="text" placeholder="<?php echo Core::lang('input_withdraw_username')?>" maxlength="50" class="form-control border-input" required>
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            <label>Detail</label>
-                                            <textarea name="detail" rows="2" type="text" placeholder="Input your detail here..." maxlength="50" class="form-control border-input" required></textarea>
+                                            <label><?php echo Core::lang('detail')?></label>
+                                            <textarea name="detail" rows="2" type="text" placeholder="<?php echo Core::lang('input_withdraw_detail')?>" maxlength="50" class="form-control border-input" required></textarea>
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            <label>Fullname</label>
-                                            <input name="fullname" type="text" placeholder="Input the user fullname here..." maxlength="50" class="form-control border-input" required>
+                                            <label><?php echo Core::lang('fullname')?></label>
+                                            <input name="fullname" type="text" placeholder="<?php echo Core::lang('input_withdraw_fullname')?>" maxlength="50" class="form-control border-input" required>
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            <label>No Account</label>
-                                            <input name="account" type="text" placeholder="Input the no account of user here..." maxlength="50" class="form-control border-input" required>
+                                            <label><?php echo Core::lang('bank_no_account')?></label>
+                                            <input name="account" type="text" placeholder="<?php echo Core::lang('input_withdraw_account')?>" maxlength="50" class="form-control border-input" required>
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            <label>Bank Name</label>
-                                            <input name="bankname" type="text" placeholder="Input the bank name of user here..." maxlength="50" class="form-control border-input" required>
+                                            <label><?php echo Core::lang('bank_name')?></label>
+                                            <input name="bankname" type="text" placeholder="<?php echo Core::lang('input_withdraw_bankname')?>" maxlength="50" class="form-control border-input" required>
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            <label>Bank Address</label>
-                                            <textarea name="bankaddress" rows="2" type="text" placeholder="Input the bank address of user here..." maxlength="50" class="form-control border-input" required></textarea>
+                                            <label><?php echo Core::lang('bank_address')?></label>
+                                            <textarea name="bankaddress" rows="2" type="text" placeholder="<?php echo Core::lang('input_withdraw_bankaddress')?>" maxlength="50" class="form-control border-input" required></textarea>
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            <label>No Reference</label>
-                                            <input name="noreference" type="text" placeholder="Input your no reference here..." maxlength="50" class="form-control border-input" required>
+                                            <label><?php echo Core::lang('no_reference')?></label>
+                                            <input name="noreference" type="text" placeholder="<?php echo Core::lang('input_withdraw_reference')?>" maxlength="50" class="form-control border-input" required>
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            <label>Amount</label>
-                                            <input name="amount" type="text" placeholder="Input your amount here..." maxlength="10" class="form-control border-input" required>
+                                            <label><?php echo Core::lang('amount')?></label>
+                                            <input name="amount" type="text" placeholder="<?php echo Core::lang('input_withdraw_amount')?>" maxlength="10" class="form-control border-input" required>
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            <label>From Bank</label>
-                                            <input name="frombank" type="text" placeholder="Input your name of bank here..." maxlength="50" class="form-control border-input" required>
+                                            <label><?php echo Core::lang('from_bank')?></label>
+                                            <input name="frombank" type="text" placeholder="<?php echo Core::lang('input_withdraw_frombank')?>" maxlength="50" class="form-control border-input" required>
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            <label>From Name</label>
-                                            <input name="fromname" type="text" placeholder="Input your bank name here..." maxlength="50" class="form-control border-input" required>
+                                            <label><?php echo Core::lang('from_name')?></label>
+                                            <input name="fromname" type="text" placeholder="<?php echo Core::lang('input_withdraw_fromname')?>" maxlength="50" class="form-control border-input" required>
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            <label>Proof Of Transaction</label>
-                                            <textarea name="evidence" rows="2" type="text" placeholder="Input your proof of transaction here..." maxlength="50" class="form-control border-input" required></textarea>
+                                            <label><?php echo Core::lang('proof_of_transaction')?></label>
+                                            <textarea name="evidence" rows="2" type="text" placeholder="<?php echo Core::lang('input_withdraw_pot')?>" maxlength="50" class="form-control border-input" required></textarea>
                                         </div>
                                     </div>
                                 </div>
                               </div>
                               <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                                <button type="submit" name="submitnewwithdraw" class="btn btn-primary">Submit</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal"><?php echo Core::lang('cancel')?></button>
+                                <button type="submit" name="submitnewwithdraw" class="btn btn-primary"><?php echo Core::lang('submit')?></button>
                               </div>
                               </form>
                             </div>
@@ -156,7 +156,7 @@ $lastdate = ((!empty($_GET['lastdate']))?$_GET['lastdate']:date('Y-m-d'));
                     <div class="col-md-12">
                         <div class="card card-plain">
                             <div class="header">
-                                <button type="submit" class="btn btn-wd" data-toggle="modal" data-target="#myModal">Add new Withdrawal</button>
+                                <button type="submit" class="btn btn-wd" data-toggle="modal" data-target="#myModal"><?php echo Core::lang('add_new_withdrawal')?></button>
                             </div>
                         </div>
                     </div>
@@ -188,7 +188,7 @@ $lastdate = ((!empty($_GET['lastdate']))?$_GET['lastdate']:date('Y-m-d'));
                             'Evidence' => $_POST['evidence'],
                             'Detail' => $_POST['detail']
                         );
-                        Core::updateProcess(Core::getInstance()->api.'/book/user/withdraw/update',$post_array,'Withdrawal');
+                        Core::updateProcess(Core::getInstance()->api.'/book/user/withdraw/update',$post_array,Core::lang('withdrawal'));
                         echo Core::reloadPage();
                     }
                 }
@@ -201,7 +201,7 @@ $lastdate = ((!empty($_GET['lastdate']))?$_GET['lastdate']:date('Y-m-d'));
                             'Token' => $datalogin['token'],
                             'WithdrawID' => $_POST['withdrawid']
                         );
-                        Core::deleteProcess(Core::getInstance()->api.'/book/user/withdraw/delete',$post_array,'Withdrawal');
+                        Core::deleteProcess(Core::getInstance()->api.'/book/user/withdraw/delete',$post_array,Core::lang('withdrawal'));
                         echo Core::reloadPage();
                     }
                 }
@@ -209,9 +209,9 @@ $lastdate = ((!empty($_GET['lastdate']))?$_GET['lastdate']:date('Y-m-d'));
                 echo '<div class="col-md-12">
                         <div class="card card-plain">
                             <div class="header">
-                                <h4 class="title text-uppercase">Data Report Withdrawal</h4>
-                                <p class="category">Message: '.$data->{'message'}.'<br>
-                                Shows no: '.$data->metadata->{'number_item_first'}.' - '.$data->metadata->{'number_item_last'}.' from total data: '.$data->metadata->{'records_total'}.'</p>
+                                <h4 class="title text-uppercase">'.Core::lang('data_report_withdrawal').'</h4>
+                                <p class="category">'.Core::lang('message').': '.$data->{'message'}.'<br>
+                                '.Core::lang('shows_no').': '.$data->metadata->{'number_item_first'}.' - '.$data->metadata->{'number_item_last'}.' '.Core::lang('from_total_data').': '.$data->metadata->{'records_total'}.'</p>
                                     <div class="dropdown">
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
 		    				    			<p><i class="ti-zip"></i> Export Data <b class="caret"></b></p>
@@ -232,21 +232,21 @@ $lastdate = ((!empty($_GET['lastdate']))?$_GET['lastdate']:date('Y-m-d'));
                                 <table id="export" class="table table-striped">
                                     <thead>
                                         <th>No</th>
-                                    	<th>Date Transaction</th>
-                                    	<th>Withdraw ID</th>
-                                    	<th>Detail</th>
-                                    	<th>Username</th>
-                                        <th>Fullname</th>
-                                        <th>Bank Name</th>
-                                    	<th>No Reference</th>
-                                        <th>Amount</th>
-                                        <th>Via Bank</th>
-                                        <th>From</th>
-                                        <th>Proof Of Transaction</th>
-                                        <th>Admin</th>
-                                        <th>Updated at</th>
-                                        <th>Updated by</th>
-                                        <th>Manage</th>
+                                    	<th>'.Core::lang('date_transaction').'</th>
+                                    	<th>'.Core::lang('withdrawid').'</th>
+                                    	<th>'.Core::lang('detail').'</th>
+                                    	<th>'.Core::lang('username').'</th>
+                                        <th>'.Core::lang('fullname').'</th>
+                                        <th>'.Core::lang('bank_name').'</th>
+                                    	<th>'.Core::lang('no_reference').'</th>
+                                        <th>'.Core::lang('amount').'</th>
+                                        <th>'.Core::lang('via_bank').'</th>
+                                        <th>'.Core::lang('from').'</th>
+                                        <th>'.Core::lang('proof_of_transaction').'</th>
+                                        <th>'.Core::lang('admin').'</th>
+                                        <th>'.Core::lang('updated_at').'</th>
+                                        <th>'.Core::lang('updated_by').'</th>
+                                        <th>'.Core::lang('manage').'</th>
                                     </thead>
                                     <tbody>';
                 $n=$data->metadata->{'number_item_first'};
@@ -268,7 +268,7 @@ $lastdate = ((!empty($_GET['lastdate']))?$_GET['lastdate']:date('Y-m-d'));
                     echo '<td>' . $value->{'Adminname'} .'</td>';
                     echo '<td>' . $value->{'Updated_at'} .'</td>';
                     echo '<td>' . $value->{'Updated_by'} .'</td>';
-                    echo '<td><a href="#" data-toggle="modal" data-target="#'.$value->{'WithdrawID'}.'"><i class="ti-pencil"></i> Edit</a></td>';
+                    echo '<td><a href="#" data-toggle="modal" data-target="#'.$value->{'WithdrawID'}.'"><i class="ti-pencil"></i> '.Core::lang('edit').'</a></td>';
 	    	    	echo '</tr>';              
                 }
                 echo '</tbody>
@@ -295,76 +295,76 @@ $lastdate = ((!empty($_GET['lastdate']))?$_GET['lastdate']:date('Y-m-d'));
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            <label>Withdraw ID</label>
-                                            <input name="withdrawid" type="text" placeholder="Input the withdraw id here..." maxlength="50" class="form-control border-input" value="'.$value->{'WithdrawID'}.'" readonly>
+                                            <label>'.Core::lang('withdrawid').'</label>
+                                            <input name="withdrawid" type="text" placeholder="'.Core::lang('input_withdraw_id').'" maxlength="50" class="form-control border-input" value="'.$value->{'WithdrawID'}.'" readonly>
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            <label>Detail</label>
-                                            <textarea name="detail" rows="2" type="text" placeholder="Input your detail here..." maxlength="50" class="form-control border-input" required>'.$value->{'Detail'}.'</textarea>
+                                            <label>'.Core::lang('detail').'</label>
+                                            <textarea name="detail" rows="2" type="text" placeholder="'.Core::lang('input_withdraw_detail').'" maxlength="50" class="form-control border-input" required>'.$value->{'Detail'}.'</textarea>
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            <label>Fullname</label>
-                                            <input name="fullname" type="text" placeholder="Input the fullname of user here..." maxlength="50" class="form-control border-input" value="'.$value->{'Fullname'}.'" required>
+                                            <label>'.Core::lang('fullname').'</label>
+                                            <input name="fullname" type="text" placeholder="'.Core::lang('input_withdraw_fullname').'" maxlength="50" class="form-control border-input" value="'.$value->{'Fullname'}.'" required>
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            <label>No Account</label>
-                                            <input name="account" type="text" placeholder="Input the no account of user here..." maxlength="50" class="form-control border-input" value="'.$value->{'No_Account'}.'" required>
+                                            <label>'.Core::lang('bank_no_account').'</label>
+                                            <input name="account" type="text" placeholder="'.Core::lang('input_withdraw_account').'" maxlength="50" class="form-control border-input" value="'.$value->{'No_Account'}.'" required>
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            <label>Bank Name</label>
-                                            <input name="bankname" type="text" placeholder="Input the bank name of user here..." maxlength="50" class="form-control border-input" value="'.$value->{'Bank_Name'}.'" required>
+                                            <label>'.Core::lang('bank_name').'</label>
+                                            <input name="bankname" type="text" placeholder="'.Core::lang('input_withdraw_bankname').'" maxlength="50" class="form-control border-input" value="'.$value->{'Bank_Name'}.'" required>
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            <label>Bank Address</label>
-                                            <textarea name="bankaddress" rows="2" type="text" placeholder="Input the bank address of user here..." maxlength="50" class="form-control border-input" required>'.$value->{'Bank_Address'}.'</textarea>
+                                            <label>'.Core::lang('bank_address').'</label>
+                                            <textarea name="bankaddress" rows="2" type="text" placeholder="'.Core::lang('input_withdraw_bankaddress').'" maxlength="50" class="form-control border-input" required>'.$value->{'Bank_Address'}.'</textarea>
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            <label>No Reference</label>
-                                            <input name="noreference" type="text" placeholder="Input your no reference here..." maxlength="50" class="form-control border-input" value="'.$value->{'No_Reference'}.'" required>
+                                            <label>'.Core::lang('no_reference').'</label>
+                                            <input name="noreference" type="text" placeholder="'.Core::lang('input_withdraw_reference').'" maxlength="50" class="form-control border-input" value="'.$value->{'No_Reference'}.'" required>
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            <label>Amount</label>
-                                            <input name="amount" type="text" placeholder="Input your amount here..." maxlength="10" class="form-control border-input" value="'.$value->{'Amount'}.'" required>
+                                            <label>'.Core::lang('amount').'</label>
+                                            <input name="amount" type="text" placeholder="'.Core::lang('input_withdraw_amount').'" maxlength="10" class="form-control border-input" value="'.$value->{'Amount'}.'" required>
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            <label>From Bank</label>
-                                            <input name="frombank" type="text" placeholder="Input your name of bank here..." maxlength="50" class="form-control border-input" value="'.$value->{'From_Bank'}.'" required>
+                                            <label>'.Core::lang('from_bank').'</label>
+                                            <input name="frombank" type="text" placeholder="'.Core::lang('input_withdraw_frombank').'" maxlength="50" class="form-control border-input" value="'.$value->{'From_Bank'}.'" required>
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            <label>From Name</label>
-                                            <input name="fromname" type="text" placeholder="Input your bank name here..." maxlength="50" class="form-control border-input" value="'.$value->{'From_Name'}.'" required>
+                                            <label>'.Core::lang('from_name').'</label>
+                                            <input name="fromname" type="text" placeholder="'.Core::lang('input_withdraw_fromname').'" maxlength="50" class="form-control border-input" value="'.$value->{'From_Name'}.'" required>
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            <label>Proof Of Transaction</label>
-                                            <textarea name="evidence" rows="2" type="text" placeholder="Input your proof of transaction here..." maxlength="50" class="form-control border-input" required>'.$value->{'Image_Evidence'}.'</textarea>
+                                            <label>'.Core::lang('proof_of_transaction').'</label>
+                                            <textarea name="evidence" rows="2" type="text" placeholder="'.Core::lang('input_withdraw_pot').'" maxlength="50" class="form-control border-input" required>'.$value->{'Image_Evidence'}.'</textarea>
                                         </div>
                                     </div>
                                 </div>
                               </div>
                               <div class="modal-footer">
-                                <button type="submit" name="submitdeletewithdraw'.$value->{'WithdrawID'}.'" class="btn btn-danger pull-left">Delete</button>
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                                <button type="submit" name="submitupdatewithdraw'.$value->{'WithdrawID'}.'" class="btn btn-primary">Update</button>
+                                <button type="submit" name="submitdeletewithdraw'.$value->{'WithdrawID'}.'" class="btn btn-danger pull-left">'.Core::lang('delete').'</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">'.Core::lang('cancel').'</button>
+                                <button type="submit" name="submitupdatewithdraw'.$value->{'WithdrawID'}.'" class="btn btn-primary">'.Core::lang('update').'</button>
                               </div>
                               </form>
                             </div>
@@ -378,7 +378,7 @@ $lastdate = ((!empty($_GET['lastdate']))?$_GET['lastdate']:date('Y-m-d'));
                 echo '<div class="col-md-12">
                         <div class="card card-plain">
                             <div class="header">
-                                <h4 class="title">Message: '.$data->{'message'}.'</h4>
+                                <h4 class="title" style="border-left: 6px solid pink;padding: 15px">'.$data->{'message'}.'</h4>
                             </div>
                         </div>
                     </div>';

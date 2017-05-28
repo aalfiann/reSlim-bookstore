@@ -20,42 +20,42 @@
                             <form action="<?php $_SERVER['PHP_SELF']?>" method="post">
                                 <div class="card" data-background="color" data-color="blue">
                                     <div class="header">
-                                        <h3 class="title"><?php echo Core::getInstance()->title?> Settings</h3>
+                                        <h3 class="title"><?php echo Core::getInstance()->title?> <?php echo Core::lang('settings')?></h3>
                                         <hr>
                                     </div>
                                     <div class="content">
                                         <div class="form-group">
-                                            <label>Title</label>
-                                            <input name="title" type="text" placeholder="Please input the title of website" class="form-control border-input" maxlength="20" value="<?php echo Core::getInstance()->title?>" required>
+                                            <label><?php echo Core::lang('title')?></label>
+                                            <input name="title" type="text" placeholder="<?php echo Core::lang('input_settings_title')?>" class="form-control border-input" maxlength="20" value="<?php echo Core::getInstance()->title?>" required>
                                         </div>
                                         <div class="form-group">
-                                            <label>Email</label>
-                                            <input name="email" type="text" placeholder="Please input Your Email" class="form-control border-input" maxlength="50" value="<?php echo Core::getInstance()->email?>" required>
+                                            <label><?php echo Core::lang('email')?></label>
+                                            <input name="email" type="text" placeholder="<?php echo Core::lang('input_email')?>" class="form-control border-input" maxlength="50" value="<?php echo Core::getInstance()->email?>" required>
                                         </div>
                                         <div class="form-group">
-                                            <label>Hotline</label>
-                                            <input name="hotline" type="text" placeholder="Please input Your hotline call" class="form-control border-input" maxlength="15" value="<?php echo Core::getInstance()->hotline?>" >
+                                            <label><?php echo Core::lang('hotline')?></label>
+                                            <input name="hotline" type="text" placeholder="<?php echo Core::lang('input_settings_hotline')?>" class="form-control border-input" maxlength="15" value="<?php echo Core::getInstance()->hotline?>" >
                                         </div>
                                         <div class="form-group">
-                                            <label>Sharethis</label>
-                                            <input name="sharethis" type="text" placeholder="Please input Your sharethis code" class="form-control border-input" maxlength="50" value="<?php echo Core::getInstance()->sharethis?>" >
+                                            <label><?php echo Core::lang('sharethis')?></label>
+                                            <input name="sharethis" type="text" placeholder="<?php echo Core::lang('input_settings_sharethis')?>" class="form-control border-input" maxlength="50" value="<?php echo Core::getInstance()->sharethis?>" >
                                         </div>
                                         <div class="form-group">
-                                            <label>Base Path</label>
-                                            <input name="basepath" type="text" placeholder="Please input url folder of Your website." class="form-control border-input" value="<?php echo Core::getInstance()->basepath?>" required>
+                                            <label><?php echo Core::lang('basepath')?></label>
+                                            <input name="basepath" type="text" placeholder="<?php echo Core::lang('input_settings_basepath')?>" class="form-control border-input" value="<?php echo Core::getInstance()->basepath?>" required>
                                         </div>
                                         <div class="form-group">
-                                            <label>Url API</label>
-                                            <input name="api" type="text" placeholder="Please input url folder of Your Rest API." class="form-control border-input" value="<?php echo Core::getInstance()->api?>" required>
+                                            <label><?php echo Core::lang('urlapi')?></label>
+                                            <input name="api" type="text" placeholder="<?php echo Core::lang('input_settings_api')?>" class="form-control border-input" value="<?php echo Core::getInstance()->api?>" required>
                                         </div>
                                         <div class="form-group">
-                                            <label>API Key</label>
-                                            <input name="apikey" type="text" placeholder="Please input Your API Key here..." class="form-control border-input" value="<?php echo Core::getInstance()->apikey?>">
+                                            <label><?php echo Core::lang('apikey')?></label>
+                                            <input name="apikey" type="text" placeholder="<?php echo Core::lang('input_settings_apikey')?>" class="form-control border-input" value="<?php echo Core::getInstance()->apikey?>">
                                         </div>
-                                        <p class="category"><i class="ti-info-alt"></i> Doesn't have any API Keys? You can create at least one API Key at <a href="modul-data-api.php?m=7&page=1&itemsperpage=10&search=">here</a>.</p>
+                                        <p class="category"><i class="ti-info-alt"></i> <?php echo Core::lang('info_get_apikey_1')?> <a href="modul-data-api.php?m=7&page=1&itemsperpage=10&search="><?php echo Core::lang('info_get_apikey_2')?></a></p>
                                         <hr>
                                         <div class="form-group text-center">
-                                            <button name="submitsettings" type="submit" class="btn btn-fill btn-wd ">Save Settings</button>
+                                            <button name="submitsettings" type="submit" class="btn btn-fill btn-wd "><?php echo Core::lang('save_settings')?></button>
                                         </div>
                                     </div>
                                 </div>

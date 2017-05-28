@@ -5,7 +5,7 @@ if (Core::getRole($datalogin['token']) == '3') {
     Core::goToPage('modul-book-showroom.php?m=12&page=1&itemsperpage=12&search=');
 };?>
 <!doctype html>
-<html lang="id">
+<html lang="<?php echo Core::getInstance()->setlang?>">
 <head>
     <title><?php echo ((empty($_GET['username']))?'Not Found':$_GET['username'])?> - <?php echo Core::getInstance()->title?></title>
 	<?php include 'global-meta.php';?>
@@ -27,7 +27,7 @@ if (Core::getRole($datalogin['token']) == '3') {
                         <span class="icon-bar bar2"></span>
                         <span class="icon-bar bar3"></span>
                     </button>
-                    <a class="navbar-brand" href="#">User Profile</a>
+                    <a class="navbar-brand" href="#"><?php echo Core::lang('user_profile')?></a>
                 </div>
                 <?php include 'global-nav.php';?>
             </div>
