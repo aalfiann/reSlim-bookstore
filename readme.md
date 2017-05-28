@@ -13,6 +13,7 @@ Feature
 3. Every user can submit book to get some extra cash
 4. PDF files is protected with encryption
 5. Simple and easy to fork
+6. Support multi language
 
 Requirement
 -----

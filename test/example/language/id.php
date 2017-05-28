@@ -110,6 +110,7 @@ $lang = [
         <li>Setiap pengguna dapat mengirim buku untuk mendapatkan pendapatan tambahan</li>
         <li>Berkas PDF dilindungi dengan enkripsi</li>
         <li>Sedeharna dan mudah untuk di modifikasi</li>
+        <li>Mendukung banyak bahasa</li>
         </ol>',
     'requirement' => 'Spesifikasi',
     'whats_requirement' => 'Apa saja spesifikasinya?',

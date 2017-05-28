@@ -110,6 +110,7 @@ $lang = [
         <li>Every user can submit book to get some extra cash</li>
         <li>PDF files is protected with encryption</li>
         <li>Simple and easy to fork</li>
+        <li>Support multi language</li>
         </ol>',
     'requirement' => 'Requirement',
     'whats_requirement' => 'What is the requirement?',
