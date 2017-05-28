@@ -33,7 +33,7 @@
         var $version = '1.0.0';
 
         // Set language
-        var $setlang = 'id';
+        var $setlang = 'en';
         var $datalang;
 
         private static $instance,$getlang;
