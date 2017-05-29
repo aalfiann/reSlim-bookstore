@@ -1,5 +1,5 @@
 <?php
-require_once '/config.php';
+require_once '../config.php';
 $lang = [
     'welcome_to' => 'Welcome to',
     'register' => 'Register',

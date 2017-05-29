@@ -2,7 +2,7 @@
 <!doctype html>
 <html lang="<?php echo Core::getInstance()->setlang?>">
 <head>
-    <title><?php echo Core::lang('about_us')?>- <?php echo Core::getInstance()->title?></title>
+    <title><?php echo Core::lang('about_us')?> - <?php echo Core::getInstance()->title?></title>
 	<?php include 'global-meta.php';?>
 </head>
 <body>
