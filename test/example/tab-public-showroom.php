@@ -41,9 +41,10 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                 echo '<div class="col-md-12">
                         <div class="card card-plain">';
                 $n=$data->metadata->{'number_item_first'};
+                $i=1;
                 foreach ($data->results as $name => $value) 
 	            {
-                    echo '<div class="col-lg-3 col-md-4">
+                    echo '<div class="col-lg-4 col-md-6">
                         <div class="card card-user">
                         <div class="row">
                             <div class="text-center"><a href="modul-public-detail.php?m=22&bookid='.$value->{'BookID'}.'&itemsperpage='.$itemsperpage.'"><img src="' . $value->{'Image'} .'" width="80%"></a></div>
@@ -83,6 +84,13 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                             </form>
                         </div>
                     </div>';
+                    if ($i%3==0){
+						echo '<div class="clearfix visible-lg-block"></div>';
+					}
+					if ($i%2==0){
+						echo '<div class="clearfix visible-md-block"></div>';
+					}
+					$i++;
                 }
 
                 echo '</div>

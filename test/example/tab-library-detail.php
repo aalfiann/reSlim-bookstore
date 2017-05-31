@@ -51,7 +51,7 @@ $datareview = json_decode(Core::execGetRequest($urlreview));
                 foreach ($data->result as $name => $value) 
 	            {
                     
-                    echo '<div class="col-lg-3 col-md-4">
+                    echo '<div class="col-lg-4 col-md-4">
                         <div class="card card-user">
                         <div class="row">
                             <div class="text-center"><img src="' . $value->{'Image_link'} .'" width="80%"></div>
@@ -98,7 +98,7 @@ $datareview = json_decode(Core::execGetRequest($urlreview));
                         </div>
                     </div>';
 
-                    echo '<div class="col-md-9">
+                    echo '<div class="col-md-8">
                             <div class="card">
                                 <div class="header">
                                     <h4 class="title">'.Core::lang('information_detail').'</h4>

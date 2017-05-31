@@ -136,7 +136,7 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                         echo Core::reloadPage();
                     }
                 }
-
+                $i=1;
                 foreach ($data->results as $name => $value) 
 	            {
                     echo '<!-- Start Data Card -->
@@ -268,6 +268,13 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                         <!-- End Modal -->
                     </div>
                     <!-- End Data Card -->';
+                    if ($i%4==0){
+						echo '<div class="clearfix visible-lg-block"></div>';
+					}
+					if ($i%2==0){
+						echo '<div class="clearfix visible-md-block"></div>';
+					}
+					$i++;
                 }
                 echo '
                     <div class="col-lg-12">';
