@@ -120,13 +120,13 @@
                         </a>
                     </li>
                     <li <?php if (!empty($_GET['m'])) if($_GET['m']==12) echo 'class="active"';?> >
-                        <a href="modul-book-showroom.php?m=12&page=1&itemsperpage=10&search=">
+                        <a href="modul-book-showroom.php?m=12&page=1&itemsperpage=12&search=">
                             <i class="ti-shopping-cart"></i>
                             <p><?php echo Core::lang('showroom')?></p>
                         </a>
                     </li>
                     <li <?php if (!empty($_GET['m'])) if($_GET['m']==13) echo 'class="active"';?> >
-                        <a href="modul-book-library.php?m=13&page=1&itemsperpage=10&search=">
+                        <a href="modul-book-library.php?m=13&page=1&itemsperpage=12&search=">
                             <i class="ti-book"></i>
                             <p><?php echo Core::lang('library')?></p>
                         </a>
@@ -191,7 +191,7 @@
                     </li>
         <?php } else { ?>
                 <li <?php if (!empty($_GET['m'])) if($_GET['m']==22) echo 'class="active"';?> >
-                    <a href="modul-public-showroom.php?m=22&page=1&itemsperpage=10&search=">
+                    <a href="modul-public-showroom.php?m=22&page=1&itemsperpage=120&search=">
                         <i class="ti-shopping-cart"></i>
                         <p><?php echo Core::lang('showroom')?></p>
                     </a>
