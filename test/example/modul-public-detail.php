@@ -24,6 +24,10 @@ $datareview = json_decode(Core::execGetRequest($urlreview));
                     echo '<title>'.$value->{'Title'}.' - '.Core::getInstance()->title.'</title>
                     <meta name="description" content="'.$value->{'Description'}.'">
                     <meta name="keywords" content="'.$value->{'Tags'}.'">
+                    <meta name="twitter:card" content="summary_large_image" />
+					<meta name="twitter:title" content="'.$value->{'Title'}.'" />
+					<meta name="twitter:description" content="'.$value->{'Description'}.'" />
+					<meta name="twitter:image" content="'.$value->{'Image'}.'" />
                     <meta property="og:title" content="'.$value->{'Title'}.'" />
                     <meta property="og:type" content="book" />
                     <meta property="og:url" content="'.(isset($_SERVER['HTTPS']) ? 'https' : 'http') . '://'.$_SERVER[HTTP_HOST].$_SERVER[REQUEST_URI].'" />
