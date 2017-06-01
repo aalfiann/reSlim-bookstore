@@ -1,6 +1,7 @@
 <?php
 require_once '../config.php';
 $lang = [
+    'currency_code' => 'USD',
     'welcome_to' => 'Welcome to',
     'register' => 'Register',
     'register_to' => 'Register to',
