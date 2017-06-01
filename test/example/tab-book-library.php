@@ -88,7 +88,7 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                                         <h5>' . $value->{'Status'} .'<br /><small>'.Core::lang('status_payment').'</small></h5>
                                     </div>
                                     <div class="col-md-3">
-                                        <h5>'.(($value->{'StatusID'} == '34')?'<a href="#" data-toggle="modal" data-target="#thankYou">'.Core::lang('on_library').'</a>':'<a href="#" data-toggle="modal" data-target="#infoPayment'.$value->{'Guid'}.'">'.Core::lang('buy_this_book').'</a>').'</h5>
+                                        <h5>'.(($value->{'StatusID'} == '34')?'<a href="#" data-toggle="modal" data-target="#thankYou'.$value->{'BookID'}.'">'.Core::lang('on_library').'</a>':'<a href="#" data-toggle="modal" data-target="#infoPayment'.$value->{'Guid'}.'">'.Core::lang('buy_this_book').'</a>').'</h5>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -201,7 +201,7 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                                         <h5><p class="category">'.Core::lang('original_released').'</p>'.$value->{'Original_released'}.'</h5>
                                     </div>
                                     <div class="typo-line">
-                                        <h5><p class="category">Status</p>'.(($value->{'StatusID'} == '34')?'<a href="#" data-toggle="modal" data-target="#thankYou">'.Core::lang('on_library').'</a>':'<a href="#" data-toggle="modal" data-target="#infoPayment'.$value->{'Guid'}.'">'.Core::lang('buy_this_book').'</a>').'</h5>
+                                        <h5><p class="category">Status</p>'.(($value->{'StatusID'} == '34')?'<a href="#" data-toggle="modal" data-target="#thankYou'.$value->{'BookID'}.'">'.Core::lang('on_library').'</a>':'<a href="#" data-toggle="modal" data-target="#infoPayment'.$value->{'Guid'}.'">'.Core::lang('buy_this_book').'</a>').'</h5>
                                     </div>
                               </div> 
                               <!-- End Modal Body -->
@@ -220,7 +220,7 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                     foreach ($data->results as $name=>$value){
                     //Thank you
                     echo '<!-- Start Modal -->
-                        <div class="modal fade" id="thankYou" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                        <div class="modal fade" id="thankYou'.$value->{'BookID'}.'" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                           <div class="modal-dialog" role="document">
                             <div class="modal-content">
                               <div class="modal-header">

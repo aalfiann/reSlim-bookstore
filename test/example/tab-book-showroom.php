@@ -178,7 +178,7 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                               </div>
                               <div class="modal-footer">
                               <button type="button" class="btn btn-default pull-left" data-dismiss="modal">'.Core::lang('close').'</button>
-                              <a href="modul-showroom-detail.php?m=12&bookid=1&page='.$page.'&itemsperpage='.$itemsperpage.'" class="btn btn-primary  pull-left">'.Core::lang('show_detail').'</a>
+                              <a href="modul-showroom-detail.php?m=12&bookid='.$value->{'BookID'}.'&page='.$page.'&itemsperpage='.$itemsperpage.'" class="btn btn-primary  pull-left">'.Core::lang('show_detail').'</a>
                               <form method="post" action="'.$_SERVER['PHP_SELF'].'?m=12&page='.$page.'&itemsperpage='.$itemsperpage.'&search='.$search.'">
                                 <button type="submit" name="submitaddlibrary'.$value->{'BookID'}.'" class="btn btn-success btn-fill">'.Core::lang('add_to_library').'</button>
                               </form>

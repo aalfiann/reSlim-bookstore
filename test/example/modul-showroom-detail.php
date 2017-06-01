@@ -58,8 +58,7 @@ $datareview = json_decode(Core::execGetRequest($urlreview));
                     </button>
                     <a class="navbar-brand" href="#"><?php echo Core::lang('book_detail')?></a>
                 </div>
-                <div class="collapse navbar-collapse">
-                </div>
+                <?php include 'global-nav.php';?>
             </div>
         </nav>
 
