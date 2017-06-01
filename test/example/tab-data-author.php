@@ -109,7 +109,7 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                 echo '<div class="col-md-12">
                         <div class="card card-plain">
                             <div class="header">
-                                <h4 class="title text-uppercase">Data Author</h4>
+                                <h4 class="title text-uppercase">'.Core::lang('data_author').'</h4>
                                 <p class="category">'.Core::lang('message').': '.$data->{'message'}.'<br>
                                 '.Core::lang('shows_no').': '.$data->metadata->{'number_item_first'}.' - '.$data->metadata->{'number_item_last'}.' '.Core::lang('from_total_data').': '.$data->metadata->{'records_total'}.'</p>
                                     <div class="dropdown">
