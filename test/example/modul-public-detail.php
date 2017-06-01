@@ -21,9 +21,13 @@ $datareview = json_decode(Core::execGetRequest($urlreview));
             {
                 foreach ($data->result as $name => $value) 
 	            {
-                    echo '<title>'.$value->{'Title'}.' - '.Core::getInstance()->title.'</title>';
-                    echo '<meta name="description" content="'.$value->{'Description'}.'">';
-                    echo '<meta name="keywords" content="'.$value->{'Tags'}.'">';
+                    echo '<title>'.$value->{'Title'}.' - '.Core::getInstance()->title.'</title>
+                    <meta name="description" content="'.$value->{'Description'}.'">
+                    <meta name="keywords" content="'.$value->{'Tags'}.'">
+                    <meta property="og:title" content="'.$value->{'Title'}.'" />
+                    <meta property="og:type" content="book" />
+                    <meta property="og:url" content="'.(isset($_SERVER['HTTPS']) ? 'https' : 'http') . '://'.$_SERVER[HTTP_HOST].$_SERVER[REQUEST_URI].'" />
+                    <meta property="og:image" content="'.$value->{'Image'}.'" />';
                 }
             } else {
                 echo '<title>'.Core::lang('book_detail').' - '.Core::getInstance()->title.'</title>';
