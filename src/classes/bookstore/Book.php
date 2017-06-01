@@ -2605,7 +2605,7 @@ use PDO;
 								or a.Original_released like :search
 								or a.Title like :search
 								or a.Tags like :search
-								order by a.Created_at asc LIMIT :limpage , :offpage;";
+								order by a.Created_at desc LIMIT :limpage , :offpage;";
 							$stmt2 = $this->db->prepare($sql);
 							$stmt2->bindValue(':search', $search, PDO::PARAM_STR);
 							$stmt2->bindValue(':limpage', (INT) $limits, PDO::PARAM_INT);
