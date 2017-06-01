@@ -2295,7 +2295,7 @@ use PDO;
 						or a.StatusID='51' and a.ISBN like :search
 						or a.StatusID='51' and a.Original_released like :search
 						or a.StatusID='51' and a.Tags like :search
-						order by a.Created_at asc LIMIT :limpage , :offpage;";
+						order by a.Created_at desc LIMIT :limpage , :offpage;";
 					$stmt2 = $this->db->prepare($sql);
 					$stmt2->bindValue(':search', $search, PDO::PARAM_STR);
 					$stmt2->bindValue(':limpage', (INT) $limits, PDO::PARAM_INT);
@@ -2447,7 +2447,7 @@ use PDO;
 							or a.StatusID='51' and g.BookID is null and a.Original_released like :search
 							or a.StatusID='51' and g.BookID is null and a.Tags like :search
 							or a.StatusID='51' and g.BookID is null and a.Title like :search
-							order by a.Created_at asc LIMIT :limpage , :offpage;";
+							order by a.Created_at desc LIMIT :limpage , :offpage;";
 						$stmt2 = $this->db->prepare($sql);
 						$stmt2->bindValue(':search', $search, PDO::PARAM_STR);
 						$stmt2->bindValue(':username', $newusername, PDO::PARAM_STR);
@@ -3173,7 +3173,7 @@ use PDO;
 					OR a.Username=:username and f.Name like :search
 					OR a.Username=:username and g.Name like :search
 					OR a.Username=:username and h.Name like :search
-					ORDER BY a.Created_at ASC;";
+					ORDER BY a.Created_at DESC;";
 				$stmt = $this->db->prepare($sqlcountrow);
 				$stmt->bindParam(':search', $search, PDO::PARAM_STR);
 				$stmt->bindParam(':username', $newusername, PDO::PARAM_STR);
@@ -3209,7 +3209,7 @@ use PDO;
 							OR a.Username=:username and f.Name like :search
 							OR a.Username=:username and g.Name like :search
 							OR a.Username=:username and h.Name like :search
-							ORDER BY a.Created_at ASC LIMIT :limpage , :offpage;";
+							ORDER BY a.Created_at DESC LIMIT :limpage , :offpage;";
 						$stmt2 = $this->db->prepare($sql);
 						$stmt2->bindParam(':username', $newusername, PDO::PARAM_STR);
 						$stmt2->bindParam(':search', $search, PDO::PARAM_STR);
