@@ -147,7 +147,7 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                                     <div class="col-xs-5">
                                         <div class="icon-big icon-warning text-center">';
                                         if ($value->{'Filetype'} == 'image/png' || $value->{'Filetype'} == 'image/apng' || $value->{'Filetype'} == 'image/bmp' || $value->{'Filetype'} == 'image/jpg' || $value->{'Filetype'} == 'image/jpeg' || $value->{'Filetype'} == 'image/gif') {
-                                            echo '<a href="" data-toggle="modal" data-target="#'.$value->{'ItemID'}.'"><img src="'.Core::getInstance()->api.'/'.$value->{'Filepath'}.'" height="64" width="100%"></a>';
+                                            echo '<a href="" data-toggle="modal" data-target="#'.$value->{'ItemID'}.'"><img class="lazyload" data-src="'.Core::getInstance()->api.'/'.$value->{'Filepath'}.'" height="64" width="100%"></a>';
                                         } else {
                                             echo '<a href="" data-toggle="modal" data-target="#'.$value->{'ItemID'}.'"><i class="ti-file"></i></a>';
                                         }
@@ -182,7 +182,7 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                                     <div class="col-lg-12">
                                         <div class="form-group">';
                                         if ($value->{'Filetype'} == 'image/png' || $value->{'Filetype'} == 'image/apng' || $value->{'Filetype'} == 'image/bmp' || $value->{'Filetype'} == 'image/jpg' || $value->{'Filetype'} == 'image/jpeg' || $value->{'Filetype'} == 'image/gif') {
-                                            echo '<a href="#"><img src="'.Core::getInstance()->api.'/'.$value->{'Filepath'}.'" width="100%"></a>';
+                                            echo '<a href="#"><img class="lazyload" data-src="'.Core::getInstance()->api.'/'.$value->{'Filepath'}.'" width="100%"></a>';
                                         } 
                                         echo '</div>
                                     </div>

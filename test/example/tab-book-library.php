@@ -60,7 +60,7 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                     echo '<div class="col-lg-4 col-md-6">
                         <div class="card card-user">
                         <div class="row">
-                            <div class="text-center"><a href="#" data-toggle="modal" data-target="#view'.$value->{'Guid'}.'"><img src="' . $value->{'Image_link'} .'" width="80%"></a></div>
+                            <div class="text-center"><a href="#" data-toggle="modal" data-target="#view'.$value->{'Guid'}.'"><img class="lazyload" data-src="' . $value->{'Image_link'} .'" width="80%"></a></div>
                         </div>
                             <div class="text-center"><h3><a href="#" data-toggle="modal" data-target="#view'.$value->{'Guid'}.'">' . $value->{'Title'} .'</a></h3></div>
                             <p class="description text-center">';

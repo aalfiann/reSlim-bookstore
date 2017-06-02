@@ -54,7 +54,7 @@ $datareview = json_decode(Core::execGetRequest($urlreview));
                     echo '<div class="col-lg-4 col-md-4">
                         <div class="card card-user">
                         <div class="row">
-                            <div class="text-center"><img src="' . $value->{'Image_link'} .'" width="80%"></div>
+                            <div class="text-center"><img class="lazyload" data-src="' . $value->{'Image_link'} .'" width="80%"></div>
                         </div>
                             <div class="text-center"><h3>' . $value->{'Title'} .'</h3></div>
                             <p class="description text-center">';$datatags = '';
@@ -185,7 +185,7 @@ $datareview = json_decode(Core::execGetRequest($urlreview));
                                                 <div class="row">
                                                     <div class="col-xs-2 col-sm-2 col-md-2 col-lg-1">
                                                         <div class="avatar">
-                                                            <img src="'.((empty($value->{'Avatar'}))?'assets/img/faces/face-0.jpg':$value->{'Avatar'}).'" alt="Circle Image" class="img-circle img-no-padding img-responsive">
+                                                            <img class="lazyload" data-src="'.((empty($value->{'Avatar'}))?'assets/img/faces/face-0.jpg':$value->{'Avatar'}).'" alt="Circle Image" class="img-circle img-no-padding img-responsive">
                                                         </div>'.$value->{'Username'}.'
                                                     </div>
                                                     <div class="col-xs-10 col-sm-10 col-md-10 col-lg-11">
