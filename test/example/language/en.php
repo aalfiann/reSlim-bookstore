@@ -1,5 +1,5 @@
 <?php
-require_once '../config.php';
+require_once realpath(__DIR__ . '/..').'/config.php';
 $lang = [
     'currency_code' => 'USD',
     'welcome_to' => 'Welcome to',
