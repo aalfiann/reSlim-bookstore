@@ -149,6 +149,12 @@
                             <p><?php echo Core::lang('user_settings')?></p>
                         </a>
                     </li>
+                    <li <?php if (!empty($_GET['m'])) if($_GET['m']==25) echo 'class="active"';?> >
+                        <a href="modul-contact-admin.php?m=25">
+                            <i class="ti-email"></i>
+                            <p><?php echo Core::lang('contact')?></p>
+                        </a>
+                    </li>
                     <li <?php if (!empty($_GET['m'])) if($_GET['m']==20) echo 'class="active"';?> >
                         <a href="modul-faq.php?m=20">
                             <i class="ti-info-alt"></i>
