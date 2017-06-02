@@ -12,17 +12,6 @@
     <!-- Bootstrap core CSS     -->
     <link href="assets/css/main.min.css" rel="stylesheet" />
     <link href="assets/css/main.css" rel="stylesheet" />
-    <style>@media (min-width: 992px){
-    .typo-line{
-        padding-left: 140px;
-        margin-bottom: 40px;
-        position: relative;
-    }
-
-    .typo-line .category{
-        transform: translateY(-50%);
-        top: 50%;
-        left: 0px;
-        position: absolute;
-    }
-}</style>
+    
+    <!-- Typhography -->
+    <style>@media (min-width: 992px){.typo-line{padding-left:140px;margin-bottom:40px;position:relative;} .typo-line .category{transform:translateY(-50%);top:50%;left:0px;position:absolute;}}</style>
