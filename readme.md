@@ -1,7 +1,7 @@
 reSlim-bookstore
 =======
 [![Coverage](https://img.shields.io/badge/coverage-100%25-green.svg)](https://github.com/aalfiann/reSlim-bookstore)
-[![Version](https://img.shields.io/badge/stable-1.0.0-green.svg)](https://github.com/aalfiann/reSlim-bookstore)
+[![Version](https://img.shields.io/badge/stable-1.1.0-green.svg)](https://github.com/aalfiann/reSlim-bookstore)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/aalfiann/reSlim-bookstore/blob/master/license.md)
 
 Very simple and secure to create a Book Store (eBook) like a marketplace.
