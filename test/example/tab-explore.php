@@ -96,7 +96,7 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                 </div><hr>
                 <div class="row">
 <?php 
-    $url = Core::getInstance()->api.'/user/'.$datalogin['username'].'/upload/data/search/'.$page.'/'.$itemsperpage.'/'.$datalogin['token'].'/?query='.$search;
+    $url = Core::getInstance()->api.'/user/'.$datalogin['username'].'/upload/data/search/'.$page.'/'.$itemsperpage.'/'.$datalogin['token'].'/?query='.rawurlencode($search);
     $data = json_decode(Core::execGetRequest($url));
 
     // Data Status
@@ -280,7 +280,7 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                     <div class="col-lg-12">';
                     
                     $pagination = new Pagination;
-                    echo $pagination->makePagination($data,$_SERVER['PHP_SELF'].'?m=6&search='.$search);
+                    echo $pagination->makePagination($data,$_SERVER['PHP_SELF'].'?m=6&search='.rawurlencode($search));
                     
                     echo '</div>
                 ';

@@ -75,7 +75,7 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                         </div>
                     </div>
 <?php 
-    $url = Core::getInstance()->api.'/user/'.$datalogin['username'].'/keys/data/search/'.$page.'/'.$itemsperpage.'/'.$datalogin['token'].'/?query='.$search;
+    $url = Core::getInstance()->api.'/user/'.$datalogin['username'].'/keys/data/search/'.$page.'/'.$itemsperpage.'/'.$datalogin['token'].'/?query='.rawurlencode($search);
     $data = json_decode(Core::execGetRequest($url));
 
     // Data Status
@@ -171,7 +171,7 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                 </div>';
 
                 $pagination = new Pagination;
-                echo $pagination->makePagination($data,$_SERVER['PHP_SELF'].'?m=7&search='.$search);
+                echo $pagination->makePagination($data,$_SERVER['PHP_SELF'].'?m=7&search='.rawurlencode($search));
                 
                 echo '</div>';
                 foreach ($data->results as $name=>$value){

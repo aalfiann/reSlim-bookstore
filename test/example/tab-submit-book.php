@@ -169,7 +169,7 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'':$_GET['itemsperpage'
                         </div>
                     </div>
 <?php 
-    $url = Core::getInstance()->api.'/book/submitbook/data/all/'.$datalogin['username'].'/search/'.$page.'/'.$itemsperpage.'/'.$datalogin['token'].'/?query='.$search;
+    $url = Core::getInstance()->api.'/book/submitbook/data/all/'.$datalogin['username'].'/search/'.$page.'/'.$itemsperpage.'/'.$datalogin['token'].'/?query='.rawurlencode($search);
     $data = json_decode(Core::execGetRequest($url));
 
     // Data Status Release
@@ -285,7 +285,7 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'':$_GET['itemsperpage'
                 </div>';
 
                 $pagination = new Pagination;
-                echo $pagination->makePagination($data,$_SERVER['PHP_SELF'].'?m=17&search='.$search);
+                echo $pagination->makePagination($data,$_SERVER['PHP_SELF'].'?m=17&search='.rawurlencode($search));
                 
                 echo '</div>';
                 foreach ($data->results as $name=>$value){

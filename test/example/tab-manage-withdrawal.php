@@ -162,7 +162,7 @@ $lastdate = ((!empty($_GET['lastdate']))?$_GET['lastdate']:date('Y-m-d'));
                     </div>
                
 <?php 
-    $url = Core::getInstance()->api.'/book/user/withdrawal/'.$datalogin['username'].'/all/'.$page.'/'.$itemsperpage.'/'.$datalogin['token'].'/?firstdate='.$firstdate.'&lastdate='.$lastdate.'&query='.$search;
+    $url = Core::getInstance()->api.'/book/user/withdrawal/'.$datalogin['username'].'/all/'.$page.'/'.$itemsperpage.'/'.$datalogin['token'].'/?firstdate='.$firstdate.'&lastdate='.$lastdate.'&query='.rawurlencode($search);
     $data = json_decode(Core::execGetRequest($url));
 
     if (!empty($data))
@@ -278,7 +278,7 @@ $lastdate = ((!empty($_GET['lastdate']))?$_GET['lastdate']:date('Y-m-d'));
                 </div>';
 
                 $pagination = new Pagination;
-                echo $pagination->makePagination($data,$_SERVER['PHP_SELF'].'?m=18&firstdate='.$firstdate.'&lastdate='.$lastdate.'&search='.$search);
+                echo $pagination->makePagination($data,$_SERVER['PHP_SELF'].'?m=18&firstdate='.$firstdate.'&lastdate='.$lastdate.'&search='.rawurlencode($search));
                 
                 echo '</div>';
                 foreach ($data->results as $name=>$value){

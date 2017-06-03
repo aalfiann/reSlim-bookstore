@@ -30,7 +30,7 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                 <div class="row">
                     
 <?php 
-    $url = Core::getInstance()->api.'/book/library/data/'.$datalogin['username'].'/search/'.$page.'/'.$itemsperpage.'/'.$datalogin['token'].'/?query='.$search;
+    $url = Core::getInstance()->api.'/book/library/data/'.$datalogin['username'].'/search/'.$page.'/'.$itemsperpage.'/'.$datalogin['token'].'/?query='.rawurlencode($search);
     $data = json_decode(Core::execGetRequest($url));
 
     if (!empty($data))
@@ -114,7 +114,7 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                 </div>';
 
                 $pagination = new Pagination;
-                echo $pagination->makePagination($data,$_SERVER['PHP_SELF'].'?m=13&search='.$search);
+                echo $pagination->makePagination($data,$_SERVER['PHP_SELF'].'?m=13&search='.rawurlencode($search));
                 
                 //Info Payment
                 foreach ($data->results as $name=>$value){

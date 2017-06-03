@@ -81,7 +81,7 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                         </div>
                     </div>
 <?php 
-    $url = Core::getInstance()->api.'/book/translator/data/search/'.$datalogin['token'].'/'.$page.'/'.$itemsperpage.'/?query='.$search;
+    $url = Core::getInstance()->api.'/book/translator/data/search/'.$datalogin['token'].'/'.$page.'/'.$itemsperpage.'/?query='.rawurlencode($search);
     $data = json_decode(Core::execGetRequest($url));
 
     if (!empty($data))
@@ -164,7 +164,7 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                 </div>';
 
                 $pagination = new Pagination;
-                echo $pagination->makePagination($data,$_SERVER['PHP_SELF'].'?m=10&search='.$search);
+                echo $pagination->makePagination($data,$_SERVER['PHP_SELF'].'?m=10&search='.rawurlencode($search));
                 
                 echo '</div>';
                 foreach ($data->results as $name=>$value){
