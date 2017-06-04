@@ -39,7 +39,7 @@
                                         <h5>' . $value->{'Pages'} .'<br /><small>'.Core::lang('pages').'</small></h5>
                                     </div>
                                     <div class="col-md-4">
-                                        <h5><a href="modul-public-showroom.php?m=22&page=1&itemsperpage='.$itemsperpage.'&search='.$value->{'Language'}.'">' . $value->{'Language'} .'</a><br /><small>Language</small></h5>
+                                        <h5><a href="modul-public-showroom.php?m=22&page=1&itemsperpage='.$itemsperpage.'&search='.$value->{'Language'}.'">' . $value->{'Language'} .'</a><br /><small>'.Core::lang('language').'</small></h5>
                                     </div>
                                     <div class="col-md-3">
                                         <h5>' . (($value->{'Price'} != 0)?$value->{'Price'}:Core::lang('free')) .'<br /><small>'.Core::lang('price').'</small></h5>
