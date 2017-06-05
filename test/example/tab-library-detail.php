@@ -185,7 +185,7 @@ $datareview = json_decode(Core::execGetRequest($urlreview));
                                                 <div class="row">
                                                     <div class="col-xs-2 col-sm-2 col-md-2 col-lg-1">
                                                         <div class="avatar">
-                                                            <img class="lazyload" data-src="'.((empty($value->{'Avatar'}))?'assets/img/faces/face-0.jpg':$value->{'Avatar'}).'" alt="Circle Image" class="img-circle img-no-padding img-responsive">
+                                                            <img data-src="'.((empty($value->{'Avatar'}))?'assets/img/faces/face-0.jpg':$value->{'Avatar'}).'" alt="Circle Image" class="img-circle img-no-padding img-responsive lazyload">
                                                         </div>'.$value->{'Username'}.'
                                                     </div>
                                                     <div class="col-xs-10 col-sm-10 col-md-10 col-lg-11">
