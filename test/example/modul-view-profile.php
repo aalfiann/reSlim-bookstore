@@ -13,7 +13,7 @@ if (Core::getRole($datalogin['token']) == '3') {
 <body>
 
 <div class="wrapper">
-	<div class="sidebar" data-background-color="black" data-active-color="danger">
+	<div class="sidebar" data-background-color="white" data-active-color="danger">
         <?php include 'global-menu.php';?>
     </div>
 

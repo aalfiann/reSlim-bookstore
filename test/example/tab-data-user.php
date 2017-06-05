@@ -82,7 +82,7 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
 	            {
                     echo '<tr>';
                     echo '<td>' . $n++ .'</td>';
-                    echo '<td>' . $value->{'Username'} .'</td>';
+                    echo '<td><a href="modul-view-profile.php?username='.$value->{'Username'}.'" target="_blank">' . $value->{'Username'} .'</a></td>';
 			        echo '<td>' . $value->{'Fullname'} .'</td>';
         			echo '<td>' . $value->{'Address'} .'</td>';
                 	echo '<td>' . $value->{'Phone'} .'</td>';
