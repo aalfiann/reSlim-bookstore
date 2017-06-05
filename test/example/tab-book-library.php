@@ -126,7 +126,7 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                 <h4 class="modal-title" id="myModalLabel">'.Core::lang('payment_information').'</h4>
                               </div>
-                              <form method="post" action="'.$_SERVER['PHP_SELF'].'?m=13&page=1&itemsperpage='.$itemsperpage.'&search='.$search.'">
+                              <form method="post" action="'.$_SERVER['PHP_SELF'].'?m=13&page='.$page.'&itemsperpage='.$itemsperpage.'&search='.$search.'">
                               <div class="modal-body">
                                 <div class="row">
                                     <div class="col-lg-12">
@@ -139,6 +139,7 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                                 <button type="submit" name="submitdeletelibrary'.$value->{'Guid'}.'" class="btn btn-danger pull-left">'.Core::lang('delete').'</button>
                                 <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
                               </div>
+                              </form>
                             </div>
                           </div>
                         </div>

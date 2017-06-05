@@ -59,7 +59,7 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                             echo $datatags.'</p>
                             <hr>
                             <div class="text-center">
-                            <form method="post" action="'.$_SERVER['PHP_SELF'].'?m=22&page=1&itemsperpage='.$itemsperpage.'&search='.$search.'">
+                            <form method="post" action="'.$_SERVER['PHP_SELF'].'?m=22&page='.$page.'&itemsperpage='.$itemsperpage.'&search='.$search.'">
                                 <div class="row">
                                     <div class="col-md-3 col-md-offset-1">
                                         <h5>' . $value->{'BookID'} .'<br /><small>'.Core::lang('bookid').'</small></h5>
