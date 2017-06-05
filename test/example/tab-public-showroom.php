@@ -53,13 +53,13 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                             <p class="description text-center">';
                             $datatags = '';
                             foreach ($value->{'Tags'} as $name => $valuetags) {
-                                $datatags .= '<a href="modul-public-showroom.php?m=22&page='.$page.'&itemsperpage='.$itemsperpage.'&search='.$valuetags.'">'.$valuetags.'</a>, ';
+                                $datatags .= '<a href="modul-public-showroom.php?m=22&page=1&itemsperpage='.$itemsperpage.'&search='.$valuetags.'">'.$valuetags.'</a>, ';
                             }
                             $datatags = substr($datatags, 0, -2);
                             echo $datatags.'</p>
                             <hr>
                             <div class="text-center">
-                            <form method="post" action="'.$_SERVER['PHP_SELF'].'?m=22&page='.$page.'&itemsperpage='.$itemsperpage.'&search='.$search.'">
+                            <form method="post" action="'.$_SERVER['PHP_SELF'].'?m=22&page=1&itemsperpage='.$itemsperpage.'&search='.$search.'">
                                 <div class="row">
                                     <div class="col-md-3 col-md-offset-1">
                                         <h5>' . $value->{'BookID'} .'<br /><small>'.Core::lang('bookid').'</small></h5>
@@ -68,7 +68,7 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                                         <h5>' . $value->{'Pages'} .'<br /><small>'.Core::lang('pages').'</small></h5>
                                     </div>
                                     <div class="col-md-3">
-                                        <h5><a href="modul-public-showroom.php?m=22&page='.$page.'&itemsperpage='.$itemsperpage.'&search='.$value->{'Language'}.'">' . $value->{'Language'} .'</a><br /><small>'.Core::lang('language').'</small></h5>
+                                        <h5><a href="modul-public-showroom.php?m=22&page=1&itemsperpage='.$itemsperpage.'&search='.$value->{'Language'}.'">' . $value->{'Language'} .'</a><br /><small>'.Core::lang('language').'</small></h5>
                                     </div>
                                 </div>
                                 <div class="row">

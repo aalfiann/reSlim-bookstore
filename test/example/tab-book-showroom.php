@@ -67,13 +67,13 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                             <p class="description text-center">';
                             $datatags = '';
                             foreach ($value->{'Tags'} as $name => $valuetags) {
-                                $datatags .= '<a href="modul-book-showroom.php?m=12&page='.$page.'&itemsperpage='.$itemsperpage.'&search='.$valuetags.'">'.$valuetags.'</a>, ';
+                                $datatags .= '<a href="modul-book-showroom.php?m=12&page=1&itemsperpage='.$itemsperpage.'&search='.$valuetags.'">'.$valuetags.'</a>, ';
                             }
                             $datatags = substr($datatags, 0, -2);
                             echo $datatags.'</p>
                             <hr>
                             <div class="text-center">
-                            <form method="post" action="'.$_SERVER['PHP_SELF'].'?m=12&page='.$page.'&itemsperpage='.$itemsperpage.'&search='.$search.'">
+                            <form method="post" action="'.$_SERVER['PHP_SELF'].'?m=12&page=1&itemsperpage='.$itemsperpage.'&search='.$search.'">
                                 <div class="row">
                                     <div class="col-md-3 col-md-offset-1">
                                         <h5>' . $value->{'BookID'} .'<br /><small>'.Core::lang('bookid').'</small></h5>
@@ -82,7 +82,7 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                                         <h5>' . $value->{'Pages'} .'<br /><small>'.Core::lang('pages').'</small></h5>
                                     </div>
                                     <div class="col-md-3">
-                                        <h5><a href="modul-book-showroom.php?m=12&page='.$page.'&itemsperpage='.$itemsperpage.'&search='.$value->{'Language'}.'">' . $value->{'Language'} .'</a><br /><small>'.Core::lang('language').'</small></h5>
+                                        <h5><a href="modul-book-showroom.php?m=12&page=1&itemsperpage='.$itemsperpage.'&search='.$value->{'Language'}.'">' . $value->{'Language'} .'</a><br /><small>'.Core::lang('language').'</small></h5>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -137,7 +137,7 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                                         <h2><p class="category">'.Core::lang('title').'</p>'.$value->{'Title'}.'<br><small>';
                                         $datatags = '';
                             foreach ($value->{'Tags'} as $name => $valuetags) {
-                                $datatags .= '<a href="modul-book-showroom.php?m=12&page='.$page.'&itemsperpage='.$itemsperpage.'&search='.$valuetags.'">'.$valuetags.'</a>, ';
+                                $datatags .= '<a href="modul-book-showroom.php?m=12&page=1&itemsperpage='.$itemsperpage.'&search='.$valuetags.'">'.$valuetags.'</a>, ';
                             }
                             $datatags = substr($datatags, 0, -2);
                             echo $datatags.'</small> </h2>
@@ -146,19 +146,19 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                                         <p><span class="category">'.Core::lang('description').'</span>'.$value->{'Description'}.'</p>
                                     </div>
                                     <div class="typo-line">
-                                        <h5><p class="category">'.Core::lang('author').'</p><a href="modul-book-showroom.php?m=12&page='.$page.'&itemsperpage='.$itemsperpage.'&search='.$value->{'Author'}.'">'.$value->{'Author'}.'</a></h5>
+                                        <h5><p class="category">'.Core::lang('author').'</p><a href="modul-book-showroom.php?m=12&page=1&itemsperpage='.$itemsperpage.'&search='.$value->{'Author'}.'">'.$value->{'Author'}.'</a></h5>
                                     </div>
                                     <div class="typo-line">
-                                        <h5><p class="category">'.Core::lang('translator').'</p><a href="modul-book-showroom.php?m=12&page='.$page.'&itemsperpage='.$itemsperpage.'&search='.$value->{'Translator'}.'">'.$value->{'Translator'}.'</a></h5>
+                                        <h5><p class="category">'.Core::lang('translator').'</p><a href="modul-book-showroom.php?m=12&page=1&itemsperpage='.$itemsperpage.'&search='.$value->{'Translator'}.'">'.$value->{'Translator'}.'</a></h5>
                                     </div>
                                     <div class="typo-line">
-                                        <h5><p class="category">'.Core::lang('language').'</p><a href="modul-book-showroom.php?m=12&page='.$page.'&itemsperpage='.$itemsperpage.'&search='.$value->{'Language'}.'">'.$value->{'Language'}.'</a></h5>
+                                        <h5><p class="category">'.Core::lang('language').'</p><a href="modul-book-showroom.php?m=12&page=1&itemsperpage='.$itemsperpage.'&search='.$value->{'Language'}.'">'.$value->{'Language'}.'</a></h5>
                                     </div>
                                     <div class="typo-line">
-                                        <h5><p class="category">'.Core::lang('type').'</p><a href="modul-book-showroom.php?m=12&page='.$page.'&itemsperpage='.$itemsperpage.'&search='.$value->{'Type'}.'">'.$value->{'Type'}.'</a></h5>
+                                        <h5><p class="category">'.Core::lang('type').'</p><a href="modul-book-showroom.php?m=12&page=1&itemsperpage='.$itemsperpage.'&search='.$value->{'Type'}.'">'.$value->{'Type'}.'</a></h5>
                                     </div>
                                     <div class="typo-line">
-                                        <h5><p class="category">'.Core::lang('publisher').'</p><a href="modul-book-showroom.php?m=12&page='.$page.'&itemsperpage='.$itemsperpage.'&search='.$value->{'Publisher'}.'">'.$value->{'Publisher'}.'</a></h5>
+                                        <h5><p class="category">'.Core::lang('publisher').'</p><a href="modul-book-showroom.php?m=12&page=1&itemsperpage='.$itemsperpage.'&search='.$value->{'Publisher'}.'">'.$value->{'Publisher'}.'</a></h5>
                                     </div>
                                     <div class="typo-line">
                                         <h5><p class="category">'.Core::lang('pages').'</p>'.$value->{'Pages'}.'</h5>
