@@ -146,8 +146,8 @@ $datareview = json_decode(Core::execGetRequest($urlreview));
                                         <h5><p class="category">'.Core::lang('original_released').'</p>'.$value->{'Original_released'}.'</h5>
                                     </div>
                                     <div class="text-center">';
-                                        if ($value->{'Full_link'} == 'You have to make payment first!') {$links = '<a href="'.Core::getInstance()->api.'/user/upload/stream/'.$datalogin['token'].'/'.$value->{'Sample_file'}.'" class="btn btn-success btn-fill">'.Core::lang('read_sample').'</a>';
-                                    } else {$links = '<a href="'.Core::getInstance()->api.'/user/upload/stream/'.$datalogin['token'].'/'.$value->{'Full_file'}.'" class="btn btn-success btn-fill">'.Core::lang('read_complete').'</a>';}
+                                        if ($value->{'Full_link'} == 'You have to make payment first!') {$links = '<a href="'.Core::getInstance()->api.'/user/upload/stream/public/'.$datalogin['username'].'/'.$datalogin['token'].'/'.$value->{'BookID'}.'/sample/'.$value->{'Sample_file'}.'" class="btn btn-success btn-fill">'.Core::lang('read_sample').'</a>';
+                                        } else {$links = '<a href="'.Core::getInstance()->api.'/user/upload/stream/public/'.$datalogin['username'].'/'.$datalogin['token'].'/'.$value->{'BookID'}.'/'.$value->{'Guid'}.'/'.$value->{'Full_file'}.'" class="btn btn-success btn-fill">'.Core::lang('read_complete').'</a>';}
                             echo $links;
                                     echo '</div>
                                     <div class="clearfix"></div>

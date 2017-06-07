@@ -92,17 +92,8 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                                     <div class="col-md-2">
                                         <h5><button type="submit" name="submitaddlibrary'.$value->{'BookID'}.'" class="btn btn-success text-center">'.Core::lang('add_to_library').'</button></h5>
                                     </div>
-                                </div>';
-                                if ($value->{'Price'} != 0) {
-                                    if ($value->{'Sample_link'} != '' || !empty($value->{'Sample_link'})){
-                                        echo '<div class="row">
-                                            <div class="col-md-12">
-                                            <h5><a href="'.Core::getInstance()->api.'/user/upload/stream/'.$datalogin['token'].'/'.$value->{'Sample_file'}.'">'.Core::lang('read_sample').'</a><br /><small>'.Core::lang('download').'</small></h5>
-                                            </div>
-                                        </div>';
-                                    }
-                                };
-                            echo '</div>
+                                </div>
+                            </div>
                             </form>
                         </div>
                     </div>';
