@@ -33,7 +33,7 @@ $datareview = json_decode(Core::execGetRequest($urlreview));
 					<meta name="twitter:image" content="'.$value->{'Image'}.'" />
                     <meta property="og:title" content="'.$value->{'Title'}.'" />
                     <meta property="og:type" content="product" />
-                    <meta property="og:url" content="'.(isset($_SERVER['HTTPS']) ? 'https' : 'http') . '://'.$_SERVER[HTTP_HOST].$_SERVER[REQUEST_URI].'" />
+                    <meta property="og:url" content="'.(isset($_SERVER['HTTPS']) ? 'https' : 'http') . '://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'].'" />
                     <meta property="og:image" content="'.$value->{'Image'}.'" />
 					<meta property="og:site_name" content="'.Core::getInstance()->title.'" />
 					<meta property="og:price:amount" content="'.$value->{'Price'}.'" />
