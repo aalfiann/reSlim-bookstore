@@ -19,56 +19,47 @@
 						{
 							"key": "Username",
 							"value": "your username (no space)",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Password",
 							"value": "your password",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Fullname",
 							"value": "your name",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Address",
 							"value": "your address here...",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Phone",
 							"value": "your phone",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Email",
 							"value": "your email",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Aboutme",
 							"value": "about you",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Avatar",
 							"value": "your url avatar",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Role",
 							"value": "2",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						}
 					]
 				},
@@ -88,14 +79,12 @@
 						{
 							"key": "Username",
 							"value": "{username}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Password",
 							"value": "{password}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						}
 					]
 				},
@@ -115,14 +104,12 @@
 						{
 							"key": "Username",
 							"value": "{username}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Token",
 							"value": "{yourtoken}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						}
 					]
 				},
@@ -153,8 +140,7 @@
 						{
 							"key": "Token",
 							"value": "{yourtoken}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						}
 					]
 				},
@@ -207,62 +193,52 @@
 						{
 							"key": "Username",
 							"value": "{username}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Fullname",
 							"value": "your name",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Address",
 							"value": "your address",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Phone",
 							"value": "your phone",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Email",
 							"value": "your email",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Aboutme",
 							"value": "about your",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Avatar",
 							"value": "",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Role",
 							"value": "2",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Status",
 							"value": "1",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Token",
 							"value": "{yourtoken}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						}
 					]
 				},
@@ -282,14 +258,12 @@
 						{
 							"key": "Username",
 							"value": "{username}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Token",
 							"value": "{yourtoken}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						}
 					]
 				},
@@ -309,26 +283,22 @@
 						{
 							"key": "Username",
 							"value": "{username}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Password",
 							"value": "{youroldpassword}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "NewPassword",
 							"value": "{yournewpassword}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Token",
 							"value": "{yourtoken}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						}
 					]
 				},
@@ -348,20 +318,17 @@
 						{
 							"key": "Username",
 							"value": "{username}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "NewPassword",
 							"value": "{password}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Token",
 							"value": "{yourtoken}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						}
 					]
 				},
@@ -436,37 +403,31 @@
 						{
 							"key": "Title",
 							"value": "",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Alternate",
 							"value": "",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "External",
 							"value": "",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Username",
 							"value": "{username}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Token",
 							"value": "{yourtoken}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Datafile",
 							"type": "file",
-							"enabled": true,
 							"src": "join-tkd-express.jpg"
 						}
 					]
@@ -520,44 +481,37 @@
 						{
 							"key": "ItemID",
 							"value": "{itemid}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Title",
 							"value": "",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Alternate",
 							"value": "",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "External",
 							"value": "",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Status",
 							"value": "{49 or 50}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Username",
 							"value": "{username}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Token",
 							"value": "{yourtoken}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						}
 					]
 				},
@@ -577,20 +531,17 @@
 						{
 							"key": "ItemID",
 							"value": "{itemid}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Username",
 							"value": "{username}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Token",
 							"value": "{yourtoken}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						}
 					]
 				},
@@ -621,6 +572,17 @@
 			"response": []
 		},
 		{
+			"name": "Force Download Link Secure",
+			"request": {
+				"url": "http://localhost:1337/reSlim-bookstore/src/api/user/upload/steam/public/{username}/{yourtoken}/{bookid}/{uniqueid}/{filename with extension}",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
 			"name": "Send Mail",
 			"request": {
 				"url": "http://localhost:1337/reSlim-bookstore/src/api/mail/send",
@@ -632,56 +594,47 @@
 						{
 							"key": "To",
 							"value": "{destination email address}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Subject",
 							"value": "{subject email}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Message",
 							"value": "{message of email}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Html",
 							"value": "{true or false}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "From",
 							"value": "{your email address}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "FromName",
 							"value": "{your name or website name}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "CC",
 							"value": "{you can leave this blank}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "BCC",
 							"value": "{you can leave this blank}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Attachment",
 							"value": "{you can leave this blank}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						}
 					]
 				},
@@ -701,8 +654,7 @@
 						{
 							"key": "Email",
 							"value": "{youremail}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						}
 					]
 				},
@@ -722,14 +674,12 @@
 						{
 							"key": "PassKey",
 							"value": "{yourpasskey}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "NewPassword",
 							"value": "{yournewpassword}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						}
 					]
 				},
@@ -749,20 +699,17 @@
 						{
 							"key": "Token",
 							"value": "{yourtoken}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Username",
 							"value": "{yourusername}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Domain",
 							"value": "{yourdomain.com}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						}
 					]
 				},
@@ -782,26 +729,22 @@
 						{
 							"key": "Token",
 							"value": "{yourtoken}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Username",
 							"value": "{yourusername}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "ApiKey",
 							"value": "{yourapikey}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Status",
 							"value": "{1 or 42}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						}
 					]
 				},
@@ -821,20 +764,17 @@
 						{
 							"key": "Token",
 							"value": "{yourtoken}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Username",
 							"value": "{yourusername}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "ApiKey",
 							"value": "{yourapikey}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						}
 					]
 				},
@@ -865,14 +805,12 @@
 						{
 							"key": "Name",
 							"value": "{name or detail}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Token",
 							"value": "{yourtoken}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						}
 					]
 				},
@@ -892,20 +830,17 @@
 						{
 							"key": "Name",
 							"value": "{name or detail}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Token",
 							"value": "{yourtoken}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "AuthorID",
 							"value": "{authorid}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						}
 					]
 				},
@@ -925,14 +860,12 @@
 						{
 							"key": "Token",
 							"value": "{yourtoken}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "AuthorID",
 							"value": "{authorid}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						}
 					]
 				},
@@ -974,14 +907,12 @@
 						{
 							"key": "Name",
 							"value": "{name or detail}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Token",
 							"value": "{yourtoken}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						}
 					]
 				},
@@ -1001,20 +932,17 @@
 						{
 							"key": "Name",
 							"value": "{name or detail}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Token",
 							"value": "{yourtoken}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "LanguageID",
 							"value": "{languageid}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						}
 					]
 				},
@@ -1034,14 +962,12 @@
 						{
 							"key": "Token",
 							"value": "{yourtoken}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "LanguageID",
 							"value": "{languageid}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						}
 					]
 				},
@@ -1083,20 +1009,17 @@
 						{
 							"key": "Name",
 							"value": "{name or detail}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Token",
 							"value": "{yourtoken}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Website",
 							"value": "{url website}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						}
 					]
 				},
@@ -1116,26 +1039,22 @@
 						{
 							"key": "Name",
 							"value": "{name or detail}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Token",
 							"value": "{yourtoken}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "TranslatorID",
 							"value": "{translatorid}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Website",
 							"value": "{url website}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						}
 					]
 				},
@@ -1155,14 +1074,12 @@
 						{
 							"key": "Token",
 							"value": "{yourtoken}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "TranslatorID",
 							"value": "{translatorid}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						}
 					]
 				},
@@ -1204,14 +1121,12 @@
 						{
 							"key": "Name",
 							"value": "{name or detail}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Token",
 							"value": "{yourtoken}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						}
 					]
 				},
@@ -1231,20 +1146,17 @@
 						{
 							"key": "Name",
 							"value": "{name or detail}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Token",
 							"value": "{yourtoken}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "TypeID",
 							"value": "{typeid}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						}
 					]
 				},
@@ -1264,14 +1176,12 @@
 						{
 							"key": "Token",
 							"value": "{yourtoken}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "TypeID",
 							"value": "{typeid}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						}
 					]
 				},
@@ -1313,14 +1223,12 @@
 						{
 							"key": "Name",
 							"value": "{name or detail}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Token",
 							"value": "{yourtoken}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						}
 					]
 				},
@@ -1340,20 +1248,17 @@
 						{
 							"key": "Name",
 							"value": "{name or detail}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Token",
 							"value": "{yourtoken}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "PublisherID",
 							"value": "{publisherid}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						}
 					]
 				},
@@ -1373,14 +1278,12 @@
 						{
 							"key": "Token",
 							"value": "{yourtoken}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "PublisherID",
 							"value": "{publisherid}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						}
 					]
 				},
@@ -1422,98 +1325,82 @@
 						{
 							"key": "Token",
 							"value": "{yourtoken}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Username",
 							"value": "{yourusername}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "SampleLink",
 							"value": "{link download sample version of book}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "FullLink",
 							"value": "{link download full version of book}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "ImageLink",
 							"value": "{Image link of book}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Title",
 							"value": "{title of book}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Description",
 							"value": "{description of book}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Author",
 							"value": "{name of book author}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Language",
 							"value": "{book language}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Translator",
 							"value": "{the translator name}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Publisher",
 							"value": "{publisher of book}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Tags",
 							"value": "{tags must separated with commas or semicolons}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Pages",
 							"value": "{number of pages}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Purpose",
 							"value": "{free or paid}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "ISBN",
 							"value": "{ISBN of book}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Released",
 							"value": "{date of release the original book}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						}
 					]
 				},
@@ -1533,116 +1420,97 @@
 						{
 							"key": "Token",
 							"value": "{yourtoken}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Username",
 							"value": "{yourusername}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "SampleLink",
 							"value": "{link download sample version of book}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "FullLink",
 							"value": "{link download full version of book}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "ImageLink",
 							"value": "{Image link of book}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Title",
 							"value": "{title of book}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Description",
 							"value": "{description of book}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Author",
 							"value": "{name of book author}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Language",
 							"value": "{book language}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Translator",
 							"value": "{the translator name}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Publisher",
 							"value": "{name of publisher book}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Tags",
 							"value": "{tags must separated with commas or semicolons}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Pages",
 							"value": "{number of pages}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Purpose",
 							"value": "{free or paid}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "StatusID",
 							"value": "{3=approved or 35=pending}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "SubmitBookID",
 							"value": "{ID of submitted book}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "BookID",
 							"value": "{ID of released book}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "ISBN",
 							"value": "{ISBN of book}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Released",
 							"value": "{date of release the original book}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						}
 					]
 				},
@@ -1662,14 +1530,12 @@
 						{
 							"key": "Token",
 							"value": "{yourtoken}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "SubmitBookID",
 							"value": "{ID of submitted book}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						}
 					]
 				},
@@ -1722,104 +1588,87 @@
 						{
 							"key": "Token",
 							"value": "{yourtoken}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Username",
 							"value": "{yourusername}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "SampleLink",
 							"value": "{link download sample version of book}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "FullLink",
 							"value": "{link download full version of book}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "ImageLink",
 							"value": "{Image link of book}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Title",
 							"value": "{title of book}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Description",
 							"value": "{description of book}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "AuthorID",
 							"value": "{ID of book author}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "LanguageID",
 							"value": "{ID of language}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "TranslatorID",
 							"value": "{ID of the translator}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "PublisherID",
 							"value": "{ID of publisher book}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "TypeID",
 							"value": "{ID of book type}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Tags",
 							"value": "{tags must separated with commas or semicolons}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Pages",
 							"value": "{number of pages}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "ISBN",
 							"value": "{ISBN of book}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Price",
 							"value": "{price of book}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Released",
 							"value": "{date of release the original book}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						}
 					]
 				},
@@ -1839,116 +1688,97 @@
 						{
 							"key": "Token",
 							"value": "{yourtoken}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Username",
 							"value": "{yourusername}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "SampleLink",
 							"value": "{link download sample version of book}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "FullLink",
 							"value": "{link download full version of book}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "ImageLink",
 							"value": "{Image link of book}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Title",
 							"value": "{title of book}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Description",
 							"value": "{description of book}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "AuthorID",
 							"value": "{ID of book author}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "LanguageID",
 							"value": "{ID of language}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "TranslatorID",
 							"value": "{ID of  the translator }",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "TypeID",
 							"value": "{ID of book type}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "PublisherID",
 							"value": "{ID of publisher book}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Tags",
 							"value": "{tags must separated with commas or semicolons}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Pages",
 							"value": "{number of pages}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Price",
 							"value": "{price of book}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "StatusID",
 							"value": "{51=publish or 52=draft}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "BookID",
 							"value": "{ID of released book}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "ISBN",
 							"value": "{ISBN of book}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Released",
 							"value": "{date of release the original book}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						}
 					]
 				},
@@ -1968,14 +1798,12 @@
 						{
 							"key": "Token",
 							"value": "{yourtoken}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "BookID",
 							"value": "{ID of released book}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						}
 					]
 				},
@@ -2039,20 +1867,17 @@
 						{
 							"key": "Token",
 							"value": "{your token}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Username",
 							"value": "{your username}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "BookID",
 							"value": "{ID of released book}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						}
 					]
 				},
@@ -2072,32 +1897,27 @@
 						{
 							"key": "Token",
 							"value": "{your token}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Username",
 							"value": "{the username of the owner of book library}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "BookID",
 							"value": "{ID of released book}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Adminname",
 							"value": "{username of admin}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Status",
 							"value": "{34=paid or 35=pending}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						}
 					]
 				},
@@ -2117,20 +1937,17 @@
 						{
 							"key": "Token",
 							"value": "{your token}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Username",
 							"value": "{the username of the owner of book library}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "BookID",
 							"value": "{ID of released book}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						}
 					]
 				},
@@ -2227,38 +2044,32 @@
 						{
 							"key": "Token",
 							"value": "{yourtoken}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Username",
 							"value": "{username}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Fullname",
 							"value": "{yourfullname}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Account",
 							"value": "{yourbankaccount}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "BankName",
 							"value": "{yourbankname}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "BankAddress",
 							"value": "{yourbankaddress}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						}
 					]
 				},
@@ -2278,38 +2089,32 @@
 						{
 							"key": "Token",
 							"value": "{yourtoken}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Username",
 							"value": "{username}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Fullname",
 							"value": "{yourfullname}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Account",
 							"value": "{yourbankaccount}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "BankName",
 							"value": "{yourbankname}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "BankAddress",
 							"value": "{yourbankaddress}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						}
 					]
 				},
@@ -2329,80 +2134,67 @@
 						{
 							"key": "Token",
 							"value": "{yourtoken}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Username",
 							"value": "{username}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Adminname",
 							"value": "{adminname}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Fullname",
 							"value": "{userfullname}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Account",
 							"value": "{userbankaccount}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "BankName",
 							"value": "{userbankname}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "BankAddress",
 							"value": "{userbankaddress}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "NoReference",
 							"value": "{number reference}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Amount",
 							"value": "{amount}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "FromBank",
 							"value": "{from bank}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "FromName",
 							"value": "{name of from bank}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Evidence",
 							"value": "{url link image proof of transaction}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Detail",
 							"value": "{detail transaction}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						}
 					]
 				},
@@ -2422,80 +2214,67 @@
 						{
 							"key": "Token",
 							"value": "{yourtoken}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "WithdrawID",
 							"value": "{withdraw ID}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Adminname",
 							"value": "{adminname}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Fullname",
 							"value": "{userfullname}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Account",
 							"value": "{userbankaccount}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "BankName",
 							"value": "{userbankname}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "BankAddress",
 							"value": "{userbankaddress}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "NoReference",
 							"value": "{number reference}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Amount",
 							"value": "{amount}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "FromBank",
 							"value": "{from bank}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "FromName",
 							"value": "{name of from bank}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Evidence",
 							"value": "{url link image proof of transaction}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Detail",
 							"value": "{detail transaction}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						}
 					]
 				},
@@ -2515,20 +2294,17 @@
 						{
 							"key": "Token",
 							"value": "{yourtoken}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "WithdrawID",
 							"value": "{withdraw ID}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Username",
 							"value": "{username of admin}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						}
 					]
 				},
@@ -2559,26 +2335,22 @@
 						{
 							"key": "Username",
 							"value": "{your username}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Detail",
 							"value": "{detail review}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Token",
 							"value": "{yourtoken}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "BookID",
 							"value": "{ID of book}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						}
 					]
 				},
@@ -2598,32 +2370,27 @@
 						{
 							"key": "Username",
 							"value": "{your username}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Detail",
 							"value": "{detail review}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Token",
 							"value": "{yourtoken}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "ReviewID",
 							"value": "{ID of review}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Status",
 							"value": "{3=approved or 20=hidden or 38=removed}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						}
 					]
 				},
@@ -2643,20 +2410,17 @@
 						{
 							"key": "Token",
 							"value": "{yourtoken}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "ReviewID",
 							"value": "{ID of review}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						},
 						{
 							"key": "Username",
 							"value": "{your username}",
-							"type": "text",
-							"enabled": true
+							"type": "text"
 						}
 					]
 				},
