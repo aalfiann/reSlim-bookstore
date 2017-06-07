@@ -680,7 +680,7 @@
                     if (!empty($_GET['redirect'])) {
                         header("Location: ".self::getInstance()->basepath."/".$_GET['redirect']);
                     } else {
-                        header("Location: ".self::getInstance()->basepath."/modul-login.php?m=1");
+                        header("Location: ".self::getInstance()->basepath."/modul-public-showroom.php?m=22&page=1&itemsperpage=12&search=");
                     }
                 }
                 else
@@ -694,7 +694,7 @@
                         if (!empty($_GET['redirect'])) {
                             header("Location: ".self::getInstance()->basepath."/".$_GET['redirect']);
                         } else {
-                            header("Location: ".self::getInstance()->basepath."/modul-login.php?m=1");
+                            header("Location: ".self::getInstance()->basepath."/modul-public-showroom.php?m=22&page=1&itemsperpage=12&search=");
                         }
                     }                     
                 }
@@ -710,7 +710,7 @@
                     if (!empty($_GET['redirect'])) {
                         header("Location: ".self::getInstance()->basepath."/".$_GET['redirect']);
                     } else {
-                        header("Location: ".self::getInstance()->basepath."/modul-login.php?m=1");
+                        header("Location: ".self::getInstance()->basepath."/modul-public-showroom.php?m=22&page=1&itemsperpage=12&search=");
                     }
                 }
     	    }
