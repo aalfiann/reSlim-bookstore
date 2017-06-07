@@ -677,7 +677,11 @@
                 {
                     $out['username'] = null;
                     $out['token'] = null;
-                    header("Location: ".self::getInstance()->basepath."/modul-login.php?m=1");
+                    if (!empty($_GET['redirect'])) {
+                        header("Location: ".self::getInstance()->basepath."/".$_GET['redirect']);
+                    } else {
+                        header("Location: ".self::getInstance()->basepath."/modul-login.php?m=1");
+                    }
                 }
                 else
                 {
@@ -687,7 +691,11 @@
                     } else {
                         $out['username'] = null;
                         $out['token'] = null;
-                        header("Location: ".self::getInstance()->basepath."/modul-login.php?m=1");
+                        if (!empty($_GET['redirect'])) {
+                            header("Location: ".self::getInstance()->basepath."/".$_GET['redirect']);
+                        } else {
+                            header("Location: ".self::getInstance()->basepath."/modul-login.php?m=1");
+                        }
                     }                     
                 }
             }
@@ -699,7 +707,11 @@
                 } else {
                     $out['username'] = null;
                     $out['token'] = null;
-                    header("Location: ".self::getInstance()->basepath."/modul-login.php?m=1");
+                    if (!empty($_GET['redirect'])) {
+                        header("Location: ".self::getInstance()->basepath."/".$_GET['redirect']);
+                    } else {
+                        header("Location: ".self::getInstance()->basepath."/modul-login.php?m=1");
+                    }
                 }
     	    }
 	        return $out;
