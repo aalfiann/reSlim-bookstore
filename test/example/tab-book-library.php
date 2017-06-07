@@ -93,8 +93,8 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">';
-                                    if ($value->{'Full_link'} == 'You have to make payment first!') {$links = '<a href="'.Core::getInstance()->api.'/user/upload/stream/public/'.$datalogin['token'].'/'.$value->{'BookID'}.'/sample/'.$value->{'Sample_file'}.'">'.Core::lang('read_sample').'</a>';
-                                    } else {$links = '<a href="'.Core::getInstance()->api.'/user/upload/stream/public/'.$datalogin['token'].'/'.$value->{'BookID'}.'/'.$value->{'Guid'}.'/'.$value->{'Full_file'}.'">'.Core::lang('read_complete').'</a>';}
+                                    if ($value->{'Full_link'} == 'You have to make payment first!') {$links = '<a href="'.Core::getInstance()->api.'/user/upload/stream/public/'.$datalogin['username'].'/'.$datalogin['token'].'/'.$value->{'BookID'}.'/sample/'.$value->{'Sample_file'}.'">'.Core::lang('read_sample').'</a>';
+                                    } else {$links = '<a href="'.Core::getInstance()->api.'/user/upload/stream/public/'.$datalogin['username'].'/'.$datalogin['token'].'/'.$value->{'BookID'}.'/'.$value->{'Guid'}.'/'.$value->{'Full_file'}.'">'.Core::lang('read_complete').'</a>';}
                                         echo '<h5>'.$links.'<br /><small>'.Core::lang('download').'</small></h5>
                                     </div>
                                 </div>
@@ -207,8 +207,8 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                               </div> 
                               <!-- End Modal Body -->
                               <div class="modal-footer">';
-                                if ($value->{'Full_link'} == 'You have to make payment first!') {$links = '<a href="'.Core::getInstance()->api.'/user/upload/stream/public/'.$datalogin['token'].'/'.$value->{'BookID'}.'/sample/'.$value->{'Sample_file'}.'" class="btn btn-success btn-fill">'.Core::lang('read_sample').'</a>';
-                                    } else {$links = '<a href="'.Core::getInstance()->api.'/user/upload/stream/public/'.$datalogin['token'].'/'.$value->{'BookID'}.'/'.$value->{'Guid'}.'/'.$value->{'Full_file'}.'" class="btn btn-success btn-fill">'.Core::lang('read_complete').'</a>';}
+                                if ($value->{'Full_link'} == 'You have to make payment first!') {$links = '<a href="'.Core::getInstance()->api.'/user/upload/stream/public/'.$datalogin['username'].'/'.$datalogin['token'].'/'.$value->{'BookID'}.'/sample/'.$value->{'Sample_file'}.'" class="btn btn-success btn-fill">'.Core::lang('read_sample').'</a>';
+                                    } else {$links = '<a href="'.Core::getInstance()->api.'/user/upload/stream/public/'.$datalogin['username'].'/'.$datalogin['token'].'/'.$value->{'BookID'}.'/'.$value->{'Guid'}.'/'.$value->{'Full_file'}.'" class="btn btn-success btn-fill">'.Core::lang('read_complete').'</a>';}
                             echo $links.' 
                                 <button type="button" class="btn btn-default pull-left" data-dismiss="modal">'.Core::lang('close').'</button>
                               </div>
