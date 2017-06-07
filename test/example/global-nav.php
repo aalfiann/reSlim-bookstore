@@ -19,6 +19,7 @@
                               </a>
                               <ul class="dropdown-menu">
                                 <li><a href="modul-user-profile.php?m=4">'.Core::lang('my_profile').'</a></li>
+                                <li><a href="modul-faq.php?m=20">'.strtolower(Core::lang('faq')).'</a></li>
                                 <li><a href="logout.php">'.Core::lang('logout').'</a></li>
                               </ul>
                         </li>';

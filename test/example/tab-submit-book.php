@@ -65,7 +65,7 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'':$_GET['itemsperpage'
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            <label>Purpose</label>
+                                            <label><?php echo Core::lang('purpose')?></label>
                                             <select name="purpose" type="text" style='max-height:200px; overflow-y:scroll; overflow-x:hidden;' class="form-control border-input">
                                                 <option value="paid">paid</option>
                                                 <option value="free">free</option>
