@@ -22,7 +22,7 @@ use PDO;
 		
 		protected $db;
         
-        var $username,$datafile,$token,$itemid,$baseurl,$title,$alternate,$externallink,$status,$apikey,$filename;
+        var $username,$datafile,$token,$itemid,$baseurl,$title,$alternate,$externallink,$status,$apikey,$filename,$uniqueid,$bookid;
 
         // limit size upload
         var $maxUploadSize = '100000000';
@@ -702,6 +702,36 @@ use PDO;
 		}
 
 		/** 
+		 * Determine is filename are paid
+		 * @return string
+		 */
+		private function isFilenamePaid(){
+			$newbookid = filter_var(Validation::integerOnly($this->bookid),FILTER_SANITIZE_STRING);
+			$newuniqueid = filter_var($this->uniqueid,FILTER_SANITIZE_STRING);
+			$newfilename = filter_var(strtolower($this->filename),FILTER_SANITIZE_STRING);
+			$newusername = strtolower($this->username);
+			$r = false;
+			if (strpos($newfilename, 'sample') !== false) {
+				$r=true;
+			} else {
+				$sql = "SELECT a.StatusID
+					FROM book_library a 
+					WHERE a.Guid=:uniqueid and a.Username=:username and a.BookID=:bookid and a.StatusID='34';";
+				$stmt = $this->db->prepare($sql);
+				$stmt->bindParam(':uniqueid', $newuniqueid, PDO::PARAM_STR);
+				$stmt->bindParam(':bookid', $newbookid, PDO::PARAM_STR);
+				$stmt->bindParam(':username', $newusername, PDO::PARAM_STR);
+				if ($stmt->execute()) {	
+            		if ($stmt->rowCount() > 0){
+						$r = true;
+    		        }	
+				}
+			} 		
+			return $r;
+			$this->db = null;
+		}
+
+		/** 
 		 * Force stream inline or attachment to protect from hotlinking
 		 * @return result stream data or process in json encoded data
 		 */
@@ -730,6 +760,56 @@ use PDO;
 					];
 					return json_encode($data, JSON_PRETTY_PRINT);
 				}
+			} else {
+				$data = [
+	    			'status' => 'error',
+					'code' => 'RS401',
+        	    	'message' => CustomHandlers::getreSlimMessage('RS401')
+				];
+				return json_encode($data, JSON_PRETTY_PRINT);
+			}
+			$this->db= null;
+			exit;
+		}
+
+		/** 
+		 * Force strict stream inline or attachment to protect from hotlinking
+		 * @return result stream data or process in json encoded data
+		 */
+		public function forceStrictStream($stream=true){
+			if (Auth::validToken($this->db,$this->token,$this->username)){
+				if ($this->isFilenamePaid()) {
+					$datapath = $this->isFilenameInExplorer();
+					if ( $datapath != false){
+						if ($stream == false){
+							$disposition = 'attachment';
+						} else {
+							$disposition = 'inline';
+						}
+						$path = realpath(__DIR__ . DIRECTORY_SEPARATOR . '..').'/api/'.$datapath;
+						header('Cache-Control: public');
+					    header('Content-Description: File Transfer');
+						header('Content-Transfer-Encoding: binary');
+    					header('Content-Disposition: '.$disposition.'; filename='.$this->filename);
+		    			header('Content-length: '.filesize($path));
+			    		header('Content-type: '.pathinfo($path, PATHINFO_EXTENSION));
+						readfile($path);
+					} else {
+						$data = [
+		    				'status' => 'error',
+							'code' => 'RS601',
+        		    		'message' => CustomHandlers::getreSlimMessage('RS601')
+						];
+						return json_encode($data, JSON_PRETTY_PRINT);
+					}
+				} else {
+					$data = [
+		    			'status' => 'error',
+						'code' => 'RS801',
+        				'message' => CustomHandlers::getreSlimMessage('RS801')
+					];
+					return json_encode($data, JSON_PRETTY_PRINT);
+				}		
 			} else {
 				$data = [
 	    			'status' => 'error',
