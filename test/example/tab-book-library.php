@@ -237,7 +237,7 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                               </div>
                               <div class="modal-footer">
                                 <button type="button" class="btn btn-default pull-left" data-dismiss="modal">'.Core::lang('close').'</button>
-                                <a href="modul-library-detail.php?m=13&bookid='.$value->{'BookID'}.'&page='.$page.'&itemsperpage='.$itemsperpage.'" class="btn btn-primary">'.Core::lang('submit_review').'</a>
+                                <a href="modul-library-detail.php?m=13&bookid='.$value->{'BookID'}.'&page='.$page.'&itemsperpage='.$itemsperpage.'&redirect='.urlencode('modul-public-detail.php?m=22&bookid='.$value->{'BookID'}.'&itemsperpage='.$itemsperpage).'" class="btn btn-primary">'.Core::lang('submit_review').'</a>
                               </div>
                             </div>
                           </div>
