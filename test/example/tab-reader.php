@@ -4,7 +4,7 @@
                     <div class="col-md-12">
                         <div class="flexible-container">
 							<iframe src="<?php echo (empty($_GET['file'])?'':Core::getInstance()->basepath.'/plugins/pdf/viewer.php?file='.$_GET['file'])?>" type="application/pdf" width="100%" height="100%" allowFullScreen>
-                                <p>It appears your web browser doesn't support iframes.</p>
+                                <p>Your browser doesn't support iframes. For direct link viewer, just <a href="<?php echo (empty($_GET['file'])?'':$_GET['file'])?>">click here</a>.</p>
                             </iframe>
                         </div>
                         <br>
