@@ -3,13 +3,10 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="flexible-container">
-                            <object data="<?php echo (empty($_GET['file'])?'':$_GET['file'])?>" type="application/pdf" width="100%" height="100%">
-                                <param name="allowFullScreen" value="true">
-                                <embed src="<?php echo (empty($_GET['file'])?'':$_GET['file'])?>" type="application/pdf" width="100%" height="100%" allowFullScreen="true">
-                            </object>
+							<iframe src="<?php echo (empty($_GET['file'])?'':Core::getInstance()->basepath.'/plugins/pdf/viewer.php?file='.$_GET['file'])?>" type="application/pdf" width="100%" height="100%" allowFullScreen></iframe>
                         </div>
                         <br>
-                        <p class="text-center"><a href="<?php echo (empty($_GET['file'])?'':$_GET['file'])?>/download" download class="btn btn-success">Download</a></p>
+                        <p class="text-center"><a href="<?php echo (empty($_GET['file'])?'':$_GET['file'])?>/download" download class="btn btn-success"><?php echo Core::lang('download')?></a></p>
                     </div>
 
                 </div>
