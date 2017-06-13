@@ -310,6 +310,19 @@ use \Psr\Http\Message\ResponseInterface as Response;
         return classes\Cors::modify($response,$body,200);
     });
 
+    // GET example api to strict stream data upload
+    $app->get('/user/upload/stream/public/{username}/{token}/{bookid}/{uniqueid}/{filename}/download', function (Request $request, Response $response) {
+        $upload = new classes\Upload($this->db);
+        $upload->token = $request->getAttribute('token');
+        $upload->filename = $request->getAttribute('filename');
+        $upload->uniqueid = $request->getAttribute('uniqueid');
+        $upload->bookid = $request->getAttribute('bookid');
+        $upload->username = $request->getAttribute('username');
+        $body = $response->getBody();
+        $body->write($upload->forceStrictStream(false));
+        return classes\Cors::modify($response,$body,200);
+    });
+
     // POST example api user forgot password
     $app->post('/user/forgotpassword', function (Request $request, Response $response) {
         $users = new classes\User($this->db);
