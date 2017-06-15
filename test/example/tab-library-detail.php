@@ -10,40 +10,38 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                 <div class="row">
                     
 <?php 
-$url = Core::getInstance()->api.'/book/library/data/'.$datalogin['username'].'/read/'.$bookid.'/'.$datalogin['token'];
-$data = json_decode(Core::execGetRequest($url));
+    if (isset($_POST['submitdeletelibrary'.(empty($_POST['Guid'])?'':$_POST['Guid'])])){
+        $post_array = array(
+            'Token' => $datalogin['token'],
+            'BookID' => $_POST['bookid'],
+            'Username' => $datalogin['username'] //Username of the owner of book
+        );
+        Core::deleteProcess(Core::getInstance()->api.'/book/library/delete',$post_array,Core::lang('from_library'));
+    }
 
-//Data Review
-$urlreview = Core::getInstance()->api.'/book/review/data/'.$bookid.'/?apikey='.Core::getInstance()->apikey;
-$datareview = json_decode(Core::execGetRequest($urlreview));
+    if (isset($_POST['submitreview'.(empty($_POST['Guid'])?'':$_POST['Guid'])])){
+        $post_array = array(
+            'Token' => $datalogin['token'],
+            'BookID' => $bookid,
+            'Username' => $datalogin['username'], //Username of the owner of book
+            'Detail' => $_POST['review']
+        );
+        Core::createProcess(Core::getInstance()->api.'/book/review/new',$post_array,Core::lang('review'));
+    }
+
+    $url = Core::getInstance()->api.'/book/library/data/'.$datalogin['username'].'/read/'.$bookid.'/'.$datalogin['token'];
+    $data = json_decode(Core::execGetRequest($url));
+
+    //Data Review
+    $urlreview = Core::getInstance()->api.'/book/review/data/'.$bookid.'/?apikey='.Core::getInstance()->apikey;
+    $datareview = json_decode(Core::execGetRequest($urlreview));
 
     if (!empty($data))
         {
             if ($data->{'status'} == "success")
             {
                 foreach ($data->result as $row => $value) {
-                    if (isset($_POST['submitdeletelibrary'.$value->{'Guid'}]))
-                    {
-                        $post_array = array(
-                            'Token' => $datalogin['token'],
-                            'BookID' => $_POST['bookid'],
-                            'Username' => $datalogin['username'] //Username of the owner of book
-                        );
-                        Core::deleteProcess(Core::getInstance()->api.'/book/library/delete',$post_array,Core::lang('from_library'));
-                        echo Core::reloadPage();
-                    }
-
-                    if (isset($_POST['submitreview'.$value->{'Guid'}]))
-                    {
-                        $post_array = array(
-                            'Token' => $datalogin['token'],
-                            'BookID' => $bookid,
-                            'Username' => $datalogin['username'], //Username of the owner of book
-                            'Detail' => $_POST['review']
-                        );
-                        Core::createProcess(Core::getInstance()->api.'/book/review/new',$post_array,Core::lang('review'));
-                        echo Core::reloadPage();
-                    }
+                    
                 }
 
                 echo '<div class="col-md-12">
@@ -170,6 +168,9 @@ $datareview = json_decode(Core::execGetRequest($urlreview));
                                 <div class="form-group">
                                     <textarea name="review" rows="2" class="form-control border-input" placeholder="'.Core::lang('input_review').'" maxlength="250"></textarea>
                                 </div>
+                                <div class="form-group hidden">
+                                    <input name="Guid" type="text" class="form-control border-input" value="'.$value->{'Guid'}.'" hidden>
+                                </div>
                                  <p class="category"><i class="ti-minus"></i> '.Core::lang('note_review_1').'<br><i class="ti-minus"></i> '.Core::lang('note_review_2').'</p>
                                 <div class="text-center">
                                     <button type="submit" name="submitreview'.$value->{'Guid'}.'" class="btn btn-primary" data-dismiss="modal">'.Core::lang('submit_review').'</button>    
@@ -232,6 +233,9 @@ $datareview = json_decode(Core::execGetRequest($urlreview));
                                     <div class="col-lg-12">
                                         <p>'.Core::lang('payment_info_1').' '.Core::getInstance()->hotline.'.<br><br>'.Core::lang('payment_info_2').'</p>
                                     </div>
+                                </div>
+                                <div class="form-group hidden">
+                                    <input name="Guid" type="text" class="form-control border-input" value="'.$value->{'Guid'}.'" hidden>
                                 </div>
                               </div>
                               <div class="modal-footer">

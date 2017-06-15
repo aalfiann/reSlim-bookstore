@@ -162,6 +162,34 @@ $lastdate = ((!empty($_GET['lastdate']))?$_GET['lastdate']:date('Y-m-d'));
                     </div>
                
 <?php 
+    if (isset($_POST['submitupdatewithdraw'.(empty($_POST['WithdrawID'])?'':$_POST['WithdrawID'])])){
+        $post_array = array(
+            'Adminname' => $datalogin['username'],
+            'Token' => $datalogin['token'],
+            'WithdrawID' => $_POST['withdrawid'],
+            'Fullname' => $_POST['fullname'],
+            'Account' => $_POST['account'],
+            'BankName' => $_POST['bankname'],
+            'BankAddress' => $_POST['bankaddress'],
+            'NoReference' => $_POST['noreference'],
+            'Amount' => $_POST['amount'],
+            'FromBank' => $_POST['frombank'],
+            'FromName' => $_POST['fromname'],
+            'Evidence' => $_POST['evidence'],
+            'Detail' => $_POST['detail']
+        );
+        Core::updateProcess(Core::getInstance()->api.'/book/user/withdraw/update',$post_array,Core::lang('withdrawal'));
+    }
+                
+    if (isset($_POST['submitdeletewithdraw'.(empty($_POST['WithdrawID'])?'':$_POST['WithdrawID'])])){
+        $post_array = array(
+            'Username' => $datalogin['username'],
+            'Token' => $datalogin['token'],
+            'WithdrawID' => $_POST['withdrawid']
+        );
+        Core::deleteProcess(Core::getInstance()->api.'/book/user/withdraw/delete',$post_array,Core::lang('withdrawal'));
+    }
+
     $url = Core::getInstance()->api.'/book/user/withdrawal/'.$datalogin['username'].'/all/'.$page.'/'.$itemsperpage.'/'.$datalogin['token'].'/?firstdate='.$firstdate.'&lastdate='.$lastdate.'&query='.rawurlencode($search);
     $data = json_decode(Core::execGetRequest($url));
 
@@ -169,43 +197,6 @@ $lastdate = ((!empty($_GET['lastdate']))?$_GET['lastdate']:date('Y-m-d'));
         {
             if ($data->{'status'} == "success")
             {
-
-                foreach ($data->results as $row => $value) {
-                    if (isset($_POST['submitupdatewithdraw'.$value->{'WithdrawID'}]))
-                    {
-                        $post_array = array(
-                            'Adminname' => $datalogin['username'],
-                            'Token' => $datalogin['token'],
-                            'WithdrawID' => $_POST['withdrawid'],
-                            'Fullname' => $_POST['fullname'],
-                            'Account' => $_POST['account'],
-                            'BankName' => $_POST['bankname'],
-                            'BankAddress' => $_POST['bankaddress'],
-                            'NoReference' => $_POST['noreference'],
-                            'Amount' => $_POST['amount'],
-                            'FromBank' => $_POST['frombank'],
-                            'FromName' => $_POST['fromname'],
-                            'Evidence' => $_POST['evidence'],
-                            'Detail' => $_POST['detail']
-                        );
-                        Core::updateProcess(Core::getInstance()->api.'/book/user/withdraw/update',$post_array,Core::lang('withdrawal'));
-                        echo Core::reloadPage();
-                    }
-                }
-
-                foreach ($data->results as $row => $value) {
-                    if (isset($_POST['submitdeletewithdraw'.$value->{'WithdrawID'}]))
-                    {
-                        $post_array = array(
-                            'Username' => $datalogin['username'],
-                            'Token' => $datalogin['token'],
-                            'WithdrawID' => $_POST['withdrawid']
-                        );
-                        Core::deleteProcess(Core::getInstance()->api.'/book/user/withdraw/delete',$post_array,Core::lang('withdrawal'));
-                        echo Core::reloadPage();
-                    }
-                }
-
                 echo '<div class="col-md-12">
                         <div class="card card-plain">
                             <div class="header">
@@ -359,6 +350,9 @@ $lastdate = ((!empty($_GET['lastdate']))?$_GET['lastdate']:date('Y-m-d'));
                                             <textarea name="evidence" rows="2" type="text" placeholder="'.Core::lang('input_withdraw_pot').'" maxlength="50" class="form-control border-input" required>'.$value->{'Image_Evidence'}.'</textarea>
                                         </div>
                                     </div>
+                                </div>
+                                <div class="form-group hidden">
+                                    <input name="WithdrawID" type="text" class="form-control border-input" value="'.$value->{'WithdrawID'}.'" hidden>
                                 </div>
                               </div>
                               <div class="modal-footer">

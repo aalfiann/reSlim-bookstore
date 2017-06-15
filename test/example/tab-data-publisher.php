@@ -74,6 +74,23 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                         </div>
                     </div>
 <?php 
+    if (isset($_POST['submitupdatepublisher'.(empty($_POST['PublisherID'])?'':$_POST['PublisherID'])])){
+        $post_array = array(
+            'Name' => $_POST['name'],
+            'Token' => $datalogin['token'],
+            'PublisherID' => $_POST['publisherid']
+        );
+        Core::updateProcess(Core::getInstance()->api.'/book/publisher/update',$post_array,Core::lang('publisher'));
+    }
+
+    if (isset($_POST['submitdeletepublisher'.(empty($_POST['PublisherID'])?'':$_POST['PublisherID'])])){
+        $post_array = array(
+            'Token' => $datalogin['token'],
+            'PublisherID' => $_POST['publisherid']
+        );
+        Core::deleteProcess(Core::getInstance()->api.'/book/publisher/delete',$post_array,Core::lang('from_publisher'));
+    }
+
     $url = Core::getInstance()->api.'/book/publisher/data/search/'.$datalogin['token'].'/'.$page.'/'.$itemsperpage.'/?query='.rawurlencode($search);
     $data = json_decode(Core::execGetRequest($url));
 
@@ -81,31 +98,6 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
         {
             if ($data->{'status'} == "success")
             {
-                foreach ($data->results as $row => $value) {
-                    if (isset($_POST['submitupdatepublisher'.$value->{'PublisherID'}]))
-                    {
-                        $post_array = array(
-                            'Name' => $_POST['name'],
-                            'Token' => $datalogin['token'],
-                            'PublisherID' => $_POST['publisherid']
-                        );
-                        Core::updateProcess(Core::getInstance()->api.'/book/publisher/update',$post_array,Core::lang('publisher'));
-                        echo Core::reloadPage();
-                    }
-                }
-
-                foreach ($data->results as $row => $value) {
-                    if (isset($_POST['submitdeletepublisher'.$value->{'PublisherID'}]))
-                    {
-                        $post_array = array(
-                            'Token' => $datalogin['token'],
-                            'PublisherID' => $_POST['publisherid']
-                        );
-                        Core::deleteProcess(Core::getInstance()->api.'/book/publisher/delete',$post_array,Core::lang('from_publisher'));
-                        echo Core::reloadPage();
-                    }
-                }
-
                 echo '<div class="col-md-12">
                         <div class="card card-plain">
                             <div class="header">
@@ -181,6 +173,9 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                                             <input name="name" type="text" placeholder="'.Core::lang('input_publisher').'" class="form-control border-input" value="'.$value->{'Name'}.'" required>
                                         </div>
                                     </div>
+                                </div>
+                                <div class="form-group hidden">
+                                    <input name="PublisherID" type="text" class="form-control border-input" value="'.$value->{'PublisherID'}.'" hidden>
                                 </div>
                               </div>
                               <div class="modal-footer">

@@ -74,6 +74,23 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                         </div>
                     </div>
 <?php 
+    if (isset($_POST['submitupdateauthor'.(empty($_POST['AuthorID'])?'':$_POST['AuthorID'])])){
+        $post_array = array(
+            'Name' => $_POST['name'],
+            'Token' => $datalogin['token'],
+            'AuthorID' => $_POST['authorid']
+        );
+        Core::updateProcess(Core::getInstance()->api.'/book/author/update',$post_array,Core::lang('author'));
+    }
+                
+    if (isset($_POST['submitdeleteauthor'.(empty($_POST['AuthorID'])?'':$_POST['AuthorID'])])){
+        $post_array = array(
+            'Token' => $datalogin['token'],
+            'AuthorID' => $_POST['authorid']
+        );
+        Core::deleteProcess(Core::getInstance()->api.'/book/author/delete',$post_array,Core::lang('from_author'));
+    }
+
     $url = Core::getInstance()->api.'/book/author/data/search/'.$datalogin['token'].'/'.$page.'/'.$itemsperpage.'/?query='.rawurlencode($search);
     $data = json_decode(Core::execGetRequest($url));
 
@@ -81,31 +98,6 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
         {
             if ($data->{'status'} == "success")
             {
-                foreach ($data->results as $row => $value) {
-                    if (isset($_POST['submitupdateauthor'.$value->{'AuthorID'}]))
-                    {
-                        $post_array = array(
-                            'Name' => $_POST['name'],
-                            'Token' => $datalogin['token'],
-                            'AuthorID' => $_POST['authorid']
-                        );
-                        Core::updateProcess(Core::getInstance()->api.'/book/author/update',$post_array,Core::lang('author'));
-                        echo Core::reloadPage();
-                    }
-                }
-
-                foreach ($data->results as $row => $value) {
-                    if (isset($_POST['submitdeleteauthor'.$value->{'AuthorID'}]))
-                    {
-                        $post_array = array(
-                            'Token' => $datalogin['token'],
-                            'AuthorID' => $_POST['authorid']
-                        );
-                        Core::deleteProcess(Core::getInstance()->api.'/book/author/delete',$post_array,Core::lang('from_author'));
-                        echo Core::reloadPage();
-                    }
-                }
-
                 echo '<div class="col-md-12">
                         <div class="card card-plain">
                             <div class="header">
@@ -181,6 +173,9 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                                             <input name="name" type="text" placeholder="'.Core::lang('input_author').'" class="form-control border-input" value="'.$value->{'Name'}.'" required>
                                         </div>
                                     </div>
+                                </div>
+                                <div class="form-group hidden">
+                                    <input name="AuthorID" type="text" class="form-control border-input" value="'.$value->{'AuthorID'}.'" hidden>
                                 </div>
                               </div>
                               <div class="modal-footer">

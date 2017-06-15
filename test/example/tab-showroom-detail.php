@@ -19,7 +19,6 @@
                             'Username' => $datalogin['username'] //Username of user login
                         );
                         Core::createProcess(Core::getInstance()->api.'/book/library/new',$post_array,Core::lang('to_library'));
-                        echo Core::reloadPage();
                     }
                 }
 

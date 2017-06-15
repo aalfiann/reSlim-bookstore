@@ -30,6 +30,26 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                 <div class="row">
                     
 <?php 
+    if (isset($_POST['submitupdatelibrary'.(empty($_POST['Guid'])?'':$_POST['Guid'])])){
+        $post_array = array(
+            'Adminname' => $datalogin['username'],
+            'Token' => $datalogin['token'],
+            'BookID' => $_POST['bookid'],
+            'Username' => $_POST['username'],
+            'Status' => $_POST['status']
+        );
+        Core::updateProcess(Core::getInstance()->api.'/book/library/update',$post_array,Core::lang('library'));
+    }
+                
+    if (isset($_POST['submitdeletelibrary'.(empty($_POST['Guid'])?'':$_POST['Guid'])])){
+        $post_array = array(
+            'Token' => $datalogin['token'],
+            'BookID' => $_POST['bookid'],
+            'Username' => $_POST['username'] //Username of the owner of book
+        );
+        Core::deleteProcess(Core::getInstance()->api.'/book/library/delete',$post_array,Core::lang('from_library'));
+    }
+
     $url = Core::getInstance()->api.'/book/library/data/pending/search/'.$page.'/'.$itemsperpage.'/'.$datalogin['token'].'/?query='.rawurlencode($search);
     $data = json_decode(Core::execGetRequest($url));
 
@@ -41,34 +61,6 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
         {
             if ($data->{'status'} == "success")
             {
-                foreach ($data->results as $row => $value) {
-                    if (isset($_POST['submitupdatelibrary'.$value->{'Guid'}]))
-                    {
-                        $post_array = array(
-                            'Adminname' => $datalogin['username'],
-                            'Token' => $datalogin['token'],
-                            'BookID' => $_POST['bookid'],
-                            'Username' => $_POST['username'],
-                            'Status' => $_POST['status']
-                        );
-                        Core::updateProcess(Core::getInstance()->api.'/book/library/update',$post_array,Core::lang('library'));
-                        echo Core::reloadPage();
-                    }
-                }
-
-                foreach ($data->results as $row => $value) {
-                    if (isset($_POST['submitdeletelibrary'.$value->{'Guid'}]))
-                    {
-                        $post_array = array(
-                            'Token' => $datalogin['token'],
-                            'BookID' => $_POST['bookid'],
-                            'Username' => $_POST['username'] //Username of the owner of book
-                        );
-                        Core::deleteProcess(Core::getInstance()->api.'/book/library/delete',$post_array,Core::lang('from_library'));
-                        echo Core::reloadPage();
-                    }
-                }
-
                 echo '<div class="col-md-12">
                         <div class="card card-plain">
                             <div class="header">
@@ -157,6 +149,9 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                                                     echo '</select>
                                         </div>
                                     </div>
+                                </div>
+                                <div class="form-group hidden">
+                                    <input name="Guid" type="text" class="form-control border-input" value="'.$value->{'Guid'}.'" hidden>
                                 </div>
                               </div>
                               <div class="modal-footer">

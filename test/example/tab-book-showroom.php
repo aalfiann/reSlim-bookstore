@@ -30,6 +30,16 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                 <div class="row">
                     
 <?php 
+    if (isset($_POST['submitaddlibrary'.(empty($_POST['BookID'])?'':$_POST['BookID'])])){
+        $post_array = array(
+            'Token' => $datalogin['token'],
+            'BookID' => $_POST['BookID'],
+            'Price' => $_POST['Price'],
+            'Username' => $datalogin['username'] //Username of user login
+        );
+        Core::createProcess(Core::getInstance()->api.'/book/library/new',$post_array,Core::lang('to_library'));
+    }
+    
     $url = Core::getInstance()->api.'/book/release/data/showroom/'.$datalogin['username'].'/search/'.$page.'/'.$itemsperpage.'/'.$datalogin['token'].'/?query='.rawurlencode($search);
     $data = json_decode(Core::execGetRequest($url));
 
@@ -37,21 +47,6 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
         {
             if ($data->{'status'} == "success")
             {
-
-                foreach ($data->results as $row => $value) {
-                    if (isset($_POST['submitaddlibrary'.$value->{'BookID'}]))
-                    {
-                        $post_array = array(
-                            'Token' => $datalogin['token'],
-                            'BookID' => $value->{'BookID'},
-                            'Price' => $value->{'Price'},
-                            'Username' => $datalogin['username'] //Username of user login
-                        );
-                        Core::createProcess(Core::getInstance()->api.'/book/library/new',$post_array,Core::lang('to_library'));
-                        echo Core::reloadPage();
-                    }
-                }
-
                 echo '<div class="col-md-12">
                         <div class="card card-plain">';
                 $n=$data->metadata->{'number_item_first'};
@@ -84,6 +79,10 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                                     <div class="col-md-3">
                                         <h5><a href="modul-book-showroom.php?m=12&page=1&itemsperpage='.$itemsperpage.'&search='.$value->{'Language'}.'">' . $value->{'Language'} .'</a><br /><small>'.Core::lang('language').'</small></h5>
                                     </div>
+                                </div>
+                                <div class="form-group hidden">
+                                    <input name="BookID" type="text" class="form-control border-input" value="'.$value->{'BookID'}.'" hidden>
+                                    <input name="Price" type="text" class="form-control border-input" value="'.$value->{'Price'}.'" hidden>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
@@ -171,6 +170,10 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                               <button type="button" class="btn btn-default pull-left" data-dismiss="modal">'.Core::lang('close').'</button>
                               <a href="modul-showroom-detail.php?m=12&bookid='.$value->{'BookID'}.'&page='.$page.'&itemsperpage='.$itemsperpage.'&redirect='.urlencode('modul-public-detail.php?m=22&bookid='.$value->{'BookID'}.'&itemsperpage='.$itemsperpage).'" class="btn btn-primary  pull-left">'.Core::lang('show_detail').'</a>
                               <form method="post" action="'.$_SERVER['PHP_SELF'].'?m=12&page='.$page.'&itemsperpage='.$itemsperpage.'&search='.$search.'">
+                                <div class="form-group hidden">
+                                    <input name="BookID" type="text" class="form-control border-input" value="'.$value->{'BookID'}.'" hidden>
+                                    <input name="Price" type="text" class="form-control border-input" value="'.$value->{'Price'}.'" hidden>
+                                </div>
                                 <button type="submit" name="submitaddlibrary'.$value->{'BookID'}.'" class="btn btn-success btn-fill">'.Core::lang('add_to_library').'</button>
                               </form>
                               </div>

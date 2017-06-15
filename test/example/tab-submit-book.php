@@ -169,6 +169,39 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'':$_GET['itemsperpage'
                         </div>
                     </div>
 <?php 
+    if (isset($_POST['submitupdatebook'.(empty($_POST['SubmitBookID'])?'':$_POST['SubmitBookID'])])){
+        $post_array = array(
+            'Username' => $datalogin['username'],
+            'Token' => $datalogin['token'],
+            'SampleLink' => filter_var($_POST['samplelink'],FILTER_SANITIZE_STRING),
+            'FullLink' => filter_var($_POST['fulllink'],FILTER_SANITIZE_STRING),
+            'ImageLink' => filter_var($_POST['imagelink'],FILTER_SANITIZE_STRING),
+            'Title' => filter_var($_POST['title'],FILTER_SANITIZE_STRING),
+            'Description' => filter_var($_POST['description'],FILTER_SANITIZE_STRING),
+            'Author' => filter_var($_POST['author'],FILTER_SANITIZE_STRING),
+            'Language' => filter_var($_POST['language'],FILTER_SANITIZE_STRING),
+            'Translator' => filter_var($_POST['translator'],FILTER_SANITIZE_STRING),
+            'Tags' => filter_var($_POST['tags'],FILTER_SANITIZE_STRING),
+            'Pages' => filter_var($_POST['pages'],FILTER_SANITIZE_STRING),
+            'Purpose' => filter_var($_POST['purpose'],FILTER_SANITIZE_STRING),
+            'StatusID' => filter_var($value->{'StatusID'},FILTER_SANITIZE_STRING),
+            'BookID' => filter_var($value->{'BookID'},FILTER_SANITIZE_STRING),
+            'SubmitBookID' => filter_var($_POST['submitbookid'],FILTER_SANITIZE_STRING),
+            'Publisher' => filter_var($_POST['publisher'],FILTER_SANITIZE_STRING),
+            'ISBN' => filter_var($_POST['isbn'],FILTER_SANITIZE_STRING),
+            'Released' => filter_var($_POST['released'],FILTER_SANITIZE_STRING)
+        );
+        Core::updateProcess(Core::getInstance()->api.'/book/submitbook/update',$post_array,Core::lang('submit_book'));
+    }
+                
+    if (isset($_POST['submitdeletebook'.(empty($_POST['SubmitBookID'])?'':$_POST['SubmitBookID'])])){
+        $post_array = array(
+            'Token' => $datalogin['token'],
+            'SubmitBookID' => $_POST['submitbookid']
+        );
+        Core::deleteProcess(Core::getInstance()->api.'/book/submitbook/delete',$post_array,Core::lang('from_submit'));
+    }
+
     $url = Core::getInstance()->api.'/book/submitbook/data/all/'.$datalogin['username'].'/search/'.$page.'/'.$itemsperpage.'/'.$datalogin['token'].'/?query='.rawurlencode($search);
     $data = json_decode(Core::execGetRequest($url));
 
@@ -180,47 +213,6 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'':$_GET['itemsperpage'
         {
             if ($data->{'status'} == "success")
             {
-                foreach ($data->results as $row => $value) {
-                    if (isset($_POST['submitupdatebook'.$value->{'SubmitBookID'}]))
-                    {
-                        $post_array = array(
-                            'Username' => $datalogin['username'],
-                            'Token' => $datalogin['token'],
-                            'SampleLink' => filter_var($_POST['samplelink'],FILTER_SANITIZE_STRING),
-                            'FullLink' => filter_var($_POST['fulllink'],FILTER_SANITIZE_STRING),
-                            'ImageLink' => filter_var($_POST['imagelink'],FILTER_SANITIZE_STRING),
-                            'Title' => filter_var($_POST['title'],FILTER_SANITIZE_STRING),
-                            'Description' => filter_var($_POST['description'],FILTER_SANITIZE_STRING),
-                            'Author' => filter_var($_POST['author'],FILTER_SANITIZE_STRING),
-                            'Language' => filter_var($_POST['language'],FILTER_SANITIZE_STRING),
-                            'Translator' => filter_var($_POST['translator'],FILTER_SANITIZE_STRING),
-                            'Tags' => filter_var($_POST['tags'],FILTER_SANITIZE_STRING),
-                            'Pages' => filter_var($_POST['pages'],FILTER_SANITIZE_STRING),
-                            'Purpose' => filter_var($_POST['purpose'],FILTER_SANITIZE_STRING),
-                            'StatusID' => filter_var($value->{'StatusID'},FILTER_SANITIZE_STRING),
-                            'BookID' => filter_var($value->{'BookID'},FILTER_SANITIZE_STRING),
-                            'SubmitBookID' => filter_var($_POST['submitbookid'],FILTER_SANITIZE_STRING),
-                            'Publisher' => filter_var($_POST['publisher'],FILTER_SANITIZE_STRING),
-                            'ISBN' => filter_var($_POST['isbn'],FILTER_SANITIZE_STRING),
-                            'Released' => filter_var($_POST['released'],FILTER_SANITIZE_STRING)
-                        );
-                        Core::updateProcess(Core::getInstance()->api.'/book/submitbook/update',$post_array,Core::lang('submit_book'));
-                        echo Core::reloadPage();
-                    }
-                }
-
-                foreach ($data->results as $row => $value) {
-                    if (isset($_POST['submitdeletebook'.$value->{'SubmitBookID'}]))
-                    {
-                        $post_array = array(
-                            'Token' => $datalogin['token'],
-                            'SubmitBookID' => $_POST['submitbookid']
-                        );
-                        Core::deleteProcess(Core::getInstance()->api.'/book/submitbook/delete',$post_array,Core::lang('from_submit'));
-                        echo Core::reloadPage();
-                    }
-                }
-
                 echo '<div class="col-md-12">
                         <div class="card card-plain">
                             <div class="header">
@@ -398,6 +390,9 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'':$_GET['itemsperpage'
                                             <textarea name="fulllink" rows="2" type="text" placeholder="'.Core::lang('input_full').'" class="form-control border-input" required>'.$value->{'Full_link'}.'</textarea>
                                         </div>
                                     </div>
+                                </div>
+                                <div class="form-group hidden">
+                                    <input name="SubmitBookID" type="text" class="form-control border-input" value="'.$value->{'SubmitBookID'}.'" hidden>
                                 </div>
                               </div>
                               <div class="modal-footer">

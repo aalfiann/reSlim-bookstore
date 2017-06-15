@@ -30,6 +30,26 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                 <div class="row">
                
 <?php 
+    if (isset($_POST['submitupdatereview'.(empty($_POST['ReviewID'])?'':$_POST['ReviewID'])])){
+        $post_array = array(
+            'Username' => $datalogin['username'],
+            'Token' => $datalogin['token'],
+            'Detail' => $_POST['detail'],
+            'Status' => $_POST['status'],
+            'ReviewID' => $value->{'ReviewID'}
+        );
+        Core::updateProcess(Core::getInstance()->api.'/book/review/update',$post_array,Core::lang('from_review'));
+    }
+                
+    if (isset($_POST['submitdeletereview'.(empty($_POST['ReviewID'])?'':$_POST['ReviewID'])])){
+        $post_array = array(
+            'Username' => $datalogin['username'],
+            'Token' => $datalogin['token'],
+            'ReviewID' => $value->{'ReviewID'}
+        );
+        Core::deleteProcess(Core::getInstance()->api.'/book/review/delete',$post_array,Core::lang('data_review'));
+    }
+
     $url = Core::getInstance()->api.'/book/review/data/search/'.$page.'/'.$itemsperpage.'/'.$datalogin['token'].'/?query='.rawurlencode($search);
     $data = json_decode(Core::execGetRequest($url));
 
@@ -42,35 +62,6 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
         {
             if ($data->{'status'} == "success")
             {
-
-                foreach ($data->results as $row => $value) {
-                    if (isset($_POST['submitupdatereview'.$value->{'ReviewID'}]))
-                    {
-                        $post_array = array(
-                            'Username' => $datalogin['username'],
-                            'Token' => $datalogin['token'],
-                            'Detail' => $_POST['detail'],
-                            'Status' => $_POST['status'],
-                            'ReviewID' => $value->{'ReviewID'}
-                        );
-                        Core::updateProcess(Core::getInstance()->api.'/book/review/update',$post_array,Core::lang('from_review'));
-                        echo Core::reloadPage();
-                    }
-                }
-
-                foreach ($data->results as $row => $value) {
-                    if (isset($_POST['submitdeletereview'.$value->{'ReviewID'}]))
-                    {
-                        $post_array = array(
-                            'Username' => $datalogin['username'],
-                            'Token' => $datalogin['token'],
-                            'ReviewID' => $value->{'ReviewID'}
-                        );
-                        Core::deleteProcess(Core::getInstance()->api.'/book/review/delete',$post_array,Core::lang('data_review'));
-                        echo Core::reloadPage();
-                    }
-                }
-
                 echo '<div class="col-md-12">
                         <div class="card card-plain">
                             <div class="header">
@@ -165,6 +156,9 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                                                     echo '</select>
                                         </div>
                                     </div>
+                                </div>
+                                <div class="form-group hidden">
+                                    <input name="ReviewID" type="text" class="form-control border-input" value="'.$value->{'ReviewID'}.'" hidden>
                                 </div>
                               </div>
                               <div class="modal-footer">

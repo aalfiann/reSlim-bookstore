@@ -30,6 +30,15 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                 <div class="row">
                     
 <?php 
+    if (isset($_POST['submitdeletelibrary'.(empty($_POST['Guid'])?'':$_POST['Guid'])])){
+        $post_array = array(
+            'Token' => $datalogin['token'],
+            'BookID' => $_POST['bookid'],
+            'Username' => $datalogin['username'] //Username of the owner of book
+        );
+        Core::deleteProcess(Core::getInstance()->api.'/book/library/delete',$post_array,Core::lang('from_library'));
+    }
+
     $url = Core::getInstance()->api.'/book/library/data/'.$datalogin['username'].'/search/'.$page.'/'.$itemsperpage.'/'.$datalogin['token'].'/?query='.rawurlencode($search);
     $data = json_decode(Core::execGetRequest($url));
 
@@ -37,20 +46,6 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
         {
             if ($data->{'status'} == "success")
             {
-
-                foreach ($data->results as $row => $value) {
-                    if (isset($_POST['submitdeletelibrary'.$value->{'Guid'}]))
-                    {
-                        $post_array = array(
-                            'Token' => $datalogin['token'],
-                            'BookID' => $_POST['bookid'],
-                            'Username' => $datalogin['username'] //Username of the owner of book
-                        );
-                        Core::deleteProcess(Core::getInstance()->api.'/book/library/delete',$post_array,Core::lang('from_library'));
-                        echo Core::reloadPage();
-                    }
-                }
-
                 echo '<div class="col-md-12">
                         <div class="card card-plain">';
                 $n=$data->metadata->{'number_item_first'};
@@ -134,6 +129,9 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                                     <div class="col-lg-12">
                                         <p>'.Core::lang('payment_info_1').' '.Core::getInstance()->hotline.'.<br><br>'.Core::lang('payment_info_2').'</p>
                                     </div>
+                                </div>
+                                <div class="form-group hidden">
+                                    <input name="Guid" type="text" class="form-control border-input" value="'.$value->{'Guid'}.'" hidden>
                                 </div>
                               </div>
                               <div class="modal-footer">

@@ -74,6 +74,23 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                         </div>
                     </div>
 <?php 
+    if (isset($_POST['submitupdatelanguage'.(empty($_POST['LanguageID'])?'':$_POST['LanguageID'])])){
+        $post_array = array(
+            'Name' => $_POST['name'],
+            'Token' => $datalogin['token'],
+            'LanguageID' => $_POST['languageid']
+        );
+        Core::updateProcess(Core::getInstance()->api.'/book/language/update',$post_array,Core::lang('language'));
+    }
+                
+    if (isset($_POST['submitdeletelanguage'.(empty($_POST['LanguageID'])?'':$_POST['LanguageID'])])){
+        $post_array = array(
+            'Token' => $datalogin['token'],
+            'LanguageID' => $_POST['languageid']
+        );
+        Core::deleteProcess(Core::getInstance()->api.'/book/language/delete',$post_array,Core::lang('from_language'));
+    }
+
     $url = Core::getInstance()->api.'/book/language/data/search/'.$datalogin['token'].'/'.$page.'/'.$itemsperpage.'/?query='.rawurlencode($search);
     $data = json_decode(Core::execGetRequest($url));
 
@@ -81,31 +98,6 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
         {
             if ($data->{'status'} == "success")
             {
-                foreach ($data->results as $row => $value) {
-                    if (isset($_POST['submitupdatelanguage'.$value->{'LanguageID'}]))
-                    {
-                        $post_array = array(
-                            'Name' => $_POST['name'],
-                            'Token' => $datalogin['token'],
-                            'LanguageID' => $_POST['languageid']
-                        );
-                        Core::updateProcess(Core::getInstance()->api.'/book/language/update',$post_array,Core::lang('language'));
-                        echo Core::reloadPage();
-                    }
-                }
-
-                foreach ($data->results as $row => $value) {
-                    if (isset($_POST['submitdeletelanguage'.$value->{'LanguageID'}]))
-                    {
-                        $post_array = array(
-                            'Token' => $datalogin['token'],
-                            'LanguageID' => $_POST['languageid']
-                        );
-                        Core::deleteProcess(Core::getInstance()->api.'/book/language/delete',$post_array,Core::lang('from_language'));
-                        echo Core::reloadPage();
-                    }
-                }
-
                 echo '<div class="col-md-12">
                         <div class="card card-plain">
                             <div class="header">
@@ -181,6 +173,9 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                                             <input name="name" type="text" placeholder="'.Core::lang('input_language').'" class="form-control border-input" value="'.$value->{'Name'}.'" required>
                                         </div>
                                     </div>
+                                </div>
+                                <div class="form-group hidden">
+                                    <input name="LanguageID" type="text" class="form-control border-input" value="'.$value->{'LanguageID'}.'" hidden>
                                 </div>
                               </div>
                               <div class="modal-footer">

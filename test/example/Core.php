@@ -419,16 +419,16 @@
             if (!empty($data)){
                 if ($data->{'status'} == "success"){
                     echo '<div class="col-lg-12">';
-                    echo self::getMessage('success',self::lang('update_success'),self::lang('auto_refresh'));
+                    echo self::getMessage('success',self::lang('update_success'));
                     echo '</div>';
                 } else {
                     echo '<div class="col-lg-12">';
-                    echo self::getMessage('danger',self::lang('update_failed'),$data->{'message'}.'.'.self::lang('auto_refresh'));
+                    echo self::getMessage('danger',self::lang('update_failed'),$data->{'message'}.'.');
                     echo '</div>';
                 }
             } else {
                 echo '<div class="col-lg-12">';
-                echo self::getMessage('danger',self::lang('update_failed'),self::lang('not_connect_server').self::lang('auto_refresh'));
+                echo self::getMessage('danger',self::lang('update_failed'),self::lang('not_connect_server'));
                 echo '</div>';
             }
 	    }
@@ -445,16 +445,16 @@
             if (!empty($data)){
                 if ($data->{'status'} == "success"){
                     echo '<div class="col-lg-12">';
-                    echo self::getMessage('success',self::lang('delete_success'),self::lang('auto_refresh'));
+                    echo self::getMessage('success',self::lang('delete_success'));
                     echo '</div>';
                 } else {
                     echo '<div class="col-lg-12">';
-                    echo self::getMessage('danger',self::lang('delete_failed'),$data->{'message'}.'.'.self::lang('auto_refresh'));
+                    echo self::getMessage('danger',self::lang('delete_failed'),$data->{'message'}.'.');
                     echo '</div>';
                 }
             } else {
                 echo '<div class="col-lg-12">';
-                echo self::getMessage('danger',self::lang('delete_failed'),self::lang('not_connect_server').self::lang('auto_refresh'));
+                echo self::getMessage('danger',self::lang('delete_failed'),self::lang('not_connect_server'));
                 echo '</div>';
             }
 	    }
@@ -513,16 +513,16 @@
             if (!empty($data)){
                 if ($data->{'status'} == "success"){
                     echo '<div class="col-lg-12">';
-                    echo self::getMessage('success',self::lang('update_success'),self::lang('auto_refresh'));
+                    echo self::getMessage('success',self::lang('update_success'));
                     echo '</div>';
                 } else {
                     echo '<div class="col-lg-12">';
-                    echo self::getMessage('danger',self::lang('update_failed'),$data->{'message'}.'.'.self::lang('auto_refresh'));
+                    echo self::getMessage('danger',self::lang('update_failed'),$data->{'message'}.'.');
                     echo '</div>';
                 }
             } else {
                 echo '<div class="col-lg-12">';
-                echo self::getMessage('danger',self::lang('update_failed'),self::lang('not_connect_server').self::lang('auto_refresh'));
+                echo self::getMessage('danger',self::lang('update_failed'),self::lang('not_connect_server'));
                 echo '</div>';
             }
 	    }
@@ -539,16 +539,16 @@
             if (!empty($data)){
                 if ($data->{'status'} == "success"){
                     echo '<div class="col-lg-12">';
-                    echo self::getMessage('success',self::lang('delete_success'),self::lang('auto_refresh'));
+                    echo self::getMessage('success',self::lang('delete_success'));
                     echo '</div>';
                 } else {
                     echo '<div class="col-lg-12">';
-                    echo self::getMessage('danger',self::lang('delete_failed'),$data->{'message'}.'.'.self::lang('auto_refresh'));
+                    echo self::getMessage('danger',self::lang('delete_failed'),$data->{'message'}.'.');
                     echo '</div>';
                 }
             } else {
                 echo '<div class="col-lg-12">';
-                echo self::getMessage('danger',self::lang('delete_failed'),self::lang('not_connect_server').self::lang('auto_refresh'));
+                echo self::getMessage('danger',self::lang('delete_failed'),self::lang('not_connect_server'));
                 echo '</div>';
             }
 	    }
@@ -593,16 +593,16 @@
             if (!empty($data)){
                 if ($data->{'status'} == "success"){
                     if ($largeDiv) echo '<div class="col-lg-12">';
-                    echo self::getMessage('success',self::lang('process_update').$nameprocess.self::lang('success'),self::lang('auto_refresh'));
+                    echo self::getMessage('success',self::lang('process_update').$nameprocess.self::lang('success'));
                     if ($largeDiv) echo '</div>';
                 } else {
                     if ($largeDiv) echo '<div class="col-lg-12">';
-                    echo self::getMessage('danger',self::lang('process_update').$nameprocess.self::lang('failed'),$data->{'message'}.'.'.self::lang('auto_refresh'));
+                    echo self::getMessage('danger',self::lang('process_update').$nameprocess.self::lang('failed'),$data->{'message'}.'.');
                     if ($largeDiv) echo '</div>';
                 }
             } else {
                 if ($largeDiv) echo '<div class="col-lg-12">';
-                echo self::getMessage('danger',self::lang('process_update').$nameprocess.self::lang('failed'),self::lang('not_connect_server').self::lang('auto_refresh'));
+                echo self::getMessage('danger',self::lang('process_update').$nameprocess.self::lang('failed'),self::lang('not_connect_server'));
                 if ($largeDiv) echo '</div>';
             }
 	    }
@@ -620,16 +620,16 @@
             if (!empty($data)){
                 if ($data->{'status'} == "success"){
                     if ($largeDiv) echo '<div class="col-lg-12">';
-                    echo self::getMessage('success',self::lang('process_delete').$nameprocess.self::lang('success'),self::lang('auto_refresh'));
+                    echo self::getMessage('success',self::lang('process_delete').$nameprocess.self::lang('success'));
                     if ($largeDiv) echo '</div>';
                 } else {
                     if ($largeDiv) echo '<div class="col-lg-12">';
-                    echo self::getMessage('danger',self::lang('process_delete').$nameprocess.self::lang('failed'),$data->{'message'}.'.'.self::lang('auto_refresh'));
+                    echo self::getMessage('danger',self::lang('process_delete').$nameprocess.self::lang('failed'),$data->{'message'}.'.');
                     if ($largeDiv) echo '</div>';
                 }
             } else {
                if ($largeDiv) echo '<div class="col-lg-12">';
-                echo self::getMessage('danger',self::lang('process_delete').$nameprocess.self::lang('failed'),self::lang('not_connect_server').self::lang('auto_refresh'));
+                echo self::getMessage('danger',self::lang('process_delete').$nameprocess.self::lang('failed'),self::lang('not_connect_server'));
                 if ($largeDiv) echo '</div>';
             }
 	    }

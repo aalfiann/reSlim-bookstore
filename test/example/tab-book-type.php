@@ -74,6 +74,23 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                         </div>
                     </div>
 <?php 
+    if (isset($_POST['submitupdatetype'.(empty($_POST['TypeID'])?'':$_POST['TypeID'])])){
+        $post_array = array(
+            'Name' => $_POST['name'],
+            'Token' => $datalogin['token'],
+            'TypeID' => $_POST['typeid']
+        );
+        Core::updateProcess(Core::getInstance()->api.'/book/type/update',$post_array,Core::lang('book_type'));
+    }
+    
+    if (isset($_POST['submitdeletetype'.(empty($_POST['TypeID'])?'':$_POST['TypeID'])])){
+        $post_array = array(
+            'Token' => $datalogin['token'],
+            'TypeID' => $_POST['typeid']
+        );
+        Core::deleteProcess(Core::getInstance()->api.'/book/type/delete',$post_array,Core::lang('book_type'));
+    }
+
     $url = Core::getInstance()->api.'/book/type/data/search/'.$datalogin['token'].'/'.$page.'/'.$itemsperpage.'/?query='.rawurlencode($search);
     $data = json_decode(Core::execGetRequest($url));
 
@@ -81,31 +98,6 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
         {
             if ($data->{'status'} == "success")
             {
-                foreach ($data->results as $row => $value) {
-                    if (isset($_POST['submitupdatetype'.$value->{'TypeID'}]))
-                    {
-                        $post_array = array(
-                            'Name' => $_POST['name'],
-                            'Token' => $datalogin['token'],
-                            'TypeID' => $_POST['typeid']
-                        );
-                        Core::updateProcess(Core::getInstance()->api.'/book/type/update',$post_array,Core::lang('book_type'));
-                        echo Core::reloadPage();
-                    }
-                }
-
-                foreach ($data->results as $row => $value) {
-                    if (isset($_POST['submitdeletetype'.$value->{'TypeID'}]))
-                    {
-                        $post_array = array(
-                            'Token' => $datalogin['token'],
-                            'TypeID' => $_POST['typeid']
-                        );
-                        Core::deleteProcess(Core::getInstance()->api.'/book/type/delete',$post_array,Core::lang('book_type'));
-                        echo Core::reloadPage();
-                    }
-                }
-
                 echo '<div class="col-md-12">
                         <div class="card card-plain">
                             <div class="header">
@@ -181,6 +173,9 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                                             <input name="name" type="text" placeholder="'.Core::lang('input_new_type').'" class="form-control border-input" value="'.$value->{'Name'}.'" required>
                                         </div>
                                     </div>
+                                </div>
+                                <div class="form-group hidden">
+                                    <input name="TypeID" type="text" class="form-control border-input" value="'.$value->{'TypeID'}.'" hidden>
                                 </div>
                               </div>
                               <div class="modal-footer">
