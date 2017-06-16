@@ -29,7 +29,7 @@
                                             <label><?php echo Core::lang('password')?></label>
                                             <input name="password" type="password" placeholder="<?php echo Core::lang('input_password')?>" class="form-control border-input" required>
                                         </div>
-                                        <label class="checkbox" for="checkbox1">
+                                        <label class="checkbox checked" for="checkbox1">
 	                                	    <input name="remember" type="checkbox" id="checkbox1" data-toggle="checkbox"><?php echo Core::lang('remember_me')?>
 	                                	</label>
                                         <hr>
