@@ -2460,6 +2460,43 @@
 				"description": ""
 			},
 			"response": []
+		},
+		{
+			"name": "Show All Available Tags",
+			"request": {
+				"url": {
+					"raw": "http://localhost:1337/reSlim-bookstore/src/api/book/data/tags/all/?apikey={your apikey}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1337",
+					"path": [
+						"reSlim-bookstore",
+						"src",
+						"api",
+						"book",
+						"data",
+						"tags",
+						"all",
+						""
+					],
+					"query": [
+						{
+							"key": "apikey",
+							"value": "{your apikey}",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
 		}
 	]
 }
