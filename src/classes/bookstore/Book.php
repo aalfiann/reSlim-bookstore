@@ -4489,4 +4489,56 @@ use PDO;
 			return json_encode($data, JSON_PRETTY_PRINT);
 	        $this->db= null;
 		}
+
+		/** 
+		 * Show all data available tags
+		 * @return result process in json encoded data
+		 */
+        public function showAllTags(){
+				$sql = "SELECT SPLIT_SORT(x.`values`, ',') as Tags from (
+						select group_concat(distinct trim(substring_index(substring_index(t.Tags, ',', n.n), ',', -1)) separator ',' ) as `values`
+						from book_release t 
+						cross join (select 1 as n union all select 2 ) n
+						order by `values`
+					) x;";
+				$stmt = $this->db->prepare($sql);		
+
+				if ($stmt->execute()) {	
+    	    	    if ($stmt->rowCount() > 0){
+						$datares = "";
+						while($redata = $stmt->fetch()) {
+							$return_arr = null;
+							$names = $redata['Tags'];	
+							$named = preg_split( "/[;,@#]/", $names );
+							foreach($named as $name){
+								if ($name != null){$return_arr[] = trim($name);}
+							}
+							$datares .= '{"Tags_Inline":'.json_encode($redata['Tags']).',
+								"Tags": '.json_encode($return_arr).'},';
+						}
+						$datares = substr($datares, 0, -1);
+						$data = [
+			   	            'result' => json_decode($datares), 
+    	    		        'status' => 'success', 
+			           	    'code' => 'RS501',
+        		        	'message' => CustomHandlers::getreSlimMessage('RS501')
+						];
+			        } else {
+        			    $data = [
+            		    	'status' => 'error',
+		        		    'code' => 'RS601',
+        		    	    'message' => CustomHandlers::getreSlimMessage('RS601')
+						];
+	    	        }          	   	
+				} else {
+					$data = [
+    	    			'status' => 'error',
+						'code' => 'RS202',
+	        		    'message' => CustomHandlers::getreSlimMessage('RS202')
+					];
+				}		
+        
+			return json_encode($data, JSON_PRETTY_PRINT);
+	        $this->db= null;
+        }
     }
