@@ -62,6 +62,16 @@
 					//error
 				}
 			});
+		}),
+		$('#number-input').on('change', function() {
+			var x = $('#number-input').val();
+			if (isNaN(x)) {
+				var div = document.getElementById('number-info');
+				div.innerHTML = '<p class="text-danger">Info: <?php echo Core::lang('validation_number_fail')?></p>';
+			} else {
+				var div = document.getElementById('number-info');
+				div.innerHTML = '<p class="text-success">Info: <?php echo Core::lang('validation_number_ok')?></p>';
+			}
 		});
     });
 	</script>
