@@ -99,7 +99,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>'.Core::lang('phone').'</label>
-                                                <input type="text" name="phone" class="form-control border-input" placeholder="'.Core::lang('input_phone').'" maxlength="15" value="'.$data->result[0]->{'Phone'}.'" required>
+                                                <input type="text" name="phone" class="form-control border-input" placeholder="'.Core::lang('input_phone').'" maxlength="15" value="'.$data->result[0]->{'Phone'}.'" pattern="[0-9]*" required>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
