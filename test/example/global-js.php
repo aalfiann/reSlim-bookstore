@@ -22,6 +22,46 @@
         }),
         $("#lastdate").datepicker({
             dateFormat:"yy-mm-dd"
-        })
+        }),
+		$('#email-input').on('change', function() {
+			$.ajax({
+				url: "<?php echo Core::getInstance()->api?>/user/validasi/email/"+$('#email-input').val(),
+				data: {'email' : $('#email-input').val()},
+				dataType: 'json',
+				success: function(data) {
+					if(data.result) {
+						var div = document.getElementById('email-info');
+						div.innerHTML = '<p class="text-danger">Info: <?php echo Core::lang('validation_email_fail')?></p>';
+					}
+					else {
+						var div = document.getElementById('email-info');
+						div.innerHTML = '<p class="text-success">Info: <?php echo Core::lang('validation_email_ok')?></p>';
+					}
+				},
+				error: function(data){
+					//error
+				}
+			});
+		}),
+		$('#username-input').on('change', function() {
+			$.ajax({
+				url: "<?php echo Core::getInstance()->api?>/user/validasi/username/"+$('#username-input').val(),
+				data: {'username' : $('#username-input').val()},
+				dataType: 'json',
+				success: function(data) {
+					if(data.result) {
+						var div = document.getElementById('username-info');
+						div.innerHTML = '<p class="text-danger">Info: <?php echo Core::lang('validation_username_fail')?></p>';
+					}
+					else {
+						var div = document.getElementById('username-info');
+						div.innerHTML = '<p class="text-success">Info: <?php echo Core::lang('validation_username_ok')?></p>';
+					}
+				},
+				error: function(data){
+					//error
+				}
+			});
+		});
     });
 	</script>

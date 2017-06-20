@@ -1424,4 +1424,90 @@ use PDO;
 			return json_encode($data, JSON_PRETTY_PRINT);
 		}
 
+
+		//API for Validation==================================
+		
+		
+		/**
+		 * Determine if username is already exist or not
+		 * @return boolean true / false
+		 */
+		public function isUsernameExist() {
+			$newusername = strtolower(filter_var($this->username,FILTER_SANITIZE_EMAIL));
+			$sql = "SELECT a.Username
+				FROM user_data a 
+				WHERE a.Username = :username;";
+				
+			$stmt = $this->db->prepare($sql);		
+			$stmt->bindParam(':username', $newusername, PDO::PARAM_STR);
+
+			if ($stmt->execute()) {	
+    	    	if ($stmt->rowCount() > 0){
+        		   	$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+					$data = [
+		   	            'result' => $results, 
+	    		        'status' => 'success', 
+			           	'code' => 'RS501',
+        		        'message' => CustomHandlers::getreSlimMessage('RS501')
+					];
+			    } else {
+        			$data = [
+            		   	'status' => 'error',
+		        	    'code' => 'RS601',
+        		        'message' => CustomHandlers::getreSlimMessage('RS601')
+					];
+	    	    }          	   	
+			} else {
+				$data = [
+    	    		'status' => 'error',
+					'code' => 'RS202',
+	        	    'message' => CustomHandlers::getreSlimMessage('RS202')
+				];
+			}		
+        
+			return json_encode($data, JSON_PRETTY_PRINT);
+	        $this->db= null;
+		}
+		
+		/**
+		 * Determine if email is already exist or not
+		 * @return boolean true / false
+		 */
+		public function isEmailExist() {
+			$newemail = strtolower(filter_var($this->email,FILTER_SANITIZE_EMAIL));
+			$sql = "SELECT a.Email
+				FROM user_data a 
+				WHERE a.Email = :email;";
+				
+			$stmt = $this->db->prepare($sql);		
+			$stmt->bindParam(':email', $newemail, PDO::PARAM_STR);
+
+			if ($stmt->execute()) {	
+    	    	if ($stmt->rowCount() > 0){
+        		   	$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+					$data = [
+		   	            'result' => $results, 
+	    		        'status' => 'success', 
+			           	'code' => 'RS501',
+        		        'message' => CustomHandlers::getreSlimMessage('RS501')
+					];
+			    } else {
+        			$data = [
+            		   	'status' => 'error',
+		        	    'code' => 'RS601',
+        		        'message' => CustomHandlers::getreSlimMessage('RS601')
+					];
+	    	    }          	   	
+			} else {
+				$data = [
+    	    		'status' => 'error',
+					'code' => 'RS202',
+	        	    'message' => CustomHandlers::getreSlimMessage('RS202')
+				];
+			}		
+        
+			return json_encode($data, JSON_PRETTY_PRINT);
+	        $this->db= null;
+		}
+
 	}
