@@ -393,3 +393,21 @@ use \Psr\Http\Message\ResponseInterface as Response;
         $body->write($users->searchAllApiKeysAsPagination());
         return classes\Cors::modify($response,$body,200);
     });
+
+    // GET example api to validate input email
+    $app->get('/user/validasi/email/{email}', function (Request $request, Response $response) {
+        $users = new classes\User($this->db);
+        $users->email = $request->getAttribute('email');
+        $body = $response->getBody();
+        $body->write($users->isEmailExist());
+        return classes\Cors::modify($response,$body,200);
+    });
+	
+	// GET example api to validate input username
+    $app->get('/user/validasi/username/{username}', function (Request $request, Response $response) {
+        $users = new classes\User($this->db);
+        $users->username = $request->getAttribute('username');
+        $body = $response->getBody();
+        $body->write($users->isUsernameExist());
+        return classes\Cors::modify($response,$body,200);
+    });
