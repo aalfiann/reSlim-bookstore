@@ -1,6 +1,10 @@
 <?php
 require_once realpath(__DIR__ . '/..').'/config.php';
 $lang = [
+    'validation_username_ok' => 'Nama Pengguna OK!',
+	'validation_username_fail' => 'Nama Pengguna telah terpakai!',
+	'validation_email_ok' => 'Alamat email OK!',
+	'validation_email_fail' => 'Alamat email telah terpakai!',
     'currency_code' => 'IDR',
     'welcome_to' => 'Selamat datang di',
     'register' => 'Pendaftaran',
