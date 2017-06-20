@@ -2497,6 +2497,28 @@
 				"description": ""
 			},
 			"response": []
+		},
+		{
+			"name": "Validation Username Is Exist",
+			"request": {
+				"url": "http://localhost:1337/reSlim-bookstore/src/api/user/validasi/username/{your username}",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Validation Email Is Exist",
+			"request": {
+				"url": "http://localhost:1337/reSlim-bookstore/src/api/user/validasi/email/{your email}",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
 		}
 	]
 }
