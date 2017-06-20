@@ -7,7 +7,7 @@
                                 if (isset($_POST['submitlogin']))
                                 {
                                     $post_array = array(
-                                    	'Username' => $_POST['username'],
+                                    	'Username' => strtolower($_POST['username']),
                                     	'Password' => $_POST['password'],
                                         'Rememberme' => (!empty($_POST['remember'])?$_POST['remember']:'')
                                     );
@@ -23,7 +23,7 @@
                                     <div class="content">
                                         <div class="form-group">
                                             <label><?php echo Core::lang('username')?></label>
-                                            <input name="username" type="text" placeholder="<?php echo Core::lang('input_username')?>" class="form-control border-input" required>
+                                            <input name="username" type="text" style="text-transform:lowercase;" placeholder="<?php echo Core::lang('input_username')?>" class="form-control border-input" required>
                                         </div>
                                         <div class="form-group">
                                             <label><?php echo Core::lang('password')?></label>
