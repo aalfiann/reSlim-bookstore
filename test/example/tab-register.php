@@ -41,7 +41,8 @@
                                     <div class="content">
                                         <div class="form-group">
                                             <label><?php echo Core::lang('username')?></label>
-                                            <input name="username" type="text" placeholder="<?php echo Core::lang('input_username')?>" class="form-control border-input" maxlength="20" required>
+                                            <input name="username" id="username-input" type="text" style="text-transform:lowercase;" placeholder="<?php echo Core::lang('input_username')?>" class="form-control border-input" maxlength="20" required>
+                                            <div id="username-info"></div>
                                         </div>
                                         <div class="form-group">
                                             <label><?php echo Core::lang('password')?></label>
@@ -61,11 +62,12 @@
                                         </div>
                                         <div class="form-group">
                                             <label><?php echo Core::lang('phone')?></label>
-                                            <input name="phone" type="text" placeholder="<?php echo Core::lang('input_phone')?>" class="form-control border-input" maxlength="15" required>
+                                            <input name="phone" type="text" placeholder="<?php echo Core::lang('input_phone')?>" class="form-control border-input" maxlength="15" pattern="[0-9]*" required>
                                         </div>
                                         <div class="form-group">
                                             <label><?php echo Core::lang('email')?></label>
-                                            <input name="email" type="email" placeholder="<?php echo Core::lang('input_email')?>" class="form-control border-input" maxlength="50" required>
+                                            <input name="email" id="email-input" type="email" placeholder="<?php echo Core::lang('input_email')?>" class="form-control border-input" maxlength="50" required>
+                                            <div id="email-info"></div>
                                         </div>
                                         <div class="form-group">
                                             <label><?php echo Core::lang('about_me')?></label>
