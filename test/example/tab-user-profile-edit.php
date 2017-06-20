@@ -112,7 +112,8 @@ $username = filter_var((empty($_GET['username'])?'':$_GET['username']),FILTER_SA
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>'.Core::lang('phone').'</label>
-                                                <input type="text" name="phone" class="form-control border-input" placeholder="Input your phone number" maxlength="15" value="'.$data->result[0]->{'Phone'}.'" pattern="[0-9]*" required>
+                                                <input type="text" id="number-input" name="phone" class="form-control border-input" placeholder="Input your phone number" maxlength="15" value="'.$data->result[0]->{'Phone'}.'" pattern="[0-9]*" required>
+                                                <div id="number-info"></div>
                                             </div>
                                         </div>
                                         <div class="col-md-6">

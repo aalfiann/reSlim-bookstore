@@ -62,7 +62,8 @@
                                         </div>
                                         <div class="form-group">
                                             <label><?php echo Core::lang('phone')?></label>
-                                            <input name="phone" type="text" placeholder="<?php echo Core::lang('input_phone')?>" class="form-control border-input" maxlength="15" pattern="[0-9]*" required>
+                                            <input name="phone" id="number-input" type="text" placeholder="<?php echo Core::lang('input_phone')?>" class="form-control border-input" maxlength="15" pattern="[0-9]*" required>
+                                            <div id="number-info"></div>
                                         </div>
                                         <div class="form-group">
                                             <label><?php echo Core::lang('email')?></label>
