@@ -46,7 +46,9 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                             ?>
                             <button name="submitupload" type="submit" class="btn btn-wd" data-toggle="modal" data-target="#myModal"><i class="ti-cloud-up"></i> <?php echo Core::lang('upload_file')?></button>
                         </div>
-                        <!-- Start Modal -->
+                    </div>
+                </div><hr>
+                <!-- Start Modal -->
                         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                           <div class="modal-dialog" role="document">
                             <div class="modal-content">
@@ -92,8 +94,6 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                           </div>
                         </div>
                         <!-- End Modal -->
-                    </div>
-                </div><hr>
                 <div class="row">
 <?php 
     if (isset($_POST['submitupdate'.(empty($_POST['ItemID'])?'':$_POST['ItemID'])])){
