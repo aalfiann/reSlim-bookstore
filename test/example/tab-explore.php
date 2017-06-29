@@ -161,6 +161,7 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                                 </div>
                             </div>
                         </div>
+                    </div>
                         <!-- Start Modal -->
                         <div class="modal fade" id="'.$value->{'ItemID'}.'" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                           <div class="modal-dialog" role="document">
@@ -262,7 +263,6 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                           </div>
                         </div>
                         <!-- End Modal -->
-                    </div>
                     <!-- End Data Card -->';
                     if ($i%4==0){
 						echo '<div class="clearfix visible-lg-block"></div>';
