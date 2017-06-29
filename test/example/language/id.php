@@ -5,6 +5,7 @@ $lang = [
 	'validation_username_fail' => 'Nama Pengguna telah terpakai!',
 	'validation_email_ok' => 'Alamat email OK!',
 	'validation_email_fail' => 'Alamat email telah terpakai!',
+    'validation_email_letter_fail' => 'Format penulisan alamat email salah!',
     'validation_number_ok' => 'Format telepon OK!',
 	'validation_number_fail' => 'Format telepon harus di isi angka saja!',
     'validation_username_letter_fail' => 'Format username adalah huruf, angka, atau huruf dan angka!',

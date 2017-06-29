@@ -20,7 +20,7 @@
                                     <div class="content">
                                         <div class="form-group">
                                             <label><?php echo Core::lang('email')?></label>
-                                            <input name="email" type="email" placeholder="<?php echo Core::lang('input_email')?>" class="form-control border-input" maxlength="50" required>
+                                            <input name="email" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" placeholder="<?php echo Core::lang('input_email')?>" class="form-control border-input" maxlength="50" required>
                                         </div>
                                         <hr>
                                         <div class="form-group text-center">

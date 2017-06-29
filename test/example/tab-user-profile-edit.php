@@ -119,7 +119,7 @@ $username = filter_var((empty($_GET['username'])?'':$_GET['username']),FILTER_SA
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>'.Core::lang('email').'</label>
-                                                <input type="email" name="email" class="form-control border-input" placeholder="Input your email address" maxlength="50" value="'.$data->result[0]->{'Email'}.'" required>
+                                                <input type="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" class="form-control border-input" placeholder="Input your email address" maxlength="50" value="'.$data->result[0]->{'Email'}.'" required>
                                             </div>
                                         </div>
                                     </div>

@@ -34,8 +34,15 @@
 						div.innerHTML = '<p class="text-danger">Info: <?php echo Core::lang('validation_email_fail')?></p>';
 					}
 					else {
-						var div = document.getElementById('email-info');
-						div.innerHTML = '<p class="text-success">Info: <?php echo Core::lang('validation_email_ok')?></p>';
+						var emailRegex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+						var x = $('#email-input').val();
+						if (emailRegex.test(x) == false) {
+							var div = document.getElementById('email-info');
+							div.innerHTML = '<p class="text-danger">Info: <?php echo Core::lang('validation_email_letter_fail')?></p>';
+						} else {
+							var div = document.getElementById('email-info');
+							div.innerHTML = '<p class="text-success">Info: <?php echo Core::lang('validation_email_ok')?></p>';
+						}
 					}
 				},
 				error: function(data){
