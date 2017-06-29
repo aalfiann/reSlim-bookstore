@@ -7,6 +7,7 @@ $lang = [
 	'validation_email_fail' => 'Email address is not available!',
     'validation_number_ok' => 'Format telephone is OK!',
 	'validation_number_fail' => 'Format telephone must be number only!',
+    'validation_username_letter_fail' => 'Format username must be letters, numbers, or letters and numbers!',
     'currency_code' => 'USD',
     'welcome_to' => 'Welcome to',
     'register' => 'Register',

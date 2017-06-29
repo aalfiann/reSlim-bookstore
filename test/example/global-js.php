@@ -54,8 +54,15 @@
 						div.innerHTML = '<p class="text-danger">Info: <?php echo Core::lang('validation_username_fail')?></p>';
 					}
 					else {
-						var div = document.getElementById('username-info');
-						div.innerHTML = '<p class="text-success">Info: <?php echo Core::lang('validation_username_ok')?></p>';
+						var usernameRegex = /^[a-zA-Z0-9]+$/;
+						var x = $('#username-input').val();
+						if (usernameRegex.test(x) == false) {
+							var div = document.getElementById('username-info');
+							div.innerHTML = '<p class="text-danger">Info: <?php echo Core::lang('validation_username_letter_fail')?></p>';
+						} else {
+							var div = document.getElementById('username-info');
+							div.innerHTML = '<p class="text-success">Info: <?php echo Core::lang('validation_username_ok')?></p>';
+						}
 					}
 				},
 				error: function(data){

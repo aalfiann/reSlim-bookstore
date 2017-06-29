@@ -41,7 +41,7 @@
                                     <div class="content">
                                         <div class="form-group">
                                             <label><?php echo Core::lang('username')?></label>
-                                            <input name="username" id="username-input" type="text" style="text-transform:lowercase;" placeholder="<?php echo Core::lang('input_username')?>" class="form-control border-input" maxlength="20" required>
+                                            <input name="username" id="username-input" type="text" pattern="[a-zA-Z0-9].{0,}" style="text-transform:lowercase;" placeholder="<?php echo Core::lang('input_username')?>" class="form-control border-input" maxlength="20" required>
                                             <div id="username-info"></div>
                                         </div>
                                         <div class="form-group">
