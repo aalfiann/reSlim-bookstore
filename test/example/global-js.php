@@ -88,6 +88,19 @@
 				div.innerHTML = '<p class="text-success">Info: <?php echo Core::lang('validation_password_ok')?></p>';
 			}
 		}),
+		$('#key-input').on('change', function() {
+			var a = parseInt($('#aaa-input').val());
+			var b = parseInt($('#bbb-input').val());
+			var c = parseInt($('#key-input').val());
+			var z = a + b;
+			if (z != c) {
+				var div = document.getElementById('key-info');
+				div.innerHTML = '<p class="text-danger">Info: <?php echo Core::lang('validation_key_fail')?></p>';
+			} else {
+				var div = document.getElementById('key-info');
+				div.innerHTML = '<p class="text-success">Info: <?php echo Core::lang('validation_key_ok')?></p>';
+			}
+		}),
 		$('#number-input').on('change', function() {
 			var x = $('#number-input').val();
 			if (isNaN(x)) {

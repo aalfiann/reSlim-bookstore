@@ -81,9 +81,10 @@
                                         </div>
                                         <div class="form-group">
                                             <label><?php echo Core::lang('security_key')?>: </label>
-                                            <b><?php echo $aaa?> + <?php echo $bbb?> = ?</b><input name="key" type="text" placeholder="<?php echo Core::lang('input_security_key')?>" class="form-control border-input" maxlength="15" required>
-                                            <input type="text" name="aaa" value="<?php echo $aaa?>" hidden>
-            								<input type="text" name="bbb" value="<?php echo $bbb?>" hidden>
+                                            <b><?php echo $aaa?> + <?php echo $bbb?> = ?</b><input id="key-input" name="key" type="text" placeholder="<?php echo Core::lang('input_security_key')?>" class="form-control border-input" maxlength="15" required>
+                                            <input type="text" id="aaa-input" name="aaa" value="<?php echo $aaa?>" hidden>
+            								<input type="text" id="bbb-input" name="bbb" value="<?php echo $bbb?>" hidden>
+                                            <div id="key-info"></div>
                                         </div>
                                         <label class="checkbox" for="checkbox1">
 	                                	    <input name="agree" type="checkbox" id="checkbox1" data-toggle="checkbox"><?php echo Core::lang('i_agree_to')?> <a href="#" data-toggle="modal" data-target="#termsofservice"><?php echo Core::lang('terms_of_service')?></a>
