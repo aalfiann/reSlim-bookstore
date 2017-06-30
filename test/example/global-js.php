@@ -77,6 +77,17 @@
 				}
 			});
 		}),
+		$('#password2-input').on('change', function() {
+			var a = $('#password1-input').val();
+			var b = $('#password2-input').val();
+			if (a != b) {
+				var div = document.getElementById('password-info');
+				div.innerHTML = '<p class="text-danger">Info: <?php echo Core::lang('validation_password_fail')?></p>';
+			} else {
+				var div = document.getElementById('password-info');
+				div.innerHTML = '<p class="text-success">Info: <?php echo Core::lang('validation_password_ok')?></p>';
+			}
+		}),
 		$('#number-input').on('change', function() {
 			var x = $('#number-input').val();
 			if (isNaN(x)) {

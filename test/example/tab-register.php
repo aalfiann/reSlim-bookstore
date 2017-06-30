@@ -46,11 +46,12 @@
                                         </div>
                                         <div class="form-group">
                                             <label><?php echo Core::lang('password')?></label>
-                                            <input name="password1" type="password" placeholder="<?php echo Core::lang('input_password')?>" class="form-control border-input" required>
+                                            <input name="password1" id="password1-input" type="password" placeholder="<?php echo Core::lang('input_password')?>" class="form-control border-input" required>
                                         </div>
                                         <div class="form-group">
                                             <label><?php echo Core::lang('confirm_password')?></label>
-                                            <input name="password2" type="password" placeholder="<?php echo Core::lang('input_confirm_password')?>" class="form-control border-input" required>
+                                            <input name="password2" id="password2-input" type="password" placeholder="<?php echo Core::lang('input_confirm_password')?>" class="form-control border-input" required>
+                                            <div id="password-info"></div>
                                         </div>
                                         <div class="form-group">
                                             <label><?php echo Core::lang('fullname')?></label>
