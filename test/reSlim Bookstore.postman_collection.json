@@ -1980,7 +1980,49 @@
 		{
 			"name": "Book Library Single Read",
 			"request": {
-				"url": "http://localhost:1337/reSlim-bookstore/src/api/book/library/data/azizalfian/read/{bookid}/{token}",
+				"url": "http://localhost:1337/reSlim-bookstore/src/api/book/library/data/{username}/read/{bookid}/{token}",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Book Library Invoice",
+			"request": {
+				"url": {
+					"raw": "http://localhost:1337/reSlim-bookstore/src/api/book/library/data/premium/{username}/search/{page}/{itemsperpage}/{token}/?query={query of search}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1337",
+					"path": [
+						"reSlim-bookstore",
+						"src",
+						"api",
+						"book",
+						"library",
+						"data",
+						"premium",
+						"{username}",
+						"search",
+						"{page}",
+						"{itemsperpage}",
+						"{token}",
+						""
+					],
+					"query": [
+						{
+							"key": "query",
+							"value": "{query of search}",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
 				"method": "GET",
 				"header": [],
 				"body": {},
