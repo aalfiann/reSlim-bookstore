@@ -541,6 +541,19 @@ use \Psr\Http\Message\ResponseInterface as Response;
         return classes\Cors::modify($response,$body,200);
     });
 
+    // GET api to search data premium book library with pagination (all user)
+    $app->get('/book/library/data/premium/{username}/search/{page}/{itemsperpage}/{token}/', function (Request $request, Response $response) {
+        $book = new classes\bookstore\Book($this->db);
+        $book->username = $request->getAttribute('username');
+        $book->page = $request->getAttribute('page');
+        $book->itemsPerPage = $request->getAttribute('itemsperpage');
+        $book->token = $request->getAttribute('token');
+        $book->search = filter_var((empty($_GET['query'])?'':$_GET['query']),FILTER_SANITIZE_STRING);
+        $body = $response->getBody();
+        $body->write($book->showPendingLibraryBookUser());
+        return classes\Cors::modify($response,$body,200);
+    });
+
     // GET api to search data book library with pagination (member only)
     $app->get('/book/library/data/{username}/search/{page}/{itemsperpage}/{token}/', function (Request $request, Response $response) {
         $book = new classes\bookstore\Book($this->db);

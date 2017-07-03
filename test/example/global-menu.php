@@ -88,6 +88,12 @@
                             <p><?php echo Core::lang('library')?></p>
                         </a>
                     </li>
+                    <li <?php if (!empty($_GET['m'])) if($_GET['m']==26) echo 'class="active"';?> >
+                        <a href="modul-invoice-library.php?m=26">
+                            <i class="ti-heart"></i>
+                            <p><?php echo Core::lang('invoice')?></p>
+                        </a>
+                    </li>
                     <li <?php if (!empty($_GET['m'])) if($_GET['m']==14) echo 'class="active"';?> >
                         <a href="modul-pending-library.php?m=14&page=1&itemsperpage=10&search=">
                             <i class="ti-bell"></i>
@@ -129,6 +135,12 @@
                         <a href="modul-book-library.php?m=13&page=1&itemsperpage=12&search=">
                             <i class="ti-book"></i>
                             <p><?php echo Core::lang('library')?></p>
+                        </a>
+                    </li>
+                    <li <?php if (!empty($_GET['m'])) if($_GET['m']==26) echo 'class="active"';?> >
+                        <a href="modul-invoice-library.php?m=26">
+                            <i class="ti-heart"></i>
+                            <p><?php echo Core::lang('invoice')?></p>
                         </a>
                     </li>
                     <li <?php if (!empty($_GET['m'])) if($_GET['m']==17) echo 'class="active"';?> >

@@ -3076,7 +3076,7 @@ use PDO;
 							$offsets = (($newitemsperpage <= 0)?0:$newitemsperpage);
 
 							// Query Data
-							$sql = "SELECT a.Created_at,a.Guid,a.BookID,b.Image_link,b.Title,a.Username,b.Price,a.StatusID,c.Status
+							$sql = "SELECT a.Created_at,a.Guid,a.BookID,b.Image_link,b.Title,a.Username,a.Price,a.StatusID,c.Status
 								FROM book_library a
 								INNER JOIN book_release b ON a.BookID = b.BookID
 								INNER JOIN core_status c ON a.StatusID = c.StatusID
@@ -3148,6 +3148,112 @@ use PDO;
         }
 
 		/** 
+		 * Show all data premium library book paginated for all user
+		 * @return result process in json encoded data
+		 */
+		public function showPendingLibraryBookUser(){
+           if (Auth::validToken($this->db,$this->token)){
+			    $newusername = strtolower(filter_var($this->username,FILTER_SANITIZE_STRING));
+				$search = "%$this->search%";
+				$sqlcountrow = "SELECT count(a.BookID) as TotalRow
+					FROM book_library a
+					INNER JOIN book_release b ON a.BookID = b.BookID
+					INNER JOIN core_status c ON a.StatusID = c.StatusID
+					INNER JOIN book_language d ON b.LanguageID = d.LanguageID
+					INNER JOIN book_author e ON b.AuthorID = e.AuthorID
+					INNER JOIN book_translator f ON b.TranslatorID = f.TranslatorID
+					INNER JOIN book_type g ON b.TypeID = g.TypeID
+					INNER JOIN book_publisher h ON b.PublisherID = h.PublisherID
+					WHERE a.Username = :username and a.Price <> '0' and b.Title like :search
+					OR a.Username = :username and a.Price <> '0' and a.BookID like :search
+					OR a.Username = :username and a.Price <> '0' and a.Guid like :search
+					OR a.Username = :username and a.Price <> '0' and d.Name like :search
+					OR a.Username = :username and a.Price <> '0' and e.Name like :search
+					OR a.Username = :username and a.Price <> '0' and f.Name like :search
+					OR a.Username = :username and a.Price <> '0' and g.Name like :search
+					OR a.Username = :username and a.Price <> '0' and h.Name like :search
+					ORDER BY a.StatusID DESC,a.Created_at ASC;";
+				$stmt = $this->db->prepare($sqlcountrow);
+				$stmt->bindParam(':search', $search, PDO::PARAM_STR);
+				$stmt->bindParam(':username', $newusername, PDO::PARAM_STR);
+
+				if ($stmt->execute()) {	
+    	    	    if ($stmt->rowCount() > 0){
+						$single = $stmt->fetch();
+						
+						// Paginate won't work if page and items per page is negative.
+						// So make sure that page and items per page is always return minimum zero number.
+						$newpage = Validation::integerOnly($this->page);
+						$newitemsperpage = Validation::integerOnly($this->itemsPerPage);
+						$limits = (((($newpage-1)*$newitemsperpage) <= 0)?0:(($newpage-1)*$newitemsperpage));
+						$offsets = (($newitemsperpage <= 0)?0:$newitemsperpage);
+
+						// Query Data
+						$sql = "SELECT a.Created_at,a.Guid,a.BookID,b.Image_link,b.Title,a.Username,a.Price,a.StatusID,c.Status
+							FROM book_library a
+							INNER JOIN book_release b ON a.BookID = b.BookID
+							INNER JOIN core_status c ON a.StatusID = c.StatusID
+							INNER JOIN book_language d ON b.LanguageID = d.LanguageID
+							INNER JOIN book_author e ON b.AuthorID = e.AuthorID
+							INNER JOIN book_translator f ON b.TranslatorID = f.TranslatorID
+							INNER JOIN book_type g ON b.TypeID = g.TypeID
+							INNER JOIN book_publisher h ON b.PublisherID = h.PublisherID
+							WHERE a.Username = :username and a.Price <> '0' and b.Title like :search
+							OR a.Username = :username and a.Price <> '0' and a.BookID like :search
+							OR a.Username = :username and a.Price <> '0' and a.Guid like :search
+							OR a.Username = :username and a.Price <> '0' and d.Name like :search
+							OR a.Username = :username and a.Price <> '0' and e.Name like :search
+							OR a.Username = :username and a.Price <> '0' and f.Name like :search
+							OR a.Username = :username and a.Price <> '0' and g.Name like :search
+							OR a.Username = :username and a.Price <> '0' and h.Name like :search
+							ORDER BY a.StatusID DESC,a.Created_at ASC LIMIT :limpage , :offpage;";
+						$stmt2 = $this->db->prepare($sql);
+						$stmt2->bindParam(':search', $search, PDO::PARAM_STR);
+						$stmt2->bindParam(':username', $newusername, PDO::PARAM_STR);
+						$stmt2->bindValue(':limpage', (INT) $limits, PDO::PARAM_INT);
+						$stmt2->bindValue(':offpage', (INT) $offsets, PDO::PARAM_INT);
+						
+						if ($stmt2->execute()){
+							$pagination = new \classes\Pagination();
+							$pagination->totalRow = $single['TotalRow'];
+							$pagination->page = $this->page;
+							$pagination->itemsPerPage = $this->itemsPerPage;
+							$pagination->fetchAllAssoc = $stmt2->fetchAll(PDO::FETCH_ASSOC);
+							$data = $pagination->toDataArray();
+						} else {
+							$data = [
+        	    	    		'status' => 'error',
+		        		    	'code' => 'RS202',
+	    			    	    'message' => CustomHandlers::getreSlimMessage('RS202')
+							];	
+						}			
+				    } else {
+    	    			$data = [
+        	    	    	'status' => 'error',
+		    			    'code' => 'RS601',
+        		    	    'message' => CustomHandlers::getreSlimMessage('RS601')
+						];
+	    	        }          	   	
+				} else {
+					$data = [
+    					'status' => 'error',
+						'code' => 'RS202',
+        			    'message' => CustomHandlers::getreSlimMessage('RS202')
+					];
+				}
+			} else {
+				$data = [
+	    			'status' => 'error',
+					'code' => 'RS401',
+        	    	'message' => CustomHandlers::getreSlimMessage('RS401')
+				];
+			}		
+        
+			return json_encode($data, JSON_PRETTY_PRINT);
+	        $this->db= null;
+        }
+
+		/** 
 		 * Show all data library book paginated for member only
 		 * @return result process in json encoded data
 		 */
@@ -3190,7 +3296,7 @@ use PDO;
 						$offsets = (($newitemsperpage <= 0)?0:$newitemsperpage);
 
 						// Query Data
-						$sql = "SELECT a.Created_at,a.Guid,a.BookID,b.Image_link,b.Title,b.Description,b.Pages,d.Name as 'Language',e.Name as 'Author',f.Name as 'Translator',g.Name as 'Type',h.Name as 'Publisher',b.ISBN,b.Original_released,b.Tags,b.Price,a.Username,a.StatusID,c.Status,
+						$sql = "SELECT a.Created_at,a.Guid,a.BookID,b.Image_link,b.Title,b.Description,b.Pages,d.Name as 'Language',e.Name as 'Author',f.Name as 'Translator',g.Name as 'Type',h.Name as 'Publisher',b.ISBN,b.Original_released,b.Tags,a.Price,a.Username,a.StatusID,c.Status,
 							b.Sample_link,if(a.StatusID='34',b.Full_link,'You have to make payment first!') as Full_link,a.Updated_at,a.Updated_by
 							FROM book_library a
 							INNER JOIN book_release b ON a.BookID = b.BookID
@@ -3331,7 +3437,7 @@ use PDO;
 						$single = $stmt->fetch();
 						
 						// Query Data
-						$sql = "SELECT a.Created_at,a.Guid,a.BookID,b.Image_link,b.Title,b.Description,b.Pages,d.Name as 'Language',e.Name as 'Author',f.Name as 'Translator',g.Name as 'Type',h.Name as 'Publisher',b.ISBN,b.Original_released,b.Tags,b.Price,a.Username,a.StatusID,c.Status,
+						$sql = "SELECT a.Created_at,a.Guid,a.BookID,b.Image_link,b.Title,b.Description,b.Pages,d.Name as 'Language',e.Name as 'Author',f.Name as 'Translator',g.Name as 'Type',h.Name as 'Publisher',b.ISBN,b.Original_released,b.Tags,a.Price,a.Username,a.StatusID,c.Status,
 							b.Sample_link,if(a.StatusID='34',b.Full_link,'You have to make payment first!') as Full_link,a.Updated_at,a.Updated_by
 							FROM book_library a
 							INNER JOIN book_release b ON a.BookID = b.BookID
