@@ -550,7 +550,7 @@ use \Psr\Http\Message\ResponseInterface as Response;
         $book->token = $request->getAttribute('token');
         $book->search = filter_var((empty($_GET['query'])?'':$_GET['query']),FILTER_SANITIZE_STRING);
         $body = $response->getBody();
-        $body->write($book->showPendingLibraryBookUser());
+        $body->write($book->showPremiumLibraryBookUser());
         return classes\Cors::modify($response,$body,200);
     });
 
