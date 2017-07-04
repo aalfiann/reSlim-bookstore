@@ -3151,7 +3151,7 @@ use PDO;
 		 * Show all data premium library book paginated for all user
 		 * @return result process in json encoded data
 		 */
-		public function showPendingLibraryBookUser(){
+		public function showPremiumLibraryBookUser(){
            if (Auth::validToken($this->db,$this->token)){
 			    $newusername = strtolower(filter_var($this->username,FILTER_SANITIZE_STRING));
 				$search = "%$this->search%";
@@ -3172,7 +3172,7 @@ use PDO;
 					OR a.Username = :username and a.Price <> '0' and f.Name like :search
 					OR a.Username = :username and a.Price <> '0' and g.Name like :search
 					OR a.Username = :username and a.Price <> '0' and h.Name like :search
-					ORDER BY a.StatusID DESC,a.Created_at ASC;";
+					ORDER BY a.StatusID DESC,a.Created_at DESC;";
 				$stmt = $this->db->prepare($sqlcountrow);
 				$stmt->bindParam(':search', $search, PDO::PARAM_STR);
 				$stmt->bindParam(':username', $newusername, PDO::PARAM_STR);
@@ -3206,7 +3206,7 @@ use PDO;
 							OR a.Username = :username and a.Price <> '0' and f.Name like :search
 							OR a.Username = :username and a.Price <> '0' and g.Name like :search
 							OR a.Username = :username and a.Price <> '0' and h.Name like :search
-							ORDER BY a.StatusID DESC,a.Created_at ASC LIMIT :limpage , :offpage;";
+							ORDER BY a.StatusID DESC,a.Created_at DESC LIMIT :limpage , :offpage;";
 						$stmt2 = $this->db->prepare($sql);
 						$stmt2->bindParam(':search', $search, PDO::PARAM_STR);
 						$stmt2->bindParam(':username', $newusername, PDO::PARAM_STR);
