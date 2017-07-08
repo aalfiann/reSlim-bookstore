@@ -106,7 +106,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>'.Core::lang('email').'</label>
-                                                <input type="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" class="form-control border-input" placeholder="'.Core::lang('input_email').'" maxlength="50" value="'.$data->result[0]->{'Email'}.'" required>
+                                                <input type="email" name="email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}$" class="form-control border-input" placeholder="'.Core::lang('input_email').'" maxlength="50" value="'.$data->result[0]->{'Email'}.'" required>
                                             </div>
                                         </div>
                                     </div>
