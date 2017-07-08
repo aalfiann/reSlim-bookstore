@@ -31,11 +31,12 @@
                                         </div>
                                         <div class="form-group">
                                             <label><?php echo Core::lang('new_password')?></label>
-                                            <input name="newpassword" type="password" placeholder="<?php echo Core::lang('input_new_password')?>" class="form-control border-input" maxlength="50" required>
+                                            <input name="newpassword" type="password" id="password1-input" placeholder="<?php echo Core::lang('input_new_password')?>" class="form-control border-input" maxlength="50" required>
                                         </div>
                                         <div class="form-group">
                                             <label><?php echo Core::lang('confirm_password')?></label>
-                                            <input name="newpassword1" type="password" placeholder="<?php echo Core::lang('reinput_new_password')?>" class="form-control border-input" maxlength="50" required>
+                                            <input name="newpassword1" type="password" id="password2-input" placeholder="<?php echo Core::lang('reinput_new_password')?>" class="form-control border-input" maxlength="50" required>
+                                            <div id="password-info"></div>
                                         </div>
                                         <hr>
                                         <div class="form-group text-center">
