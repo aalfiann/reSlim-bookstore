@@ -77,7 +77,7 @@
 				}
 			});
 		}),
-		$('#password2-input').on('change', function() {
+		$('#password1-input').on('change', function() {
 			var a = $('#password1-input').val();
 			var b = $('#password2-input').val();
 			if (a != b) {
@@ -88,7 +88,23 @@
 				div.innerHTML = '<p class="text-success">Info: <?php echo Core::lang('validation_password_ok')?></p>';
 			}
 		}),
-		$('#key-input').on('change', function() {
+		$('#password2-input').on('keyup', function() {
+			var a = $('#password1-input').val();
+			var b = $('#password2-input').val();
+			if (b) {
+				if (a != b) {
+					var div = document.getElementById('password-info');
+					div.innerHTML = '<p class="text-danger">Info: <?php echo Core::lang('validation_password_fail')?></p>';
+				} else {
+					var div = document.getElementById('password-info');
+					div.innerHTML = '<p class="text-success">Info: <?php echo Core::lang('validation_password_ok')?></p>';
+				}
+			} else {
+				var div = document.getElementById('password-info');
+				div.innerHTML = '<p class="text-danger">Info: <?php echo Core::lang('validation_password_fail')?></p>';
+			}
+		}),
+		$('#key-input').on('keyup', function() {
 			var a = parseInt($('#aaa-input').val());
 			var b = parseInt($('#bbb-input').val());
 			var c = parseInt($('#key-input').val());
@@ -101,14 +117,19 @@
 				div.innerHTML = '<p class="text-success">Info: <?php echo Core::lang('validation_key_ok')?></p>';
 			}
 		}),
-		$('#number-input').on('change', function() {
+		$('#number-input').on('keyup', function() {
 			var x = $('#number-input').val();
-			if (isNaN(x)) {
-				var div = document.getElementById('number-info');
-				div.innerHTML = '<p class="text-danger">Info: <?php echo Core::lang('validation_number_fail')?></p>';
+			if (x) {
+				if (isNaN(x)) {
+					var div = document.getElementById('number-info');
+					div.innerHTML = '<p class="text-danger">Info: <?php echo Core::lang('validation_number_fail')?></p>';
+				} else {
+					var div = document.getElementById('number-info');
+					div.innerHTML = '<p class="text-success">Info: <?php echo Core::lang('validation_number_ok')?></p>';
+				}
 			} else {
 				var div = document.getElementById('number-info');
-				div.innerHTML = '<p class="text-success">Info: <?php echo Core::lang('validation_number_ok')?></p>';
+				div.innerHTML = '<p class="text-danger">Info: <?php echo Core::lang('validation_number_fail')?></p>';
 			}
 		}),
 		$('#formUpload').submit(function() {
