@@ -96,26 +96,25 @@
                                     </div>
                                 </div>
                             </form>
-                            <!-- Start Modal Terms of Service -->
-                            <div class="modal fade" id="termsofservice" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                            <h4 class="modal-title" id="myModalLabel"><?php echo Core::lang('terms_of_service_big')?></h4>
-                                        </div>
-                                        <div class="modal-body">
-                                        <?php echo Core::lang('modal_terms_of_service')?>
-
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-default" data-dismiss="modal"><?php echo Core::lang('close')?></button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Modal Terms of Service -->
                         </div>
                     </div>
                 </div>
             </div>
+            <!-- Start Modal Terms of Service -->
+                <div class="modal fade" id="termsofservice" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel"><?php echo Core::lang('terms_of_service_big')?></h4>
+                            </div>
+                            <div class="modal-body">
+                                <?php echo Core::lang('modal_terms_of_service')?>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal"><?php echo Core::lang('close')?></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <!-- End Modal Terms of Service -->
