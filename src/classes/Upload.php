@@ -735,7 +735,7 @@ use PDO;
 		 * Force stream inline or attachment to protect from hotlinking
 		 * @return result stream data or process in json encoded data
 		 */
-		public function forceStream($stream=true){
+		public function forceStream($stream=true,$age=86400){
 			if (Auth::validToken($this->db,$this->token)){
 				$datapath = $this->isFilenameInExplorer();
 				if ( $datapath != false){
@@ -750,8 +750,7 @@ use PDO;
 					header('Access-Control-Allow-Origin: *');
 					header('Access-Control-Allow-Methods: POST, GET, OPTIONS');
 					header('Access-Control-Allow-Headers: X-Requested-With, Content-Type, Accept, Origin, Authorization');
-					header('Cache-Control: public, must-revalidate, max-age=0');
-					header('Pragma: no-cache');
+					header('Cache-Control: private, must-revalidate, max-age='.$age.'');
 					header('Accept-Ranges: bytes');
 				    header('Content-Description: File Transfer');
 					header('Content-Transfer-Encoding: binary');
@@ -789,7 +788,7 @@ use PDO;
 		 * Force strict stream inline or attachment to protect from hotlinking
 		 * @return result stream data or process in json encoded data
 		 */
-		public function forceStrictStream($stream=true){
+		public function forceStrictStream($stream=true,$age=86400){
 			if (Auth::validToken($this->db,$this->token,$this->username)){
 				if ($this->isFilenamePaid()) {
 					$datapath = $this->isFilenameInExplorer();
@@ -805,8 +804,7 @@ use PDO;
 						header('Access-Control-Allow-Origin: *');
 						header('Access-Control-Allow-Methods: POST, GET, OPTIONS');
 						header('Access-Control-Allow-Headers: X-Requested-With, Content-Type, Accept, Origin, Authorization');
-						header('Cache-Control: public, must-revalidate, max-age=0');
-						header('Pragma: no-cache');
+						header('Cache-Control: public, must-revalidate, max-age='.$age.'');
 						header('Accept-Ranges: bytes');
 					    header('Content-Description: File Transfer');
 						header('Content-Transfer-Encoding: binary');
