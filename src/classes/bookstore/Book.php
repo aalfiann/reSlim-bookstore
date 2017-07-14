@@ -4647,4 +4647,70 @@ use PDO;
 			return json_encode($data, JSON_PRETTY_PRINT);
 	        $this->db= null;
         }
+
+		/** 
+		 * Get all data completion for advanced search
+		 * @return result process in json encoded data
+		 */
+		public function showDataCompletion() {	
+			$search = "%$this->search%";
+			$sql = "SELECT x.`values` from (
+				select distinct trim(substring_index(substring_index(t.Tags, ',', n.n), ',', -1)) as `values`
+				from book_release t 
+				cross join (select 1 as n union all select 2 union all select 3 union all select 4 union all select 5 union all select 6 union all select 7 union all select 8 union all select 9 union all select 10) n
+				union 
+				select a.`Name` as `values`
+				from book_author a
+				union 
+				select b.`Name` as `values`
+				from book_language b
+				union 
+				select c.`Name` as `values`
+				from book_publisher c
+				union
+  				select d.Title as `values`
+				from book_release d
+				union 
+				select e.`Name` as `values`
+				from book_translator e
+				union 
+				select f.`Name` as `values`
+				from book_type f
+			) x
+			where x.`values` <> '-'
+			and x.`values` like :search
+			order by x.`values` asc;";
+				
+			$stmt = $this->db->prepare($sql);
+			$stmt->bindValue(':search', $search, PDO::PARAM_STR);
+
+			if ($stmt->execute()) {	
+        	    if ($stmt->rowCount() > 0){
+					while($row = $results->fetch()) {
+        	    		$return_arr[] =  $row['values'];
+			        }
+           		   	$data = [
+			   	        'result' => $return_arr, 
+    	    		    'status' => 'success', 
+			           	'code' => 'RS501',
+    		        	'message' => CustomHandlers::getreSlimMessage('RS501')
+					];
+		        } else {
+        		    $data = [
+            	    	'status' => 'error',
+		        	    'code' => 'RS601',
+        		    	'message' => CustomHandlers::getreSlimMessage('RS601')
+					];
+		        }          	   	
+			} else {
+				$data = [
+    	    		'status' => 'error',
+					'code' => 'RS202',
+	    		    'message' => CustomHandlers::getreSlimMessage('RS202')
+				];
+			}
+					
+			return json_encode($data, JSON_PRETTY_PRINT);
+	        $this->db= null;
+		}
     }

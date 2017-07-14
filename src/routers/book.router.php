@@ -791,3 +791,12 @@ use \Psr\Http\Message\ResponseInterface as Response;
         $body->write($book->showAllTags());
         return classes\Cors::modify($response,$body,200);
     })->add(new \classes\middleware\ApiKey(filter_var((empty($_GET['apikey'])?'':$_GET['apikey']),FILTER_SANITIZE_STRING)));
+
+    // GET api to show all data completion by search
+    $app->get('/book/data/completion/all/', function (Request $request, Response $response) {
+        $book = new classes\bookstore\Book($this->db);
+        $book->search = filter_var((empty($_GET['query'])?'':$_GET['query']),FILTER_SANITIZE_STRING);
+        $body = $response->getBody();
+        $body->write($book->showDataCompletion());
+        return classes\Cors::modify($response,$body,200);
+    })->add(new \classes\middleware\ApiKey(filter_var((empty($_GET['apikey'])?'':$_GET['apikey']),FILTER_SANITIZE_STRING)));
