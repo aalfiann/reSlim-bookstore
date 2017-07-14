@@ -2561,6 +2561,49 @@
 				"description": ""
 			},
 			"response": []
+		},
+		{
+			"name": "Show All Data Completion",
+			"request": {
+				"url": {
+					"raw": "http://localhost:1337/reSlim-bookstore/src/api/book/data/completion/all/?apikey={your apikey}&query={query to search data}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1337",
+					"path": [
+						"reSlim-bookstore",
+						"src",
+						"api",
+						"book",
+						"data",
+						"completion",
+						"all",
+						""
+					],
+					"query": [
+						{
+							"key": "apikey",
+							"value": "{your apikey}",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "query",
+							"value": "{query to search data}",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
 		}
 	]
 }
