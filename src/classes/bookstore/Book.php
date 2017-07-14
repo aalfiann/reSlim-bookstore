@@ -4604,7 +4604,7 @@ use PDO;
 				$sql = "SELECT SPLIT_SORT(x.`values`, ',') as Tags from (
 						select group_concat(distinct trim(substring_index(substring_index(t.Tags, ',', n.n), ',', -1)) separator ',' ) as `values`
 						from book_release t 
-						cross join (select 1 as n union all select 2 ) n
+						cross join (select 1 as n union all select 2 union all select 3) n
 						order by `values`
 					) x;";
 				$stmt = $this->db->prepare($sql);		
