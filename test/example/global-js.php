@@ -172,3 +172,4 @@
 		});
     });
 	</script>
+	<?php include 'analytics.php';?>
