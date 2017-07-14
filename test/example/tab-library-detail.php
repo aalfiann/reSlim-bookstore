@@ -145,9 +145,9 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                                     </div>
                                     <div class="text-center">';
                                         if ($value->{'Full_link'} == 'You have to make payment first!') {$links = '<a href="modul-reader.php?m=13&file='.urlencode(Core::getInstance()->api.'/user/upload/stream/public/'.$datalogin['username'].'/'.$datalogin['token'].'/'.$value->{'BookID'}.'/sample/'.$value->{'Sample_file'}).'" class="btn btn-success btn-fill hidden-xs hidden-sm">'.Core::lang('read_sample').'</a>
-                                                                                                           <a href="plugins/pdf/viewer.php?m=13&file='.urlencode(Core::getInstance()->api.'/user/upload/stream/public/'.$datalogin['username'].'/'.$datalogin['token'].'/'.$value->{'BookID'}.'/sample/'.$value->{'Sample_file'}).'" class="btn btn-success btn-fill hidden-md hidden-lg">'.Core::lang('read_sample').'</a>';
+                                                                                                           <a href="mobile-reader.php?m=13&file='.urlencode(Core::getInstance()->api.'/user/upload/stream/public/'.$datalogin['username'].'/'.$datalogin['token'].'/'.$value->{'BookID'}.'/sample/'.$value->{'Sample_file'}).'" class="btn btn-success btn-fill hidden-md hidden-lg">'.Core::lang('read_sample').'</a>';
                                     } else {$links = '<a href="modul-reader.php?m=13&file='.urlencode(Core::getInstance()->api.'/user/upload/stream/public/'.$datalogin['username'].'/'.$datalogin['token'].'/'.$value->{'BookID'}.'/'.$value->{'Guid'}.'/'.$value->{'Full_file'}).'" class="btn btn-success btn-fill hidden-xs hidden-sm">'.Core::lang('read_complete').'</a>
-                                                      <a href="plugins/pdf/viewer.php?m=13&file='.urlencode(Core::getInstance()->api.'/user/upload/stream/public/'.$datalogin['username'].'/'.$datalogin['token'].'/'.$value->{'BookID'}.'/'.$value->{'Guid'}.'/'.$value->{'Full_file'}).'" class="btn btn-success btn-fill hidden-md hidden-lg">'.Core::lang('read_complete').'</a>';}
+                                                      <a href="mobile-reader.php?m=13&file='.urlencode(Core::getInstance()->api.'/user/upload/stream/public/'.$datalogin['username'].'/'.$datalogin['token'].'/'.$value->{'BookID'}.'/'.$value->{'Guid'}.'/'.$value->{'Full_file'}).'" class="btn btn-success btn-fill hidden-md hidden-lg">'.Core::lang('read_complete').'</a>';}
                             echo $links;
                                     echo '</div>
                                     <div class="clearfix"></div>
@@ -215,8 +215,8 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                         </div>';
 
                 echo '</div>
+                    </div>
                     </div>';
-
                     //Info Payment
                 foreach ($data->result as $name=>$value){
                     echo '<!-- Start Modal -->
@@ -272,8 +272,6 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                           </div>
                         </div>
                     <!-- End Modal -->';
-                    
-                    echo '</div>';
             }
             else
             {
