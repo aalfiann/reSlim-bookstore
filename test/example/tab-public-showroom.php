@@ -10,7 +10,7 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                     <form method="get" action="<?php $_SERVER['PHP_SELF'].'?search='.$search?>">
                         <div class="col-lg-10 col-md-9 col-sm-9 col-xs-12">
                             <div class="form-group">
-                                <input name="search" type="text" placeholder="<?php echo Core::lang('search_here')?>" class="form-control border-input" value="<?php echo $search?>">
+                                <input id="search" name="search" type="text" placeholder="<?php echo Core::lang('search_here')?>" class="form-control border-input" value="<?php echo $search?>">
                             </div>
                             <div class="form-group hidden">
                                 <input name="m" type="text" class="form-control border-input" value="22" hidden>

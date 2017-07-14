@@ -169,7 +169,24 @@
 				//$(result_output).html(res); //output response from server
 				//submit_btn.val("Upload").prop( "disabled", false); //enable submit button once ajax is done
 			});
-		});
+		}),
+		$("#search").autocomplete({
+            source:function (request, response) {
+                $.getJSON("<?php echo Core::getInstance()->api?>/book/data/completion/all/?apikey=<?php echo Core::getInstance()->apikey?>&query=" + request.term, function (data) {
+                    response($.map(data.result, function (value, key) {
+                        return {
+                            label: value,
+                            value: value
+                        };
+                    }));
+                });
+            },
+            minLength:3,
+            search:function(){$(this).addClass('ui-autocomplete-loading');},
+            open:function(){$(this).removeClass('ui-autocomplete-loading');},
+            delay: 1000,
+            autoFocus:true
+        });
     });
 	</script>
 	<?php include 'analytics.php';?>
