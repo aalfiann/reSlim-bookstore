@@ -1,6 +1,11 @@
 <?php
 require_once realpath(__DIR__ . '/..').'/config.php';
 $lang = [
+    'index' => 'Index',
+    'index_menu' => 'Menu Index',
+    'index_list' => 'Index List',
+    'index_search' => 'Search index',
+    'back' => 'Back',
     'validation_username_ok' => 'Username is OK!',
 	'validation_username_fail' => 'Username is not available!',
 	'validation_email_ok' => 'Email address is OK!',
@@ -82,6 +87,8 @@ $lang = [
     'data_author' => 'Data Author',
     'data_language' => 'Data Language',
     'data_translator' => 'Data Translator',
+    'data_tags' => 'Data Tags',
+    'data_title' => 'Data Title',
     'data_type' => 'Data Type',
     'book_type' => 'Book Type',
     'data_publisher' => 'Data Publisher',

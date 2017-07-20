@@ -1,6 +1,11 @@
 <?php
 require_once realpath(__DIR__ . '/..').'/config.php';
 $lang = [
+    'index' => 'Index',
+    'index_menu' => 'Menu Index',
+    'index_list' => 'Daftar Index',
+    'index_search' => 'Pencarian index',
+    'back' => 'Kembali',
     'validation_username_ok' => 'Nama Pengguna OK!',
 	'validation_username_fail' => 'Nama Pengguna telah terpakai!',
 	'validation_email_ok' => 'Alamat email OK!',
@@ -82,6 +87,8 @@ $lang = [
     'data_author' => 'Data Penulis',
     'data_language' => 'Data Bahasa',
     'data_translator' => 'Data Penerjemah',
+    'data_tags' => 'Data Label',
+    'data_title' => 'Data Judul',
     'data_type' => 'Data Tipe',
     'book_type' => 'Tipe Buku',
     'data_publisher' => 'Data Penerbit',
