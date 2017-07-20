@@ -4686,7 +4686,7 @@ use PDO;
 
 			if ($stmt->execute()) {	
         	    if ($stmt->rowCount() > 0){
-					while($row = $results->fetch()) {
+					while($row = $stmt->fetch()) {
         	    		$return_arr[] =  $row['values'];
 			        }
            		   	$data = [
@@ -4713,4 +4713,1288 @@ use PDO;
 			return json_encode($data, JSON_PRETTY_PRINT);
 	        $this->db= null;
 		}
+
+		/** 
+		 * Get all data completion for advanced search only premium in library user
+		 * @return result process in json encoded data
+		 */
+		public function showDataCompletionPremium() {	
+			$newusername = strtolower(filter_var($this->username,FILTER_SANITIZE_STRING));
+			if (Auth::validToken($this->db,$this->token)){
+				$search = "%$this->search%";
+				$sql = "SELECT x.`values` from (
+					select distinct b.`Name` as `values`
+					from book_release a
+					inner join book_author b on a.AuthorID=b.AuthorID
+					inner join book_library c on a.BookID=c.BookID and c.Username=:username and c.Price <> '0'
+					union 
+					select distinct b.`Name` as `values`
+					from book_release a
+					inner join book_language b on a.LanguageID=b.LanguageID
+					inner join book_library c on a.BookID=c.BookID and c.Username=:username and c.Price <> '0'
+					union 
+					select distinct b.`Name` as `values`
+					from book_release a
+					inner join book_publisher b on a.PublisherID=b.PublisherID
+					inner join book_library c on a.BookID=c.BookID and c.Username=:username and c.Price <> '0'
+					union
+					select a.Title as `values`
+					from book_release a
+					inner join book_library b on b.BookID=a.BookID and b.Username=:username and b.Price <> '0'
+					union 
+					select distinct b.`Name` as `values`
+					from book_release a
+					inner join book_translator b on a.TranslatorID=b.TranslatorID
+					inner join book_library c on a.BookID=c.BookID and c.Username=:username and c.Price <> '0'
+					union 
+					select distinct b.`Name` as `values`
+					from book_release a
+					inner join book_type b on a.TypeID=b.TypeID
+					inner join book_library c on a.BookID=c.BookID and c.Username=:username and c.Price <> '0'
+				) x
+				where x.`values` <> '-'
+				and x.`values` like :search
+				order by x.`values` asc;";
+				
+				$stmt = $this->db->prepare($sql);
+				$stmt->bindValue(':search', $search, PDO::PARAM_STR);
+				$stmt->bindValue(':username', $newusername, PDO::PARAM_STR);
+
+				if ($stmt->execute()) {	
+    	    	    if ($stmt->rowCount() > 0){
+						while($row = $stmt->fetch()) {
+        		    		$return_arr[] =  $row['values'];
+			    	    }
+           		   		$data = [
+			   	        	'result' => $return_arr, 
+	    	    		    'status' => 'success', 
+				           	'code' => 'RS501',
+    			        	'message' => CustomHandlers::getreSlimMessage('RS501')
+						];
+		        	} else {
+	        		    $data = [
+    	        	    	'status' => 'error',
+			        	    'code' => 'RS601',
+        			    	'message' => CustomHandlers::getreSlimMessage('RS601')
+						];
+			        }          	   	
+				} else {
+					$data = [
+    	    			'status' => 'error',
+						'code' => 'RS202',
+	    		    	'message' => CustomHandlers::getreSlimMessage('RS202')
+					];
+				}
+			} else {
+				$data = [
+	    			'status' => 'error',
+					'code' => 'RS401',
+        	    	'message' => CustomHandlers::getreSlimMessage('RS401')
+				];
+			}		
+			return json_encode($data, JSON_PRETTY_PRINT);
+	    	$this->db= null;
+		}
+
+		/** 
+		 * Get all data completion for advanced search only in library user
+		 * @return result process in json encoded data
+		 */
+		public function showDataCompletionInLibrary() {	
+			$newusername = strtolower(filter_var($this->username,FILTER_SANITIZE_STRING));
+			if (Auth::validToken($this->db,$this->token)){
+				$search = "%$this->search%";
+				$sql = "SELECT x.`values` from (
+					select distinct trim(substring_index(substring_index(t.Tags, ',', n.n), ',', -1)) as `values`
+					from book_release t 
+					inner join book_library u on t.BookID=u.BookID and u.Username=:username
+					cross join (select 1 as n union all select 2 union all select 3 union all select 4 union all select 5 union all select 6 union all select 7 union all select 8 union all select 9 union all select 10) n
+					union 
+					select distinct b.`Name` as `values`
+					from book_release a
+					inner join book_author b on a.AuthorID=b.AuthorID
+					inner join book_library c on a.BookID=c.BookID and c.Username=:username
+					union 
+					select distinct b.`Name` as `values`
+					from book_release a
+					inner join book_language b on a.LanguageID=b.LanguageID
+					inner join book_library c on a.BookID=c.BookID and c.Username=:username
+					union 
+					select distinct b.`Name` as `values`
+					from book_release a
+					inner join book_publisher b on a.PublisherID=b.PublisherID
+					inner join book_library c on a.BookID=c.BookID and c.Username=:username
+					union
+					select a.Title as `values`
+					from book_release a
+					inner join book_library b on b.BookID=a.BookID and b.Username=:username
+					union 
+					select distinct b.`Name` as `values`
+					from book_release a
+					inner join book_translator b on a.TranslatorID=b.TranslatorID
+					inner join book_library c on a.BookID=c.BookID and c.Username=:username
+					union 
+					select distinct b.`Name` as `values`
+					from book_release a
+					inner join book_type b on a.TypeID=b.TypeID
+					inner join book_library c on a.BookID=c.BookID and c.Username=:username
+				) x
+				where x.`values` <> '-'
+				and x.`values` like :search
+				order by x.`values` asc;";
+				
+				$stmt = $this->db->prepare($sql);
+				$stmt->bindValue(':search', $search, PDO::PARAM_STR);
+				$stmt->bindValue(':username', $newusername, PDO::PARAM_STR);
+
+				if ($stmt->execute()) {	
+    	    	    if ($stmt->rowCount() > 0){
+						while($row = $stmt->fetch()) {
+        		    		$return_arr[] =  $row['values'];
+			    	    }
+           		   		$data = [
+			   	        	'result' => $return_arr, 
+	    	    		    'status' => 'success', 
+				           	'code' => 'RS501',
+    			        	'message' => CustomHandlers::getreSlimMessage('RS501')
+						];
+		        	} else {
+	        		    $data = [
+    	        	    	'status' => 'error',
+			        	    'code' => 'RS601',
+        			    	'message' => CustomHandlers::getreSlimMessage('RS601')
+						];
+			        }          	   	
+				} else {
+					$data = [
+    	    			'status' => 'error',
+						'code' => 'RS202',
+	    		    	'message' => CustomHandlers::getreSlimMessage('RS202')
+					];
+				}
+			} else {
+				$data = [
+	    			'status' => 'error',
+					'code' => 'RS401',
+        	    	'message' => CustomHandlers::getreSlimMessage('RS401')
+				];
+			}		
+			return json_encode($data, JSON_PRETTY_PRINT);
+	    	$this->db= null;
+		}
+
+		/** 
+		 * Get all data completion for advanced search only in showroom user
+		 * @return result process in json encoded data
+		 */
+		public function showDataCompletionInShowroom() {	
+			$newusername = strtolower(filter_var($this->username,FILTER_SANITIZE_STRING));
+			if (Auth::validToken($this->db,$this->token)){
+				$search = "%$this->search%";
+				$sql = "SELECT x.`values` from (
+					select distinct trim(substring_index(substring_index(t.Tags, ',', n.n), ',', -1)) as `values`
+					from book_release t 
+					left join book_library u on t.BookID=u.BookID and u.Username=:username
+					cross join (select 1 as n union all select 2 union all select 3 union all select 4 union all select 5 union all select 6 union all select 7 union all select 8 union all select 9 union all select 10) n
+					where u.BookID is null
+					union 
+					select distinct b.`Name` as `values`
+					from book_release a
+					inner join book_author b on a.AuthorID=b.AuthorID
+					left join book_library c on a.BookID=c.BookID and c.Username=:username
+					where c.BookID is null
+					union 
+					select distinct b.`Name` as `values`
+					from book_release a
+					inner join book_language b on a.LanguageID=b.LanguageID
+					left join book_library c on a.BookID=c.BookID and c.Username=:username
+					where c.BookID is null
+					union 
+					select distinct b.`Name` as `values`
+					from book_release a
+					inner join book_publisher b on a.PublisherID=b.PublisherID
+					left join book_library c on a.BookID=c.BookID and c.Username=:username
+					where c.BookID is null
+					union
+					select a.Title as `values`
+					from book_release a
+					left join book_library b on b.BookID=a.BookID and b.Username=:username
+					where b.BookID is null
+					union 
+					select distinct b.`Name` as `values`
+					from book_release a
+					inner join book_translator b on a.TranslatorID=b.TranslatorID
+					left join book_library c on a.BookID=c.BookID and c.Username=:username
+					where c.BookID is null
+					union 
+					select distinct b.`Name` as `values`
+					from book_release a
+					inner join book_type b on a.TypeID=b.TypeID
+					left join book_library c on a.BookID=c.BookID and c.Username=:username
+					where c.BookID is null
+				) x
+				where x.`values` <> '-'
+				and x.`values` like :search
+				order by x.`values` asc;";
+				
+				$stmt = $this->db->prepare($sql);
+				$stmt->bindValue(':search', $search, PDO::PARAM_STR);
+				$stmt->bindValue(':username', $newusername, PDO::PARAM_STR);
+
+				if ($stmt->execute()) {	
+    	    	    if ($stmt->rowCount() > 0){
+						while($row = $stmt->fetch()) {
+        		    		$return_arr[] =  $row['values'];
+			    	    }
+           		   		$data = [
+			   	        	'result' => $return_arr, 
+	    	    		    'status' => 'success', 
+				           	'code' => 'RS501',
+    			        	'message' => CustomHandlers::getreSlimMessage('RS501')
+						];
+		        	} else {
+	        		    $data = [
+    	        	    	'status' => 'error',
+			        	    'code' => 'RS601',
+        			    	'message' => CustomHandlers::getreSlimMessage('RS601')
+						];
+			        }          	   	
+				} else {
+					$data = [
+    	    			'status' => 'error',
+						'code' => 'RS202',
+	    		    	'message' => CustomHandlers::getreSlimMessage('RS202')
+					];
+				}
+			} else {
+				$data = [
+	    			'status' => 'error',
+					'code' => 'RS401',
+        	    	'message' => CustomHandlers::getreSlimMessage('RS401')
+				];
+			}		
+			return json_encode($data, JSON_PRETTY_PRINT);
+	    	$this->db= null;
+		}
+
+
+		//Index page paginated inside Library=================================
+
+		/** 
+		 * Search index all tags paginated
+		 * @return result process in json encoded data
+		 */
+		public function searchIndexTagsAsPaginationInLibrary() {
+			$newusername = strtolower(filter_var($this->username,FILTER_SANITIZE_STRING));
+			if (Auth::validToken($this->db,$this->token)){
+				$search = "$this->search%";
+				$sqlcountrow = "SELECT count(x.`values`) as TotalRow from (
+						select distinct trim(substring_index(substring_index(t.Tags, ',', n.n), ',', -1)) as `values`
+						from book_release t 
+						inner join book_library u on t.BookID=u.BookID and u.Username=:username
+						cross join (select 1 as n union all select 2 union all select 3 union all select 4 union all select 5 union all select 6 union all select 7 union all select 8 union all select 9 union all select 10) n
+					) x
+					where x.`values` <> '-'
+					and x.`values` like :search
+					order by x.`values` asc;";
+				$stmt = $this->db->prepare($sqlcountrow);
+				$stmt->bindValue(':search', $search, PDO::PARAM_STR);
+				$stmt->bindValue(':username', $newusername, PDO::PARAM_STR);
+				
+				if ($stmt->execute()) {	
+    	    	    if ($stmt->rowCount() > 0){
+						$single = $stmt->fetch();
+						
+						// Paginate won't work if page and items per page is negative.
+						// So make sure that page and items per page is always return minimum zero number.
+						$newpage = Validation::integerOnly($this->page);
+						$newitemsperpage = Validation::integerOnly($this->itemsPerPage);
+						$limits = (((($newpage-1)*$newitemsperpage) <= 0)?0:(($newpage-1)*$newitemsperpage));
+						$offsets = (($newitemsperpage <= 0)?0:$newitemsperpage);
+
+						// Query Data
+						$sql = "SELECT x.`values` as 'Tags' from (
+								select distinct trim(substring_index(substring_index(t.Tags, ',', n.n), ',', -1)) as `values`
+								from book_release t 
+								inner join book_library u on t.BookID=u.BookID and u.Username=:username
+								cross join (select 1 as n union all select 2 union all select 3 union all select 4 union all select 5 union all select 6 union all select 7 union all select 8 union all select 9 union all select 10) n
+							) x
+							where x.`values` <> '-'
+							and x.`values` like :search
+							order by x.`values` ASC LIMIT :limpage , :offpage;";
+						$stmt2 = $this->db->prepare($sql);
+						$stmt2->bindValue(':search', $search, PDO::PARAM_STR);
+						$stmt2->bindValue(':username', $newusername, PDO::PARAM_STR);
+						$stmt2->bindValue(':limpage', (INT) $limits, PDO::PARAM_INT);
+						$stmt2->bindValue(':offpage', (INT) $offsets, PDO::PARAM_INT);
+						
+						if ($stmt2->execute()){
+							$pagination = new \classes\Pagination();
+							$pagination->totalRow = $single['TotalRow'];
+							$pagination->page = $this->page;
+							$pagination->itemsPerPage = $this->itemsPerPage;
+							$pagination->fetchAllAssoc = $stmt2->fetchAll(PDO::FETCH_ASSOC);
+							$data = $pagination->toDataArray();
+						} else {
+							$data = [
+        	    	    		'status' => 'error',
+		        		    	'code' => 'RS202',
+	    			    	    'message' => CustomHandlers::getreSlimMessage('RS202')
+							];	
+						}			
+				    } else {
+    	    		    $data = [
+        			    	'status' => 'error',
+			    		    'code' => 'RS601',
+    			    	    'message' => CustomHandlers::getreSlimMessage('RS601')
+						];
+		    	    }          	   	
+				} else {
+					$data = [
+    					'status' => 'error',
+						'code' => 'RS202',
+        			    'message' => CustomHandlers::getreSlimMessage('RS202')
+					];
+				}
+			} else {
+				$data = [
+	    			'status' => 'error',
+					'code' => 'RS401',
+        	    	'message' => CustomHandlers::getreSlimMessage('RS401')
+				];
+			}		
+        
+			return json_encode($data, JSON_PRETTY_PRINT);
+	        $this->db= null;
+		}
+
+		/** 
+		 * Search index all author paginated
+		 * @return result process in json encoded data
+		 */
+		public function searchIndexAuthorAsPaginationInLibrary() {
+			$newusername = strtolower(filter_var($this->username,FILTER_SANITIZE_STRING));
+			if (Auth::validToken($this->db,$this->token)){
+				$search = "$this->search%";
+				$sqlcountrow = "SELECT count(distinct b.`Name`) as 'TotalRow'
+					from book_release a
+					inner join book_author b on a.AuthorID=b.AuthorID
+					inner join book_library c on a.BookID=c.BookID and c.Username=:username
+					where b.`Name` like :search
+					order by b.`Name` asc;";
+				$stmt = $this->db->prepare($sqlcountrow);
+				$stmt->bindValue(':search', $search, PDO::PARAM_STR);
+				$stmt->bindValue(':username', $newusername, PDO::PARAM_STR);
+				
+				if ($stmt->execute()) {	
+    	    	    if ($stmt->rowCount() > 0){
+						$single = $stmt->fetch();
+						
+						// Paginate won't work if page and items per page is negative.
+						// So make sure that page and items per page is always return minimum zero number.
+						$newpage = Validation::integerOnly($this->page);
+						$newitemsperpage = Validation::integerOnly($this->itemsPerPage);
+						$limits = (((($newpage-1)*$newitemsperpage) <= 0)?0:(($newpage-1)*$newitemsperpage));
+						$offsets = (($newitemsperpage <= 0)?0:$newitemsperpage);
+
+						// Query Data
+						$sql = "SELECT distinct b.`Name` as 'Author'
+							from book_release a
+							inner join book_author b on a.AuthorID=b.AuthorID
+							inner join book_library c on a.BookID=c.BookID and c.Username=:username
+							where b.`Name` like :search
+							order by b.`Name` ASC LIMIT :limpage , :offpage;";
+						$stmt2 = $this->db->prepare($sql);
+						$stmt2->bindValue(':search', $search, PDO::PARAM_STR);
+						$stmt2->bindValue(':username', $newusername, PDO::PARAM_STR);
+						$stmt2->bindValue(':limpage', (INT) $limits, PDO::PARAM_INT);
+						$stmt2->bindValue(':offpage', (INT) $offsets, PDO::PARAM_INT);
+						
+						if ($stmt2->execute()){
+							$pagination = new \classes\Pagination();
+							$pagination->totalRow = $single['TotalRow'];
+							$pagination->page = $this->page;
+							$pagination->itemsPerPage = $this->itemsPerPage;
+							$pagination->fetchAllAssoc = $stmt2->fetchAll(PDO::FETCH_ASSOC);
+							$data = $pagination->toDataArray();
+						} else {
+							$data = [
+        	    	    		'status' => 'error',
+		        		    	'code' => 'RS202',
+	    			    	    'message' => CustomHandlers::getreSlimMessage('RS202')
+							];	
+						}			
+				    } else {
+    	    		    $data = [
+        			    	'status' => 'error',
+			    		    'code' => 'RS601',
+    			    	    'message' => CustomHandlers::getreSlimMessage('RS601')
+						];
+		    	    }          	   	
+				} else {
+					$data = [
+    					'status' => 'error',
+						'code' => 'RS202',
+        			    'message' => CustomHandlers::getreSlimMessage('RS202')
+					];
+				}
+			} else {
+				$data = [
+	    			'status' => 'error',
+					'code' => 'RS401',
+        	    	'message' => CustomHandlers::getreSlimMessage('RS401')
+				];
+			}		
+        
+			return json_encode($data, JSON_PRETTY_PRINT);
+	        $this->db= null;
+		}
+
+		/** 
+		 * Search index all publisher paginated
+		 * @return result process in json encoded data
+		 */
+		public function searchIndexPublisherAsPaginationInLibrary() {
+			$newusername = strtolower(filter_var($this->username,FILTER_SANITIZE_STRING));
+			if (Auth::validToken($this->db,$this->token)){
+				$search = "$this->search%";
+				$sqlcountrow = "SELECT count(distinct b.`Name`) as 'TotalRow'
+					from book_release a
+					inner join book_publisher b on a.PublisherID=b.PublisherID
+					inner join book_library c on a.BookID=c.BookID and c.Username=:username
+					where b.`Name` like :search
+					order by b.`Name` asc;";
+				$stmt = $this->db->prepare($sqlcountrow);
+				$stmt->bindValue(':search', $search, PDO::PARAM_STR);
+				$stmt->bindValue(':username', $newusername, PDO::PARAM_STR);
+				
+				if ($stmt->execute()) {	
+    	    	    if ($stmt->rowCount() > 0){
+						$single = $stmt->fetch();
+						
+						// Paginate won't work if page and items per page is negative.
+						// So make sure that page and items per page is always return minimum zero number.
+						$newpage = Validation::integerOnly($this->page);
+						$newitemsperpage = Validation::integerOnly($this->itemsPerPage);
+						$limits = (((($newpage-1)*$newitemsperpage) <= 0)?0:(($newpage-1)*$newitemsperpage));
+						$offsets = (($newitemsperpage <= 0)?0:$newitemsperpage);
+
+						// Query Data
+						$sql = "SELECT distinct b.`Name` as 'Publisher'
+							from book_release a
+							inner join book_publisher b on a.PublisherID=b.PublisherID
+							inner join book_library c on a.BookID=c.BookID and c.Username=:username
+							where b.`Name` like :search
+							order by b.`Name` ASC LIMIT :limpage , :offpage;";
+						$stmt2 = $this->db->prepare($sql);
+						$stmt2->bindValue(':search', $search, PDO::PARAM_STR);
+						$stmt2->bindValue(':username', $newusername, PDO::PARAM_STR);
+						$stmt2->bindValue(':limpage', (INT) $limits, PDO::PARAM_INT);
+						$stmt2->bindValue(':offpage', (INT) $offsets, PDO::PARAM_INT);
+						
+						if ($stmt2->execute()){
+							$pagination = new \classes\Pagination();
+							$pagination->totalRow = $single['TotalRow'];
+							$pagination->page = $this->page;
+							$pagination->itemsPerPage = $this->itemsPerPage;
+							$pagination->fetchAllAssoc = $stmt2->fetchAll(PDO::FETCH_ASSOC);
+							$data = $pagination->toDataArray();
+						} else {
+							$data = [
+        	    	    		'status' => 'error',
+		        		    	'code' => 'RS202',
+	    			    	    'message' => CustomHandlers::getreSlimMessage('RS202')
+							];	
+						}			
+				    } else {
+    	    		    $data = [
+        			    	'status' => 'error',
+			    		    'code' => 'RS601',
+    			    	    'message' => CustomHandlers::getreSlimMessage('RS601')
+						];
+		    	    }          	   	
+				} else {
+					$data = [
+    					'status' => 'error',
+						'code' => 'RS202',
+        			    'message' => CustomHandlers::getreSlimMessage('RS202')
+					];
+				}
+			} else {
+				$data = [
+	    			'status' => 'error',
+					'code' => 'RS401',
+        	    	'message' => CustomHandlers::getreSlimMessage('RS401')
+				];
+			}		
+        
+			return json_encode($data, JSON_PRETTY_PRINT);
+	        $this->db= null;
+		}
+
+		/** 
+		 * Search index all translator paginated
+		 * @return result process in json encoded data
+		 */
+		public function searchIndexTranslatorAsPaginationInLibrary() {
+			$newusername = strtolower(filter_var($this->username,FILTER_SANITIZE_STRING));
+			if (Auth::validToken($this->db,$this->token)){
+				$search = "$this->search%";
+				$sqlcountrow = "SELECT count(distinct b.`Name`) as 'TotalRow'
+					from book_release a
+					inner join book_translator b on a.TranslatorID=b.TranslatorID
+					inner join book_library c on a.BookID=c.BookID and c.Username=:username
+					where b.`Name` like :search
+					order by b.`Name` asc;";
+				$stmt = $this->db->prepare($sqlcountrow);
+				$stmt->bindValue(':search', $search, PDO::PARAM_STR);
+				$stmt->bindValue(':username', $newusername, PDO::PARAM_STR);
+				
+				if ($stmt->execute()) {	
+    	    	    if ($stmt->rowCount() > 0){
+						$single = $stmt->fetch();
+						
+						// Paginate won't work if page and items per page is negative.
+						// So make sure that page and items per page is always return minimum zero number.
+						$newpage = Validation::integerOnly($this->page);
+						$newitemsperpage = Validation::integerOnly($this->itemsPerPage);
+						$limits = (((($newpage-1)*$newitemsperpage) <= 0)?0:(($newpage-1)*$newitemsperpage));
+						$offsets = (($newitemsperpage <= 0)?0:$newitemsperpage);
+
+						// Query Data
+						$sql = "SELECT distinct b.`Name` as 'Translator',b.Website
+							from book_release a
+							inner join book_translator b on a.TranslatorID=b.TranslatorID
+							inner join book_library c on a.BookID=c.BookID and c.Username=:username
+							where b.`Name` like :search
+							order by b.`Name` ASC LIMIT :limpage , :offpage;";
+						$stmt2 = $this->db->prepare($sql);
+						$stmt2->bindValue(':search', $search, PDO::PARAM_STR);
+						$stmt2->bindValue(':username', $newusername, PDO::PARAM_STR);
+						$stmt2->bindValue(':limpage', (INT) $limits, PDO::PARAM_INT);
+						$stmt2->bindValue(':offpage', (INT) $offsets, PDO::PARAM_INT);
+						
+						if ($stmt2->execute()){
+							$pagination = new \classes\Pagination();
+							$pagination->totalRow = $single['TotalRow'];
+							$pagination->page = $this->page;
+							$pagination->itemsPerPage = $this->itemsPerPage;
+							$pagination->fetchAllAssoc = $stmt2->fetchAll(PDO::FETCH_ASSOC);
+							$data = $pagination->toDataArray();
+						} else {
+							$data = [
+        	    	    		'status' => 'error',
+		        		    	'code' => 'RS202',
+	    			    	    'message' => CustomHandlers::getreSlimMessage('RS202')
+							];	
+						}			
+				    } else {
+    	    		    $data = [
+        			    	'status' => 'error',
+			    		    'code' => 'RS601',
+    			    	    'message' => CustomHandlers::getreSlimMessage('RS601')
+						];
+		    	    }          	   	
+				} else {
+					$data = [
+    					'status' => 'error',
+						'code' => 'RS202',
+        			    'message' => CustomHandlers::getreSlimMessage('RS202')
+					];
+				}
+			} else {
+				$data = [
+	    			'status' => 'error',
+					'code' => 'RS401',
+        	    	'message' => CustomHandlers::getreSlimMessage('RS401')
+				];
+			}		
+        
+			return json_encode($data, JSON_PRETTY_PRINT);
+	        $this->db= null;
+		}
+
+		/** 
+		 * Search index all type paginated
+		 * @return result process in json encoded data
+		 */
+		public function searchIndexTypeAsPaginationInLibrary() {
+			$newusername = strtolower(filter_var($this->username,FILTER_SANITIZE_STRING));
+			if (Auth::validToken($this->db,$this->token)){
+				$search = "$this->search%";
+				$sqlcountrow = "SELECT count(distinct b.`Name`) as 'TotalRow'
+					from book_release a
+					inner join book_type b on a.TypeID=b.TypeID
+					inner join book_library c on a.BookID=c.BookID and c.Username=:username
+					where b.`Name` like :search
+					order by b.`Name` asc;";
+				$stmt = $this->db->prepare($sqlcountrow);
+				$stmt->bindValue(':search', $search, PDO::PARAM_STR);
+				$stmt->bindValue(':username', $newusername, PDO::PARAM_STR);
+				
+				if ($stmt->execute()) {	
+    	    	    if ($stmt->rowCount() > 0){
+						$single = $stmt->fetch();
+						
+						// Paginate won't work if page and items per page is negative.
+						// So make sure that page and items per page is always return minimum zero number.
+						$newpage = Validation::integerOnly($this->page);
+						$newitemsperpage = Validation::integerOnly($this->itemsPerPage);
+						$limits = (((($newpage-1)*$newitemsperpage) <= 0)?0:(($newpage-1)*$newitemsperpage));
+						$offsets = (($newitemsperpage <= 0)?0:$newitemsperpage);
+
+						// Query Data
+						$sql = "SELECT distinct b.`Name` as 'Type'
+							from book_release a
+							inner join book_type b on a.TypeID=b.TypeID
+							inner join book_library c on a.BookID=c.BookID and c.Username=:username
+							where b.`Name` like :search
+							order by b.`Name` ASC LIMIT :limpage , :offpage;";
+						$stmt2 = $this->db->prepare($sql);
+						$stmt2->bindValue(':search', $search, PDO::PARAM_STR);
+						$stmt2->bindValue(':username', $newusername, PDO::PARAM_STR);
+						$stmt2->bindValue(':limpage', (INT) $limits, PDO::PARAM_INT);
+						$stmt2->bindValue(':offpage', (INT) $offsets, PDO::PARAM_INT);
+						
+						if ($stmt2->execute()){
+							$pagination = new \classes\Pagination();
+							$pagination->totalRow = $single['TotalRow'];
+							$pagination->page = $this->page;
+							$pagination->itemsPerPage = $this->itemsPerPage;
+							$pagination->fetchAllAssoc = $stmt2->fetchAll(PDO::FETCH_ASSOC);
+							$data = $pagination->toDataArray();
+						} else {
+							$data = [
+        	    	    		'status' => 'error',
+		        		    	'code' => 'RS202',
+	    			    	    'message' => CustomHandlers::getreSlimMessage('RS202')
+							];	
+						}			
+				    } else {
+    	    		    $data = [
+        			    	'status' => 'error',
+			    		    'code' => 'RS601',
+    			    	    'message' => CustomHandlers::getreSlimMessage('RS601')
+						];
+		    	    }          	   	
+				} else {
+					$data = [
+    					'status' => 'error',
+						'code' => 'RS202',
+        			    'message' => CustomHandlers::getreSlimMessage('RS202')
+					];
+				}
+			} else {
+				$data = [
+	    			'status' => 'error',
+					'code' => 'RS401',
+        	    	'message' => CustomHandlers::getreSlimMessage('RS401')
+				];
+			}		
+        
+			return json_encode($data, JSON_PRETTY_PRINT);
+	        $this->db= null;
+		}
+
+		/** 
+		 * Search index all title paginated
+		 * @return result process in json encoded data
+		 */
+		public function searchIndexTitleAsPaginationInLibrary() {
+			$newusername = strtolower(filter_var($this->username,FILTER_SANITIZE_STRING));
+			if (Auth::validToken($this->db,$this->token)){
+				$search = "$this->search%";
+				$sqlcountrow = "SELECT count(distinct a.Title) as 'TotalRow'
+					from book_release a
+					inner join book_library b on a.BookID=b.BookID and b.Username=:username
+					where a.Title like :search
+					order by a.Title asc;";
+				$stmt = $this->db->prepare($sqlcountrow);
+				$stmt->bindValue(':search', $search, PDO::PARAM_STR);
+				$stmt->bindValue(':username', $newusername, PDO::PARAM_STR);
+				
+				if ($stmt->execute()) {	
+    	    	    if ($stmt->rowCount() > 0){
+						$single = $stmt->fetch();
+						
+						// Paginate won't work if page and items per page is negative.
+						// So make sure that page and items per page is always return minimum zero number.
+						$newpage = Validation::integerOnly($this->page);
+						$newitemsperpage = Validation::integerOnly($this->itemsPerPage);
+						$limits = (((($newpage-1)*$newitemsperpage) <= 0)?0:(($newpage-1)*$newitemsperpage));
+						$offsets = (($newitemsperpage <= 0)?0:$newitemsperpage);
+
+						// Query Data
+						$sql = "SELECT distinct a.Title as 'Title',a.Pages,c.`Name` as 'Author',d.`Name` as 'Translator',e.`Name` as 'Type',f.`Name` as 'Publisher',g.`Name` as 'Language'
+							from book_release a
+							inner join book_library b on a.BookID=b.BookID and b.Username=:username
+							inner join book_author c on a.AuthorID=c.AuthorID
+							inner join book_translator d on a.TranslatorID=d.TranslatorID
+							inner join book_type e on a.TypeID=e.TypeID
+							inner join book_publisher f on a.PublisherID=f.PublisherID
+							inner join book_language g on a.LanguageID=g.LanguageID
+							where a.Title like :search
+							order by a.Title ASC LIMIT :limpage , :offpage;";
+						$stmt2 = $this->db->prepare($sql);
+						$stmt2->bindValue(':search', $search, PDO::PARAM_STR);
+						$stmt2->bindValue(':username', $newusername, PDO::PARAM_STR);
+						$stmt2->bindValue(':limpage', (INT) $limits, PDO::PARAM_INT);
+						$stmt2->bindValue(':offpage', (INT) $offsets, PDO::PARAM_INT);
+						
+						if ($stmt2->execute()){
+							$pagination = new \classes\Pagination();
+							$pagination->totalRow = $single['TotalRow'];
+							$pagination->page = $this->page;
+							$pagination->itemsPerPage = $this->itemsPerPage;
+							$pagination->fetchAllAssoc = $stmt2->fetchAll(PDO::FETCH_ASSOC);
+							$data = $pagination->toDataArray();
+						} else {
+							$data = [
+        	    	    		'status' => 'error',
+		        		    	'code' => 'RS202',
+	    			    	    'message' => CustomHandlers::getreSlimMessage('RS202')
+							];	
+						}			
+				    } else {
+    	    		    $data = [
+        			    	'status' => 'error',
+			    		    'code' => 'RS601',
+    			    	    'message' => CustomHandlers::getreSlimMessage('RS601')
+						];
+		    	    }          	   	
+				} else {
+					$data = [
+    					'status' => 'error',
+						'code' => 'RS202',
+        			    'message' => CustomHandlers::getreSlimMessage('RS202')
+					];
+				}
+			} else {
+				$data = [
+	    			'status' => 'error',
+					'code' => 'RS401',
+        	    	'message' => CustomHandlers::getreSlimMessage('RS401')
+				];
+			}		
+        
+			return json_encode($data, JSON_PRETTY_PRINT);
+	        $this->db= null;
+		}
+
+
+		//Index page paginated inside Showroom=================================
+
+		/** 
+		 * Search index all tags paginated
+		 * @return result process in json encoded data
+		 */
+		public function searchIndexTagsAsPaginationInShowroom() {
+			$newusername = strtolower(filter_var($this->username,FILTER_SANITIZE_STRING));
+			if (Auth::validToken($this->db,$this->token)){
+				$search = "$this->search%";
+				$sqlcountrow = "SELECT count(x.`values`) as TotalRow from (
+						select distinct trim(substring_index(substring_index(t.Tags, ',', n.n), ',', -1)) as `values`
+						from book_release t 
+						left join book_library u on t.BookID=u.BookID and u.Username=:username
+						cross join (select 1 as n union all select 2 union all select 3 union all select 4 union all select 5 union all select 6 union all select 7 union all select 8 union all select 9 union all select 10) n
+						where u.BookID is null
+					) x
+					where x.`values` <> '-'
+					and x.`values` like :search
+					order by x.`values` asc;";
+				$stmt = $this->db->prepare($sqlcountrow);
+				$stmt->bindValue(':search', $search, PDO::PARAM_STR);
+				$stmt->bindValue(':username', $newusername, PDO::PARAM_STR);
+				
+				if ($stmt->execute()) {	
+    	    	    if ($stmt->rowCount() > 0){
+						$single = $stmt->fetch();
+						
+						// Paginate won't work if page and items per page is negative.
+						// So make sure that page and items per page is always return minimum zero number.
+						$newpage = Validation::integerOnly($this->page);
+						$newitemsperpage = Validation::integerOnly($this->itemsPerPage);
+						$limits = (((($newpage-1)*$newitemsperpage) <= 0)?0:(($newpage-1)*$newitemsperpage));
+						$offsets = (($newitemsperpage <= 0)?0:$newitemsperpage);
+
+						// Query Data
+						$sql = "SELECT x.`values` as 'Tags' from (
+								select distinct trim(substring_index(substring_index(t.Tags, ',', n.n), ',', -1)) as `values`
+								from book_release t 
+								left join book_library u on t.BookID=u.BookID and u.Username=:username
+								cross join (select 1 as n union all select 2 union all select 3 union all select 4 union all select 5 union all select 6 union all select 7 union all select 8 union all select 9 union all select 10) n
+								where u.BookID is null
+							) x
+							where x.`values` <> '-'
+							and x.`values` like :search
+							order by x.`values` ASC LIMIT :limpage , :offpage;";
+						$stmt2 = $this->db->prepare($sql);
+						$stmt2->bindValue(':search', $search, PDO::PARAM_STR);
+						$stmt2->bindValue(':username', $newusername, PDO::PARAM_STR);
+						$stmt2->bindValue(':limpage', (INT) $limits, PDO::PARAM_INT);
+						$stmt2->bindValue(':offpage', (INT) $offsets, PDO::PARAM_INT);
+						
+						if ($stmt2->execute()){
+							$pagination = new \classes\Pagination();
+							$pagination->totalRow = $single['TotalRow'];
+							$pagination->page = $this->page;
+							$pagination->itemsPerPage = $this->itemsPerPage;
+							$pagination->fetchAllAssoc = $stmt2->fetchAll(PDO::FETCH_ASSOC);
+							$data = $pagination->toDataArray();
+						} else {
+							$data = [
+        	    	    		'status' => 'error',
+		        		    	'code' => 'RS202',
+	    			    	    'message' => CustomHandlers::getreSlimMessage('RS202')
+							];	
+						}			
+				    } else {
+    	    		    $data = [
+        			    	'status' => 'error',
+			    		    'code' => 'RS601',
+    			    	    'message' => CustomHandlers::getreSlimMessage('RS601')
+						];
+		    	    }          	   	
+				} else {
+					$data = [
+    					'status' => 'error',
+						'code' => 'RS202',
+        			    'message' => CustomHandlers::getreSlimMessage('RS202')
+					];
+				}
+			} else {
+				$data = [
+	    			'status' => 'error',
+					'code' => 'RS401',
+        	    	'message' => CustomHandlers::getreSlimMessage('RS401')
+				];
+			}		
+        
+			return json_encode($data, JSON_PRETTY_PRINT);
+	        $this->db= null;
+		}
+
+		/** 
+		 * Search index all author paginated
+		 * @return result process in json encoded data
+		 */
+		public function searchIndexAuthorAsPaginationInShowroom() {
+			$newusername = strtolower(filter_var($this->username,FILTER_SANITIZE_STRING));
+			if (Auth::validToken($this->db,$this->token)){
+				$search = "$this->search%";
+				$sqlcountrow = "SELECT count(distinct b.`Name`) as 'TotalRow'
+					from book_release a
+					inner join book_author b on a.AuthorID=b.AuthorID
+					left join book_library c on a.BookID=c.BookID and c.Username=:username
+					where c.BookID is null
+					and b.`Name` like :search
+					order by b.`Name` asc;";
+				$stmt = $this->db->prepare($sqlcountrow);
+				$stmt->bindValue(':search', $search, PDO::PARAM_STR);
+				$stmt->bindValue(':username', $newusername, PDO::PARAM_STR);
+				
+				if ($stmt->execute()) {	
+    	    	    if ($stmt->rowCount() > 0){
+						$single = $stmt->fetch();
+						
+						// Paginate won't work if page and items per page is negative.
+						// So make sure that page and items per page is always return minimum zero number.
+						$newpage = Validation::integerOnly($this->page);
+						$newitemsperpage = Validation::integerOnly($this->itemsPerPage);
+						$limits = (((($newpage-1)*$newitemsperpage) <= 0)?0:(($newpage-1)*$newitemsperpage));
+						$offsets = (($newitemsperpage <= 0)?0:$newitemsperpage);
+
+						// Query Data
+						$sql = "SELECT distinct b.`Name` as 'Author'
+							from book_release a
+							inner join book_author b on a.AuthorID=b.AuthorID
+							left join book_library c on a.BookID=c.BookID and c.Username=:username
+							where c.BookID is null
+							and b.`Name` like :search
+							order by b.`Name` ASC LIMIT :limpage , :offpage;";
+						$stmt2 = $this->db->prepare($sql);
+						$stmt2->bindValue(':search', $search, PDO::PARAM_STR);
+						$stmt2->bindValue(':username', $newusername, PDO::PARAM_STR);
+						$stmt2->bindValue(':limpage', (INT) $limits, PDO::PARAM_INT);
+						$stmt2->bindValue(':offpage', (INT) $offsets, PDO::PARAM_INT);
+						
+						if ($stmt2->execute()){
+							$pagination = new \classes\Pagination();
+							$pagination->totalRow = $single['TotalRow'];
+							$pagination->page = $this->page;
+							$pagination->itemsPerPage = $this->itemsPerPage;
+							$pagination->fetchAllAssoc = $stmt2->fetchAll(PDO::FETCH_ASSOC);
+							$data = $pagination->toDataArray();
+						} else {
+							$data = [
+        	    	    		'status' => 'error',
+		        		    	'code' => 'RS202',
+	    			    	    'message' => CustomHandlers::getreSlimMessage('RS202')
+							];	
+						}			
+				    } else {
+    	    		    $data = [
+        			    	'status' => 'error',
+			    		    'code' => 'RS601',
+    			    	    'message' => CustomHandlers::getreSlimMessage('RS601')
+						];
+		    	    }          	   	
+				} else {
+					$data = [
+    					'status' => 'error',
+						'code' => 'RS202',
+        			    'message' => CustomHandlers::getreSlimMessage('RS202')
+					];
+				}
+			} else {
+				$data = [
+	    			'status' => 'error',
+					'code' => 'RS401',
+        	    	'message' => CustomHandlers::getreSlimMessage('RS401')
+				];
+			}		
+        
+			return json_encode($data, JSON_PRETTY_PRINT);
+	        $this->db= null;
+		}
+
+		/** 
+		 * Search index all publisher paginated
+		 * @return result process in json encoded data
+		 */
+		public function searchIndexPublisherAsPaginationInShowroom() {
+			$newusername = strtolower(filter_var($this->username,FILTER_SANITIZE_STRING));
+			if (Auth::validToken($this->db,$this->token)){
+				$search = "$this->search%";
+				$sqlcountrow = "SELECT count(distinct b.`Name`) as 'TotalRow'
+					from book_release a
+					inner join book_publisher b on a.PublisherID=b.PublisherID
+					left join book_library c on a.BookID=c.BookID and c.Username=:username
+					where c.BookID is null
+					and b.`Name` like :search
+					order by b.`Name` asc;";
+				$stmt = $this->db->prepare($sqlcountrow);
+				$stmt->bindValue(':search', $search, PDO::PARAM_STR);
+				$stmt->bindValue(':username', $newusername, PDO::PARAM_STR);
+				
+				if ($stmt->execute()) {	
+    	    	    if ($stmt->rowCount() > 0){
+						$single = $stmt->fetch();
+						
+						// Paginate won't work if page and items per page is negative.
+						// So make sure that page and items per page is always return minimum zero number.
+						$newpage = Validation::integerOnly($this->page);
+						$newitemsperpage = Validation::integerOnly($this->itemsPerPage);
+						$limits = (((($newpage-1)*$newitemsperpage) <= 0)?0:(($newpage-1)*$newitemsperpage));
+						$offsets = (($newitemsperpage <= 0)?0:$newitemsperpage);
+
+						// Query Data
+						$sql = "SELECT distinct b.`Name` as 'Publisher'
+							from book_release a
+							inner join book_publisher b on a.PublisherID=b.PublisherID
+							left join book_library c on a.BookID=c.BookID and c.Username=:username
+							where c.BookID is null
+							and b.`Name` like :search
+							order by b.`Name` ASC LIMIT :limpage , :offpage;";
+						$stmt2 = $this->db->prepare($sql);
+						$stmt2->bindValue(':search', $search, PDO::PARAM_STR);
+						$stmt2->bindValue(':username', $newusername, PDO::PARAM_STR);
+						$stmt2->bindValue(':limpage', (INT) $limits, PDO::PARAM_INT);
+						$stmt2->bindValue(':offpage', (INT) $offsets, PDO::PARAM_INT);
+						
+						if ($stmt2->execute()){
+							$pagination = new \classes\Pagination();
+							$pagination->totalRow = $single['TotalRow'];
+							$pagination->page = $this->page;
+							$pagination->itemsPerPage = $this->itemsPerPage;
+							$pagination->fetchAllAssoc = $stmt2->fetchAll(PDO::FETCH_ASSOC);
+							$data = $pagination->toDataArray();
+						} else {
+							$data = [
+        	    	    		'status' => 'error',
+		        		    	'code' => 'RS202',
+	    			    	    'message' => CustomHandlers::getreSlimMessage('RS202')
+							];	
+						}			
+				    } else {
+    	    		    $data = [
+        			    	'status' => 'error',
+			    		    'code' => 'RS601',
+    			    	    'message' => CustomHandlers::getreSlimMessage('RS601')
+						];
+		    	    }          	   	
+				} else {
+					$data = [
+    					'status' => 'error',
+						'code' => 'RS202',
+        			    'message' => CustomHandlers::getreSlimMessage('RS202')
+					];
+				}
+			} else {
+				$data = [
+	    			'status' => 'error',
+					'code' => 'RS401',
+        	    	'message' => CustomHandlers::getreSlimMessage('RS401')
+				];
+			}		
+        
+			return json_encode($data, JSON_PRETTY_PRINT);
+	        $this->db= null;
+		}
+
+		/** 
+		 * Search index all translator paginated
+		 * @return result process in json encoded data
+		 */
+		public function searchIndexTranslatorAsPaginationInShowroom() {
+			$newusername = strtolower(filter_var($this->username,FILTER_SANITIZE_STRING));
+			if (Auth::validToken($this->db,$this->token)){
+				$search = "$this->search%";
+				$sqlcountrow = "SELECT count(distinct b.`Name`) as 'TotalRow'
+					from book_release a
+					inner join book_translator b on a.TranslatorID=b.TranslatorID
+					left join book_library c on a.BookID=c.BookID and c.Username=:username
+					where c.BookID is null
+					and b.`Name` like :search
+					order by b.`Name` asc;";
+				$stmt = $this->db->prepare($sqlcountrow);
+				$stmt->bindValue(':search', $search, PDO::PARAM_STR);
+				$stmt->bindValue(':username', $newusername, PDO::PARAM_STR);
+				
+				if ($stmt->execute()) {	
+    	    	    if ($stmt->rowCount() > 0){
+						$single = $stmt->fetch();
+						
+						// Paginate won't work if page and items per page is negative.
+						// So make sure that page and items per page is always return minimum zero number.
+						$newpage = Validation::integerOnly($this->page);
+						$newitemsperpage = Validation::integerOnly($this->itemsPerPage);
+						$limits = (((($newpage-1)*$newitemsperpage) <= 0)?0:(($newpage-1)*$newitemsperpage));
+						$offsets = (($newitemsperpage <= 0)?0:$newitemsperpage);
+
+						// Query Data
+						$sql = "SELECT distinct b.`Name` as 'Translator',b.Website
+							from book_release a
+							inner join book_translator b on a.TranslatorID=b.TranslatorID
+							left join book_library c on a.BookID=c.BookID and c.Username=:username
+							where c.BookID is null
+							and b.`Name` like :search
+							order by b.`Name` ASC LIMIT :limpage , :offpage;";
+						$stmt2 = $this->db->prepare($sql);
+						$stmt2->bindValue(':search', $search, PDO::PARAM_STR);
+						$stmt2->bindValue(':username', $newusername, PDO::PARAM_STR);
+						$stmt2->bindValue(':limpage', (INT) $limits, PDO::PARAM_INT);
+						$stmt2->bindValue(':offpage', (INT) $offsets, PDO::PARAM_INT);
+						
+						if ($stmt2->execute()){
+							$pagination = new \classes\Pagination();
+							$pagination->totalRow = $single['TotalRow'];
+							$pagination->page = $this->page;
+							$pagination->itemsPerPage = $this->itemsPerPage;
+							$pagination->fetchAllAssoc = $stmt2->fetchAll(PDO::FETCH_ASSOC);
+							$data = $pagination->toDataArray();
+						} else {
+							$data = [
+        	    	    		'status' => 'error',
+		        		    	'code' => 'RS202',
+	    			    	    'message' => CustomHandlers::getreSlimMessage('RS202')
+							];	
+						}			
+				    } else {
+    	    		    $data = [
+        			    	'status' => 'error',
+			    		    'code' => 'RS601',
+    			    	    'message' => CustomHandlers::getreSlimMessage('RS601')
+						];
+		    	    }          	   	
+				} else {
+					$data = [
+    					'status' => 'error',
+						'code' => 'RS202',
+        			    'message' => CustomHandlers::getreSlimMessage('RS202')
+					];
+				}
+			} else {
+				$data = [
+	    			'status' => 'error',
+					'code' => 'RS401',
+        	    	'message' => CustomHandlers::getreSlimMessage('RS401')
+				];
+			}		
+        
+			return json_encode($data, JSON_PRETTY_PRINT);
+	        $this->db= null;
+		}
+
+		/** 
+		 * Search index all type paginated
+		 * @return result process in json encoded data
+		 */
+		public function searchIndexTypeAsPaginationInShowroom() {
+			$newusername = strtolower(filter_var($this->username,FILTER_SANITIZE_STRING));
+			if (Auth::validToken($this->db,$this->token)){
+				$search = "$this->search%";
+				$sqlcountrow = "SELECT count(distinct b.`Name`) as 'TotalRow'
+					from book_release a
+					inner join book_type b on a.TypeID=b.TypeID
+					left join book_library c on a.BookID=c.BookID and c.Username=:username
+					where c.BookID is null
+					and b.`Name` like :search
+					order by b.`Name` asc;";
+				$stmt = $this->db->prepare($sqlcountrow);
+				$stmt->bindValue(':search', $search, PDO::PARAM_STR);
+				$stmt->bindValue(':username', $newusername, PDO::PARAM_STR);
+				
+				if ($stmt->execute()) {	
+    	    	    if ($stmt->rowCount() > 0){
+						$single = $stmt->fetch();
+						
+						// Paginate won't work if page and items per page is negative.
+						// So make sure that page and items per page is always return minimum zero number.
+						$newpage = Validation::integerOnly($this->page);
+						$newitemsperpage = Validation::integerOnly($this->itemsPerPage);
+						$limits = (((($newpage-1)*$newitemsperpage) <= 0)?0:(($newpage-1)*$newitemsperpage));
+						$offsets = (($newitemsperpage <= 0)?0:$newitemsperpage);
+
+						// Query Data
+						$sql = "SELECT distinct b.`Name` as 'Type'
+							from book_release a
+							inner join book_type b on a.TypeID=b.TypeID
+							left join book_library c on a.BookID=c.BookID and c.Username=:username
+							where c.BookID is null
+							and b.`Name` like :search
+							order by b.`Name` ASC LIMIT :limpage , :offpage;";
+						$stmt2 = $this->db->prepare($sql);
+						$stmt2->bindValue(':search', $search, PDO::PARAM_STR);
+						$stmt2->bindValue(':username', $newusername, PDO::PARAM_STR);
+						$stmt2->bindValue(':limpage', (INT) $limits, PDO::PARAM_INT);
+						$stmt2->bindValue(':offpage', (INT) $offsets, PDO::PARAM_INT);
+						
+						if ($stmt2->execute()){
+							$pagination = new \classes\Pagination();
+							$pagination->totalRow = $single['TotalRow'];
+							$pagination->page = $this->page;
+							$pagination->itemsPerPage = $this->itemsPerPage;
+							$pagination->fetchAllAssoc = $stmt2->fetchAll(PDO::FETCH_ASSOC);
+							$data = $pagination->toDataArray();
+						} else {
+							$data = [
+        	    	    		'status' => 'error',
+		        		    	'code' => 'RS202',
+	    			    	    'message' => CustomHandlers::getreSlimMessage('RS202')
+							];	
+						}			
+				    } else {
+    	    		    $data = [
+        			    	'status' => 'error',
+			    		    'code' => 'RS601',
+    			    	    'message' => CustomHandlers::getreSlimMessage('RS601')
+						];
+		    	    }          	   	
+				} else {
+					$data = [
+    					'status' => 'error',
+						'code' => 'RS202',
+        			    'message' => CustomHandlers::getreSlimMessage('RS202')
+					];
+				}
+			} else {
+				$data = [
+	    			'status' => 'error',
+					'code' => 'RS401',
+        	    	'message' => CustomHandlers::getreSlimMessage('RS401')
+				];
+			}		
+        
+			return json_encode($data, JSON_PRETTY_PRINT);
+	        $this->db= null;
+		}
+
+		/** 
+		 * Search index all title paginated
+		 * @return result process in json encoded data
+		 */
+		public function searchIndexTitleAsPaginationInShowroom() {
+			$newusername = strtolower(filter_var($this->username,FILTER_SANITIZE_STRING));
+			if (Auth::validToken($this->db,$this->token)){
+				$search = "$this->search%";
+				$sqlcountrow = "SELECT count(distinct a.Title) as 'TotalRow'
+					from book_release a
+					left join book_library b on a.BookID=b.BookID and b.Username=:username
+					where b.BookID is null
+					and a.Title like :search
+					order by a.Title asc;";
+				$stmt = $this->db->prepare($sqlcountrow);
+				$stmt->bindValue(':search', $search, PDO::PARAM_STR);
+				$stmt->bindValue(':username', $newusername, PDO::PARAM_STR);
+				
+				if ($stmt->execute()) {	
+    	    	    if ($stmt->rowCount() > 0){
+						$single = $stmt->fetch();
+						
+						// Paginate won't work if page and items per page is negative.
+						// So make sure that page and items per page is always return minimum zero number.
+						$newpage = Validation::integerOnly($this->page);
+						$newitemsperpage = Validation::integerOnly($this->itemsPerPage);
+						$limits = (((($newpage-1)*$newitemsperpage) <= 0)?0:(($newpage-1)*$newitemsperpage));
+						$offsets = (($newitemsperpage <= 0)?0:$newitemsperpage);
+
+						// Query Data
+						$sql = "SELECT distinct a.Title as 'Title',a.Pages,c.`Name` as 'Author',d.`Name` as 'Translator',e.`Name` as 'Type',f.`Name` as 'Publisher',g.`Name` as 'Language'
+							from book_release a
+							left join book_library b on a.BookID=b.BookID and b.Username=:username
+							inner join book_author c on a.AuthorID=c.AuthorID
+							inner join book_translator d on a.TranslatorID=d.TranslatorID
+							inner join book_type e on a.TypeID=e.TypeID
+							inner join book_publisher f on a.PublisherID=f.PublisherID
+							inner join book_language g on a.LanguageID=g.LanguageID
+							where b.BookID is null
+							and a.Title like :search
+							order by a.Title ASC LIMIT :limpage , :offpage;";
+						$stmt2 = $this->db->prepare($sql);
+						$stmt2->bindValue(':search', $search, PDO::PARAM_STR);
+						$stmt2->bindValue(':username', $newusername, PDO::PARAM_STR);
+						$stmt2->bindValue(':limpage', (INT) $limits, PDO::PARAM_INT);
+						$stmt2->bindValue(':offpage', (INT) $offsets, PDO::PARAM_INT);
+						
+						if ($stmt2->execute()){
+							$pagination = new \classes\Pagination();
+							$pagination->totalRow = $single['TotalRow'];
+							$pagination->page = $this->page;
+							$pagination->itemsPerPage = $this->itemsPerPage;
+							$pagination->fetchAllAssoc = $stmt2->fetchAll(PDO::FETCH_ASSOC);
+							$data = $pagination->toDataArray();
+						} else {
+							$data = [
+        	    	    		'status' => 'error',
+		        		    	'code' => 'RS202',
+	    			    	    'message' => CustomHandlers::getreSlimMessage('RS202')
+							];	
+						}			
+				    } else {
+    	    		    $data = [
+        			    	'status' => 'error',
+			    		    'code' => 'RS601',
+    			    	    'message' => CustomHandlers::getreSlimMessage('RS601')
+						];
+		    	    }          	   	
+				} else {
+					$data = [
+    					'status' => 'error',
+						'code' => 'RS202',
+        			    'message' => CustomHandlers::getreSlimMessage('RS202')
+					];
+				}
+			} else {
+				$data = [
+	    			'status' => 'error',
+					'code' => 'RS401',
+        	    	'message' => CustomHandlers::getreSlimMessage('RS401')
+				];
+			}		
+        
+			return json_encode($data, JSON_PRETTY_PRINT);
+	        $this->db= null;
+		}
+
     }
