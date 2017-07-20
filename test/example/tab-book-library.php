@@ -10,7 +10,7 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                     <form method="get" action="<?php $_SERVER['PHP_SELF'].'?search='.$search?>">
                         <div class="col-lg-10 col-md-9 col-sm-9 col-xs-12">
                             <div class="form-group">
-                                <input id="search" name="search" type="text" placeholder="<?php echo Core::lang('search_here')?>" class="form-control border-input" value="<?php echo $search?>">
+                                <input id="searchlibrary" name="search" type="text" placeholder="<?php echo Core::lang('search_here')?>" class="form-control border-input" value="<?php echo $search?>">
                             </div>
                             <div class="form-group hidden">
                                 <input name="m" type="text" class="form-control border-input" value="13" hidden>
@@ -26,6 +26,43 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                     </form>
                 </div>
             </div><hr>
+                    <!-- Start Modal -->
+                        <div class="modal fade" id="index" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel"><?php echo Core::lang('index_menu')?></h4>
+                              </div>
+                              
+                              <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            <a href="modul-index-author-library.php?m=13" class="btn btn-fill btn-block btn-primary"><?php echo Core::lang('index_list')?> <?php echo Core::lang('author')?></a>
+                                        </div>
+                                        <div class="form-group">
+                                            <a href="modul-index-tags-library.php?m=13" class="btn btn-fill btn-block btn-info"><?php echo Core::lang('index_list')?> <?php echo Core::lang('tags')?></a>
+                                        </div>
+                                        <div class="form-group">
+                                            <a href="modul-index-title-library.php?m=13" class="btn btn-fill btn-block btn-success"><?php echo Core::lang('index_list')?> <?php echo Core::lang('title')?></a>
+                                        </div>
+                                        <div class="form-group">
+                                            <a href="modul-index-publisher-library.php?m=13" class="btn btn-fill btn-block btn-warning"><?php echo Core::lang('index_list')?> <?php echo Core::lang('publisher')?></a>
+                                        </div>
+                                        <div class="form-group">
+                                            <a href="modul-index-type-library.php?m=13" class="btn btn-fill btn-block btn-danger"><?php echo Core::lang('index_list')?> <?php echo Core::lang('type')?></a>
+                                        </div>
+                                    </div>
+                                </div>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal"><?php echo Core::lang('close')?></button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                    <!-- End Modal -->
             <div class="container-fluid">
                 <div class="row">
                     
