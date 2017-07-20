@@ -8,6 +8,28 @@
                                 </a>
                             </li>'; 
                             };?>
+
+                        <?php if (pathinfo(basename($_SERVER['REQUEST_URI']), PATHINFO_FILENAME) == "modul-book-library" || 
+                        pathinfo(basename($_SERVER['REQUEST_URI']), PATHINFO_FILENAME) == "modul-book-showroom" ||
+                        pathinfo(basename($_SERVER['REQUEST_URI']), PATHINFO_FILENAME) == "modul-index-author-library" ||
+                        pathinfo(basename($_SERVER['REQUEST_URI']), PATHINFO_FILENAME) == "modul-index-publisher-library" ||
+                        pathinfo(basename($_SERVER['REQUEST_URI']), PATHINFO_FILENAME) == "modul-index-tags-library" ||
+                        pathinfo(basename($_SERVER['REQUEST_URI']), PATHINFO_FILENAME) == "modul-index-title-library" ||
+                        pathinfo(basename($_SERVER['REQUEST_URI']), PATHINFO_FILENAME) == "modul-index-translator-library" ||
+                        pathinfo(basename($_SERVER['REQUEST_URI']), PATHINFO_FILENAME) == "modul-index-type-library" ||
+                        pathinfo(basename($_SERVER['REQUEST_URI']), PATHINFO_FILENAME) == "modul-index-author-showroom" ||
+                        pathinfo(basename($_SERVER['REQUEST_URI']), PATHINFO_FILENAME) == "modul-index-publisher-showroom" ||
+                        pathinfo(basename($_SERVER['REQUEST_URI']), PATHINFO_FILENAME) == "modul-index-tags-showroom" ||
+                        pathinfo(basename($_SERVER['REQUEST_URI']), PATHINFO_FILENAME) == "modul-index-title-showroom" ||
+                        pathinfo(basename($_SERVER['REQUEST_URI']), PATHINFO_FILENAME) == "modul-index-translator-showroom" ||
+                        pathinfo(basename($_SERVER['REQUEST_URI']), PATHINFO_FILENAME) == "modul-index-type-showroom") {
+                            echo '<li>
+                                <a href="#" data-toggle="modal" data-target="#index">
+                                    <i class="ti-align-justify"></i>
+            						<p>'.Core::lang('index_menu').'</p>
+                                </a>
+                            </li>'; 
+                        }?>
                         
                         <?php if (!empty($datalogin['username'])) {
                             echo '<li class="dropdown">
