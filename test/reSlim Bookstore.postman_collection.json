@@ -2604,6 +2604,627 @@
 				"description": ""
 			},
 			"response": []
+		},
+		{
+			"name": "Show Data Completion in Showroom",
+			"request": {
+				"url": {
+					"raw": "http://localhost:1337/reSlim-bookstore/src/api/book/data/completion/showroom/{username}/{your token}/?query={query to search data}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1337",
+					"path": [
+						"reSlim-bookstore",
+						"src",
+						"api",
+						"book",
+						"data",
+						"completion",
+						"showroom",
+						"{username}",
+						"{your token}",
+						""
+					],
+					"query": [
+						{
+							"key": "query",
+							"value": "{query to search data}",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Show Data Completion in Library",
+			"request": {
+				"url": {
+					"raw": "http://localhost:1337/reSlim-bookstore/src/api/book/data/completion/library/{username}/{your token}/?query={query to search data}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1337",
+					"path": [
+						"reSlim-bookstore",
+						"src",
+						"api",
+						"book",
+						"data",
+						"completion",
+						"library",
+						"{username}",
+						"{your token}",
+						""
+					],
+					"query": [
+						{
+							"key": "query",
+							"value": "{query to search data}",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Show Data Completion Premium",
+			"request": {
+				"url": {
+					"raw": "http://localhost:1337/reSlim-bookstore/src/api/book/data/completion/premium/{username}/{your token}/?query={query to search data}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1337",
+					"path": [
+						"reSlim-bookstore",
+						"src",
+						"api",
+						"book",
+						"data",
+						"completion",
+						"premium",
+						"{username}",
+						"{your token}",
+						""
+					],
+					"query": [
+						{
+							"key": "query",
+							"value": "{query to search data}",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Search Index Translator in Library",
+			"request": {
+				"url": {
+					"raw": "http://localhost:1337/reSlim-bookstore/src/api/book/data/index/translator/library/{username}/{your token}/{page}/{itemsperpage}/?query={query to search data}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1337",
+					"path": [
+						"reSlim-bookstore",
+						"src",
+						"api",
+						"book",
+						"data",
+						"index",
+						"translator",
+						"library",
+						"{username}",
+						"{your token}",
+						"{page}",
+						"{itemsperpage}",
+						""
+					],
+					"query": [
+						{
+							"key": "query",
+							"value": "{query to search data}",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Search Index Publisher in Library",
+			"request": {
+				"url": {
+					"raw": "http://localhost:1337/reSlim-bookstore/src/api/book/data/index/publisher/library/{username}/{your token}/{page}/{itemsperpage}/?query={query to search data}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1337",
+					"path": [
+						"reSlim-bookstore",
+						"src",
+						"api",
+						"book",
+						"data",
+						"index",
+						"publisher",
+						"library",
+						"{username}",
+						"{your token}",
+						"{page}",
+						"{itemsperpage}",
+						""
+					],
+					"query": [
+						{
+							"key": "query",
+							"value": "{query to search data}",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Search Index Author in Library",
+			"request": {
+				"url": {
+					"raw": "http://localhost:1337/reSlim-bookstore/src/api/book/data/index/author/library/{username}/{your token}/{page}/{itemsperpage}/?query={query to search data}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1337",
+					"path": [
+						"reSlim-bookstore",
+						"src",
+						"api",
+						"book",
+						"data",
+						"index",
+						"author",
+						"library",
+						"{username}",
+						"{your token}",
+						"{page}",
+						"{itemsperpage}",
+						""
+					],
+					"query": [
+						{
+							"key": "query",
+							"value": "{query to search data}",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Search Index Tags in Library",
+			"request": {
+				"url": {
+					"raw": "http://localhost:1337/reSlim-bookstore/src/api/book/data/index/tags/library/{username}/{your token}/{page}/{itemsperpage}/?query={query to search data}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1337",
+					"path": [
+						"reSlim-bookstore",
+						"src",
+						"api",
+						"book",
+						"data",
+						"index",
+						"tags",
+						"library",
+						"{username}",
+						"{your token}",
+						"{page}",
+						"{itemsperpage}",
+						""
+					],
+					"query": [
+						{
+							"key": "query",
+							"value": "{query to search data}",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Search Index Title in Library",
+			"request": {
+				"url": {
+					"raw": "http://localhost:1337/reSlim-bookstore/src/api/book/data/index/title/library/{username}/{your token}/{page}/{itemsperpage}/?query={query to search data}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1337",
+					"path": [
+						"reSlim-bookstore",
+						"src",
+						"api",
+						"book",
+						"data",
+						"index",
+						"title",
+						"library",
+						"{username}",
+						"{your token}",
+						"{page}",
+						"{itemsperpage}",
+						""
+					],
+					"query": [
+						{
+							"key": "query",
+							"value": "{query to search data}",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Search Index Type in Library",
+			"request": {
+				"url": {
+					"raw": "http://localhost:1337/reSlim-bookstore/src/api/book/data/index/type/library/{username}/{your token}/{page}/{itemsperpage}/?query={query to search data}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1337",
+					"path": [
+						"reSlim-bookstore",
+						"src",
+						"api",
+						"book",
+						"data",
+						"index",
+						"type",
+						"library",
+						"{username}",
+						"{your token}",
+						"{page}",
+						"{itemsperpage}",
+						""
+					],
+					"query": [
+						{
+							"key": "query",
+							"value": "{query to search data}",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Search Index Translator in Showroom",
+			"request": {
+				"url": {
+					"raw": "http://localhost:1337/reSlim-bookstore/src/api/book/data/index/translator/showroom/{username}/{your token}/{page}/{itemsperpage}/?query={query to search data}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1337",
+					"path": [
+						"reSlim-bookstore",
+						"src",
+						"api",
+						"book",
+						"data",
+						"index",
+						"translator",
+						"showroom",
+						"{username}",
+						"{your token}",
+						"{page}",
+						"{itemsperpage}",
+						""
+					],
+					"query": [
+						{
+							"key": "query",
+							"value": "{query to search data}",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Search Index Publisher in Showroom",
+			"request": {
+				"url": {
+					"raw": "http://localhost:1337/reSlim-bookstore/src/api/book/data/index/publisher/showroom/{username}/{your token}/{page}/{itemsperpage}/?query={query to search data}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1337",
+					"path": [
+						"reSlim-bookstore",
+						"src",
+						"api",
+						"book",
+						"data",
+						"index",
+						"publisher",
+						"showroom",
+						"{username}",
+						"{your token}",
+						"{page}",
+						"{itemsperpage}",
+						""
+					],
+					"query": [
+						{
+							"key": "query",
+							"value": "{query to search data}",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Search Index Author in Showroom",
+			"request": {
+				"url": {
+					"raw": "http://localhost:1337/reSlim-bookstore/src/api/book/data/index/author/showroom/{username}/{your token}/{page}/{itemsperpage}/?query={query to search data}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1337",
+					"path": [
+						"reSlim-bookstore",
+						"src",
+						"api",
+						"book",
+						"data",
+						"index",
+						"author",
+						"showroom",
+						"{username}",
+						"{your token}",
+						"{page}",
+						"{itemsperpage}",
+						""
+					],
+					"query": [
+						{
+							"key": "query",
+							"value": "{query to search data}",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Search Index Tags in Showroom",
+			"request": {
+				"url": {
+					"raw": "http://localhost:1337/reSlim-bookstore/src/api/book/data/index/tags/showroom/{username}/{your token}/{page}/{itemsperpage}/?query={query to search data}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1337",
+					"path": [
+						"reSlim-bookstore",
+						"src",
+						"api",
+						"book",
+						"data",
+						"index",
+						"tags",
+						"showroom",
+						"{username}",
+						"{your token}",
+						"{page}",
+						"{itemsperpage}",
+						""
+					],
+					"query": [
+						{
+							"key": "query",
+							"value": "{query to search data}",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Search Index Title in Showroom",
+			"request": {
+				"url": {
+					"raw": "http://localhost:1337/reSlim-bookstore/src/api/book/data/index/title/showroom/{username}/{your token}/{page}/{itemsperpage}/?query={query to search data}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1337",
+					"path": [
+						"reSlim-bookstore",
+						"src",
+						"api",
+						"book",
+						"data",
+						"index",
+						"title",
+						"showroom",
+						"{username}",
+						"{your token}",
+						"{page}",
+						"{itemsperpage}",
+						""
+					],
+					"query": [
+						{
+							"key": "query",
+							"value": "{query to search data}",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Search Index Type in Showroom",
+			"request": {
+				"url": {
+					"raw": "http://localhost:1337/reSlim-bookstore/src/api/book/data/index/type/showroom/{username}/{your token}/{page}/{itemsperpage}/?query={query to search data}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1337",
+					"path": [
+						"reSlim-bookstore",
+						"src",
+						"api",
+						"book",
+						"data",
+						"index",
+						"type",
+						"showroom",
+						"{username}",
+						"{your token}",
+						"{page}",
+						"{itemsperpage}",
+						""
+					],
+					"query": [
+						{
+							"key": "query",
+							"value": "{query to search data}",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
 		}
 	]
 }

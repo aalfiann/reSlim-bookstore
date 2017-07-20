@@ -800,3 +800,192 @@ use \Psr\Http\Message\ResponseInterface as Response;
         $body->write($book->showDataCompletion());
         return classes\Cors::modify($response,$body,200);
     })->add(new \classes\middleware\ApiKey(filter_var((empty($_GET['apikey'])?'':$_GET['apikey']),FILTER_SANITIZE_STRING)));
+
+    // GET api to show all data completion by search in showroom user
+    $app->get('/book/data/completion/showroom/{username}/{token}/', function (Request $request, Response $response) {
+        $book = new classes\bookstore\Book($this->db);
+        $book->search = filter_var((empty($_GET['query'])?'':$_GET['query']),FILTER_SANITIZE_STRING);
+        $book->token = $request->getAttribute('token');
+        $book->username = $request->getAttribute('username');
+        $body = $response->getBody();
+        $body->write($book->showDataCompletionInShowroom());
+        return classes\Cors::modify($response,$body,200);
+    });
+
+    // GET api to show all data completion by search in library user
+    $app->get('/book/data/completion/library/{username}/{token}/', function (Request $request, Response $response) {
+        $book = new classes\bookstore\Book($this->db);
+        $book->search = filter_var((empty($_GET['query'])?'':$_GET['query']),FILTER_SANITIZE_STRING);
+        $book->token = $request->getAttribute('token');
+        $book->username = $request->getAttribute('username');
+        $body = $response->getBody();
+        $body->write($book->showDataCompletionInLibrary());
+        return classes\Cors::modify($response,$body,200);
+    });
+
+    // GET api to show all data completion premium by search in library user
+    $app->get('/book/data/completion/premium/{username}/{token}/', function (Request $request, Response $response) {
+        $book = new classes\bookstore\Book($this->db);
+        $book->search = filter_var((empty($_GET['query'])?'':$_GET['query']),FILTER_SANITIZE_STRING);
+        $book->token = $request->getAttribute('token');
+        $book->username = $request->getAttribute('username');
+        $body = $response->getBody();
+        $body->write($book->showDataCompletionPremium());
+        return classes\Cors::modify($response,$body,200);
+    });
+
+    // GET api to show all data index tags by search in library user
+    $app->get('/book/data/index/tags/library/{username}/{token}/{page}/{itemsperpage}/', function (Request $request, Response $response) {
+        $book = new classes\bookstore\Book($this->db);
+        $book->search = filter_var((empty($_GET['query'])?'':$_GET['query']),FILTER_SANITIZE_STRING);
+        $book->token = $request->getAttribute('token');
+        $book->username = $request->getAttribute('username');
+        $book->page = $request->getAttribute('page');
+        $book->itemsPerPage = $request->getAttribute('itemsperpage');
+        $body = $response->getBody();
+        $body->write($book->searchIndexTagsAsPaginationInLibrary());
+        return classes\Cors::modify($response,$body,200);
+    });
+
+    // GET api to show all data index author by search in library user
+    $app->get('/book/data/index/author/library/{username}/{token}/{page}/{itemsperpage}/', function (Request $request, Response $response) {
+        $book = new classes\bookstore\Book($this->db);
+        $book->search = filter_var((empty($_GET['query'])?'':$_GET['query']),FILTER_SANITIZE_STRING);
+        $book->token = $request->getAttribute('token');
+        $book->username = $request->getAttribute('username');
+        $book->page = $request->getAttribute('page');
+        $book->itemsPerPage = $request->getAttribute('itemsperpage');
+        $body = $response->getBody();
+        $body->write($book->searchIndexAuthorAsPaginationInLibrary());
+        return classes\Cors::modify($response,$body,200);
+    });
+
+    // GET api to show all data index publisher by search in library user
+    $app->get('/book/data/index/publisher/library/{username}/{token}/{page}/{itemsperpage}/', function (Request $request, Response $response) {
+        $book = new classes\bookstore\Book($this->db);
+        $book->search = filter_var((empty($_GET['query'])?'':$_GET['query']),FILTER_SANITIZE_STRING);
+        $book->token = $request->getAttribute('token');
+        $book->username = $request->getAttribute('username');
+        $book->page = $request->getAttribute('page');
+        $book->itemsPerPage = $request->getAttribute('itemsperpage');
+        $body = $response->getBody();
+        $body->write($book->searchIndexPublisherAsPaginationInLibrary());
+        return classes\Cors::modify($response,$body,200);
+    });
+
+    // GET api to show all data index translator by search in library user
+    $app->get('/book/data/index/translator/library/{username}/{token}/{page}/{itemsperpage}/', function (Request $request, Response $response) {
+        $book = new classes\bookstore\Book($this->db);
+        $book->search = filter_var((empty($_GET['query'])?'':$_GET['query']),FILTER_SANITIZE_STRING);
+        $book->token = $request->getAttribute('token');
+        $book->username = $request->getAttribute('username');
+        $book->page = $request->getAttribute('page');
+        $book->itemsPerPage = $request->getAttribute('itemsperpage');
+        $body = $response->getBody();
+        $body->write($book->searchIndexTranslatorAsPaginationInLibrary());
+        return classes\Cors::modify($response,$body,200);
+    });
+
+    // GET api to show all data index type by search in library user
+    $app->get('/book/data/index/type/library/{username}/{token}/{page}/{itemsperpage}/', function (Request $request, Response $response) {
+        $book = new classes\bookstore\Book($this->db);
+        $book->search = filter_var((empty($_GET['query'])?'':$_GET['query']),FILTER_SANITIZE_STRING);
+        $book->token = $request->getAttribute('token');
+        $book->username = $request->getAttribute('username');
+        $book->page = $request->getAttribute('page');
+        $book->itemsPerPage = $request->getAttribute('itemsperpage');
+        $body = $response->getBody();
+        $body->write($book->searchIndexTypeAsPaginationInLibrary());
+        return classes\Cors::modify($response,$body,200);
+    });
+
+    // GET api to show all data index title by search in library user
+    $app->get('/book/data/index/title/library/{username}/{token}/{page}/{itemsperpage}/', function (Request $request, Response $response) {
+        $book = new classes\bookstore\Book($this->db);
+        $book->search = filter_var((empty($_GET['query'])?'':$_GET['query']),FILTER_SANITIZE_STRING);
+        $book->token = $request->getAttribute('token');
+        $book->username = $request->getAttribute('username');
+        $book->page = $request->getAttribute('page');
+        $book->itemsPerPage = $request->getAttribute('itemsperpage');
+        $body = $response->getBody();
+        $body->write($book->searchIndexTitleAsPaginationInLibrary());
+        return classes\Cors::modify($response,$body,200);
+    });
+
+    // GET api to show all data index tags by search in showroom user
+    $app->get('/book/data/index/tags/showroom/{username}/{token}/{page}/{itemsperpage}/', function (Request $request, Response $response) {
+        $book = new classes\bookstore\Book($this->db);
+        $book->search = filter_var((empty($_GET['query'])?'':$_GET['query']),FILTER_SANITIZE_STRING);
+        $book->token = $request->getAttribute('token');
+        $book->username = $request->getAttribute('username');
+        $book->page = $request->getAttribute('page');
+        $book->itemsPerPage = $request->getAttribute('itemsperpage');
+        $body = $response->getBody();
+        $body->write($book->searchIndexTagsAsPaginationInShowroom());
+        return classes\Cors::modify($response,$body,200);
+    });
+
+    // GET api to show all data index author by search in showroom user
+    $app->get('/book/data/index/author/showroom/{username}/{token}/{page}/{itemsperpage}/', function (Request $request, Response $response) {
+        $book = new classes\bookstore\Book($this->db);
+        $book->search = filter_var((empty($_GET['query'])?'':$_GET['query']),FILTER_SANITIZE_STRING);
+        $book->token = $request->getAttribute('token');
+        $book->username = $request->getAttribute('username');
+        $book->page = $request->getAttribute('page');
+        $book->itemsPerPage = $request->getAttribute('itemsperpage');
+        $body = $response->getBody();
+        $body->write($book->searchIndexAuthorAsPaginationInShowroom());
+        return classes\Cors::modify($response,$body,200);
+    });
+
+    // GET api to show all data index publisher by search in showroom user
+    $app->get('/book/data/index/publisher/showroom/{username}/{token}/{page}/{itemsperpage}/', function (Request $request, Response $response) {
+        $book = new classes\bookstore\Book($this->db);
+        $book->search = filter_var((empty($_GET['query'])?'':$_GET['query']),FILTER_SANITIZE_STRING);
+        $book->token = $request->getAttribute('token');
+        $book->username = $request->getAttribute('username');
+        $book->page = $request->getAttribute('page');
+        $book->itemsPerPage = $request->getAttribute('itemsperpage');
+        $body = $response->getBody();
+        $body->write($book->searchIndexPublisherAsPaginationInShowroom());
+        return classes\Cors::modify($response,$body,200);
+    });
+
+    // GET api to show all data index translator by search in showroom user
+    $app->get('/book/data/index/translator/showroom/{username}/{token}/{page}/{itemsperpage}/', function (Request $request, Response $response) {
+        $book = new classes\bookstore\Book($this->db);
+        $book->search = filter_var((empty($_GET['query'])?'':$_GET['query']),FILTER_SANITIZE_STRING);
+        $book->token = $request->getAttribute('token');
+        $book->username = $request->getAttribute('username');
+        $book->page = $request->getAttribute('page');
+        $book->itemsPerPage = $request->getAttribute('itemsperpage');
+        $body = $response->getBody();
+        $body->write($book->searchIndexTranslatorAsPaginationInShowroom());
+        return classes\Cors::modify($response,$body,200);
+    });
+
+    // GET api to show all data index type by search in showroom user
+    $app->get('/book/data/index/type/showroom/{username}/{token}/{page}/{itemsperpage}/', function (Request $request, Response $response) {
+        $book = new classes\bookstore\Book($this->db);
+        $book->search = filter_var((empty($_GET['query'])?'':$_GET['query']),FILTER_SANITIZE_STRING);
+        $book->token = $request->getAttribute('token');
+        $book->username = $request->getAttribute('username');
+        $book->page = $request->getAttribute('page');
+        $book->itemsPerPage = $request->getAttribute('itemsperpage');
+        $body = $response->getBody();
+        $body->write($book->searchIndexTypeAsPaginationInShowroom());
+        return classes\Cors::modify($response,$body,200);
+    });
+
+    // GET api to show all data index title by search in showroom user
+    $app->get('/book/data/index/title/showroom/{username}/{token}/{page}/{itemsperpage}/', function (Request $request, Response $response) {
+        $book = new classes\bookstore\Book($this->db);
+        $book->search = filter_var((empty($_GET['query'])?'':$_GET['query']),FILTER_SANITIZE_STRING);
+        $book->token = $request->getAttribute('token');
+        $book->username = $request->getAttribute('username');
+        $book->page = $request->getAttribute('page');
+        $book->itemsPerPage = $request->getAttribute('itemsperpage');
+        $body = $response->getBody();
+        $body->write($book->searchIndexTitleAsPaginationInShowroom());
+        return classes\Cors::modify($response,$body,200);
+    });
