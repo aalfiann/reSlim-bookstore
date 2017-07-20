@@ -38,5 +38,32 @@ $datalogin = Core::checkSessions();?>
     </div>
 </div>
     <?php include'global-js.php';?>
+    <script type="text/javascript">
+        $(function(){
+            $("#searchshowroom").autocomplete({
+                source:function (request, response) {
+					$.ajax({
+						url: "<?php echo Core::getInstance()->api?>/book/data/completion/showroom/<?php echo $datalogin['username']?>/<?php echo $datalogin['token']?>/?query=" + request.term,
+						dataType: 'json',
+						success: function( data ) {
+							if(data.status=='success'){
+								response(data.result);
+							} else {
+								response(null);
+							}
+						},
+						error: function( data ) {
+							console.log( "ERROR:  " + data );
+						}
+					});
+				},
+                minLength:3,
+                search:function(){$(this).addClass('ui-autocomplete-loading');},
+                open:function(){$(this).removeClass('ui-autocomplete-loading');},
+                delay: 1000,
+                autoFocus:true
+            });
+    	});
+    </script>
 </body>
 </html>
