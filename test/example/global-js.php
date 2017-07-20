@@ -172,15 +172,21 @@
 		}),
 		$("#search").autocomplete({
             source:function (request, response) {
-                $.getJSON("<?php echo Core::getInstance()->api?>/book/data/completion/all/?apikey=<?php echo Core::getInstance()->apikey?>&query=" + request.term, function (data) {
-                    response($.map(data.result, function (value, key) {
-                        return {
-                            label: value,
-                            value: value
-                        };
-                    }));
-                });
-            },
+				$.ajax({
+					url: "<?php echo Core::getInstance()->api?>/book/data/completion/all/?apikey=<?php echo Core::getInstance()->apikey?>&query=" + request.term,
+					dataType: 'json',
+					success: function( data ) {
+						if(data.status=='success'){
+							response(data.result);
+						} else {
+							response(null);
+						}
+					},
+					error: function( data ) {
+						console.log( "ERROR:  " + data );
+					}
+				});
+			},
             minLength:3,
             search:function(){$(this).addClass('ui-autocomplete-loading');},
             open:function(){$(this).removeClass('ui-autocomplete-loading');},
