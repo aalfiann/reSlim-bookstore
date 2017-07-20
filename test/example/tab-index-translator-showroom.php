@@ -61,6 +61,9 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'50':$_GET['itemsperpag
                                         <div class="form-group">
                                             <a href="modul-index-type-showroom.php?m=12" class="btn btn-fill btn-block btn-danger"><?php echo Core::lang('index_list')?> <?php echo Core::lang('type')?></a>
                                         </div>
+                                        <div class="form-group">
+                                            <a href="modul-index-translator-showroom.php?m=12" class="btn btn-fill btn-block btn-default"><?php echo Core::lang('index_list')?> <?php echo Core::lang('translator')?></a>
+                                        </div>
                                     </div>
                                 </div>
                               </div>
