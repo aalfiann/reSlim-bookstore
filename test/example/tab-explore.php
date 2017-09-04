@@ -317,4 +317,3 @@ $itemsperpage = filter_var((empty($_GET['itemsperpage'])?'10':$_GET['itemsperpag
                     </div>
                 </div>
             </div>
-        </div>
